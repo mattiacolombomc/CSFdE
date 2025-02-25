@@ -1,0 +1,702 @@
+\documentclass[dvipsnames]{article}
+\usepackage[a4paper, landscape]{geometry}
+\usepackage{url}
+\usepackage{multicol} 
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{caption}
+\usepackage{amsmath,amssymb}
+\usepackage{bbding}
+\usepackage{pifont}
+\usepackage{wasysym}
+\usepackage{colortbl}
+\usepackage{xcolor, soul} %colors and \hl
+\usepackage{mathtools} 
+\usepackage{amsmath,amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fontawesome}
+\usepackage[american,european, siunitx]{circuitikz} %https://grex99.gitlab.io/circuitgui/
+\usepackage{graphicx}
+\usepackage{microtype}
+
+\makeatletter
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\definecolor{CustomYellow}{RGB}{233,215,0}
+
+\title{Cheat Sheet}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.5in
+\advance\evensidemargin-1.5in
+\parindent0pt
+\parskip2pt
+%------------ COMMANDS ---------------
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+
+
+%------------ CONDITIONAL FORMATTING ---------------
+\newcommand\conform{}
+%\newcommand\conform{S}
+\newcommand\dummytext[1]{\if \conform S {#1} \else \vspace{5cm} \hspace{5cm} \fi}
+
+%---------------------------------------------------
+\begin{document}
+
+%\begin{center}{\huge{\textbf{Formulario esame elettrotecnica}}}\\
+%\end{center}
+\begin{multicols*}{3}
+
+    \tikzstyle{mybox} = [draw=CustomYellow, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+    \tikzstyle{fancytitle} =[fill=CustomYellow, text=white, font=\bfseries]
+
+    \tikzset{
+        miaFreccia/.style={
+                ->,
+                >=latex,
+                line width=1pt,
+                shorten <=5mm,
+                shorten >=5mm
+            }
+    }
+
+    %SCALA TRANSITORI
+
+    \resizebox{\columnwidth}{0.9\textheight}{%------------ Box 26 ---------------
+        \label{Box 26}
+        \begin{tikzpicture}
+            \node [mybox] (box){%
+                \begin{minipage}{0.3\textwidth}
+
+                    \begin{enumerate}
+                        \item Per \colorbox{yellow}{$t \to 0^-$},
+                              \begin{enumerate}
+                                  \item \textbf{calcolare variabile di stato prima dell’inizio del transitorio}
+                                  \item In questa fase il \textbf{\color{orange}condensatore\color{black}}/\textbf{\color{Fuchsia}induttore\color{black}                                   \color{black}} si comporta come \textbf{\color{orange}circuito aperto\color{black}}/\textbf{\color{Fuchsia}cortocircuito\color{black}                                   \color{black}}
+                                  \item Sfrutterò nella fase 2 la continuitá della variabile di stato
+                              \end{enumerate}
+
+                        \item Per \colorbox{Dandelion}{\(t \to 0^+\) (per var. \textbf{NON} di stato es. $v_x, i_x$) },
+                              \begin{enumerate}
+                                  \item (Eventuale chiusura interruttore)
+                                  \item \textbf{Sfrutto continuitá variabile di stato}: \\ \(\color{orange}v_C(t_0^-)=v_C(t_0^+)\)\color{black} / \color{Fuchsia}\(i_L(t_0^-)= i_L(t_0^+)\)\color{black}
+                                  \item \textbf{Sostituisco al transitorio} GENERATORE IDEALE DI \color{orange}\textbf{TENSIONE}\color{black} / \color{Fuchsia}\textbf{CORRENTE }\color{black} con \ul{\textbf{valore pari alla variabile di stato appena calcolata}} $$E=V_C(t \to 0^-) \quad I=I_L(t \to 0^-)$$
+                              \end{enumerate}
+
+                        \item Per \colorbox{BurntOrange}{\(t \to \infty\)} / \colorbox{BurntOrange}{\(t>0\)} :
+                              \begin{enumerate}
+                                  \item \textbf{Soluzione di tipo esponenziale}
+                                        \begin{enumerate}
+                                            \item Formule variabili di stato:
+                                                  \begin{align*}
+                                                      V_C(t) & = V_{C_{\infty}}+\left[V_{C}(0)-V_{C_\infty}\right] e^{-\frac{t}{\tau}} \\
+                                                      I_L(t) & = I_{L_{\infty}}+\left[I_{L}(0)-I_{L_\infty}\right] e^{-\frac{t}{\tau}}
+                                                  \end{align*}
+
+                                            \item Formule per le grandezze \textbf{non di stato}:
+                                                  \begin{align*}
+                                                      I_C(t) & = I_{C_\infty}+[I_C(\color{red}0^+\color{black})-I_{C_\infty}]e^{\frac{-t}{\tau}} \\
+                                                      V_L(t) & = V_{L_\infty}+[V_L(\color{red}0^+\color{black})-V_{L_\infty}]e^{\frac{-t}{\tau}}
+                                                  \end{align*}
+
+                                            \item Qui, siamo \textbf{\color{red}ancora a regime\color{black}}: il \textbf{\color{orange}condensatore\color{black}}/\textbf{\color{Fuchsia}induttore\color{black}                                   \color{black}} si comporta come \textbf{\color{orange}circuito aperto\color{black}}/\textbf{\color{Fuchsia}cortocircuito\color{black}                                   \color{black}}
+                                            \item Cerco la variabile di stato per \(t \to \infty\)
+                                            \item Cerco \(\tau\):
+                                                  \begin{enumerate}
+                                                      \item Mi serve \(R_{\text{eq}}\) ai morsetti di dove c’é transitorio
+                                                      \item \textbf{\color{brown}Spengo generatori non pilotati\color{black}}
+                                                      \item uso \color{teal} \textbf{generatore sonda (c.g.)} - cerco corrente che passa sul ramo della sonda in funzione di \(V_S\):  \(?\rightarrow I_S(V_S)\)
+
+                                                            \[
+                                                                R_{\text{eq}}=\frac{V_S}{I_S(V_S)}
+                                                            \]
+                                                            \color{black}
+                                                      \item Calcolo  \(\tau\):
+
+                                                            \[
+                                                                \tau = C \cdot R_{\text{eq}} = \frac{L}{R_{\text{eq}}}
+                                                            \]
+                                                  \end{enumerate}
+                                        \end{enumerate}
+
+
+                              \end{enumerate}
+                    \end{enumerate}
+                \end{minipage}
+            };
+            %------------ Box 26 Header ---------------------
+            \node[fancytitle, right=10pt] at (box.north west) {\color{white}Procedimento transitori:};
+        \end{tikzpicture}}
+
+
+    %------------ Box 27 ---------------
+    \label{Box 27}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \begin{enumerate}
+                    \item Traccio asintoto
+                    \item Sfrutto \textbf{proprietá dell’esponenziale}: tangente al grafico in \(t=0\) interseca il valore asintotico dopo \(\Delta t = \tau\)
+                    \item Dopo \(t=5\tau\) la funzione assume valore asintotico
+                \end{enumerate}
+
+            \end{minipage}
+        };
+        %------------ Box 27 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Grafico};
+    \end{tikzpicture}
+    %------------ Box 3 ---------------
+    \label{Box 3}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+                \dummytext{Text 3}
+
+
+            \end{minipage}
+        };
+        %------------ Box 3 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 3};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+    %------------ Box 4 ---------------
+    \label{Box 4}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+                \dummytext{Text 4}
+
+
+            \end{minipage}
+        };
+        %------------ Box 4 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 4};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+    %------------ Box 5 ---------------------
+    \label{Box 5}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+                \dummytext{Text 5}
+
+
+            \end{minipage}
+        };
+        %------------ Box 5 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 5};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+    %------------ Box 6 ---------------
+    \label{Box 6}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+                \dummytext{Text 6}
+
+
+            \end{minipage}
+        };
+        %------------ Box 6 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 6};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+    %------------ Box 7 ---------------
+    \label{Box 7}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+                \dummytext{Text 7}
+
+
+            \end{minipage}
+        };
+        %------------ Box 7 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 7};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+    %------------ Box 8 ---------------
+    \label{Box 8}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+                \dummytext{Text 8}
+
+
+            \end{minipage}
+        };
+        %------------ Box 8 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 8};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Formazione del Canale nei MOSFET ---------------
+    \label{Formazione del Canale nei MOSFET}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+
+                \begin{enumerate}
+                    \item \textbf{Zona OFF (o Cutoff):}
+                          \begin{enumerate}
+                              \item Non c'è formazione del canale.
+                              \item Il dispositivo è spento e non permette il flusso di corrente tra drain e source.
+                          \end{enumerate}
+
+                    \item \textbf{Zona Ohmica (o Triodo):}
+                          \begin{enumerate}
+                              \item Si forma un canale.
+                              \item Quando il gate è abbastanza polarizzato (cioè \( V_{GS} > V_{Tn} \) per nMOS o \( V_{GS} < V_{Tp} \) per pMOS), si forma un canale conduttivo tra il drain e il source.
+                              \item Il dispositivo si comporta come un \textbf{resistore il cui valore varia in base alla tensione} \( V_{GS} \).
+                          \end{enumerate}
+
+                    \item \textbf{Zona di Saturazione (o Pinch-off):}
+                          \begin{enumerate}
+                              \item Si forma un canale.
+                              \item Il canale diventa "strozzato" o "pinched-off" vicino al drain (per il nMOS) o vicino al source (per il pMOS).
+                              \item Anche se la tensione \( V_{DS} \) aumenta ulteriormente, la corrente \( I_D \) rimane costante.
+                              \item Questo comportamento è \textbf{analogo a quello di un generatore di corrente.}
+                          \end{enumerate}
+                \end{enumerate}
+
+
+
+            \end{minipage}
+        };
+        %------------ Formazione del Canale nei MOSFET Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Formazione del Canale nei MOSFET};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+    %------------ Overdrive ---------------------
+    \label{Overdrive}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \noindent
+                \textbf{\color{red}Overdrive}: \textbf{quanto fortemente é acceso il transistor.} Differenza fra \textbf{\color{red}tensione G/S e soglia}.
+                $$V_{OV} = V_{GS}-V_{T}$$
+                dove $V_T = V_{Tn}, V_T = V_{Tp}$ \\ a seconda che si tratti di \textbf{nMOS} o \textbf{pMOS}.    \\
+
+                Ogni qualvolta in cui un transistor si trova in saturazione, la corrente che scorre da D a S sará:
+                $$I_D = k (V_{GS} - V_T)^2=k \cdot {V_{OV}}^2$$
+            \end{minipage}
+        };
+        %------------ Overdrive Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Overdrive};
+    \end{tikzpicture}
+    \resizebox{\columnwidth}{0.9\textheight}{
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+        %------------ Box 12 ---------------------
+        \label{Box 12}
+        \begin{tikzpicture}
+            \node [mybox] (box){%
+                \begin{minipage}{0.3\textwidth}
+                    \noindent \textbf{Parametri di Transconduttanza:}
+                    \begin{equation*}
+                        \begin{aligned}
+                             & K_n = \frac{1}{2} \mu_n C_{OX} \frac{W}{L} \quad \text{e} \quad K_p = -\frac{1}{2} \mu_p C_{OX} \frac{W}{L} \\
+                             & \begin{aligned}
+                                   \mu_n  & : \text{Mobilità degli elettroni nel nMOS}           \\
+                                   \mu_p  & : \text{Mobilità delle lacune nel pMOS}              \\
+                                   C_{OX} & : \text{Capacità per unità di area dell'ossido gate} \\
+                                   W      & : \text{Larghezza del canale}                        \\
+                                   L      & : \text{Lunghezza del canale}
+                               \end{aligned}
+                        \end{aligned}
+                    \end{equation*}
+
+
+                    \noindent \textbf{nMOS:}
+                    \begin{enumerate}
+                        \item \textbf{Spegnimento (Cutoff):}
+                              \begin{equation*}
+                                  \begin{aligned}
+                                       & V_{GS} < V_{Tn}                           \\
+                                       & I_D = 0                                   \\
+                                       & \text{Circuito aperto tra drain e source}
+                                  \end{aligned}
+                              \end{equation*}
+                        \item \textbf{Zona Ohmica (Triodo):}
+                              \begin{equation*}
+                                  \begin{aligned}
+                                       & V_{GS} > V_{Tn}, \quad V_{DS} < V_{OV}                        \\
+                                       & I_D = k_P \left[ 2 (V_{GS}-V_{Tn})V_{DS} - {V_{DS}}^2 \right] \\
+                                       & \text{Resistore controllato da tensione}
+                                  \end{aligned}
+                              \end{equation*}
+                        \item \textbf{Zona di Saturazione (Pinch-off):}
+                              \begin{equation*}
+                                  \begin{aligned}
+                                       & V_{GS} > V_{Tn}, \quad V_{DS} > V_{OV}, \quad V_{GD} < V_{Tn} \\
+                                       & \text{Generatore di corrente controllato}
+                                  \end{aligned}
+                              \end{equation*}
+                    \end{enumerate}
+
+                    \noindent \textbf{pMOS:} $\color{Purple}I_D <0, V_{DS}<0$
+                    \begin{enumerate}
+                        \item \textbf{Spegnimento (Cutoff):}
+                              \begin{equation*}
+                                  \begin{aligned}
+                                       & V_{GS} > |V_{Tp}|                         \\
+                                       & I_D = 0                                   \\
+                                       & \text{Circuito aperto tra drain e source}
+                                  \end{aligned}
+                              \end{equation*}
+                        \item \textbf{Zona Ohmica (Triodo):}
+                              \begin{equation*}
+                                  \begin{aligned}
+                                       & V_{GS} < V_{Tp}, \quad V_{SD} < V_{OV}                        \\
+                                       & I_D = k_P \left[ 2 (V_{GS}-V_{Tp})V_{DS} - {V_{DS}}^2 \right] \\
+                                       & \text{Resistore controllato da tensione}
+                                  \end{aligned}
+                              \end{equation*}
+                        \item \textbf{Zona di Saturazione (Pinch-off):}
+                              \begin{equation*}
+                                  \begin{aligned}
+                                       & V_{GS} < V_{Tp}, \quad V_{SD} > V_{OV}, \quad V_{GD} > V_{TP} \\
+                                       & \text{Generatore di corrente controllato}
+                                  \end{aligned}
+                              \end{equation*}
+                    \end{enumerate}
+
+
+                \end{minipage}
+            };
+            %------------ Box 12 Header ---------------------
+            \node[fancytitle, right=10pt] at (box.north west) {\color{white}nMOS e pMOS};
+        \end{tikzpicture}
+
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    } %fine resizebox
+    \columnbreak
+    %------------ cMOS ---------------
+    \label{cMOS}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \noindent \textbf{cMOS (Inverter):}
+                \begin{enumerate}
+                    \item \textbf{Ingresso Alto (logica `1`):}
+                          \text{rete PULL-UP(pMOS ON SAT, nMOS OFF)}
+                          \begin{align*}
+                               & \text{nMOS: } V_{GS} > V_{th} \text{ (Conduzione)} \\
+                               & \text{pMOS: } V_{GS} > V_{TP} \text{ (Cutoff)}     \\
+                               & \text{Uscita: } \text{GND (logica `0`)}
+                          \end{align*}
+                    \item \textbf{Ingresso Basso (logica `0`):}
+                          \text{rete PULL-DOWN(nMOS ON SAT, pMOS OFF)}
+                          \begin{align*}
+                               & \text{nMOS: } V_{GS} < V_{th} \text{ (Cutoff)}     \\
+                               & \text{pMOS: } V_{GS} < V_{TP} \text{ (Conduzione)} \\
+                               & \text{Uscita: } \text{VDD (logica `1`)}
+                          \end{align*}
+                    \item \textbf{Zona intermedia: entrambi in saturazione}
+                          \color{red} [.....]\color{black}
+                \end{enumerate}
+
+                [grafico delle caratteristiche] \\
+                cMOS
+
+
+            \end{minipage}
+        };
+        %------------ cMOS Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}cMOS};
+    \end{tikzpicture}
+
+    %------------ AND/nAND ---------------
+    \label{AND/nAND}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \noindent \textbf{AND (AND/nAND):}
+                \begin{enumerate}
+                    \item \textbf{Entrata:}
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 0, \quad B = 0 \\
+                                   & \text{Uscita: } 0
+                              \end{aligned}
+                          \end{equation*}
+
+                    \item
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 0, \quad B = 1 \\
+                                   & \text{Uscita: } 0
+                              \end{aligned}
+                          \end{equation*}
+
+                    \item
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 1, \quad B = 0 \\
+                                   & \text{Uscita: } 0
+                              \end{aligned}
+                          \end{equation*}
+
+                    \item
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 1, \quad B = 1 \\
+                                   & \text{Uscita: } 1
+                              \end{aligned}
+                          \end{equation*}
+                \end{enumerate}
+
+            \end{minipage}
+        };
+        %------------ AND/nAND Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}AND/nAND};
+    \end{tikzpicture}
+
+    %------------ OR/nOR ---------------
+    \label{OR/nOR}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \noindent \textbf{OR (nOR):}
+                \begin{enumerate}
+                    \item \textbf{Entrata:}
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 0, \quad B = 0 \\
+                                   & \text{Uscita: } 0
+                              \end{aligned}
+                          \end{equation*}
+
+                    \item
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 0, \quad B = 1 \\
+                                   & \text{Uscita: } 1
+                              \end{aligned}
+                          \end{equation*}
+
+                    \item
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 1, \quad B = 0 \\
+                                   & \text{Uscita: } 1
+                              \end{aligned}
+                          \end{equation*}
+
+                    \item
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 1, \quad B = 1 \\
+                                   & \text{Uscita: } 1
+                              \end{aligned}
+                          \end{equation*}
+                \end{enumerate}
+
+            \end{minipage}
+        };
+        %------------ OR/nOR Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OR/nOR};
+    \end{tikzpicture}
+
+    %------------ XOR/nXOR ---------------
+    \label{XOR/nXOR}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \noindent \textbf{XOR (nXOR):}
+                \begin{enumerate}
+                    \item \textbf{Entrata:}
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 0, \quad B = 0 \\
+                                   & \text{Uscita: } 0
+                              \end{aligned}
+                          \end{equation*}
+
+                    \item
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 0, \quad B = 1 \\
+                                   & \text{Uscita: } 1
+                              \end{aligned}
+                          \end{equation*}
+
+                    \item
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 1, \quad B = 0 \\
+                                   & \text{Uscita: } 1
+                              \end{aligned}
+                          \end{equation*}
+
+                    \item
+                          \begin{equation*}
+                              \begin{aligned}
+                                   & A = 1, \quad B = 1 \\
+                                   & \text{Uscita: } 0
+                              \end{aligned}
+                          \end{equation*}
+                \end{enumerate}
+
+            \end{minipage}
+        };
+        %------------ XOR/nXOR Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}XOR/nXOR};
+    \end{tikzpicture}
+
+    %------------ Box 17 ---------------
+    \label{Box 17}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \dummytext{Content for Box 17}
+            \end{minipage}
+        };
+        %------------ Box 17 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 17};
+    \end{tikzpicture}
+
+
+    %------------ Box 18 ---------------
+    \label{Box 18}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \dummytext{Content for Box 18}
+            \end{minipage}
+        };
+        %------------ Box 18 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 18};
+    \end{tikzpicture}
+
+    %------------ Box 19 ---------------
+    \label{Box 19}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \dummytext{Content for Box 19}
+            \end{minipage}
+        };
+        %------------ Box 19 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 19};
+    \end{tikzpicture}
+
+    %------------ Box 20 ---------------
+    \label{Box 20}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \dummytext{Content for Box 20}
+            \end{minipage}
+        };
+        %------------ Box 20 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 20};
+    \end{tikzpicture}
+
+    %------------ Box 21 ---------------
+    \label{Box 21}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \dummytext{Content for Box 21}
+            \end{minipage}
+        };
+        %------------ Box 21 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 21};
+    \end{tikzpicture}
+
+    %------------ Box 22 ---------------
+    \label{Box 22}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \dummytext{Content for Box 22}
+            \end{minipage}
+        };
+        %------------ Box 22 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 22};
+    \end{tikzpicture}
+
+    %------------ Box 23 ---------------
+    \label{Box 23}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \dummytext{Content for Box 23}
+            \end{minipage}
+        };
+        %------------ Box 23 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 23};
+    \end{tikzpicture}
+
+\end{multicols*}
+\end{document}
