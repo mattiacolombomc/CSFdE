@@ -157,6 +157,56 @@
         %------------ Box 27 Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Grafico};
     \end{tikzpicture}
+
+
+
+    %------------ Box 4: Resistenze in parallelo ---------------
+    \label{Box 4}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \textbf{Resistenze in parallelo:}
+
+                \begin{enumerate}
+                    \item \textbf{Caso con 2 resistenze:}
+                          $$R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2}$$
+
+                    \item \textbf{Caso generale (n resistenze):}
+                          $$\frac{1}{R_{eq}} = \sum_{i=1}^{n} \frac{1}{R_i}$$
+                \end{enumerate}
+
+                \vspace{0.3cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                        \textbf{\color{red}$\triangle$ NOTA IMPORTANTE - Tensioni di alimentazione}
+
+                        Le tensioni fornite dalle alimentazioni sono le \textbf{massime e minime} possibili nel circuito.
+
+                        \vspace{0.1cm}
+                        \textbf{I NODI della rete NON possono mai avere tensioni:}
+                        \begin{itemize}
+                            \item Più alte di $V_{\text{max}}$ (alimentazione massima)
+                            \item Più basse di $V_{\text{min}}$ (alimentazione minima)
+                        \end{itemize}
+
+                        \vspace{0.1cm}
+                        \colorbox{yellow!50}{\parbox{0.9\linewidth}{\footnotesize
+                                \textbf{ATTENZIONE:} Questo vale per le tensioni dei \textbf{NODI} (riferite a massa).
+
+                                Le \textbf{cadute di tensione} (misurate tra due nodi diversi) \underline{possono} superare questi limiti!
+                            }}
+
+                        \vspace{0.1cm}
+                        \textbf{Uso pratico:} Fondamentale quando si fanno ipotesi sullo stato dei diodi (ON/OFF). Se un'ipotesi porta un nodo oltre $V_{\text{max}}$ o sotto $V_{\text{min}}$, l'ipotesi è \textbf{sbagliata}.
+                    }}
+
+            \end{minipage}
+        };
+        %------------ Box 4 Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Resistenze e Alimentazioni};
+    \end{tikzpicture}
+
+    
     %------------ Box 3: Diodi ---------------
     \label{Box 3}
     \begin{tikzpicture}
@@ -247,52 +297,6 @@
 
 
 
-
-    %------------ Box 4: Resistenze in parallelo ---------------
-    \label{Box 4}
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-
-                \textbf{Resistenze in parallelo:}
-
-                \begin{enumerate}
-                    \item \textbf{Caso con 2 resistenze:}
-                          $$R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2}$$
-
-                    \item \textbf{Caso generale (n resistenze):}
-                          $$\frac{1}{R_{eq}} = \sum_{i=1}^{n} \frac{1}{R_i}$$
-                \end{enumerate}
-
-                \vspace{0.3cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
-                        \textbf{\color{red}$\triangle$ NOTA IMPORTANTE - Tensioni di alimentazione}
-
-                        Le tensioni fornite dalle alimentazioni sono le \textbf{massime e minime} possibili nel circuito.
-
-                        \vspace{0.1cm}
-                        \textbf{I NODI della rete NON possono mai avere tensioni:}
-                        \begin{itemize}
-                            \item Più alte di $V_{\text{max}}$ (alimentazione massima)
-                            \item Più basse di $V_{\text{min}}$ (alimentazione minima)
-                        \end{itemize}
-
-                        \vspace{0.1cm}
-                        \colorbox{yellow!50}{\parbox{0.9\linewidth}{\footnotesize
-                                \textbf{ATTENZIONE:} Questo vale per le tensioni dei \textbf{NODI} (riferite a massa).
-
-                                Le \textbf{cadute di tensione} (misurate tra due nodi diversi) \underline{possono} superare questi limiti!
-                            }}
-
-                        \vspace{0.1cm}
-                        \textbf{Uso pratico:} Fondamentale quando si fanno ipotesi sullo stato dei diodi (ON/OFF). Se un'ipotesi porta un nodo oltre $V_{\text{max}}$ o sotto $V_{\text{min}}$, l'ipotesi è \textbf{sbagliata}.
-                    }}
-
-            \end{minipage}
-        };
-        %------------ Box 4 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Resistenze e Alimentazioni};
-    \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
