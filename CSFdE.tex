@@ -157,20 +157,90 @@
         %------------ Box 27 Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Grafico};
     \end{tikzpicture}
-    %------------ Box 3 ---------------
+    %------------ Box 3: Diodi ---------------
     \label{Box 3}
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
+                \textbf{1. Diodo normale:}
 
-                \dummytext{Text 3}
+                \vspace{0.2cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.9]
+                        % Diodo ON
+                        \draw (0,2) to[D, v=$V_D$, color=green!70!black, line width=1.2pt] (2,2);
+                        \node[anchor=south] at (1,2.2) {\color{green!70!black}\textbf{ON}};
+                        \node[anchor=north] at (1,1.3) {$V_D > 0.7\text{V}$};
+                        \node[anchor=north] at (1,0.8) {$\Rightarrow V_D = 0.7\text{V}$};
 
+                        % Diodo OFF
+                        \draw (3.5,2) to[D, v=$V_D$, color=gray, line width=1.2pt] (5.5,2);
+                        \node[anchor=south] at (4.5,2.2) {\color{gray}\textbf{OFF}};
+                        \node[anchor=north] at (4.5,1.3) {$V_D < 0.7\text{V}$};
+                        \node[anchor=north] at (4.5,0.8) {$\Rightarrow$ aperto};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.3cm}
+                \textbf{2. Diodo Zener:}
+
+                \vspace{0.2cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.8]
+                        % Conduzione diretta
+                        \draw (0,2.5) to[zD, v=$V_D$, color=green!70!black, line width=1.2pt] (2,2.5);
+                        \node[anchor=south] at (1,2.7) {\color{green!70!black}\textbf{Diretta}};
+                        \node[anchor=north] at (1,1.8) {$V_D > 0.7\text{V}$};
+                        \node[anchor=north] at (1,1.2) {$V_D = 0.7\text{V}$};
+
+                        % Breakdown
+                        \draw (3.5,2.5) to[zD, v=$V_D$, color=red!70!black, line width=1.2pt] (5.5,2.5);
+                        \node[anchor=south] at (4.5,2.7) {\color{red!70!black}\textbf{Breakdown}};
+                        \node[anchor=north] at (4.5,1.8) {$V_D < -V_Z$};
+                        \node[anchor=north] at (4.5,1.2) {\color{red}$V_D = -V_Z$};
+                    \end{circuitikz}
+                \end{center}
+
+                \colorbox{yellow!30}{\parbox{0.9\linewidth}{\small \textbf{ATTENZIONE:} In breakdown, la tensione $V_D = -V_Z$ ha polarità \textbf{\color{red}opposta} rispetto ai $+0.7\text{V}$ della conduzione diretta!}}
+
+                \vspace{0.2cm}
+                \textbf{3. Configurazioni in serie:}
+
+                \begin{center}
+                    \begin{circuitikz}[scale=0.7]
+                        % Serie discordi
+                        \draw (0,1.5) to[D] (1.5,1.5) to[D, invert] (3,1.5);
+                        \node[anchor=south] at (1.5,1.7) {\small Discordi};
+                        \node[anchor=north] at (1.5,1.0) {$\Rightarrow$ \textbf{APERTO}};
+
+                        % Serie concordi
+                        \draw (4,1.5) to[D] (5.5,1.5) to[D] (7,1.5);
+                        \node[anchor=south] at (5.5,1.7) {\small Concordi};
+                        \node[anchor=north] at (5.5,1.0) {$V_\gamma = \sum V_{\gamma,i}$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.2cm}
+                \colorbox{cyan!20}{\parbox{0.9\linewidth}{\footnotesize
+                        \textbf{$\bigstar$ TRUCCO PRATICO - Verifica stato diodo:}
+
+                        Quando sei \textbf{in un intorno della soglia} ($V_D \approx 0.7V$, anche infinitesimamente superiore), le \textbf{correnti sono molto basse}.
+
+                        $\Rightarrow$ Per verificare se il diodo si accende puoi \textbf{ignorare le resistenze in serie} (I $\approx$ 0 $\Rightarrow$ $\Delta V_R \approx$ 0).
+
+                        \textbf{Uso nei transitori:} A fine esercizio, verifica che l'ipotesi sul diodo (ON/OFF) resti valida in:
+                        \begin{itemize}[leftmargin=*, itemsep=0pt]
+                            \item $\hat{T}^-$ (istante prima della transizione)
+                            \item $\hat{T}^+$ (istante dopo della transizione)
+                            \item $t \to \infty$ (regime)
+                        \end{itemize}
+                    }}
 
             \end{minipage}
         };
         %------------ Box 3 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 3};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodi};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,20 +248,50 @@
 
 
 
-    %------------ Box 4 ---------------
+    %------------ Box 4: Resistenze in parallelo ---------------
     \label{Box 4}
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
+                \textbf{Resistenze in parallelo:}
 
-                \dummytext{Text 4}
+                \begin{enumerate}
+                    \item \textbf{Caso con 2 resistenze:}
+                          $$R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2}$$
 
+                    \item \textbf{Caso generale (n resistenze):}
+                          $$\frac{1}{R_{eq}} = \sum_{i=1}^{n} \frac{1}{R_i}$$
+                \end{enumerate}
+
+                \vspace{0.3cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                        \textbf{\color{red}$\triangle$ NOTA IMPORTANTE - Tensioni di alimentazione}
+
+                        Le tensioni fornite dalle alimentazioni sono le \textbf{massime e minime} possibili nel circuito.
+
+                        \vspace{0.1cm}
+                        \textbf{I NODI della rete NON possono mai avere tensioni:}
+                        \begin{itemize}
+                            \item Più alte di $V_{\text{max}}$ (alimentazione massima)
+                            \item Più basse di $V_{\text{min}}$ (alimentazione minima)
+                        \end{itemize}
+
+                        \vspace{0.1cm}
+                        \colorbox{yellow!50}{\parbox{0.9\linewidth}{\footnotesize
+                                \textbf{ATTENZIONE:} Questo vale per le tensioni dei \textbf{NODI} (riferite a massa).
+
+                                Le \textbf{cadute di tensione} (misurate tra due nodi diversi) \underline{possono} superare questi limiti!
+                            }}
+
+                        \vspace{0.1cm}
+                        \textbf{Uso pratico:} Fondamentale quando si fanno ipotesi sullo stato dei diodi (ON/OFF). Se un'ipotesi porta un nodo oltre $V_{\text{max}}$ o sotto $V_{\text{min}}$, l'ipotesi è \textbf{sbagliata}.
+                    }}
 
             \end{minipage}
         };
         %------------ Box 4 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 4};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Resistenze e Alimentazioni};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -200,20 +300,93 @@
 
 
 
-    %------------ Box 5 ---------------------
+    %------------ Box 5: Capacità - Formule fondamentali ---------------------
     \label{Box 5}
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
+                \textbf{1. Tensione del condensatore:}
+                $$V_C(t) = V_C(0^+) + \left[V_C(\color{orange}\infty^*\color{black}) - V_C(0^+)\right] \left(1 - e^{-\frac{t}{\tau}}\right)$$
+                \small
+                $V_C(0^+)$: iniziale; $V_C(\color{orange}\infty^*\color{black})$: a regime; \colorbox{yellow!30}{$\color{orange}\infty^* \neq \infty$}
 
-                \dummytext{Text 5}
+                \vspace{0.2cm}
+                \textbf{2. Corrente:} $I_C(t) = C \frac{dV_C(t)}{dt}$
 
+                \small \textbf{\color{blue}Proprietà:}
+                La \textbf{\color{red}corrente} varia \textbf{\color{red}istantaneamente}; La \textbf{\color{green!50!black}tensione} NON commuta: $V_C(t_0^-) = V_C(t_0^+)$
+
+                \vspace{0.25cm}
+                \colorbox{Dandelion!40}{\parbox{0.95\linewidth}{\small
+                        \textbf{$\bigstar$ REGOLA D'ORO - A REGIME}
+
+                        \vspace{0.1cm}
+                        A regime ($t \to \infty$): $\frac{dV_C}{dt} = 0$ $\Rightarrow$ $\boxed{I_C = 0}$
+
+                        \textbf{Condensatore = CIRCUITO APERTO}
+
+                        \vspace{0.15cm}
+                        \colorbox{white}{\parbox{0.9\linewidth}{\small
+                                \textbf{Per calcolare $V_C(\infty)$:}
+                                \begin{enumerate}[itemsep=2pt]
+                                    \item Sostituisci C con \textbf{circuito aperto}
+                                    \item Risolvi il circuito semplificato
+                                    \item Calcola la tensione nel punto dove c'era C
+                                \end{enumerate}
+
+                                \vspace{0.1cm}
+                                \textbf{Es:} $V \xrightarrow{R_1} \bullet \xrightarrow{R_2} \text{GND}$ + C $\parallel$ $R_2$
+
+                                $\Rightarrow$ $V_C(\infty) = V \frac{R_2}{R_1+R_2}$ (partitore)
+                            }}
+                    }}
+
+                \vspace{0.2cm}
+                \textbf{3. Ripple:} $\Delta V_{out} = V_{picco} \frac{\Delta T}{\tau} = V_{picco} \frac{T}{f \cdot \tau}$
+
+                \vspace{0.2cm}
+                \textbf{4. Comportamento fisico} \small ($Q = C \cdot V$; $I = C \frac{dV}{dt}$)
+
+                \vspace{0.15cm}
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\small
+                        \textbf{\color{green!50!black}CARICA} ($\frac{dV_C}{dt} > 0$): Corrente \textbf{ENTRA} ($I_C > 0$)
+
+                        Il condensatore accumula energia; $V_C \uparrow$
+                        \begin{center}
+                            \begin{circuitikz}[scale=0.55]
+                                \draw (0,0) to[C=$C$, v=$V_C$] (0,2.5);
+                                \draw[->, thick, color=green!70!black, line width=1.5pt] (-0.9,1.2) -- (-0.15,1.2);
+                                \node[anchor=east, color=green!70!black] at (-0.9,1.2) {\small $I_C > 0$};
+                                \node[anchor=south] at (0,2.8) {\small Corrente ENTRA};
+                            \end{circuitikz}
+                        \end{center}
+                    }}
+
+                \vspace{0.15cm}
+                \colorbox{red!15}{\parbox{0.95\linewidth}{\small
+                        \textbf{\color{red!70!black}SCARICA} ($\frac{dV_C}{dt} < 0$): Corrente \textbf{ESCE} ($I_C < 0$)
+
+                        Il condensatore rilascia energia; $V_C \downarrow$
+                        \begin{center}
+                            \begin{circuitikz}[scale=0.55]
+                                \draw (0,0) to[C=$C$, v=$V_C$] (0,2.5);
+                                \draw[->, thick, color=red!70!black, line width=1.5pt] (0.15,1.2) -- (0.9,1.2);
+                                \node[anchor=west, color=red!70!black] at (0.9,1.2) {\small $I_C < 0$};
+                                \node[anchor=south] at (0,2.8) {\small Corrente ESCE};
+                            \end{circuitikz}
+                        \end{center}
+                    }}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\small
+                        \textbf{Regola:} $V_C \uparrow$ $\Rightarrow$ CARICA; $V_C \downarrow$ $\Rightarrow$ SCARICA; segno $I_C$ indica verso
+                    }}
 
             \end{minipage}
         };
         %------------ Box 5 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 5};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Capacità: Formule e Comportamento};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -221,20 +394,83 @@
 
 
 
-    %------------ Box 6 ---------------
+    %------------ Box 6: Transitori multipli ---------------
     \label{Box 6}
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
+                \textbf{Formula tempo centrale $\hat{T}$:}
+                $$V_C(\hat{T}) = V_C(0^+)_{\hat{T}} + \left[V_C(\infty^*) - V_C(0^+)_{\hat{T}}\right] \left(1 - e^{-\frac{\hat{T}}{\tau}}\right)$$
 
-                \dummytext{Text 6}
+                \vspace{0.2cm}
+                \colorbox{Dandelion!30}{\parbox{0.95\linewidth}{\small
+                        \textbf{Prassi: segnale rettangolare}
 
+                        \underline{salita} $\to$ \underline{plateau} $\to$ \underline{discesa}
+                    }}
+
+                \vspace{0.25cm}
+                \textbf{Procedimento step-by-step:}
+                \begin{enumerate}[leftmargin=*, itemsep=3pt]
+                    \item \textbf{\color{green!50!black}FASE 1 - Salita}
+                          \begin{itemize}[itemsep=1pt]
+                              \item Analizza $t = 0^-$ (condizioni iniziali)
+                              \item $V_C(0^+)$ per continuità
+                              \item Determina stato diodi
+                              \item Calcola $V_C(\infty^*)$
+                              \item Applica formula con $\tau$
+                          \end{itemize}
+
+                    \item \textbf{\color{orange}FASE 2 - Plateau}
+                          \begin{itemize}[itemsep=1pt]
+                              \item Se durata $\gg 5\tau$: regime
+                              \item Se durata $< 5\tau$: calcola $V_C$ fine
+                              \item Verifica diodi (Box 7)
+                          \end{itemize}
+
+                    \item \textbf{\color{red!70!black}FASE 3 - Discesa}
+                          \begin{itemize}[itemsep=1pt]
+                              \item $V_C(0^+) = V_C(\text{fine plateau})$
+                              \item Ridetermina stato diodi
+                              \item Nuovo $V_C(\infty^*)$
+                              \item Applica formula
+                          \end{itemize}
+                \end{enumerate}
+
+                \vspace{0.2cm}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.6]
+                        % Segnale di ingresso
+                        \draw[->] (0,0) -- (8,0) node[right] {$t$};
+                        \draw[->] (0,0) -- (0,2.5) node[above] {$V_{in}$};
+                        \draw[thick, green!50!black] (0,0) -- (0.5,0) -- (0.5,2) -- (3.5,2) -- (3.5,0) -- (8,0);
+                        \node at (4,-0.8) {\small Ingresso (rettangolare)};
+
+                        % Risposta Vc(t)
+                        \draw[->] (0,-3.5) -- (8,-3.5) node[right] {$t$};
+                        \draw[->] (0,-3.5) -- (0,-1) node[above] {$V_C$};
+                        % Fase 1
+                        \draw[thick, green!50!black, domain=0.5:3.5, samples=50] plot (\x, {-3.5 + 2*(1-exp(-(\x-0.5)))});
+                        % Fase 2
+                        \draw[thick, orange, domain=3.5:3.8, samples=20] plot (\x, {-1.5 - 0.05*(\x-3.5)});
+                        % Fase 3
+                        \draw[thick, red!70!black, domain=3.8:7, samples=50] plot (\x, {-1.52 - 1.7*(1-exp(-(\x-3.8)))});
+
+                        \node[green!50!black] at (2,-4.2) {\small Fase 1};
+                        \node[orange] at (3.65,-4.2) {\small F.2};
+                        \node[red!70!black] at (5.5,-4.2) {\small Fase 3};
+
+                        \draw[dashed] (0.5,0) -- (0.5,-3.5);
+                        \draw[dashed] (3.5,0) -- (3.5,-3.5);
+                        \node at (4,-4.8) {\small Risposta $V_C(t)$};
+                    \end{tikzpicture}
+                \end{center}
 
             \end{minipage}
         };
         %------------ Box 6 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 6};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Transitori con gradini multipli};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -243,22 +479,71 @@
 
 
 
-    %------------ Box 7 ---------------
+    %------------ Box 7: Verifica ipotesi diodi ---------------
     \label{Box 7}
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\small
+                        \textbf{\color{red}$\triangle$ VERIFICA FONDAMENTALE}
 
-                \dummytext{Text 7}
+                        Verifica ipotesi diodo (ON/OFF) rimanga valida per tutto il transitorio
+                    }}
 
+                \vspace{0.2cm}
+                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\small
+                        \textbf{\color{blue}FASE 0: Metodo intuitivo}
+
+                        \textbf{Regola:} $I$ scorre da $V_{+}$ a $V_{-}$
+
+                        1) $V_C(0^+)$ continuità
+                        2) Trova $V_{\max}$
+                        3) $I$ va da $V_{\max}$ a $V_{\min}$
+                        4) Compatibile con diodo?
+                        5) No $\Rightarrow$ cambia stato
+
+                        \vspace{0.15cm}
+                        \begin{center}
+                            \begin{circuitikz}[scale=0.65]
+                                \draw (0,0) node[ground]{} to[V, v=$V_{in}$] (0,2.5)
+                                      to[D, l=$D$, color=red] (2.5,2.5)
+                                      to[R, l=$R$] (5,2.5)
+                                      to[C, l=$C$, v<=$V_C{=}5V$] (5,0) -- (0,0);
+                                \node[anchor=south, color=blue] at (0,2.8) {\small $0V$};
+                                \node[anchor=south, color=red!70!black] at (5,2.8) {\small \textbf{$5V$}};
+                                \draw[->, very thick, color=orange, line width=1.2pt] (4.5,3.6) -- (0.5,3.6);
+                                \node[anchor=south, color=orange] at (2.5,3.8) {\small $I$ (5V$\to$0V)};
+                                \node[anchor=north, align=center] at (2.5,-0.5) {\small \textbf{Contraddizione!} $I$ va ← \\
+                                \small ma D conduce solo → \\
+                                \small $\Rightarrow$ \textbf{D OFF}};
+                            \end{circuitikz}
+                        \end{center}
+                    }}
+
+                \vspace{0.2cm}
+                \begin{enumerate}[leftmargin=*, itemsep=2pt]
+                    \item Ipotesi (es: D ON)
+                    \item Risolvi (ON: gen 0.7V; OFF: aperto)
+                    \item Calcola $V_C(t)$
+                    \item Verifica $\forall t$:
+
+                          \colorbox{green!10}{\parbox{0.9\linewidth}{\small
+                                  \textbf{ON:} $I_D(t) > 0$? No $\to$ errore
+                              }}
+
+                          \colorbox{orange!10}{\parbox{0.9\linewidth}{\small
+                                  \textbf{OFF:} $V_D(t) < 0.7$V? No $\to$ errore
+                              }}
+
+                    \item Se errore: dividi in 2 fasi ($t^*$ cambio), ricalcola
+                \end{enumerate}
 
             \end{minipage}
         };
         %------------ Box 7 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 7};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Verifica ipotesi stato diodi};
     \end{tikzpicture}
-
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -269,24 +554,87 @@
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
+                \textbf{NOTAZIONE ALIMENTAZIONI}
 
-                \dummytext{Text 8}
+                \vspace{0.1cm}
+                \colorbox{orange!30}{\parbox{0.95\linewidth}{\small
+                        \textbf{REGOLA D'ORO:} Il \textbf{trattino} indica SEMPRE il \textbf{polo + del generatore}, sia con tensione positiva che negativa!
+                    }}
 
+                \vspace{0.2cm}
+                \textbf{Caso 1: $V_{DD} = +1V$ (alimentazione positiva)}
+
+                \begin{center}
+                    {\color{black}
+                    \begin{circuitikz}[scale=1.0]
+                        % Simbolo alimentazione VDD
+                        \draw[very thick] (0,0) to[short] (0,0.5);
+                        \draw[ultra thick, line width=2pt] (-0.5,0.5) -- (0.5,0.5);
+                        \node[anchor=south, font=\small\bfseries] at (0,0.6) {$V_{DD} = +1V$};
+
+                        % Freccia indicazione
+                        \draw[<-, ultra thick, color=red, line width=2pt] (-1.2,0.5) -- (-0.55,0.5);
+                        \node[anchor=east, color=red, font=\scriptsize\bfseries, align=right] at (-1.25,0.5) {Trattino\\= polo \textbf{+}};
+
+                        % Equivalente circuitale
+                        \node[anchor=north, font=\footnotesize, align=center] at (0,-0.2) {Equivale a:};
+
+                        \draw (2.5,-1) node[ground]{} to[V, v=$+1V$, invert] (2.5,0.5);
+                        \node[anchor=west, font=\scriptsize] at (3,0.5) {\textbf{+} (polo +)};
+                        \node[anchor=west, font=\scriptsize] at (3,-1) {\textbf{--} (GND)};
+                    \end{circuitikz}
+                    }
+                \end{center}
+
+                \vspace{0.05cm}
+                {\footnotesize Tensione $+1V$ $\to$ polo + sul trattino, tutto normale}
+
+                \vspace{0.2cm}
+                \textbf{Caso 2: $V_{SS} = -1V$ (alimentazione negativa)}
+
+                \begin{center}
+                    {\color{black}
+                    \begin{circuitikz}[scale=1.0]
+                        % Simbolo alimentazione VSS
+                        \draw[very thick] (0,0) to[short] (0,0.5);
+                        \draw[ultra thick, line width=2pt] (-0.5,0.5) -- (0.5,0.5);
+                        \node[anchor=south, font=\small\bfseries] at (0,0.6) {$V_{SS} = -1V$};
+
+                        % Freccia indicazione
+                        \draw[<-, ultra thick, color=blue, line width=2pt] (-1.2,0.5) -- (-0.55,0.5);
+                        \node[anchor=east, color=blue, font=\scriptsize\bfseries, align=right] at (-1.25,0.5) {Trattino\\= polo \textbf{+}};
+
+                        % Equivalente circuitale
+                        \node[anchor=north, font=\footnotesize, align=center] at (0,-0.2) {Equivale a:};
+
+                        \draw (2.5,-1) node[ground]{} to[V, v=$-1V$, invert] (2.5,0.5);
+                        \node[anchor=west, font=\scriptsize] at (3,0.5) {\textbf{+} (polo +)};
+                        \node[anchor=west, font=\scriptsize] at (3,-1) {\color{black}\textbf{--} (GND)};
+                    \end{circuitikz}
+                    }
+                \end{center}
+
+                \vspace{0.05cm}
+                {\footnotesize Tensione $-1V$ $\to$ polo + è comunque sul trattino!}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                        \textbf{TRUCCO:} Con $V_{SS}=-1V$ puoi ridisegnare il generatore invertendo polarità E segno: diventa $+1V$ con polo + su GND. Utile per evitare tensioni negative nei calcoli.
+                    }}
 
             \end{minipage}
         };
         %------------ Box 8 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 8};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Notazione alimentazioni};
     \end{tikzpicture}
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Separa sezione MOSFET
+    \newpage
 
 
 
-
-
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%
 
     %------------ Formazione del Canale nei MOSFET ---------------
     \label{Formazione del Canale nei MOSFET}
