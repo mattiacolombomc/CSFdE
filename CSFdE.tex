@@ -907,33 +907,215 @@
 
 
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Box: nMOS - Metodo operativo ---------------
+    \label{Box nMOS}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+                \vspace{0.2cm}
+                \textbf{\color{blue}PRIMO CONTROLLO: $V_{GS}$ vs $V_{T}$}
+
+                \begin{enumerate}[leftmargin=*, itemsep=3pt]
+                    \item Se \colorbox{red!20}{$V_{GS} < V_T$} $\Rightarrow$ \textbf{MOSFET OFF}
+                          \begin{itemize}
+                              \item $I_D = 0$ (circuito aperto)
+                              \item Non c'è conduzione
+                          \end{itemize}
+
+                    \item Se \colorbox{green!20}{$V_{GS} > V_T$} $\Rightarrow$ \textbf{MOSFET ON}
+                          \begin{itemize}
+                              \item Proseguire al \textbf{SECONDO CONTROLLO}
+                          \end{itemize}
+                \end{enumerate}
+
+                \vspace{0.2cm}
+                \textbf{\color{blue}SECONDO CONTROLLO (solo se ON): $V_{DS}$ vs $(V_{GS} - V_T)$}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{
+                    \textbf{Tensione di Overdrive:}
+                    $$V_{OV} = V_{GS} - V_T$$
+                }}
+
+                \vspace{0.15cm}
+                \begin{enumerate}[leftmargin=*, itemsep=3pt]
+                    \item \textbf{\color{orange}ZONA DI SATURAZIONE}: Se $V_{DS} > (V_{GS} - V_T)$
+
+                          \colorbox{orange!15}{\parbox{0.93\linewidth}{
+                              $$I_D = K_n(V_{GS} - V_T)^2$$
+
+                              \vspace{0.1cm}
+                              \textbf{Nota:} La corrente dipende \textbf{SOLO da $V_{GS}$}
+                          }}
+
+                    \item \textbf{\color{cyan!70!black}ZONA OHMICA (Triodo)}: Se $V_{DS} < (V_{GS} - V_T)$
+
+                          \colorbox{cyan!15}{\parbox{0.93\linewidth}{
+                              $$I_D = K_n\left[2(V_{GS} - V_T)V_{DS} - V_{DS}^2\right]$$
+
+                              \vspace{0.1cm}
+                              \textbf{Nota:} La corrente dipende da \textbf{$V_{GS}$ E $V_{DS}$}
+                          }}
+
+                          \vspace{0.15cm}
+                          \colorbox{cyan!10}{\parbox{0.93\linewidth}{\small
+                              \textbf{Formula alternativa:}
+                              $$I_D = \frac{1}{2} K_n V_{OV} \left(V_{DS} - \frac{V_{DS}^2}{2}\right)$$
+                          }}
+                \end{enumerate}
+
+                \small \textbf{Direzione corrente:} In nMOS, $I_D$ scorre da \textbf{Drain $\to$ Source}
+
+            \end{minipage}
+        };
+        %------------ Box nMOS Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}nMOS - Metodo operativo};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Box: pMOS - Metodo operativo ---------------
+    \label{Box pMOS}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+
+                \vspace{0.2cm}
+                \textbf{\color{blue}PROCEDIMENTO OPERATIVO PER pMOS}
+
+                \vspace{0.15cm}
+        %       \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+        %           \textbf{\color{red}$\bigstar$ REGOLA FONDAMENTALE - pMOS}
+
+        %           \vspace{0.1cm}
+        %           Affinché il pMOS sia \textbf{ON}, il \textbf{source deve essere più in alto del gate di almeno una soglia} ($|V_T|$):
+
+        %           $$V_S - V_G \geq |V_T| \quad \Leftrightarrow \quad |V_{GS}| \geq |V_T|$$
+
+        %           \vspace{0.05cm}
+        %           {\footnotesize Il controllo $|V_{GS}| \geq |V_T|$ è \textbf{sufficiente} e include automaticamente la verifica della polarità corretta.}
+        %       }}
+
+                \vspace{0.2cm}
+                \textbf{Step 1: Calcolare $|V_{GS}|$}
+
+                \vspace{0.15cm}
+                \textbf{\color{blue}Step 2: PRIMO CONTROLLO - $|V_{GS}|$ vs $|V_T|$}
+
+                \begin{enumerate}[leftmargin=*, itemsep=3pt]
+                    \item Se \colorbox{red!20}{$|V_{GS}| < |V_T|$} $\Rightarrow$ \textbf{MOSFET OFF}
+                          \begin{itemize}
+                              \item $I_D = 0$ (circuito aperto)
+                              \item Non c'è conduzione
+                          \end{itemize}
+
+                    \item Se \colorbox{green!20}{$|V_{GS}| > |V_T|$} $\Rightarrow$ \textbf{MOSFET ON}
+                          \begin{itemize}
+                              \item Calcolare $V_{OV} = |V_{GS}| - |V_T|$
+                              \item Proseguire allo \textbf{Step 3}
+                          \end{itemize}
+                \end{enumerate}
+
+                \vspace{0.2cm}
+                \textbf{\color{blue}Step 3: SECONDO CONTROLLO - $|V_{DS}|$ vs $V_{OV}$}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{
+                    \textbf{Tensione di Overdrive:}
+                    $$V_{OV} = |V_{GS}| - |V_T|$$
+                }}
+
+                \vspace{0.15cm}
+                \begin{enumerate}[leftmargin=*, itemsep=3pt]
+                    \item \textbf{\color{orange}ZONA DI SATURAZIONE}: Se $|V_{DS}| > V_{OV}$
+
+                          \colorbox{orange!15}{\parbox{0.93\linewidth}{
+                              $$I_D = K_p \cdot V_{OV}^2 = K_p(|V_{GS}| - |V_T|)^2$$
+
+                              \vspace{0.1cm}
+                              \textbf{Nota:} La corrente dipende \textbf{SOLO dall'overdrive}
+                          }}
+
+                    \item \textbf{\color{cyan!70!black}ZONA OHMICA (Triodo)}: Se $|V_{DS}| < V_{OV}$
+
+                          \colorbox{cyan!15}{\parbox{0.93\linewidth}{
+                              $$I_D = K_p\left[2 V_{OV} \cdot |V_{DS}| - |V_{DS}|^2\right]$$
+
+                              \vspace{0.05cm}
+                              {\footnotesize dove $V_{OV} = |V_{GS}| - |V_T|$}
+
+                              \vspace{0.1cm}
+                              \textbf{Nota:} La corrente dipende da \textbf{$V_{OV}$ E $|V_{DS}|$}
+                          }}
+                \end{enumerate}
+
+                \vspace{0.2cm}
+                \small \textbf{Direzione corrente:} In pMOS, $I_D$ scorre da \textbf{Source $\to$ Drain}
+
+            \end{minipage}
+        };
+        %------------ Box pMOS Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}pMOS - Metodo operativo};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    %------------ Box: Riepilogo nMOS vs pMOS ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{purple}Grandezze da calcolare per determinare lo stato:}
+
+                \vspace{0.2cm}
+
+                \begin{tabular}{|c|c|}
+                    \hline
+                    \rowcolor{green!15}
+                    \textbf{nMOS} & \textbf{pMOS} \\
+                    \hline
+                    $V_{GS}$ & $|V_{GS}|$ \\
+                    \hline
+                    $V_T$ & $|V_T|$ \\
+                    \hline
+                    $V_{OV} = V_{GS} - V_T$ & $V_{OV} = |V_{GS}| - |V_T|$ \\
+                    \hline
+                    $V_{DS}$ & $|V_{DS}|$ \\
+                    \hline
+                \end{tabular}
+
+                \vspace{0.2cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Controlli identici:}
+                    \begin{enumerate}[itemsep=1pt, leftmargin=*]
+                        \item Se $V_{GS}$ (o $|V_{GS}|$) $<$ $V_T$ (o $|V_T|$) $\Rightarrow$ OFF
+                        \item Se ON: confronta $V_{DS}$ (o $|V_{DS}|$) con $V_{OV}$
+                    \end{enumerate}
+
+                    \vspace{0.05cm}
+                    La \textbf{procedura è identica}, solo che per pMOS si usano i \textbf{valori assoluti}.
+                }}
+
+            \end{minipage}
+        };
+        %------------ Box Riepilogo Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riepilogo: nMOS vs pMOS};
+    \end{tikzpicture}
+
+
     %------------ Overdrive e Parametro K ---------------------
     \label{Overdrive}
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-
-                \textbf{\color{red}Overdrive ($V_{OV}$):}
-
-                \noindent
-                Misura \textbf{quanto fortemente è acceso il transistor}. Indica di quanto si è superata (o scesi sotto) la soglia.
-
-                \vspace{0.15cm}
-                \textbf{nMOS:} Per accendere un nMOS, $V_{GS}$ deve superare la soglia positiva $V_{T}$.
-                $$V_{OV} = V_{GS}-V_{T}$$
-
-                \textbf{pMOS:} Un pMOS si accende quando $V_{GS}$ diventa più negativa della sua soglia negativa.
-                $$V_{OV} = V_{SG} - |V_{T}|$$
-
-                \vspace{0.1cm}
-                {\small (La tensione di overdrive è la differenza tra $V_{SG}$ e il valore assoluto della soglia)}
-
-                \vspace{0.2cm}
-                Ogni qualvolta in cui un transistor si trova in \textbf{saturazione}, la corrente che scorre da D a S sarà:
-                $$I_D = K (V_{GS} - V_T)^2= K \cdot {V_{OV}}^2$$
-
-                \vspace{0.3cm}
-                \textbf{\color{blue}Parametro K (Transconduttanza):}
 
                 $$K = \frac{1}{2} \mu \cdot C_{OX} \cdot \frac{W}{L}$$
 
@@ -968,157 +1150,7 @@
             \end{minipage}
         };
         %------------ Overdrive Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Overdrive e Parametro K};
-    \end{tikzpicture}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    %------------ Box: nMOS - Metodo operativo ---------------
-    \label{Box nMOS}
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-
-
-                \vspace{0.2cm}
-                \textbf{\color{blue}PRIMO CONTROLLO: $V_{GS}$ vs $V_{T}$}
-
-                \begin{enumerate}[leftmargin=*, itemsep=3pt]
-                    \item Se \colorbox{red!20}{$V_{GS} < V_T$} $\Rightarrow$ \textbf{MOSFET OFF}
-                          \begin{itemize}
-                              \item $I_D = 0$ (circuito aperto)
-                              \item Non c'è conduzione
-                          \end{itemize}
-
-                    \item Se \colorbox{green!20}{$V_{GS} > V_T$} $\Rightarrow$ \textbf{MOSFET ON}
-                          \begin{itemize}
-                              \item Proseguire al \textbf{SECONDO CONTROLLO}
-                          \end{itemize}
-                \end{enumerate}
-
-                \vspace{0.2cm}
-                \textbf{\color{blue}SECONDO CONTROLLO (solo se ON): $V_{DS}$ vs $(V_{GS} - V_T)$}
-
-                \begin{enumerate}[leftmargin=*, itemsep=3pt]
-                    \item \textbf{\color{orange}ZONA DI SATURAZIONE}: Se $V_{DS} > (V_{GS} - V_T)$
-
-                          \colorbox{orange!15}{\parbox{0.93\linewidth}{
-                              $$I_D = K(V_{GS} - V_T)^2$$
-
-                              \vspace{0.1cm}
-                              \textbf{Nota:} La corrente dipende \textbf{SOLO da $V_{GS}$}
-                          }}
-
-                    \item \textbf{\color{cyan!70!black}ZONA OHMICA (Triodo)}: Se $V_{DS} < (V_{GS} - V_T)$
-
-                          \colorbox{cyan!15}{\parbox{0.93\linewidth}{
-                              $$I_D = K\left[2(V_{GS} - V_T)V_{DS} - V_{DS}^2\right]$$
-
-                              \vspace{0.1cm}
-                              \textbf{Nota:} La corrente dipende da \textbf{$V_{GS}$ E $V_{DS}$}
-                          }}
-                \end{enumerate}
-
-                \vspace{0.2cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
-                    \textbf{\color{red}$\bigstar$ REGOLA FONDAMENTALE - nMOS}
-
-                    \vspace{0.1cm}
-                    Affinché il MOSFET sia \textbf{ON}, il \textbf{gate deve essere più in alto del source di almeno una soglia} ($V_T$):
-
-                    $$V_G - V_S \geq V_T$$
-                }}
-
-                \vspace{0.2cm}
-                \small \textbf{Direzione corrente:} In nMOS, $I_D$ scorre da \textbf{Drain $\to$ Source}
-
-            \end{minipage}
-        };
-        %------------ Box nMOS Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}nMOS - Metodo operativo};
-    \end{tikzpicture}
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    %------------ Box: pMOS - Metodo operativo ---------------
-    \label{Box pMOS}
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-
-
-
-                \vspace{0.2cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\small
-                    \textbf{\color{red}$\triangle$  CRITICO - Metodo valori assoluti}
-
-                    \vspace{0.1cm}
-                    Il metodo del valore assoluto funziona \textbf{SOLO} se verifichi \textbf{CONTEMPORANEAMENTE} che:
-                    \begin{enumerate}[itemsep=1pt]
-                        \item $|V_{GS}| > |V_T|$ (in valore assoluto)
-                        \item Il \textbf{source sia sopra al gate} di almeno una soglia
-                    \end{enumerate}
-
-                    \vspace{0.1cm}
-                    \colorbox{yellow!50}{\parbox{0.9\linewidth}{\footnotesize
-                        Se hai $|V_{GS}| > |V_T|$ ma con \textbf{verso opposto}, il pMOS \textbf{NON} si accende!
-                    }}
-                }}
-
-                \vspace{0.2cm}
-                \textbf{\color{blue}PRIMO CONTROLLO: Source sopra Gate}
-
-                \begin{enumerate}[leftmargin=*, itemsep=3pt]
-                    \item Se \colorbox{red!20}{$V_S - V_G < |V_T|$} $\Rightarrow$ \textbf{MOSFET OFF}
-                          \begin{itemize}
-                              \item $I_D = 0$ (circuito aperto)
-                          \end{itemize}
-
-                    \item Se \colorbox{green!20}{$V_S - V_G > |V_T|$} $\Rightarrow$ \textbf{MOSFET ON}
-                          \begin{itemize}
-                              \item Equivalente a $|V_{GS}| > |V_T|$ con polarità corretta
-                              \item Proseguire al \textbf{SECONDO CONTROLLO}
-                          \end{itemize}
-                \end{enumerate}
-
-                \vspace{0.2cm}
-                \textbf{\color{blue}SECONDO CONTROLLO (solo se ON): $V_{SD}$ vs $V_{OV}$}
-
-                \begin{enumerate}[leftmargin=*, itemsep=3pt]
-                    \item \textbf{\color{orange}ZONA DI SATURAZIONE}: Se $V_{SD} > (V_{SG} - |V_T|)$
-
-                          \colorbox{orange!15}{\parbox{0.93\linewidth}{
-                              $$I_D = K(V_{SG} - |V_T|)^2 = K \cdot V_{OV}^2$$
-
-                              \vspace{0.05cm}
-                              {\footnotesize (equivalentemente: $I_D = K(V_{GS} - V_T)^2$ con $V_{GS}$ e $V_T$ negativi)}
-
-                              \vspace{0.1cm}
-                              \textbf{Nota:} La corrente dipende \textbf{SOLO da $V_{SG}$ (overdrive)}
-                          }}
-
-                    \item \textbf{\color{cyan!70!black}ZONA OHMICA (Triodo)}: Se $V_{SD} < (V_{SG} - |V_T|)$
-
-                          \colorbox{cyan!15}{\parbox{0.93\linewidth}{
-                              $$I_D = K\left[2(V_{SG} - |V_T|)V_{SD} - V_{SD}^2\right]$$
-
-                              \vspace{0.05cm}
-                              {\footnotesize (equivalentemente: $I_D = K[2(V_{GS} - V_T)V_{SD} - V_{SD}^2]$ con $V_{GS}$, $V_T$ negativi)}
-
-                              \vspace{0.1cm}
-                              \textbf{IMPORTANTE:} Si usa $V_{SD}$ (non $V_{DS}$) perché nel pMOS la corrente va da S$\to$D
-
-                              \vspace{0.1cm}
-                              \textbf{Nota:} La corrente dipende da \textbf{$V_{SG}$ (overdrive) E $V_{SD}$}
-                          }}
-                \end{enumerate}
-
-                \vspace{0.2cm}
-                \small \textbf{Direzione corrente:} In pMOS, $I_D$ scorre da \textbf{Source $\to$ Drain} (da alto verso basso nel simbolo)
-
-            \end{minipage}
-        };
-        %------------ Box pMOS Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}pMOS - Metodo operativo};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Parametro K (Transconduttanza)};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
