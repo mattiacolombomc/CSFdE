@@ -684,113 +684,443 @@
 
 
 
-    %------------ Overdrive ---------------------
+    %------------ Overdrive e Parametro K ---------------------
     \label{Overdrive}
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
-                \noindent
-                \textbf{\color{red}Overdrive}: \textbf{quanto fortemente é acceso il transistor.} Differenza fra \textbf{\color{red}tensione G/S e soglia}.
-                $$V_{OV} = V_{GS}-V_{T}$$
-                dove $V_T = V_{Tn}, V_T = V_{Tp}$ \\ a seconda che si tratti di \textbf{nMOS} o \textbf{pMOS}.    \\
+                \textbf{\color{red}Overdrive ($V_{OV}$):}
 
-                Ogni qualvolta in cui un transistor si trova in saturazione, la corrente che scorre da D a S sará:
-                $$I_D = k (V_{GS} - V_T)^2=k \cdot {V_{OV}}^2$$
+                \noindent
+                Misura \textbf{quanto fortemente è acceso il transistor}. Indica di quanto si è superata (o scesi sotto) la soglia.
+
+                \vspace{0.15cm}
+                \textbf{nMOS:} Per accendere un nMOS, $V_{GS}$ deve superare la soglia positiva $V_{T}$.
+                $$V_{OV} = V_{GS}-V_{T}$$
+
+                \textbf{pMOS:} Un pMOS si accende quando $V_{GS}$ diventa più negativa della sua soglia negativa.
+                $$V_{OV} = V_{SG} - |V_{T}|$$
+
+                \vspace{0.1cm}
+                {\small (La tensione di overdrive è la differenza tra $V_{SG}$ e il valore assoluto della soglia)}
+
+                \vspace{0.2cm}
+                Ogni qualvolta in cui un transistor si trova in \textbf{saturazione}, la corrente che scorre da D a S sarà:
+                $$I_D = K (V_{GS} - V_T)^2= K \cdot {V_{OV}}^2$$
+
+                \vspace{0.3cm}
+                \textbf{\color{blue}Parametro K (Transconduttanza):}
+
+                $$K = \frac{1}{2} \mu \cdot C_{OX} \cdot \frac{W}{L}$$
+
+                \noindent Dove:
+                \begin{itemize}[itemsep=1pt, leftmargin=*]
+                    \item $\mu$ = mobilità dei portatori nel canale
+                    \item $C_{OX}$ = capacità specifica dell'ossido
+                    \item $W/L$ = dimensioni fisiche del MOSFET \\
+                          (Width/Length)
+                \end{itemize}
+
+                \vspace{0.2cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{\small
+                    \textbf{\color{red}$\triangle$ NOTA IMPORTANTE - Fattore 1/2}
+
+                    \vspace{0.1cm}
+                    K può essere definito \textbf{SENZA} il fattore $\frac{1}{2}$ al suo interno.
+
+                    In tal caso, le formule delle correnti devono essere \textbf{riadattate}:
+
+                    \vspace{0.1cm}
+                    \begin{itemize}[itemsep=2pt]
+                        \item \textbf{Saturazione:} \\
+                              $I = \frac{K}{2}(V_{GS}-V_T)^2$ invece di $I = K(V_{GS}-V_T)^2$
+
+                        \item \textbf{Omica:} \\
+                              $I = K\left[(V_{GS}-V_T)V_{DS} - \frac{V_{DS}^2}{2}\right]$ \\
+                              invece di $I = K\left[2(V_{GS}-V_T)V_{DS} - V_{DS}^2\right]$
+                    \end{itemize}
+                }}
+
             \end{minipage}
         };
         %------------ Overdrive Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Overdrive};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Overdrive e Parametro K};
     \end{tikzpicture}
-    \resizebox{\columnwidth}{0.9\textheight}{
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-        %------------ Box 12 ---------------------
-        \label{Box 12}
-        \begin{tikzpicture}
-            \node [mybox] (box){%
-                \begin{minipage}{0.3\textwidth}
-                    \noindent \textbf{Parametri di Transconduttanza:}
-                    \begin{equation*}
-                        \begin{aligned}
-                             & K_n = \frac{1}{2} \mu_n C_{OX} \frac{W}{L} \quad \text{e} \quad K_p = -\frac{1}{2} \mu_p C_{OX} \frac{W}{L} \\
-                             & \begin{aligned}
-                                   \mu_n  & : \text{Mobilità degli elettroni nel nMOS}           \\
-                                   \mu_p  & : \text{Mobilità delle lacune nel pMOS}              \\
-                                   C_{OX} & : \text{Capacità per unità di area dell'ossido gate} \\
-                                   W      & : \text{Larghezza del canale}                        \\
-                                   L      & : \text{Lunghezza del canale}
-                               \end{aligned}
-                        \end{aligned}
-                    \end{equation*}
+    %------------ Box: nMOS - Metodo operativo ---------------
+    \label{Box nMOS}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
 
 
-                    \noindent \textbf{nMOS:}
-                    \begin{enumerate}
-                        \item \textbf{Spegnimento (Cutoff):}
-                              \begin{equation*}
-                                  \begin{aligned}
-                                       & V_{GS} < V_{Tn}                           \\
-                                       & I_D = 0                                   \\
-                                       & \text{Circuito aperto tra drain e source}
-                                  \end{aligned}
-                              \end{equation*}
-                        \item \textbf{Zona Ohmica (Triodo):}
-                              \begin{equation*}
-                                  \begin{aligned}
-                                       & V_{GS} > V_{Tn}, \quad V_{DS} < V_{OV}                        \\
-                                       & I_D = k_P \left[ 2 (V_{GS}-V_{Tn})V_{DS} - {V_{DS}}^2 \right] \\
-                                       & \text{Resistore controllato da tensione}
-                                  \end{aligned}
-                              \end{equation*}
-                        \item \textbf{Zona di Saturazione (Pinch-off):}
-                              \begin{equation*}
-                                  \begin{aligned}
-                                       & V_{GS} > V_{Tn}, \quad V_{DS} > V_{OV}, \quad V_{GD} < V_{Tn} \\
-                                       & \text{Generatore di corrente controllato}
-                                  \end{aligned}
-                              \end{equation*}
+                \vspace{0.2cm}
+                \textbf{\color{blue}PRIMO CONTROLLO: $V_{GS}$ vs $V_{T}$}
+
+                \begin{enumerate}[leftmargin=*, itemsep=3pt]
+                    \item Se \colorbox{red!20}{$V_{GS} < V_T$} $\Rightarrow$ \textbf{MOSFET OFF}
+                          \begin{itemize}
+                              \item $I_D = 0$ (circuito aperto)
+                              \item Non c'è conduzione
+                          \end{itemize}
+
+                    \item Se \colorbox{green!20}{$V_{GS} > V_T$} $\Rightarrow$ \textbf{MOSFET ON}
+                          \begin{itemize}
+                              \item Proseguire al \textbf{SECONDO CONTROLLO}
+                          \end{itemize}
+                \end{enumerate}
+
+                \vspace{0.2cm}
+                \textbf{\color{blue}SECONDO CONTROLLO (solo se ON): $V_{DS}$ vs $(V_{GS} - V_T)$}
+
+                \begin{enumerate}[leftmargin=*, itemsep=3pt]
+                    \item \textbf{\color{orange}ZONA DI SATURAZIONE}: Se $V_{DS} > (V_{GS} - V_T)$
+
+                          \colorbox{orange!15}{\parbox{0.93\linewidth}{
+                              $$I_D = K(V_{GS} - V_T)^2$$
+
+                              \vspace{0.1cm}
+                              \textbf{Nota:} La corrente dipende \textbf{SOLO da $V_{GS}$}
+                          }}
+
+                    \item \textbf{\color{cyan!70!black}ZONA OHMICA (Triodo)}: Se $V_{DS} < (V_{GS} - V_T)$
+
+                          \colorbox{cyan!15}{\parbox{0.93\linewidth}{
+                              $$I_D = K\left[2(V_{GS} - V_T)V_{DS} - V_{DS}^2\right]$$
+
+                              \vspace{0.1cm}
+                              \textbf{Nota:} La corrente dipende da \textbf{$V_{GS}$ E $V_{DS}$}
+                          }}
+                \end{enumerate}
+
+                \vspace{0.2cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{\color{red}$\bigstar$ REGOLA FONDAMENTALE - nMOS}
+
+                    \vspace{0.1cm}
+                    Affinché il MOSFET sia \textbf{ON}, il \textbf{gate deve essere più in alto del source di almeno una soglia} ($V_T$):
+
+                    $$V_G - V_S \geq V_T$$
+                }}
+
+                \vspace{0.2cm}
+                \small \textbf{Direzione corrente:} In nMOS, $I_D$ scorre da \textbf{Drain $\to$ Source}
+
+            \end{minipage}
+        };
+        %------------ Box nMOS Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}nMOS - Metodo operativo};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Box: pMOS - Metodo operativo ---------------
+    \label{Box pMOS}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+
+                \vspace{0.2cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\small
+                    \textbf{\color{red}$\triangle$  CRITICO - Metodo valori assoluti}
+
+                    \vspace{0.1cm}
+                    Il metodo del valore assoluto funziona \textbf{SOLO} se verifichi \textbf{CONTEMPORANEAMENTE} che:
+                    \begin{enumerate}[itemsep=1pt]
+                        \item $|V_{GS}| > |V_T|$ (in valore assoluto)
+                        \item Il \textbf{source sia sopra al gate} di almeno una soglia
                     \end{enumerate}
 
-                    \noindent \textbf{pMOS:} $\color{Purple}I_D <0, V_{DS}<0$
-                    \begin{enumerate}
-                        \item \textbf{Spegnimento (Cutoff):}
-                              \begin{equation*}
-                                  \begin{aligned}
-                                       & V_{GS} > |V_{Tp}|                         \\
-                                       & I_D = 0                                   \\
-                                       & \text{Circuito aperto tra drain e source}
-                                  \end{aligned}
-                              \end{equation*}
-                        \item \textbf{Zona Ohmica (Triodo):}
-                              \begin{equation*}
-                                  \begin{aligned}
-                                       & V_{GS} < V_{Tp}, \quad V_{SD} < V_{OV}                        \\
-                                       & I_D = k_P \left[ 2 (V_{GS}-V_{Tp})V_{DS} - {V_{DS}}^2 \right] \\
-                                       & \text{Resistore controllato da tensione}
-                                  \end{aligned}
-                              \end{equation*}
-                        \item \textbf{Zona di Saturazione (Pinch-off):}
-                              \begin{equation*}
-                                  \begin{aligned}
-                                       & V_{GS} < V_{Tp}, \quad V_{SD} > V_{OV}, \quad V_{GD} > V_{TP} \\
-                                       & \text{Generatore di corrente controllato}
-                                  \end{aligned}
-                              \end{equation*}
-                    \end{enumerate}
+                    \vspace{0.1cm}
+                    \colorbox{yellow!50}{\parbox{0.9\linewidth}{\footnotesize
+                        Se hai $|V_{GS}| > |V_T|$ ma con \textbf{verso opposto}, il pMOS \textbf{NON} si accende!
+                    }}
+                }}
 
+                \vspace{0.2cm}
+                \textbf{\color{blue}PRIMO CONTROLLO: Source sopra Gate}
 
-                \end{minipage}
-            };
-            %------------ Box 12 Header ---------------------
-            \node[fancytitle, right=10pt] at (box.north west) {\color{white}nMOS e pMOS};
-        \end{tikzpicture}
+                \begin{enumerate}[leftmargin=*, itemsep=3pt]
+                    \item Se \colorbox{red!20}{$V_S - V_G < |V_T|$} $\Rightarrow$ \textbf{MOSFET OFF}
+                          \begin{itemize}
+                              \item $I_D = 0$ (circuito aperto)
+                          \end{itemize}
 
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    \item Se \colorbox{green!20}{$V_S - V_G > |V_T|$} $\Rightarrow$ \textbf{MOSFET ON}
+                          \begin{itemize}
+                              \item Equivalente a $|V_{GS}| > |V_T|$ con polarità corretta
+                              \item Proseguire al \textbf{SECONDO CONTROLLO}
+                          \end{itemize}
+                \end{enumerate}
 
+                \vspace{0.2cm}
+                \textbf{\color{blue}SECONDO CONTROLLO (solo se ON): $V_{SD}$ vs $V_{OV}$}
 
-    } %fine resizebox
+                \begin{enumerate}[leftmargin=*, itemsep=3pt]
+                    \item \textbf{\color{orange}ZONA DI SATURAZIONE}: Se $V_{SD} > (V_{SG} - |V_T|)$
+
+                          \colorbox{orange!15}{\parbox{0.93\linewidth}{
+                              $$I_D = K(V_{SG} - |V_T|)^2 = K \cdot V_{OV}^2$$
+
+                              \vspace{0.05cm}
+                              {\footnotesize (equivalentemente: $I_D = K(V_{GS} - V_T)^2$ con $V_{GS}$ e $V_T$ negativi)}
+
+                              \vspace{0.1cm}
+                              \textbf{Nota:} La corrente dipende \textbf{SOLO da $V_{SG}$ (overdrive)}
+                          }}
+
+                    \item \textbf{\color{cyan!70!black}ZONA OHMICA (Triodo)}: Se $V_{SD} < (V_{SG} - |V_T|)$
+
+                          \colorbox{cyan!15}{\parbox{0.93\linewidth}{
+                              $$I_D = K\left[2(V_{SG} - |V_T|)V_{SD} - V_{SD}^2\right]$$
+
+                              \vspace{0.05cm}
+                              {\footnotesize (equivalentemente: $I_D = K[2(V_{GS} - V_T)V_{SD} - V_{SD}^2]$ con $V_{GS}$, $V_T$ negativi)}
+
+                              \vspace{0.1cm}
+                              \textbf{IMPORTANTE:} Si usa $V_{SD}$ (non $V_{DS}$) perché nel pMOS la corrente va da S$\to$D
+
+                              \vspace{0.1cm}
+                              \textbf{Nota:} La corrente dipende da \textbf{$V_{SG}$ (overdrive) E $V_{SD}$}
+                          }}
+                \end{enumerate}
+
+                \vspace{0.2cm}
+                \small \textbf{Direzione corrente:} In pMOS, $I_D$ scorre da \textbf{Source $\to$ Drain} (da alto verso basso nel simbolo)
+
+            \end{minipage}
+        };
+        %------------ Box pMOS Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}pMOS - Metodo operativo};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \columnbreak
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Box: Caratteristica I-V nMOS ---------------
+    \label{Box Caratteristica nMOS}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.9]
+                        % Assi
+                        \draw[->] (0,0) -- (5.5,0) node[right] {$V_{DS}$};
+                        \draw[->] (0,0) -- (0,4.2) node[above] {$I_D$};
+
+                        % Curve caratteristiche per diversi VGS
+                        % VGS1 (più basso)
+                        \draw[thick, blue] (0,0) -- (0.5,0.8) .. controls (1,1) and (1.5,1.1) .. (5,1.1);
+                        \node[anchor=west, blue, font=\tiny] at (5.1,1.1) {$V_{GS1}$};
+
+                        % VGS2
+                        \draw[thick, blue] (0,0) -- (1,1.6) .. controls (1.5,2) and (2,2.1) .. (5,2.1);
+                        \node[anchor=west, blue, font=\tiny] at (5.1,2.1) {$V_{GS2}$};
+
+                        % VGS3
+                        \draw[thick, blue] (0,0) -- (1.5,2.4) .. controls (2,3) and (2.5,3.1) .. (5,3.1);
+                        \node[anchor=west, blue, font=\tiny] at (5.1,3.1) {$V_{GS3}$};
+
+                        % Zona INTERDIZIONE (OFF) - spostata più a sinistra
+                        \fill[red!10, opacity=0.3] (-0.6,-0.3) rectangle (-0.1,4.3);
+                        \node[rotate=90, font=\tiny\bfseries, red!70!black] at (-0.8,2.3) {INTERDIZIONE};
+                        \node[rotate=90, font=\tiny, red!70!black] at (-0.35,1) {$V_{GS}<V_T$};
+
+                        % Linea divisione triodo/saturazione
+                        \draw[dashed, thick, orange!70!black] (0,0) -- (2.5,4.2);
+
+                        % Punto di separazione sull'asse X con scritta sotto
+                        \draw[orange!70!black, very thick] (1.5,-0.1) -- (1.5,0.1);
+                        \node[anchor=north, orange!70!black, font=\tiny] at (1.5,-0.35) {$V_{DS}=V_{GS}-V_T$};
+
+                        % Zona TRIODO (OMICA)
+                        \node[font=\footnotesize\bfseries, cyan!70!black] at (0.8,2.8) {TRIODO};
+                        \node[font=\tiny, cyan!70!black] at (0.8,2.4) {(OMICA)};
+
+                        % Zona SATURAZIONE - spostata più in alto
+                        \node[font=\footnotesize\bfseries, green!60!black] at (3.8,3.8) {SATURAZIONE};
+                        \node[font=\tiny, green!60!black] at (3.8,3.5) {$V_{DS}>V_{GS}-V_T$};
+
+                    \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.2cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\small
+                    \textbf{Zone di funzionamento:}
+                    \begin{itemize}[itemsep=1pt, leftmargin=*]
+                        \item \textbf{\color{red!70!black}INTERDIZIONE}: $V_{GS} < V_T$ → $I_D = 0$
+                        \item \textbf{\color{cyan!70!black}TRIODO}: $V_{GS} > V_T$ e $V_{DS} < (V_{GS}-V_T)$
+                        \item \textbf{\color{green!60!black}SATURAZIONE}: $V_{GS} > V_T$ e $V_{DS} > (V_{GS}-V_T)$
+                    \end{itemize}
+                }}
+
+            \end{minipage}
+        };
+        %------------ Box Caratteristica nMOS Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Caratteristica I-V nMOS};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Box: Caratteristica I-V pMOS ---------------
+    \label{Box Caratteristica pMOS}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.9]
+                        % Assi
+                        \draw[->] (0,0) -- (5.5,0) node[right] {$|V_{DS}|$};
+                        \draw[->] (0,0) -- (0,4.2) node[above] {$I_D$};
+
+                        % Curve caratteristiche per diversi VSG
+                        % VSG1 (più basso)
+                        \draw[thick, purple] (0,0) -- (0.5,0.8) .. controls (1,1) and (1.5,1.1) .. (5,1.1);
+                        \node[anchor=west, purple, font=\tiny] at (5.1,1.1) {$V_{SG1}$};
+
+                        % VSG2
+                        \draw[thick, purple] (0,0) -- (1,1.6) .. controls (1.5,2) and (2,2.1) .. (5,2.1);
+                        \node[anchor=west, purple, font=\tiny] at (5.1,2.1) {$V_{SG2}$};
+
+                        % VSG3
+                        \draw[thick, purple] (0,0) -- (1.5,2.4) .. controls (2,3) and (2.5,3.1) .. (5,3.1);
+                        \node[anchor=west, purple, font=\tiny] at (5.1,3.1) {$V_{SG3}$};
+
+                        % Zona INTERDIZIONE (OFF) - spostata più a sinistra
+                        \fill[red!10, opacity=0.3] (-0.6,-0.3) rectangle (-0.1,4.3);
+                        \node[rotate=90, font=\tiny\bfseries, red!70!black] at (-0.8,2.3) {INTERDIZIONE};
+                        \node[rotate=90, font=\tiny, red!70!black] at (-0.35,0.8) {$V_{SG}<|V_T|$};
+
+                        % Linea divisione triodo/saturazione
+                        \draw[dashed, thick, orange!70!black] (0,0) -- (2.5,4.2);
+
+                        % Punto di separazione sull'asse X con scritta sotto
+                        \draw[orange!70!black, very thick] (1.5,-0.1) -- (1.5,0.1);
+                        \node[anchor=north, orange!70!black, font=\tiny] at (1.5,-0.35) {$V_{SD}=V_{SG}-|V_T|$};
+
+                        % Zona TRIODO (OMICA)
+                        \node[font=\footnotesize\bfseries, cyan!70!black] at (0.8,2.8) {TRIODO};
+                        \node[font=\tiny, cyan!70!black] at (0.8,2.4) {(OMICA)};
+
+                        % Zona SATURAZIONE - spostata più in alto
+                        \node[font=\footnotesize\bfseries, green!60!black] at (3.8,3.8) {SATURAZIONE};
+                        \node[font=\tiny, green!60!black] at (3.8,3.5) {$V_{SD}>V_{SG}-|V_T|$};
+
+                    \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.2cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\small
+                    \textbf{Zone di funzionamento:}
+                    \begin{itemize}[itemsep=1pt, leftmargin=*]
+                        \item \textbf{\color{red!70!black}INTERDIZIONE}: $V_{SG} < |V_T|$ → $I_D = 0$
+                        \item \textbf{\color{cyan!70!black}TRIODO}: $V_{SG} > |V_T|$ e $V_{SD} < (V_{SG}-|V_T|)$
+                        \item \textbf{\color{green!60!black}SATURAZIONE}: $V_{SG} > |V_T|$ e $V_{SD} > (V_{SG}-|V_T|)$
+                    \end{itemize}
+                }}
+
+            \end{minipage}
+        };
+        %------------ Box Caratteristica pMOS Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Caratteristica I-V pMOS};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Box: Simboli e convenzioni nMOS/pMOS ---------------
+    \label{Box Simboli MOSFET}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \vspace{0.3cm}
+                \textbf{\color{blue}nMOS:}
+
+                \begin{center}
+                    \begin{circuitikz}[scale=2.0]
+                        % nMOS symbol
+                        \draw (0,0) node[nmos, anchor=G] (nmos) {};
+
+                        % Labels terminali - vicine al simbolo
+                        \node[anchor=east, font=\small] at ($(nmos.G)+(-0.1,0)$) {G};
+                        \node[anchor=south, font=\small] at ($(nmos.D)+(0,0.001)$) {D};
+                        \node[anchor=north, font=\small] at ($(nmos.S)+(0,-0.001)$) {S};
+
+                        % Freccia VGS - a sinistra con concavità invertita
+                        \draw[->, thick, color=red!70!black] ($(nmos.G)+(-0.2,-0.1)$) to[bend right=40] node[midway, left, font=\footnotesize] {$V_{GS}$} ($(nmos.S)+(-0.5,-0.15)$);
+
+                        % Freccia VDS - a destra con concavità invertita
+                        \draw[->, thick, color=blue!70!black] ($(nmos.D)+(0.5,-0.15)$) to[bend left=40] node[midway, right, font=\footnotesize] {$V_{DS}$} ($(nmos.S)+(0.3,-0.15)$);
+
+                        % Freccia corrente - molto più a destra e accorciata
+                        \draw[->, line width=2pt, color=green!60!black] ($(nmos.D)+(1.3,0.15)$) -- ($(nmos.S)+(1.3,-0.15)$);
+                        \node[anchor=west, color=green!60!black, font=\small\bfseries] at ($(nmos.S)+(1.5,-0.05)$) {$I_D$};
+
+                        % Freccia entrante sul terminale Source (che è in alto nel pMOS)
+                        \draw[->, ultra thick, color=blue!70!black]  ($(nmos.S)+(-0.2,0.25)$) -- ($(nmos.S)+(0,0.25)$) ;
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\small
+                    \textbf{nMOS:} Gate a sinistra, Drain in alto, Source in basso
+
+                    \textbf{Corrente:} Da Drain $\to$ Source (verso il basso)
+                }}
+
+                \vspace{0.4cm}
+                \textbf{\color{purple}pMOS:}
+
+                \begin{center}
+                    \begin{circuitikz}[scale=2.0]
+                        % pMOS symbol (invertito)
+                        \draw (0,0) node[pmos, anchor=G] (pmos) {};
+
+                        % Labels terminali - vicine al simbolo
+                        \node[anchor=east, font=\small] at ($(pmos.G)+(-0.25,0)$) {G};
+                        \node[anchor=south, font=\small] at ($(pmos.D)+(0,0.65)$) {S};
+                        \node[anchor=north, font=\small] at ($(pmos.S)+(0,-0.65)$) {D};
+
+                        % Freccia VGS - a sinistra con concavità invertita rispetto a nMOS
+                        \draw[->, thick, color=red!70!black] ($(pmos.G)+(-0.2,0.1)$) to[bend right=40] node[midway, left, font=\footnotesize] {$V_{GS}$} ($(pmos.D)+(-0.5,-0.15)$);
+
+                        % Freccia VSD - a destra con concavità invertita rispetto a nMOS
+                        \draw[->, thick, color=blue!70!black] ($(pmos.D)+(0.5,0.15)$) to[bend right=40] node[midway, right, font=\footnotesize] {$V_{SD}$} ($(pmos.S)+(0.3,0.15)$);
+
+                        % Freccia corrente - molto più a destra e accorciata
+                        \draw[->, line width=2pt, color=purple!70!black] ($(pmos.D)+(1.3,0.15)$) -- ($(pmos.S)+(1.3,-0.15)$);
+                        \node[anchor=west, color=purple!70!black, font=\small\bfseries] at ($(pmos.S)+(1.5,-0.05)$) {$I_D$};
+
+                        % Freccia entrante sul terminale Source (che è in alto nel pMOS)
+                        \draw[->, ultra thick, color=red!70!black]  ($(pmos.S)+(0,-0.25)$) --  ($(pmos.S)+(-0.2,-0.25)$);
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{purple!15}{\parbox{0.95\linewidth}{\small
+                    \textbf{pMOS:} Gate a sinistra, Source in alto, Drain in basso
+
+                    \textbf{Corrente:} Da Source $\to$ Drain (verso il basso)
+
+                    \textbf{NOTA:} Nel pMOS il source è in alto (invertito rispetto a nMOS)!
+                }}
+
+            \end{minipage}
+        };
+        %------------ Box Simboli MOSFET Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Simboli e convenzioni nMOS/pMOS};
+    \end{tikzpicture}
+
+
     %------------ cMOS ---------------
     \label{cMOS}
     \begin{tikzpicture}
@@ -826,6 +1156,7 @@
         %------------ cMOS Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}cMOS};
     \end{tikzpicture}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %------------ AND/nAND ---------------
     \label{AND/nAND}
