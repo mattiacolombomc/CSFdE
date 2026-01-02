@@ -1686,9 +1686,7 @@
                 \small
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Scenario:} Circuiti con un solo MOSFET + condensatore (non completamente cMOS)
-                }}
+                \textbf{Scenario:} Circuiti con un solo MOSFET + condensatore (non completamente cMOS)
 
                 \vspace{0.15cm}
                 \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
@@ -1706,27 +1704,23 @@
                 \textbf{\underline{Caso 1: nMOS sulla pull-up + condensatore}}
 
                 \vspace{0.1cm}
-                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Problema:} nMOS carica solo fino a $V_{C,max} = V_G - V_T$
+                \textbf{Problema:} nMOS carica solo fino a $V_{C,max} = V_G - V_T$
 
-                    \vspace{0.05cm}
-                    \textbf{Valutazione logica:}
+                \vspace{0.05cm}
+                \textbf{Valutazione logica:}
 
-                    Se $V_G - V_T > \frac{V_{DD}}{2}$ → Uscita = \textbf{HIGH} (logicamente ``1'')
+                Se $V_G - V_T > \frac{V_{DD}}{2}$ → Uscita = \textbf{HIGH} (logicamente ``1'')
 
-                    Se $V_G - V_T < \frac{V_{DD}}{2}$ → Uscita = \textbf{LOW} (logicamente ``0'')
-                }}
+                Se $V_G - V_T < \frac{V_{DD}}{2}$ → Uscita = \textbf{LOW} (logicamente ``0'')
 
                 \vspace{0.1cm}
-                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Esempio:} $V_{DD} = 5V$, $V_G = 4V$, $V_T = 1V$
+                \textbf{Esempio:} $V_{DD} = 5V$, $V_G = 4V$, $V_T = 1V$
 
-                    $V_{C,max} = 4V - 1V = 3V$
+                $V_{C,max} = 4V - 1V = 3V$
 
-                    $\frac{V_{DD}}{2} = 2.5V$
+                $\frac{V_{DD}}{2} = 2.5V$
 
-                    $3V > 2.5V$ → Uscita = \textbf{HIGH} (anche se non raggiunge $V_{DD}$!)
-                }}
+                $3V > 2.5V$ → Uscita = \textbf{HIGH} (anche se non raggiunge $V_{DD}$!)
 
                 \vspace{0.15cm}
                 \hrule
@@ -1735,32 +1729,26 @@
                 \textbf{\underline{Caso 2: pMOS sulla pull-down + condensatore}}
 
                 \vspace{0.1cm}
-                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Problema:} pMOS scarica solo fino a $V_{C,min} = V_G + |V_T|$
+                \textbf{Problema:} pMOS scarica solo fino a $V_{C,min} = V_G + |V_T|$
 
-                    \vspace{0.05cm}
-                    \textbf{Valutazione logica:}
+                \vspace{0.05cm}
+                \textbf{Valutazione logica:}
 
-                    Se $V_G + |V_T| < \frac{V_{DD}}{2}$ → Uscita = \textbf{LOW} (logicamente ``0'')
+                Se $V_G + |V_T| < \frac{V_{DD}}{2}$ → Uscita = \textbf{LOW} (logicamente ``0'')
 
-                    Se $V_G + |V_T| > \frac{V_{DD}}{2}$ → Uscita = \textbf{HIGH} (logicamente ``1'')
-                }}
+                Se $V_G + |V_T| > \frac{V_{DD}}{2}$ → Uscita = \textbf{HIGH} (logicamente ``1'')
 
                 \vspace{0.1cm}
-                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Esempio:} $V_{DD} = 5V$, $V_G = 1V$, $|V_T| = 1V$
+                \textbf{Esempio:} $V_{DD} = 5V$, $V_G = 1V$, $|V_T| = 1V$
 
-                    $V_{C,min} = 1V + 1V = 2V$
+                $V_{C,min} = 1V + 1V = 2V$
 
-                    $\frac{V_{DD}}{2} = 2.5V$
+                $\frac{V_{DD}}{2} = 2.5V$
 
-                    $2V < 2.5V$ → Uscita = \textbf{LOW} (anche se non raggiunge GND!)
-                }}
+                $2V < 2.5V$ → Uscita = \textbf{LOW} (anche se non raggiunge GND!)
 
                 \vspace{0.15cm}
-                \colorbox{green!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Nota importante:} Questa valutazione si usa SOLO per le \textbf{tabelle di verità} dei circuiti ibridi. Nei circuiti cMOS completi, l'uscita raggiunge sempre $V_{DD}$ o GND.
-                }}
+                \textit{Nota importante:} Questa valutazione si usa SOLO per le \textbf{tabelle di verità} dei circuiti ibridi. Nei circuiti cMOS completi, l'uscita raggiunge sempre $V_{DD}$ o GND.
 
             \end{minipage}
         };
