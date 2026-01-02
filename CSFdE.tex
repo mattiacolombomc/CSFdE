@@ -1544,16 +1544,10 @@
                 \small
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Scenario:} MOSFET utilizzato per caricare un condensatore (es. in porte logiche, circuiti di trasferimento carica)
-                }}
+                \textbf{Scenario:} MOSFET utilizzato per caricare un condensatore (es. in porte logiche, circuiti di trasferimento carica)
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{\color{red}$\bigstar$ DIFFERENZA CRITICA pMOS vs nMOS}
-
-                    La tensione massima/minima raggiungibile sul condensatore dipende dal \textbf{tipo di MOSFET}!
-                }}
+                \textbf{Nota importante:} La tensione massima/minima raggiungibile sul condensatore dipende dal \textbf{tipo di MOSFET}!
 
                 \vspace{0.2cm}
                 \colorbox{yellow!50}{\parbox{0.95\linewidth}{
@@ -1570,20 +1564,13 @@
                 \textbf{\underline{CARICA - 1. Con pMOS}}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Carica COMPLETA:} Il condensatore si carica fino a \textbf{$V_{DD}$}
-
-                    \vspace{0.05cm}
-                    $$V_{C,max} = V_{DD}$$
-                }}
+                \textbf{Carica COMPLETA:} Il condensatore si carica fino a \textbf{$V_{DD}$}
 
                 \vspace{0.05cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Motivo:} Nel pMOS, la corrente scorre da Source (alto) → Drain (basso).
+                $$V_{C,max} = V_{DD}$$
 
-                    \vspace{0.03cm}
-                    Il pMOS può rimanere acceso fino a quando il condensatore raggiunge $V_{DD}$, perché il Source è collegato a $V_{DD}$ e mantiene sempre $V_{SG} > |V_T|$.
-                }}
+                \vspace{0.05cm}
+                \textit{Motivo:} Nel pMOS, la corrente scorre da Source (alto) → Drain (basso). Il pMOS può rimanere acceso fino a quando il condensatore raggiunge $V_{DD}$, perché il Source è collegato a $V_{DD}$ e mantiene sempre $V_{SG} > |V_T|$.
 
                 \vspace{0.15cm}
                 \hrule
@@ -1592,35 +1579,23 @@
                 \textbf{\underline{CARICA - 2. Con nMOS}}
 
                 \vspace{0.1cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Carica LIMITATA:} Il condensatore si carica \textbf{solo fino a}:
-
-                    \vspace{0.05cm}
-                    $$V_{C,max} = V_G - V_T$$
-                }}
+                \textbf{Carica LIMITATA:} Il condensatore si carica \textbf{solo fino a}:
 
                 \vspace{0.05cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Motivo:} Nel nMOS, quando il condensatore (collegato al Drain) si carica, aumenta $V_D$.
+                $$V_{C,max} = V_G - V_T$$
 
-                    \vspace{0.03cm}
-                    Quando $V_D$ raggiunge $V_G - V_T$, si ha $V_{GS} = V_{G} - V_{S} = V_{G} - (V_G - V_T) = V_T$ → il MOSFET \textbf{si spegne} (entra in interdizione).
-
-                    \vspace{0.03cm}
-                    \textbf{Non può caricare oltre} perché $V_{GS} = V_T$ è la condizione di soglia (OFF).
-                }}
+                \vspace{0.05cm}
+                \textit{Motivo:} Nel nMOS, quando il condensatore (collegato al Drain) si carica, aumenta $V_D$. Quando $V_D$ raggiunge $V_G - V_T$, si ha $V_{GS} = V_{G} - V_{S} = V_{G} - (V_G - V_T) = V_T$ → il MOSFET \textbf{si spegne} (entra in interdizione). \textbf{Non può caricare oltre} perché $V_{GS} = V_T$ è la condizione di soglia (OFF).
 
                 \vspace{0.15cm}
-                \colorbox{purple!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Esempio pratico (CARICA):}
+                \textbf{Esempio pratico (CARICA):}
 
-                    Se $V_G = 5V$ e $V_T = 1V$ per un nMOS:
+                Se $V_G = 5V$ e $V_T = 1V$ per un nMOS:
 
-                    $V_{C,max} = 5V - 1V = 4V$ (non $5V$!)
+                $V_{C,max} = 5V - 1V = 4V$ (non $5V$!)
 
-                    \vspace{0.05cm}
-                    Con pMOS invece: $V_{C,max} = V_{DD}$ (carica completa)
-                }}
+                \vspace{0.05cm}
+                Con pMOS invece: $V_{C,max} = V_{DD}$ (carica completa)
 
             \end{minipage}
         };
