@@ -1403,16 +1403,12 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{\color{red}$\bigstar$ IPOTESI PORTA LOGICA IDEALE}
+                \textbf{IPOTESI:} Se ti hanno chiesto l'espressione logica della porta, puoi ipotizzare che sia \textbf{ideale}:
 
-                    Se ti hanno chiesto l'espressione logica della porta, puoi ipotizzare che sia \textbf{ideale}:
+                \vspace{0.05cm}
+                • $V_{OUT}$ ha valori logici \textbf{ALTO} e \textbf{BASSO}
 
-                    \vspace{0.05cm}
-                    • $V_{OUT}$ ha valori logici \textbf{ALTO} e \textbf{BASSO}
-
-                    • $V_{OUT} = V_{DS}$ del MOSFET (dopo semplificazioni)
-                }}
+                • $V_{OUT} = V_{DS}$ del MOSFET (dopo semplificazioni)
 
                 \vspace{0.15cm}
                 \textbf{\underline{METODO:}}
@@ -1421,42 +1417,28 @@
                 \textbf{1. Uscita logica BASSA (``0'')}
 
                 \vspace{0.05cm}
-                \colorbox{cyan!10}{\parbox{0.93\linewidth}{\footnotesize
-                    $V_{OUT} \approx 0V$ → $V_{DS}$ piccola
-
-                    \vspace{0.03cm}
-                    $\Rightarrow V_{DS} < V_{OV}$ → \textbf{ZONA OMICA}
-                }}
+                $V_{OUT} \approx 0V$ → $V_{DS}$ piccola → $V_{DS} < V_{OV}$ → \textbf{ZONA OMICA}
 
                 \vspace{0.15cm}
                 \textbf{2. Uscita logica ALTA (``1'')}
 
                 \vspace{0.05cm}
-                \colorbox{orange!10}{\parbox{0.93\linewidth}{\footnotesize
-                    $V_{OUT} \approx V_{DD}$ → $V_{DS}$ grande
-
-                    \vspace{0.03cm}
-                    $\Rightarrow V_{DS} > V_{OV}$ → \textbf{ZONA SATURAZIONE}
-                }}
+                $V_{OUT} \approx V_{DD}$ → $V_{DS}$ grande → $V_{DS} > V_{OV}$ → \textbf{ZONA SATURAZIONE}
 
                 \vspace{0.15cm}
-                \colorbox{green!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Nota:} Questo metodo ti permette di \textbf{ipotizzare} la zona di funzionamento senza fare calcoli complessi. Poi puoi verificare con le formule.
-                }}
+                \textit{Nota:} Questo metodo ti permette di \textbf{ipotizzare} la zona di funzionamento senza fare calcoli complessi. Poi puoi verificare con le formule.
 
                 \vspace{0.1cm}
-                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Esempio pratico:}
+                \textbf{Esempio pratico:}
 
-                    Se $V_{OUT} = 0V$ (logica bassa) e hai $V_{OV} = 2V$:
+                Se $V_{OUT} = 0V$ (logica bassa) e hai $V_{OV} = 2V$:
 
-                    $V_{DS} \approx 0V < 2V$ → OMICA $\checkmark$
+                $V_{DS} \approx 0V < 2V$ → OMICA $\checkmark$
 
-                    \vspace{0.03cm}
-                    Se $V_{OUT} = 5V$ (logica alta) e hai $V_{OV} = 2V$:
+                \vspace{0.03cm}
+                Se $V_{OUT} = 5V$ (logica alta) e hai $V_{OV} = 2V$:
 
-                    $V_{DS} \approx 5V > 2V$ → SATURAZIONE $\checkmark$
-                }}
+                $V_{DS} \approx 5V > 2V$ → SATURAZIONE $\checkmark$
 
             \end{minipage}
         };
