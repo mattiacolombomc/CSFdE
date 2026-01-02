@@ -1642,24 +1642,22 @@
                 \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
                     \textbf{\color{red}$\bigstar$ DIFFERENZA CRITICA pMOS vs nMOS}
 
-                    La tensione massima raggiungibile sul condensatore dipende dal \textbf{tipo di MOSFET}!
+                    La tensione massima/minima raggiungibile sul condensatore dipende dal \textbf{tipo di MOSFET}!
                 }}
 
                 \vspace{0.2cm}
                 \colorbox{yellow!50}{\parbox{0.95\linewidth}{
                     \centering
-                    %\large
                     \textbf{REGOLA MNEMONICA:}
 
                     \vspace{0.1cm}
-                    %\LARGE
                     \textbf{Gli nMOS NON sono bravi a CARICARE}
 
                     \textbf{I pMOS NON sono bravi a SCARICARE}
                 }}
 
                 \vspace{0.15cm}
-                \textbf{\underline{1. Carica con pMOS}}
+                \textbf{\underline{CARICA - 1. Con pMOS}}
 
                 \vspace{0.1cm}
                 \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
@@ -1677,11 +1675,11 @@
                     Il pMOS può rimanere acceso fino a quando il condensatore raggiunge $V_{DD}$, perché il Source è collegato a $V_{DD}$ e mantiene sempre $V_{SG} > |V_T|$.
                 }}
 
-                \vspace{0.2cm}
+                \vspace{0.15cm}
                 \hrule
                 \vspace{0.15cm}
 
-                \textbf{\underline{2. Carica con nMOS}}
+                \textbf{\underline{CARICA - 2. Con nMOS}}
 
                 \vspace{0.1cm}
                 \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
@@ -1714,14 +1712,27 @@
                     Con pMOS invece: $V_{C,max} = V_{DD}$ (carica completa)
                 }}
 
-                \vspace{0.25cm}
-                \hrule
-                \vspace{0.2cm}
+            \end{minipage}
+        };
+        %------------ Carica condensatore Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Carica di un condensatore con MOSFET};
+    \end{tikzpicture}
 
-                \textbf{\underline{SCARICA del condensatore ( SPECULARE)}}
+
+    %------------ Scarica condensatore con MOSFET ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
 
                 \vspace{0.15cm}
-                \textbf{\underline{1. Scarica con nMOS}}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Comportamento SPECULARE alla carica}
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{SCARICA - 1. Con nMOS}}
 
                 \vspace{0.1cm}
                 \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
@@ -1739,8 +1750,11 @@
                     Il nMOS rimane acceso finché $V_{GS} > V_T$. Dato che $V_S = 0V$ (GND), finché $V_G > V_T$ il transistor resta acceso e può scaricare completamente il condensatore.
                 }}
 
-                \vspace{0.2cm}
-                \textbf{\underline{2. Scarica con pMOS}}
+                \vspace{0.15cm}
+                \hrule
+                \vspace{0.15cm}
+
+                \textbf{\underline{SCARICA - 2. Con pMOS}}
 
                 \vspace{0.1cm}
                 \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
@@ -1875,8 +1889,8 @@
 
             \end{minipage}
         };
-        %------------ Carica/Scarica condensatore Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Carica e Scarica di un condensatore con MOSFET};
+        %------------ Scarica condensatore Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Scarica di un condensatore con MOSFET + Valutazione logica PTL};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2231,7 +2245,6 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \textbf{\color{blue}Potenza dinamica}
 
                 \vspace{0.2cm}
                 \textbf{Definizione:} Potenza consumata durante le commutazioni degli ingressi uscite.
