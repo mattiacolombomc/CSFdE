@@ -1456,20 +1456,14 @@
                 \textbf{\color{blue}Resistenza di Canale ($R_{CH}$ o $R_{eq}$)}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Quando usare:} Calcolare la corrente nel MOSFET quando:
+                \textbf{Quando usare:} Calcolare la corrente nel MOSFET quando:
 
-                    • $V_{OUT} = V_{DS}$ (l'uscita coincide con la tensione drain-source)
+                • $V_{OUT} = V_{DS}$ (l'uscita coincide con la tensione drain-source)
 
-                    • $V_{OUT} \approx 0V$ (uscita logica bassa)
-                }}
+                • $V_{OUT} \approx 0V$ (uscita logica bassa)
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{\color{red}$\bigstar$ DEFINIZIONE}
-
-                    La \textbf{resistenza di canale} è la resistenza equivalente del MOSFET in un \textbf{intorno di $V_{DS} = 0V$}
-                }}
+                La \textbf{resistenza di canale} è la resistenza equivalente del MOSFET in un \textbf{intorno di $V_{DS} = 0V$}
 
                 \vspace{0.15cm}
                 \textbf{\underline{FORMULA:}}
@@ -1484,37 +1478,25 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Importante:} $K$ può essere:
-
-                    • Il $K$ del singolo MOSFET
-
-                    • Il $K_{eq}$ del MOSFET equivalente (dopo semplificazioni serie/parallelo)
-                }}
+                \textit{Nota:} $K$ può essere il $K$ del singolo MOSFET o il $K_{eq}$ del MOSFET equivalente (dopo semplificazioni serie/parallelo)
 
                 \vspace{0.15cm}
-                \colorbox{orange!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Origine:} Derivata di $I_D$ rispetto a $V_{DS}$ calcolata in $V_{DS}=0$ (approssimazione di Taylor al primo ordine)
-                }}
+                \textit{Origine:} Derivata di $I_D$ rispetto a $V_{DS}$ calcolata in $V_{DS}=0$ (approssimazione di Taylor al primo ordine)
 
                 \vspace{0.15cm}
                 \textbf{\underline{QUANDO È VALIDA:}}
 
                 \vspace{0.05cm}
-                \colorbox{green!15}{\parbox{0.95\linewidth}{\footnotesize
-                    $\checkmark$ $V_{DS} \approx 0V$ (uscita logica bassa)
+                $\checkmark$ $V_{DS} \approx 0V$ (uscita logica bassa)
 
-                    $\checkmark$ MOSFET in zona OMICA
+                $\checkmark$ MOSFET in zona OMICA
 
-                    $\checkmark$ Calcoli approssimativi di corrente
-                }}
+                $\checkmark$ Calcoli approssimativi di corrente
 
                 \vspace{0.1cm}
-                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
-                    $\times$ Se $V_{DS}$ NON è vicino a 0V
+                $\times$ Se $V_{DS}$ NON è vicino a 0V
 
-                    $\times$ In altri punti di lavoro (devi ricalcolare la derivata nel punto specifico)
-                }}
+                $\times$ In altri punti di lavoro (devi ricalcolare la derivata nel punto specifico)
 
                 \vspace{0.15cm}
                 \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
@@ -1531,23 +1513,21 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Esempio pratico:}
+                \textbf{Esempio pratico:}
 
-                    Se $K = 1$ mA/V², $V_{GS} = 3V$, $V_T = 1V$:
+                Se $K = 1$ mA/V², $V_{GS} = 3V$, $V_T = 1V$:
 
-                    $V_{OV} = 3V - 1V = 2V$
+                $V_{OV} = 3V - 1V = 2V$
 
-                    $R_{CH} = \frac{1}{2 \cdot 1 \cdot 2} = \frac{1}{4}$ k$\Omega$ = 250 $\Omega$
+                $R_{CH} = \frac{1}{2 \cdot 1 \cdot 2} = \frac{1}{4}$ k$\Omega$ = 250 $\Omega$
 
-                    \vspace{0.05cm}
-                    Con $V_{DS} = 0.1V$:
+                \vspace{0.05cm}
+                Con $V_{DS} = 0.1V$:
 
-                    $I_D \approx \frac{V_{DS}}{R_{CH}} = \frac{0.1V}{250\Omega} = 0.4$ mA
+                $I_D \approx \frac{V_{DS}}{R_{CH}} = \frac{0.1V}{250\Omega} = 0.4$ mA
 
-                    \vspace{0.05cm}
-                    \textbf{Verifica:} $V_{DS} = 0.1V \ll V_{OV} = 2V$ $\checkmark$ OK!
-                }}
+                \vspace{0.05cm}
+                \textbf{Verifica:} $V_{DS} = 0.1V \ll V_{OV} = 2V$ $\checkmark$ OK!
 
             \end{minipage}
         };
