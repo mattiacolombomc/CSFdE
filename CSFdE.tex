@@ -1115,6 +1115,7 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riepilogo: nMOS vs pMOS};
     \end{tikzpicture}
 
+    \columnbreak
 
     %------------ MOSFET simmetrici - Source e Drain a runtime ---------------------
     \begin{tikzpicture}
@@ -1226,6 +1227,7 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}MOSFET simmetrici - Source e Drain a runtime};
     \end{tikzpicture}
 
+    \columnbreak
 
     %------------ Regola pratica ON/OFF veloce ---------------------
     \begin{tikzpicture}
@@ -1807,11 +1809,19 @@
                     • \textbf{nMOS} nella rete \textbf{pull-down} (PDN) → porta uscita a GND
                 }}
 
-                \vspace{0.25cm}
-                \hrule
-                \vspace{0.2cm}
+            \end{minipage}
+        };
+        %------------ Scarica condensatore Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Scarica di un condensatore con MOSFET};
+    \end{tikzpicture}
 
-                \textbf{\underline{VALUTAZIONE LOGICA nei circuiti IBRIDI/INTERMEDI}}
+
+    %------------ Valutazione logica PTL ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
 
                 \vspace{0.15cm}
                 \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
@@ -1856,7 +1866,10 @@
                     $3V > 2.5V$ → Uscita = \textbf{HIGH} (anche se non raggiunge $V_{DD}$!)
                 }}
 
-                \vspace{0.2cm}
+                \vspace{0.15cm}
+                \hrule
+                \vspace{0.15cm}
+
                 \textbf{\underline{Caso 2: pMOS sulla pull-down + condensatore}}
 
                 \vspace{0.1cm}
@@ -1889,8 +1902,8 @@
 
             \end{minipage}
         };
-        %------------ Scarica condensatore Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Scarica di un condensatore con MOSFET + Valutazione logica PTL};
+        %------------ Valutazione logica Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Valutazione logica circuiti ibridi/intermedi (PTL)};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
