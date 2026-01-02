@@ -990,20 +990,25 @@
                 \textbf{\color{blue}PROCEDIMENTO OPERATIVO PER pMOS}
 
                 \vspace{0.15cm}
-        %       \colorbox{yellow!30}{\parbox{0.95\linewidth}{
-        %           \textbf{\color{red}$\bigstar$ REGOLA FONDAMENTALE - pMOS}
+                \colorbox{red!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ STEP 0 - CONTROLLO POLARITÀ}
 
-        %           \vspace{0.1cm}
-        %           Affinché il pMOS sia \textbf{ON}, il \textbf{source deve essere più in alto del gate di almeno una soglia} ($|V_T|$):
+                    \vspace{0.05cm}
+                    \textbf{Prima di tutto}, verifica che:
+                    $$V_S > V_G$$
 
-        %           $$V_S - V_G \geq |V_T| \quad \Leftrightarrow \quad |V_{GS}| \geq |V_T|$$
+                    \vspace{0.05cm}
+                    Se $V_S \leq V_G$ → \textbf{pMOS OFF} (anche se $|V_{GS}| \geq |V_T|$!)
 
-        %           \vspace{0.05cm}
-        %           {\footnotesize Il controllo $|V_{GS}| \geq |V_T|$ è \textbf{sufficiente} e include automaticamente la verifica della polarità corretta.}
-        %       }}
+                    \vspace{0.05cm}
+                    \textbf{Motivo:} Il modulo $|V_{GS}|$ nasconde il segno! Potresti avere $|V_{GS}| \geq |V_T|$ ma con polarità sbagliata (es. $V_{GS} > 0$), e il pMOS sarebbe OFF.
+                }}
 
                 \vspace{0.2cm}
-                \textbf{Step 1: Calcolare $|V_{GS}|$}
+                \textbf{\color{blue}Step 1: Calcolare $|V_{GS}|$}
+
+                \vspace{0.05cm}
+                (solo se hai verificato $V_S > V_G$)
 
                 \vspace{0.15cm}
                 \textbf{\color{blue}Step 2: PRIMO CONTROLLO - $|V_{GS}|$ vs $|V_T|$}
@@ -1108,6 +1113,117 @@
         };
         %------------ Box Riepilogo Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riepilogo: nMOS vs pMOS};
+    \end{tikzpicture}
+
+
+    %------------ MOSFET simmetrici - Source e Drain a runtime ---------------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ MOSFET SIMMETRICI}
+
+                    \vspace{0.05cm}
+                    I MOSFET sono dispositivi \textbf{simmetrici}: Source e Drain \textbf{NON sono fissi} ma vengono determinati dalle \textbf{tensioni a runtime}!
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{Come identificare i terminali negli esercizi:}}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{GATE} (sempre indicato):
+
+                    • \textbf{nMOS}: gate \textbf{senza pallino}
+
+                    • \textbf{pMOS}: gate \textbf{con pallino} (\textbullet)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{SOURCE e DRAIN} (determinati a runtime):
+
+                    Se non indicati esplicitamente nel testo, si determinano in base alle \textbf{tensioni dei nodi}.
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{Regole per determinare SOURCE:}}
+
+                \vspace{0.1cm}
+                \textbf{1. nMOS}
+
+                \vspace{0.05cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    Il \textbf{SOURCE} è il nodo alla \textbf{tensione più BASSA} tra i due terminali non-gate.
+
+                    \vspace{0.05cm}
+                    Il DRAIN è l'altro terminale (tensione più alta).
+                }}
+
+                \vspace{0.15cm}
+                \textbf{2. pMOS}
+
+                \vspace{0.05cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
+                    Il \textbf{SOURCE} è il nodo alla \textbf{tensione più ALTA} tra i due terminali non-gate.
+
+                    \vspace{0.05cm}
+                    Il DRAIN è l'altro terminale (tensione più bassa).
+                }}
+
+                \vspace{0.2cm}
+                \hrule
+                \vspace{0.15cm}
+
+                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ ATTENZIONE - Riassegnazione a RUNTIME}
+
+                    \vspace{0.05cm}
+                    Durante l'esercizio, le tensioni ai nodi possono \textbf{cambiare}!
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Source e Drain possono essere \textbf{riassegnati} in base alle nuove tensioni.
+
+                    \vspace{0.05cm}
+                    Devi \textbf{verificare quale nodo ha la tensione più alta/bassa} in ogni fase dell'analisi!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{purple!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Esempio pratico (nMOS):}
+
+                    Inizialmente: Nodo A = 3V, Nodo B = 1V
+
+                    $\Rightarrow$ Source = B (1V, più basso), Drain = A (3V)
+
+                    \vspace{0.03cm}
+                    Dopo un transitorio: Nodo A = 0.5V, Nodo B = 2V
+
+                    $\Rightarrow$ Source = A (0.5V, più basso), Drain = B (2V)
+
+                    \vspace{0.03cm}
+                    I terminali sono stati \textbf{invertiti}!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Perché è importante:}
+
+                    • $V_{GS}$ e $V_{DS}$ dipendono da quale terminale è il Source
+
+                    • Per calcolare correttamente le formule, devi identificare Source e Drain correttamente in ogni momento
+
+                    • La zona di funzionamento (saturazione/omica) dipende da $V_{DS}$, quindi dall'identificazione corretta dei terminali
+                }}
+
+            \end{minipage}
+        };
+        %------------ MOSFET simmetrici Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}MOSFET simmetrici - Source e Drain a runtime};
     \end{tikzpicture}
 
 
@@ -1416,11 +1532,172 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Resistenza di canale};
     \end{tikzpicture}
 
+
+    %------------ Carica condensatore con MOSFET ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Scenario:} MOSFET utilizzato per caricare un condensatore (es. in porte logiche, circuiti di trasferimento carica)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ DIFFERENZA CRITICA pMOS vs nMOS}
+
+                    La tensione massima raggiungibile sul condensatore dipende dal \textbf{tipo di MOSFET}!
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{1. Carica con pMOS}}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Carica COMPLETA:} Il condensatore si carica fino a \textbf{$V_{DD}$}
+
+                    \vspace{0.05cm}
+                    $$V_{C,max} = V_{DD}$$
+                }}
+
+                \vspace{0.05cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Motivo:} Nel pMOS, la corrente scorre da Source (alto) → Drain (basso).
+
+                    \vspace{0.03cm}
+                    Il pMOS può rimanere acceso fino a quando il condensatore raggiunge $V_{DD}$, perché il Source è collegato a $V_{DD}$ e mantiene sempre $V_{SG} > |V_T|$.
+                }}
+
+                \vspace{0.2cm}
+                \hrule
+                \vspace{0.15cm}
+
+                \textbf{\underline{2. Carica con nMOS}}
+
+                \vspace{0.1cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Carica LIMITATA:} Il condensatore si carica \textbf{solo fino a}:
+
+                    \vspace{0.05cm}
+                    $$V_{C,max} = V_G - V_T$$
+                }}
+
+                \vspace{0.05cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Motivo:} Nel nMOS, quando il condensatore (collegato al Drain) si carica, aumenta $V_D$.
+
+                    \vspace{0.03cm}
+                    Quando $V_D$ raggiunge $V_G - V_T$, si ha $V_{GS} = V_{G} - V_{S} = V_{G} - (V_G - V_T) = V_T$ → il MOSFET \textbf{si spegne} (entra in interdizione).
+
+                    \vspace{0.03cm}
+                    \textbf{Non può caricare oltre} perché $V_{GS} = V_T$ è la condizione di soglia (OFF).
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{purple!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Esempio pratico (CARICA):}
+
+                    Se $V_G = 5V$ e $V_T = 1V$ per un nMOS:
+
+                    $V_{C,max} = 5V - 1V = 4V$ (non $5V$!)
+
+                    \vspace{0.05cm}
+                    Con pMOS invece: $V_{C,max} = V_{DD}$ (carica completa)
+                }}
+
+                \vspace{0.25cm}
+                \hrule
+                \vspace{0.2cm}
+
+                \textbf{\underline{SCARICA del condensatore (comportamento SPECULARE)}}
+
+                \vspace{0.15cm}
+                \textbf{\underline{1. Scarica con nMOS}}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Scarica COMPLETA:} Il condensatore si scarica fino a \textbf{GND (0V)}
+
+                    \vspace{0.05cm}
+                    $$V_{C,min} = 0V$$
+                }}
+
+                \vspace{0.05cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Motivo:} Nel nMOS, il Source è collegato a GND e la corrente scorre dal condensatore (Drain) verso GND.
+
+                    \vspace{0.03cm}
+                    Il nMOS rimane acceso finché $V_{GS} > V_T$. Dato che $V_S = 0V$ (GND), finché $V_G > V_T$ il transistor resta acceso e può scaricare completamente il condensatore.
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\underline{2. Scarica con pMOS}}
+
+                \vspace{0.1cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Scarica LIMITATA:} Il condensatore si scarica \textbf{solo fino a}:
+
+                    \vspace{0.05cm}
+                    $$V_{C,min} = V_G + |V_T|$$
+                }}
+
+                \vspace{0.05cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Motivo:} Nel pMOS, quando il condensatore (collegato al Source) si scarica, diminuisce $V_S$.
+
+                    \vspace{0.03cm}
+                    Quando $V_S$ scende fino a $V_G + |V_T|$, si ha $V_{SG} = |V_T|$ → il MOSFET \textbf{si spegne}.
+
+                    \vspace{0.03cm}
+                    \textbf{Non può scaricare oltre} perché $V_{SG} = |V_T|$ è la condizione di soglia (OFF).
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{purple!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Esempio pratico (SCARICA):}
+
+                    Se $V_G = 2V$ e $|V_T| = 1V$ per un pMOS:
+
+                    $V_{C,min} = 2V + 1V = 3V$ (non può scendere sotto!)
+
+                    \vspace{0.05cm}
+                    Con nMOS invece: $V_{C,min} = 0V$ (scarica completa)
+                }}
+
+                \vspace{0.2cm}
+                \hrule
+                \vspace{0.15cm}
+
+                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\triangle$ CONSEGUENZA PRATICA - Simmetria CARICA/SCARICA}
+
+                    \vspace{0.05cm}
+                    \textbf{CARICA:} pMOS completa ($\to V_{DD}$), nMOS limitata ($\to V_G - V_T$)
+
+                    \textbf{SCARICA:} nMOS completa ($\to$ GND), pMOS limitata ($\to V_G + |V_T|$)
+
+                    \vspace{0.05cm}
+                    Nelle porte logiche cMOS:
+
+                    • \textbf{pMOS} nella rete \textbf{pull-up} (PUN) → porta uscita a $V_{DD}$
+
+                    • \textbf{nMOS} nella rete \textbf{pull-down} (PDN) → porta uscita a GND
+                }}
+
+            \end{minipage}
+        };
+        %------------ Carica/Scarica condensatore Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Carica e Scarica di un condensatore con MOSFET};
+    \end{tikzpicture}
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \columnbreak
-    
 
-    
+
+
 
 
     %------------ Tempo di propagazione ---------------
@@ -1547,7 +1824,7 @@
                 \textbf{\color{blue}Potenza dinamica}
 
                 \vspace{0.2cm}
-                \textbf{Definizione:} Potenza consumata durante le commutazioni degli ingressi/uscite.
+                \textbf{Definizione:} Potenza consumata durante le commutazioni degli ingressi uscite.
 
                 \vspace{0.2cm}
                 \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
