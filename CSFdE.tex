@@ -1552,6 +1552,19 @@
                     La tensione massima raggiungibile sul condensatore dipende dal \textbf{tipo di MOSFET}!
                 }}
 
+                \vspace{0.2cm}
+                \colorbox{yellow!50}{\parbox{0.95\linewidth}{
+                    \centering
+                    \large
+                    \textbf{REGOLA MNEMONICA:}
+
+                    \vspace{0.1cm}
+                    \LARGE
+                    \textbf{Gli nMOS NON sono bravi a CARICARE}
+
+                    \textbf{I pMOS NON sono bravi a SCARICARE}
+                }}
+
                 \vspace{0.15cm}
                 \textbf{\underline{1. Carica con pMOS}}
 
@@ -1687,6 +1700,86 @@
                     • \textbf{nMOS} nella rete \textbf{pull-down} (PDN) → porta uscita a GND
                 }}
 
+                \vspace{0.25cm}
+                \hrule
+                \vspace{0.2cm}
+
+                \textbf{\underline{VALUTAZIONE LOGICA nei circuiti IBRIDI/INTERMEDI}}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Scenario:} Circuiti con un solo MOSFET + condensatore (non completamente cMOS)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ SOGLIA LOGICA: $\frac{V_{DD}}{2}$}
+
+                    \vspace{0.05cm}
+                    Per la \textbf{tabella di verità}, l'uscita è considerata:
+
+                    • \textbf{HIGH} se $V_{OUT} > \frac{V_{DD}}{2}$
+
+                    • \textbf{LOW} se $V_{OUT} < \frac{V_{DD}}{2}$
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\underline{Caso 1: nMOS sulla pull-up + condensatore}}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Problema:} nMOS carica solo fino a $V_{C,max} = V_G - V_T$
+
+                    \vspace{0.05cm}
+                    \textbf{Valutazione logica:}
+
+                    Se $V_G - V_T > \frac{V_{DD}}{2}$ → Uscita = \textbf{HIGH} (logicamente ``1'')
+
+                    Se $V_G - V_T < \frac{V_{DD}}{2}$ → Uscita = \textbf{LOW} (logicamente ``0'')
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Esempio:} $V_{DD} = 5V$, $V_G = 4V$, $V_T = 1V$
+
+                    $V_{C,max} = 4V - 1V = 3V$
+
+                    $\frac{V_{DD}}{2} = 2.5V$
+
+                    $3V > 2.5V$ → Uscita = \textbf{HIGH} (anche se non raggiunge $V_{DD}$!)
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\underline{Caso 2: pMOS sulla pull-down + condensatore}}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Problema:} pMOS scarica solo fino a $V_{C,min} = V_G + |V_T|$
+
+                    \vspace{0.05cm}
+                    \textbf{Valutazione logica:}
+
+                    Se $V_G + |V_T| < \frac{V_{DD}}{2}$ → Uscita = \textbf{LOW} (logicamente ``0'')
+
+                    Se $V_G + |V_T| > \frac{V_{DD}}{2}$ → Uscita = \textbf{HIGH} (logicamente ``1'')
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Esempio:} $V_{DD} = 5V$, $V_G = 1V$, $|V_T| = 1V$
+
+                    $V_{C,min} = 1V + 1V = 2V$
+
+                    $\frac{V_{DD}}{2} = 2.5V$
+
+                    $2V < 2.5V$ → Uscita = \textbf{LOW} (anche se non raggiunge GND!)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Nota importante:} Questa valutazione si usa SOLO per le \textbf{tabelle di verità} dei circuiti ibridi. Nei circuiti cMOS completi, l'uscita raggiunge sempre $V_{DD}$ o GND.
+                }}
+
             \end{minipage}
         };
         %------------ Carica/Scarica condensatore Header ---------------------
@@ -1745,6 +1838,230 @@
         };
         %------------ Tempo propagazione Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione};
+    \end{tikzpicture}
+
+
+    %------------ PTL vs CMOS ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Confronto:} Due approcci diversi per implementare porte logiche
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\underline{1. CMOS (Complementary MOS Logic)}}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Struttura:}
+
+                    • Rete \textbf{PUN} (pMOS) - pull-up network
+
+                    • Rete \textbf{PDN} (nMOS) - pull-down network
+
+                    • \textbf{Sempre} una rete ON, l'altra OFF
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Vantaggi:}
+
+                    • Uscita sempre a $V_{DD}$ o GND (livelli completi)
+
+                    • Potenza statica = 0 (nessun percorso VDD→GND)
+
+                    • Immunità al rumore elevata
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{orange!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Svantaggi:}
+
+                    • Richiede reti complementari (più transistor)
+
+                    • Area maggiore
+                }}
+
+                \vspace{0.2cm}
+                \hrule
+                \vspace{0.15cm}
+
+                \textbf{\underline{2. PTL (Pass Transistor Logic)}}
+
+                \vspace{0.1cm}
+                \colorbox{purple!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Struttura:}
+
+                    • Usa \textbf{singoli transistor} (nMOS o pMOS)
+
+                    • I transistor ``passano'' i segnali da ingresso a uscita
+
+                    • NON usa reti complementari
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Vantaggi:}
+
+                    • Meno transistor (area ridotta)
+
+                    • Circuiti più semplici
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Svantaggi:}
+
+                    • \textbf{Livelli degradati}:
+
+                    \quad - nMOS carica solo fino a $V_G - V_T$
+
+                    \quad - pMOS scarica solo fino a $V_G + |V_T|$
+
+                    • Immunità al rumore ridotta
+
+                    • Potenza statica $\neq$ 0 (possibili percorsi VDD→GND)
+                }}
+
+                \vspace{0.2cm}
+                \hrule
+                \vspace{0.15cm}
+
+                \colorbox{yellow!50}{\parbox{0.95\linewidth}{\footnotesize
+                    \centering
+                    \textbf{CONFRONTO RAPIDO:}
+
+                    \vspace{0.05cm}
+                    \textbf{CMOS}: Livelli completi, 0 potenza statica, + area
+
+                    \textbf{PTL}: Livelli degradati, potenza statica, - area
+                }}
+
+            \end{minipage}
+        };
+        %------------ PTL vs CMOS Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}PTL vs CMOS Logic};
+    \end{tikzpicture}
+
+
+    %------------ Tempo propagazione PTL ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{blue}Tempo di propagazione in PTL (Pass Transistor Logic)}
+
+                \vspace{0.2cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ PROBLEMA - Approssimazione a corrente costante}
+
+                    \vspace{0.05cm}
+                    L'approssimazione con $I = I_{sat}$ (corrente costante in saturazione) è \textbf{molto SOTTOSTIMATA} per la PTL!
+
+                    \vspace{0.05cm}
+                    \textbf{Motivo:} Nella PTL, durante la carica/scarica, il MOSFET passa dalla zona di saturazione alla zona omica, e la corrente diminuisce drasticamente.
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\underline{METODO CORRETTO - Approssimazione RC}}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Ipotesi da considerare:}
+
+                    \vspace{0.05cm}
+                    1. La corrente \textbf{finale} è circa \textbf{zero} (quando $V_C \approx V_G - V_T$ per nMOS)
+
+                    \vspace{0.05cm}
+                    2. La corrente a \textbf{metà tensione} ($V_{DD}/2$) è quella che determina il tempo
+
+                    \vspace{0.05cm}
+                    3. Sostituisci il transistor con una \textbf{resistenza equivalente} calcolata in zona omica
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\underline{Procedura:}}
+
+                \vspace{0.1cm}
+                \textbf{Step 1:} Calcola la resistenza equivalente in zona omica
+
+                \vspace{0.05cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    $$R_{eq} = \frac{1}{2K \cdot V_{OV}}$$
+
+                    \vspace{0.05cm}
+                    dove $V_{OV} = V_{GS} - V_T$ al punto di lavoro considerato (tipicamente a $V_{OUT} = \frac{V_{DD}}{2}$)
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Step 2:} Calcola il tempo di propagazione come circuito RC
+
+                \vspace{0.05cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    $$\tau_{prop} = R_{eq} \cdot C \cdot \ln(2)$$
+
+                    \vspace{0.05cm}
+                    oppure approssimato:
+
+                    $$\tau_{prop} \approx 0.69 \cdot R_{eq} \cdot C$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Spiegazione:}
+
+                    Il coefficiente $\ln(2) \approx 0.69$ deriva dalla soluzione dell'equazione RC per una transizione da 0 a $\frac{V_{DD}}{2}$ (o viceversa).
+
+                    \vspace{0.05cm}
+                    Formula completa RC: $V(t) = V_{finale}(1 - e^{-t/RC})$
+
+                    Per $V(t) = \frac{V_{finale}}{2}$, si ottiene $t = RC \cdot \ln(2)$
+                }}
+
+                \vspace{0.2cm}
+                \hrule
+                \vspace{0.15cm}
+
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Esempio pratico (nMOS in PTL):}
+
+                    $V_{DD} = 5V$, $V_G = 5V$, $V_T = 1V$, $K = 1$ mA/V$^2$, $C = 10$ pF
+
+                    \vspace{0.03cm}
+                    A metà tensione ($V_{OUT} = 2.5V$):
+
+                    $V_{GS} = 5V$ (gate fisso), $V_S = 2.5V$ (source al condensatore)
+
+                    $V_{OV} = 5V - 1V = 4V$
+
+                    \vspace{0.03cm}
+                    $R_{eq} = \frac{1}{2 \cdot 1 \cdot 4} = 0.125$ k$\Omega$ = 125 $\Omega$
+
+                    \vspace{0.03cm}
+                    $\tau_{prop} = 0.69 \cdot 125 \cdot 10 \cdot 10^{-12} = 0.86$ ns
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{purple!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Confronto con approssimazione a corrente costante:}
+
+                    Se usassi $I_{sat} = K \cdot V_{OV}^2 = 1 \cdot 4^2 = 16$ mA (molto sovrastimato!)
+
+                    $\tau = \frac{\Delta V \cdot C}{I_{sat}} = \frac{2.5 \cdot 10p}{16m} = 1.56$ ns
+
+                    Il metodo RC è più accurato perché considera la diminuzione della corrente!
+                }}
+
+            \end{minipage}
+        };
+        %------------ Tempo propagazione PTL Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione - PTL (metodo accurato)};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1876,6 +2193,33 @@
                     \item $C_L$ = capacità del carico
                     \item $f_{out}$ = frequenza di uscita
                 \end{itemize}
+
+                \vspace{0.2cm}
+                \colorbox{purple!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Duty Cycle (ciclo di lavoro):}
+
+                    \vspace{0.05cm}
+                    Il \textbf{duty cycle} $\delta$ è il rapporto tra il tempo in cui il segnale è HIGH e il periodo totale:
+
+                    $$\delta = \frac{T_{HIGH}}{T} = \frac{T_{HIGH}}{T_{HIGH} + T_{LOW}}$$
+
+                    \vspace{0.05cm}
+                    Espresso in percentuale: $\delta \% = \delta \times 100$
+
+                    \vspace{0.1cm}
+                    \textbf{Esempi:}
+
+                    • $\delta = 0.5$ (50\%) → onda quadra simmetrica (HIGH e LOW stesso tempo)
+
+                    • $\delta = 0.25$ (25\%) → segnale HIGH per 25\% del periodo
+
+                    • $\delta = 0.75$ (75\%) → segnale HIGH per 75\% del periodo
+
+                    \vspace{0.1cm}
+                    \textbf{Relazione con la potenza:}
+
+                    Se il duty cycle $\neq$ 50\%, può influenzare la frequenza effettiva delle commutazioni complete. In molti esercizi si assume duty cycle = 50\% (onda quadra simmetrica).
+                }}
 
                 \vspace{0.2cm}
                 \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
