@@ -1223,20 +1223,14 @@
                 \textbf{\underline{nMOS:}}
 
                 \vspace{0.1cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Gate a GND (0V)} → probabilmente \textbf{OFF}
+                \textbf{Gate a GND (0V)} → probabilmente \textbf{OFF}
 
-                    \vspace{0.05cm}
-                    Se il gate è a massa, $V_{GS}$ è molto basso (o negativo se source è più alto), quindi $V_{GS} < V_T$ → OFF
-                }}
+                Se il gate è a massa, $V_{GS}$ è molto basso (o negativo se source è più alto), quindi $V_{GS} < V_T$ → OFF
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Gate a $V_{DD}$} → probabilmente \textbf{ON}
+                \textbf{Gate a $V_{DD}$} → probabilmente \textbf{ON}
 
-                    \vspace{0.05cm}
-                    Se il gate è all'alimentazione, $V_{GS}$ è alto (assumendo source a GND o comunque più basso), quindi $V_{GS} > V_T$ → ON
-                }}
+                Se il gate è all'alimentazione, $V_{GS}$ è alto (assumendo source a GND o comunque più basso), quindi $V_{GS} > V_T$ → ON
 
                 \vspace{0.2cm}
                 \hrule
@@ -1245,49 +1239,41 @@
                 \textbf{\underline{pMOS:}}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Gate a GND (0V)} → probabilmente \textbf{ON}
+                \textbf{Gate a GND (0V)} → probabilmente \textbf{ON}
 
-                    \vspace{0.05cm}
-                    Se il gate è a massa, $V_{SG}$ è alto (assumendo source a $V_{DD}$ o comunque più alto), quindi $V_{SG} > |V_T|$ → ON
-                }}
+                Se il gate è a massa, $V_{SG}$ è alto (assumendo source a $V_{DD}$ o comunque più alto), quindi $V_{SG} > |V_T|$ → ON
 
                 \vspace{0.1cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Gate a $V_{DD}$} → probabilmente \textbf{OFF}
+                \textbf{Gate a $V_{DD}$} → probabilmente \textbf{OFF}
 
-                    \vspace{0.05cm}
-                    Se il gate è all'alimentazione, $V_{SG}$ è molto basso (o negativo se source è più basso), quindi $V_{SG} < |V_T|$ → OFF
-                }}
+                Se il gate è all'alimentazione, $V_{SG}$ è molto basso (o negativo se source è più basso), quindi $V_{SG} < |V_T|$ → OFF
 
                 \vspace{0.2cm}
                 \hrule
                 \vspace{0.15cm}
 
-                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Riassunto veloce:}
-
-                    \vspace{0.05cm}
-                    \centering
-                    \begin{tabular}{ccc}
-                        & \textbf{Gate = GND} & \textbf{Gate = $V_{DD}$} \\
-                        \hline
-                        \textbf{nMOS} & OFF & ON \\
-                        \textbf{pMOS} & ON & OFF \\
-                    \end{tabular}
-                }}
-
                 \vspace{0.15cm}
-                \colorbox{orange!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{ATTENZIONE:} Questa è una regola \textbf{approssimata} che assume:
+                \textbf{Riassunto veloce:}
 
-                    • Per nMOS: source vicino a GND
+                \vspace{0.05cm}
+                \centering
+                \begin{tabular}{ccc}
+                    & \textbf{Gate = GND} & \textbf{Gate = $V_{DD}$} \\
+                    \hline
+                    \textbf{nMOS} & OFF & ON \\
+                    \textbf{pMOS} & ON & OFF \\
+                \end{tabular}
 
-                    • Per pMOS: source vicino a $V_{DD}$
+                \vspace{0.2cm}
+                \raggedright
+                \textbf{ATTENZIONE:} Questa è una regola \textbf{approssimata} che assume:
 
-                    \vspace{0.03cm}
-                    Se il source è collegato diversamente (es. nMOS con source a $V_{DD}$, pMOS con source a GND), la regola \textbf{NON vale}! Devi sempre calcolare $V_{GS}$ o $V_{SG}$ correttamente.
-                }}
+                • Per nMOS: source vicino a GND
+
+                • Per pMOS: source vicino a $V_{DD}$
+
+                \vspace{0.03cm}
+                Se il source è collegato diversamente (es. nMOS con source a $V_{DD}$, pMOS con source a GND), la regola \textbf{NON vale}! Devi sempre calcolare $V_{GS}$ o $V_{SG}$ correttamente.
 
             \end{minipage}
         };
