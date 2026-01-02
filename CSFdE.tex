@@ -1153,6 +1153,269 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Parametro K (Transconduttanza)};
     \end{tikzpicture}
 
+
+    %------------ MOSFET in parallelo ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+
+
+                \vspace{0.1cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ CONDIZIONE FONDAMENTALE:}
+
+                    Tutti i \textbf{GATE devono essere in COMUNE} (stessa tensione al gate)
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{1. MOSFET in PARALLELO}}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    • GATE in comune
+
+                    • SOURCE in comune (vengono mantenuti)
+                }}
+
+                \vspace{0.1cm}
+                \textbf{\color{purple}Formula:}
+                $$K_{eq} = K_1 + K_2 + \cdots + K_n$$
+
+                \colorbox{orange!15}{\parbox{0.93\linewidth}{\footnotesize
+                    Se tutte uguali: $K_{eq} = n \cdot K$
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Es:} 3 nMOS con $K = 0.5$ mA/V² → $K_{eq} = 1.5$ mA/V²
+                }}
+
+                \vspace{0.15cm}
+                \hrule
+                \vspace{0.15cm}
+
+                \textbf{\underline{2. MOSFET in SERIE}}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    • GATE in comune
+
+                    • SOURCE equivalente = SOURCE più BASSO
+                }}
+
+                \vspace{0.1cm}
+                \textbf{\color{purple}Formula:}
+                $$\frac{1}{K_{eq}} = \frac{1}{K_1} + \frac{1}{K_2} + \cdots + \frac{1}{K_n}$$
+
+                \colorbox{orange!15}{\parbox{0.93\linewidth}{\footnotesize
+                    Per 2 MOS: $K_{eq} = \frac{K_1 \cdot K_2}{K_1 + K_2}$
+
+                    \vspace{0.03cm}
+                    Se uguali: $K_{eq} = \frac{K}{n}$
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Es:} 2 nMOS $K_1=1$, $K_2=2$ mA/V² → $K_{eq}=0.67$ mA/V²
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Fondamentale:} Queste semplificazioni evitano calcoli complessi nei circuiti.
+                }}
+
+            \end{minipage}
+        };
+        %------------ Semplificazioni MOSFET Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Semplificazioni MOSFET};
+    \end{tikzpicture}
+
+
+    %------------ Analisi Porte Logiche ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Quando usare:} Dopo aver fatto semplificazioni (serie/parallelo), quando $V_{DS} = V_{OUT}$ e devi capire la zona di funzionamento.
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ IPOTESI PORTA LOGICA IDEALE}
+
+                    Se ti hanno chiesto l'espressione logica della porta, puoi ipotizzare che sia \textbf{ideale}:
+
+                    \vspace{0.05cm}
+                    • $V_{OUT}$ ha valori logici \textbf{ALTO} e \textbf{BASSO}
+
+                    • $V_{OUT} = V_{DS}$ del MOSFET (dopo semplificazioni)
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{METODO:}}
+
+                \vspace{0.1cm}
+                \textbf{1. Uscita logica BASSA (``0'')}
+
+                \vspace{0.05cm}
+                \colorbox{cyan!10}{\parbox{0.93\linewidth}{\footnotesize
+                    $V_{OUT} \approx 0V$ → $V_{DS}$ piccola
+
+                    \vspace{0.03cm}
+                    $\Rightarrow V_{DS} < V_{OV}$ → \textbf{ZONA OMICA}
+                }}
+
+                \vspace{0.15cm}
+                \textbf{2. Uscita logica ALTA (``1'')}
+
+                \vspace{0.05cm}
+                \colorbox{orange!10}{\parbox{0.93\linewidth}{\footnotesize
+                    $V_{OUT} \approx V_{DD}$ → $V_{DS}$ grande
+
+                    \vspace{0.03cm}
+                    $\Rightarrow V_{DS} > V_{OV}$ → \textbf{ZONA SATURAZIONE}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Nota:} Questo metodo ti permette di \textbf{ipotizzare} la zona di funzionamento senza fare calcoli complessi. Poi puoi verificare con le formule.
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Esempio pratico:}
+
+                    Se $V_{OUT} = 0V$ (logica bassa) e hai $V_{OV} = 2V$:
+
+                    $V_{DS} \approx 0V < 2V$ → OMICA $\checkmark$
+
+                    \vspace{0.03cm}
+                    Se $V_{OUT} = 5V$ (logica alta) e hai $V_{OV} = 2V$:
+
+                    $V_{DS} \approx 5V > 2V$ → SATURAZIONE $\checkmark$
+                }}
+
+            \end{minipage}
+        };
+        %------------ Analisi Porte Logiche Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Analisi Porte Logiche};
+    \end{tikzpicture}
+
+
+    %------------ Resistenza di canale ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{blue}Resistenza di Canale ($R_{CH}$ o $R_{eq}$)}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Quando usare:} Calcolare la corrente nel MOSFET quando:
+
+                    • $V_{OUT} = V_{DS}$ (l'uscita coincide con la tensione drain-source)
+
+                    • $V_{OUT} \approx 0V$ (uscita logica bassa)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ DEFINIZIONE}
+
+                    La \textbf{resistenza di canale} è la resistenza equivalente del MOSFET in un \textbf{intorno di $V_{DS} = 0V$}
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{FORMULA:}}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    $$R_{CH} = R_{eq} = \frac{1}{2K \cdot V_{OV}}$$
+
+                    \vspace{0.05cm}
+                    \centering
+                    dove $V_{OV} = V_{GS} - V_T$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Importante:} $K$ può essere:
+
+                    • Il $K$ del singolo MOSFET
+
+                    • Il $K_{eq}$ del MOSFET equivalente (dopo semplificazioni serie/parallelo)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Origine:} Derivata di $I_D$ rispetto a $V_{DS}$ calcolata in $V_{DS}=0$ (approssimazione di Taylor al primo ordine)
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{QUANDO È VALIDA:}}
+
+                \vspace{0.05cm}
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\footnotesize
+                    $\checkmark$ $V_{DS} \approx 0V$ (uscita logica bassa)
+
+                    $\checkmark$ MOSFET in zona OMICA
+
+                    $\checkmark$ Calcoli approssimativi di corrente
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
+                    $\times$ Se $V_{DS}$ NON è vicino a 0V
+
+                    $\times$ In altri punti di lavoro (devi ricalcolare la derivata nel punto specifico)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ SANITY CHECK}
+
+                    Dopo aver calcolato $I_D$ usando $R_{CH}$, \textbf{DEVI verificare}:
+
+                    $$V_{R_{CH}} \ll V_{OV}$$
+
+                    Dove $V_{R_{CH}}$ è la tensione ai capi della resistenza equivalente (= $V_{DS}$ del MOSFET).
+
+                    \vspace{0.05cm}
+                    Se $V_{R_{CH}} \approx V_{OV}$ o maggiore, l'approssimazione \textbf{NON è valida}!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Esempio pratico:}
+
+                    Se $K = 1$ mA/V², $V_{GS} = 3V$, $V_T = 1V$:
+
+                    $V_{OV} = 3V - 1V = 2V$
+
+                    $R_{CH} = \frac{1}{2 \cdot 1 \cdot 2} = \frac{1}{4}$ k$\Omega$ = 250 $\Omega$
+
+                    \vspace{0.05cm}
+                    Con $V_{DS} = 0.1V$:
+
+                    $I_D \approx \frac{V_{DS}}{R_{CH}} = \frac{0.1V}{250\Omega} = 0.4$ mA
+
+                    \vspace{0.05cm}
+                    \textbf{Verifica:} $V_{DS} = 0.1V \ll V_{OV} = 2V$ $\checkmark$ OK!
+                }}
+
+            \end{minipage}
+        };
+        %------------ Resistenza di canale Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Resistenza di canale};
+    \end{tikzpicture}
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \columnbreak
     
@@ -1160,42 +1423,394 @@
     
 
 
+    %------------ Tempo di propagazione ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{blue}Tempo di propagazione ($\tau$ o $t_{prop}$)}
+
+                \vspace{0.2cm}
+                \textbf{Definizione:} Tempo impiegato a raggiungere la soglia della porta logica successiva.
+
+                \vspace{0.15cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{
+                    \textbf{Convenzione:} Se non specificato, si prende:
+                    $$V_{finale} = \frac{V_{DD}}{2}$$
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\color{purple}Metodo 1: Approssimazione a corrente costante}
+
+                \vspace{0.1cm}
+                $$\tau = \frac{\Delta V \cdot C}{I_{sat}}$$
+
+                \vspace{0.15cm}
+                Dove:
+                \begin{itemize}[itemsep=2pt, leftmargin=*]
+                    \item $\Delta V = V_{finale} - V_{iniziale}$
+                    \item $V_{finale} = \frac{V_{DD}}{2}$ (sempre!)
+                    \item $C$ = capacità di carico
+                    \item $I_{sat}$ = corrente di saturazione del MOSFET
+                \end{itemize}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Esempio:} Se $V_{DD} = 5V$ e $V_{iniziale} = 0V$:
+
+                    La transizione è da $0V$ a $\frac{5V}{2} = 2.5V$ (NON a 5V!)
+
+                    $$\Delta V = 2.5V - 0V = 2.5V$$
+                }}
+
+            \end{minipage}
+        };
+        %------------ Tempo propagazione Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Potenza statica ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{blue}Potenza statica}
+
+                \vspace{0.2cm}
+                \textbf{Definizione:} Potenza consumata dal circuito quando gli ingressi e le uscite \textbf{NON commutano} (analisi statica).
+
+                \vspace{0.2cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{
+                    \textbf{Importante:} In analisi statica, il condensatore si comporta come se non ci fosse (circuito aperto).
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\color{purple}Formula:}
+
+                \vspace{0.1cm}
+                $$P_{statica} = I \cdot V_{DD}$$
+
+                \vspace{0.15cm}
+                Dove:
+                \begin{itemize}[itemsep=2pt, leftmargin=*]
+                    \item $I$ = corrente che scorre nel MOSFET/circuito
+                    \item $V_{DD}$ = tensione di alimentazione
+                \end{itemize}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Nota:} Poiché il condensatore è un circuito aperto in regime stazionario (nessun $\frac{dV}{dt}$), si calcola solo la corrente continua che scorre attraverso i MOSFET.
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{cMOS standard:} $P_{statica} = 0$ sempre.
+
+                    Non esistono configurazioni che consumano potenza statica.
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{orange!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{cMOS non standard:} Possono avere configurazioni in cui $P_{statica} \neq 0$.
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ IMPORTANTE - Calcolo $V_{GS}$}
+
+                    In analisi statica, se il \textbf{source dell'nMOS NON è a massa} (ma collegato a un'altra alimentazione):
+
+                    \textbf{NON} usare $V_G$ direttamente, ma calcolare:
+                    $$V_{GS} = V_G - V_S$$
+
+                    Lo stesso vale per pMOS se il source NON è a $V_{DD}$.
+                }}
+
+            \end{minipage}
+        };
+        %------------ Potenza statica Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza statica};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Potenza dinamica ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{blue}Potenza dinamica}
+
+                \vspace{0.2cm}
+                \textbf{Definizione:} Potenza consumata durante le commutazioni degli ingressi/uscite.
+
+                \vspace{0.2cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ CONDIZIONE FONDAMENTALE}
+
+                    \vspace{0.1cm}
+                    Prima di applicare la formula, verificare che:
+                    $$\tau_{prop} \leq \frac{T_{in}}{2}$$
+
+                    Dove:
+                    \begin{itemize}[itemsep=1pt]
+                        \item $\tau_{prop}$ = tempo di propagazione
+                        \item $T_{in}$ = periodo del segnale di ingresso
+                    \end{itemize}
+
+                    \vspace{0.05cm}
+                    Se $\tau_{prop} > \frac{T_{in}}{2}$, il circuito \textbf{NON ha tempo} di raggiungere il regime prima della prossima commutazione $\Rightarrow$ la formula \textbf{NON è valida}.
+
+                    \vspace{0.15cm}
+                    \colorbox{cyan!10}{\parbox{0.92\linewidth}{\tiny
+                        \textbf{Nota pratica:} Se hai calcolato $\tau_{prop}$ per una transizione (es. high$\to$low) ma la potenza dinamica riguarda la transizione opposta (low$\to$high), verifica l'\textbf{ordine di grandezza}.
+
+                        \vspace{0.05cm}
+                        \textbf{Se $K_n$ e $K_p$ sono comparabili numericamente:} I due tempi di propagazione saranno multipli ma \textbf{stesso ordine di grandezza}. Se $\tau_{prop} \ll \frac{T_{in}}{2}$ (molto minore), sei a posto anche senza calcolare l'altro!
+
+                        \vspace{0.05cm}
+                        \textbf{\color{red}ATTENZIONE:} Questa assunzione vale \textbf{SOLO se $K_n \approx K_p$}. Se i valori di $K$ sono molto diversi, devi calcolare entrambi i tempi di propagazione.
+                    }}
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\color{purple}Formula generale:}
+
+                \vspace{0.1cm}
+                $$P_D = V_{DD} \sum_{i} (V_{OH,i} - V_{OL,i}) \cdot C_i \cdot f_i$$
+
+                \vspace{0.2cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{
+                    \textbf{Caso semplificato} (un solo nodo d'uscita):
+                    $$P_D = V_{DD} \cdot (V_{OH} - V_{OL}) \cdot C_L \cdot f_{out}$$
+                }}
+
+                \vspace{0.2cm}
+                Dove:
+                \begin{itemize}[itemsep=2pt, leftmargin=*]
+                    \item $V_{DD}$ = tensione di alimentazione
+                    \item $V_{OH}$ = tensione output HIGH (valore massimo)
+                    \item $V_{OL}$ = tensione output LOW (valore minimo)
+                    \item $C_L$ = capacità del carico
+                    \item $f_{out}$ = frequenza di uscita
+                \end{itemize}
+
+                \vspace{0.2cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Come determinare $V_{OH}$ e $V_{OL}$:}
+
+                    Sono i valori massimo e minimo dell'uscita durante le commutazioni.
+
+                    \textbf{Metodi:}
+                    \begin{itemize}[itemsep=1pt]
+                        \item Dal grafico di $V_{out}(t)$ (se richiesto in precedenza)
+                        \item Forniti direttamente nel testo dell'esercizio
+                        \item Analizzando le transizioni del circuito
+                    \end{itemize}
+                }}
+
+            \end{minipage}
+        };
+        %------------ Potenza dinamica Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza dinamica};
+    \end{tikzpicture}
+
+    \newpage
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     %------------ cMOS ---------------
     \label{cMOS}
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
-                \noindent \textbf{cMOS (Inverter):}
-                \begin{enumerate}
-                    \item \textbf{Ingresso Alto (logica `1`):}
-                          \text{rete PULL-UP(pMOS ON SAT, nMOS OFF)}
-                          \begin{align*}
-                               & \text{nMOS: } V_{GS} > V_{th} \text{ (Conduzione)} \\
-                               & \text{pMOS: } V_{GS} > V_{TP} \text{ (Cutoff)}     \\
-                               & \text{Uscita: } \text{GND (logica `0`)}
-                          \end{align*}
-                    \item \textbf{Ingresso Basso (logica `0`):}
-                          \text{rete PULL-DOWN(nMOS ON SAT, pMOS OFF)}
-                          \begin{align*}
-                               & \text{nMOS: } V_{GS} < V_{th} \text{ (Cutoff)}     \\
-                               & \text{pMOS: } V_{GS} < V_{TP} \text{ (Conduzione)} \\
-                               & \text{Uscita: } \text{VDD (logica `1`)}
-                          \end{align*}
-                    \item \textbf{Zona intermedia: entrambi in saturazione}
-                          \color{red} [.....]\color{black}
-                \end{enumerate}
+                \small
 
-                [grafico delle caratteristiche] \\
-                cMOS
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Definizione:} Una porta logica \textbf{cMOS} (Complementary MOS) è composta da due reti complementari:
 
+                    \vspace{0.05cm}
+                    • \textbf{PUN} (Pull-Up Network): rete di \textbf{pMOS}
+
+                    • \textbf{PDN} (Pull-Down Network): rete di \textbf{nMOS}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ REGOLA FONDAMENTALE}
+
+                    \vspace{0.05cm}
+                    In qualsiasi configurazione di ingresso:
+
+                    \vspace{0.03cm}
+                    \textbf{Solo UNA rete è attiva (ON) alla volta}
+
+                    \vspace{0.05cm}
+                    • Se PUN è ON → PDN è OFF (uscita = $V_{DD}$)
+
+                    • Se PDN è ON → PUN è OFF (uscita = GND)
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{Significato PRATICO negli esercizi:}}
+
+                \vspace{0.05cm}
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{1. Potenza statica = 0}
+
+                    Poiché una rete è sempre OFF, non c'è percorso diretto tra $V_{DD}$ e GND → $P_{statica} = 0$
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{2. Analisi per stati logici}
+
+                    Per ogni combinazione di ingressi, verifica:
+
+                    • Quali MOSFET sono ON/OFF
+
+                    • Quale rete (PUN o PDN) è attiva
+
+                    • Output = $V_{DD}$ se PUN ON, = GND se PDN ON
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{Esempio: cMOS Inverter}}
+
+                \vspace{0.05cm}
+                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Ingresso ALTO (``1''):}
+
+                    • nMOS ON → PDN attiva → Uscita = GND (``0'')
+
+                    • pMOS OFF → PUN spenta
+
+                    \vspace{0.05cm}
+                    \textbf{Ingresso BASSO (``0''):}
+
+                    • pMOS ON → PUN attiva → Uscita = $V_{DD}$ (``1'')
+
+                    • nMOS OFF → PDN spenta
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{orange!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Nota:} Le reti sono \textbf{complementari}: se PUN realizza $f$, PDN realizza $\overline{f}$
+                }}
 
             \end{minipage}
         };
         %------------ cMOS Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}cMOS};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Porte cMOS - Definizione};
+    \end{tikzpicture}
+
+
+    %------------ Costruzione PUN da PDN ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Problema:} Data la rete Pull-Down (PDN) con nMOS, costruire la rete Pull-Up (PUN) con pMOS
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ METODO - Trasformazione DUALE}
+
+                    \vspace{0.05cm}
+                    \colorbox{yellow!40}{\parbox{0.92\linewidth}{\tiny
+                        \centering
+                        \textbf{In pratica: INVERSIONE RICORSIVA di SERIE e PARALLELO}
+                    }}
+
+                    \vspace{0.05cm}
+                    Dalla PDN alla PUN:
+
+                    \vspace{0.05cm}
+                    \textbf{1.} SERIE → PARALLELO
+
+                    \textbf{2.} PARALLELO → SERIE
+
+                    \textbf{3.} nMOS → pMOS
+
+                    \textbf{4.} Gate (ingressi) → RIMANGONO UGUALI
+                }}
+
+                \vspace{0.15cm}
+                \textbf{\underline{PROCEDURA MECCANICA:}}
+
+                \vspace{0.05cm}
+                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Step 1:} Identifica la struttura della PDN
+
+                    • Individua le connessioni SERIE
+
+                    • Individua le connessioni PARALLELO
+
+                    \vspace{0.05cm}
+                    \textbf{Step 2:} Applica la trasformazione
+
+                    • Ogni SERIE diventa PARALLELO
+
+                    • Ogni PARALLELO diventa SERIE
+
+                    • Sostituisci nMOS con pMOS
+
+                    • Mantieni gli stessi gate
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Esempio pratico:}
+
+                    \textbf{PDN:} nMOS(A) in SERIE con [nMOS(B) || nMOS(C)]
+
+                    \vspace{0.05cm}
+                    \textbf{Applicazione trasformazione:}
+
+                    • A in SERIE → A in PARALLELO
+
+                    • (B || C) → (B in SERIE con C)
+
+                    \vspace{0.05cm}
+                    \textbf{PUN:} pMOS(A) in PARALLELO con [pMOS(B) in SERIE con pMOS(C)]
+
+                    \vspace{0.05cm}
+                    In formula: $PUN = A \parallel (B \cdot C)$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Verifica:} Le due reti sono complementari
+
+                    • PDN: $f = A \cdot (B + C)$
+
+                    • PUN: $\overline{f} = \overline{A} + (\overline{B} \cdot \overline{C}) = \overline{A \cdot (B + C)}$ $\checkmark$
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{orange!15}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Nota:} Questo metodo garantisce che solo una rete sia ON alla volta (proprietà fondamentale delle porte cMOS)
+                }}
+
+            \end{minipage}
+        };
+        %------------ Costruzione PUN da PDN Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Costruzione PUN da PDN};
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \newpage
 
     %------------ AND/nAND ---------------
     \label{AND/nAND}
