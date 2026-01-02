@@ -1928,18 +1928,16 @@
                 \textbf{\underline{METODO CORRETTO - Approssimazione RC}}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Ipotesi da considerare:}
+                \textbf{Ipotesi da considerare:}
 
-                    \vspace{0.05cm}
-                    1. La corrente \textbf{finale} è circa \textbf{zero} (quando $V_C \approx V_G - V_T$ per nMOS)
+                \vspace{0.05cm}
+                1. La corrente \textbf{finale} è circa \textbf{zero} (quando $V_C \approx V_G - V_T$ per nMOS)
 
-                    \vspace{0.05cm}
-                    2. La corrente a \textbf{metà tensione} ($V_{DD}/2$) è quella che determina il tempo
+                \vspace{0.05cm}
+                2. La corrente a \textbf{metà tensione} ($V_{DD}/2$) è quella che determina il tempo
 
-                    \vspace{0.05cm}
-                    3. Sostituisci il transistor con una \textbf{resistenza equivalente} calcolata in zona omica
-                }}
+                \vspace{0.05cm}
+                3. Sostituisci il transistor con una \textbf{resistenza equivalente} calcolata in zona omica
 
                 \vspace{0.2cm}
                 \textbf{\underline{Procedura:}}
@@ -1969,50 +1967,37 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Spiegazione:}
-
-                    Il coefficiente $\ln(2) \approx 0.69$ deriva dalla soluzione dell'equazione RC per una transizione da 0 a $\frac{V_{DD}}{2}$ (o viceversa).
-
-                    \vspace{0.05cm}
-                    Formula completa RC: $V(t) = V_{finale}(1 - e^{-t/RC})$
-
-                    Per $V(t) = \frac{V_{finale}}{2}$, si ottiene $t = RC \cdot \ln(2)$
-                }}
+                \textit{Spiegazione:} Il coefficiente $\ln(2) \approx 0.69$ deriva dalla soluzione dell'equazione RC per una transizione da 0 a $\frac{V_{DD}}{2}$ (o viceversa). Formula completa RC: $V(t) = V_{finale}(1 - e^{-t/RC})$. Per $V(t) = \frac{V_{finale}}{2}$, si ottiene $t = RC \cdot \ln(2)$.
 
                 \vspace{0.2cm}
                 \hrule
                 \vspace{0.15cm}
 
-                \colorbox{green!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Esempio pratico (nMOS in PTL):}
+                \textbf{Esempio pratico (nMOS in PTL):}
 
-                    $V_{DD} = 5V$, $V_G = 5V$, $V_T = 1V$, $K = 1$ mA/V$^2$, $C = 10$ pF
+                $V_{DD} = 5V$, $V_G = 5V$, $V_T = 1V$, $K = 1$ mA/V$^2$, $C = 10$ pF
 
-                    \vspace{0.03cm}
-                    A metà tensione ($V_{OUT} = 2.5V$):
+                \vspace{0.03cm}
+                A metà tensione ($V_{OUT} = 2.5V$):
 
-                    $V_{GS} = 5V$ (gate fisso), $V_S = 2.5V$ (source al condensatore)
+                $V_{GS} = 5V$ (gate fisso), $V_S = 2.5V$ (source al condensatore)
 
-                    $V_{OV} = 5V - 1V = 4V$
+                $V_{OV} = 5V - 1V = 4V$
 
-                    \vspace{0.03cm}
-                    $R_{eq} = \frac{1}{2 \cdot 1 \cdot 4} = 0.125$ k$\Omega$ = 125 $\Omega$
+                \vspace{0.03cm}
+                $R_{eq} = \frac{1}{2 \cdot 1 \cdot 4} = 0.125$ k$\Omega$ = 125 $\Omega$
 
-                    \vspace{0.03cm}
-                    $\tau_{prop} = 0.69 \cdot 125 \cdot 10 \cdot 10^{-12} = 0.86$ ns
-                }}
+                \vspace{0.03cm}
+                $\tau_{prop} = 0.69 \cdot 125 \cdot 10 \cdot 10^{-12} = 0.86$ ns
 
                 \vspace{0.15cm}
-                \colorbox{purple!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Confronto con approssimazione a corrente costante:}
+                \textbf{Confronto con approssimazione a corrente costante:}
 
-                    Se usassi $I_{sat} = K \cdot V_{OV}^2 = 1 \cdot 4^2 = 16$ mA (molto sovrastimato!)
+                Se usassi $I_{sat} = K \cdot V_{OV}^2 = 1 \cdot 4^2 = 16$ mA (molto sovrastimato!)
 
-                    $\tau = \frac{\Delta V \cdot C}{I_{sat}} = \frac{2.5 \cdot 10p}{16m} = 1.56$ ns
+                $\tau = \frac{\Delta V \cdot C}{I_{sat}} = \frac{2.5 \cdot 10p}{16m} = 1.56$ ns
 
-                    Il metodo RC è più accurato perché considera la diminuzione della corrente!
-                }}
+                Il metodo RC è più accurato perché considera la diminuzione della corrente!
 
             \end{minipage}
         };
