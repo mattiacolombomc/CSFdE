@@ -1136,20 +1136,14 @@
                 \textbf{\underline{Come identificare i terminali negli esercizi:}}
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{GATE} (sempre indicato):
+                \textbf{GATE} (sempre indicato):
 
-                    • \textbf{nMOS}: gate \textbf{senza pallino}
+                • \textbf{nMOS}: gate \textbf{senza pallino}
 
-                    • \textbf{pMOS}: gate \textbf{con pallino} (\textbullet)
-                }}
+                • \textbf{pMOS}: gate \textbf{con pallino} (\textbullet)
 
                 \vspace{0.15cm}
-                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{SOURCE e DRAIN} (determinati a runtime):
-
-                    Se non indicati esplicitamente nel testo, si determinano in base alle \textbf{tensioni dei nodi}.
-                }}
+                \textbf{SOURCE e DRAIN} (determinati a runtime): Se non indicati esplicitamente nel testo, si determinano in base alle \textbf{tensioni dei nodi}.
 
                 \vspace{0.15cm}
                 \textbf{\underline{Regole per determinare SOURCE:}}
@@ -1158,23 +1152,19 @@
                 \textbf{1. nMOS}
 
                 \vspace{0.05cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
-                    Il \textbf{SOURCE} è il nodo alla \textbf{tensione più BASSA} tra i due terminali non-gate.
+                Il \textbf{SOURCE} è il nodo alla \textbf{tensione più BASSA} tra i due terminali non-gate.
 
-                    \vspace{0.05cm}
-                    Il DRAIN è l'altro terminale (tensione più alta).
-                }}
+                \vspace{0.05cm}
+                Il DRAIN è l'altro terminale (tensione più alta).
 
                 \vspace{0.15cm}
                 \textbf{2. pMOS}
 
                 \vspace{0.05cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
-                    Il \textbf{SOURCE} è il nodo alla \textbf{tensione più ALTA} tra i due terminali non-gate.
+                Il \textbf{SOURCE} è il nodo alla \textbf{tensione più ALTA} tra i due terminali non-gate.
 
-                    \vspace{0.05cm}
-                    Il DRAIN è l'altro terminale (tensione più bassa).
-                }}
+                \vspace{0.05cm}
+                Il DRAIN è l'altro terminale (tensione più bassa).
 
                 \vspace{0.2cm}
                 \hrule
@@ -1194,32 +1184,16 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{purple!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Esempio pratico (nMOS):}
+                \textbf{Esempio pratico (nMOS):}
 
-                    Inizialmente: Nodo A = 3V, Nodo B = 1V
+                Inizialmente: Nodo A = 3V, Nodo B = 1V $\Rightarrow$ Source = B (1V, più basso), Drain = A (3V)
 
-                    $\Rightarrow$ Source = B (1V, più basso), Drain = A (3V)
+                Dopo un transitorio: Nodo A = 0.5V, Nodo B = 2V $\Rightarrow$ Source = A (0.5V, più basso), Drain = B (2V)
 
-                    \vspace{0.03cm}
-                    Dopo un transitorio: Nodo A = 0.5V, Nodo B = 2V
-
-                    $\Rightarrow$ Source = A (0.5V, più basso), Drain = B (2V)
-
-                    \vspace{0.03cm}
-                    I terminali sono stati \textbf{invertiti}!
-                }}
+                I terminali sono stati \textbf{invertiti}!
 
                 \vspace{0.15cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Perché è importante:}
-
-                    • $V_{GS}$ e $V_{DS}$ dipendono da quale terminale è il Source
-
-                    • Per calcolare correttamente le formule, devi identificare Source e Drain correttamente in ogni momento
-
-                    • La zona di funzionamento (saturazione/omica) dipende da $V_{DS}$, quindi dall'identificazione corretta dei terminali
-                }}
+                \textit{Perché è importante:} $V_{GS}$ e $V_{DS}$ dipendono da quale terminale è il Source. Per calcolare correttamente le formule, devi identificare Source e Drain correttamente in ogni momento. La zona di funzionamento (saturazione/omica) dipende da $V_{DS}$, quindi dall'identificazione corretta dei terminali.
 
             \end{minipage}
         };
