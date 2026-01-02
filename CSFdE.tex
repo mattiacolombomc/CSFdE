@@ -1612,28 +1612,19 @@
                 \small
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Comportamento SPECULARE alla carica}
-                }}
+                \textbf{Comportamento SPECULARE alla carica}
 
                 \vspace{0.15cm}
                 \textbf{\underline{SCARICA - 1. Con nMOS}}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Scarica COMPLETA:} Il condensatore si scarica fino a \textbf{GND (0V)}
-
-                    \vspace{0.05cm}
-                    $$V_{C,min} = 0V$$
-                }}
+                \textbf{Scarica COMPLETA:} Il condensatore si scarica fino a \textbf{GND (0V)}
 
                 \vspace{0.05cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Motivo:} Nel nMOS, il Source è collegato a GND e la corrente scorre dal condensatore (Drain) verso GND.
+                $$V_{C,min} = 0V$$
 
-                    \vspace{0.03cm}
-                    Il nMOS rimane acceso finché $V_{GS} > V_T$. Dato che $V_S = 0V$ (GND), finché $V_G > V_T$ il transistor resta acceso e può scaricare completamente il condensatore.
-                }}
+                \vspace{0.05cm}
+                \textit{Motivo:} Nel nMOS, il Source è collegato a GND e la corrente scorre dal condensatore (Drain) verso GND. Il nMOS rimane acceso finché $V_{GS} > V_T$. Dato che $V_S = 0V$ (GND), finché $V_G > V_T$ il transistor resta acceso e può scaricare completamente il condensatore.
 
                 \vspace{0.15cm}
                 \hrule
@@ -1642,35 +1633,23 @@
                 \textbf{\underline{SCARICA - 2. Con pMOS}}
 
                 \vspace{0.1cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Scarica LIMITATA:} Il condensatore si scarica \textbf{solo fino a}:
-
-                    \vspace{0.05cm}
-                    $$V_{C,min} = V_G + |V_T|$$
-                }}
+                \textbf{Scarica LIMITATA:} Il condensatore si scarica \textbf{solo fino a}:
 
                 \vspace{0.05cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Motivo:} Nel pMOS, quando il condensatore (collegato al Source) si scarica, diminuisce $V_S$.
+                $$V_{C,min} = V_G + |V_T|$$
 
-                    \vspace{0.03cm}
-                    Quando $V_S$ scende fino a $V_G + |V_T|$, si ha $V_{SG} = |V_T|$ → il MOSFET \textbf{si spegne}.
-
-                    \vspace{0.03cm}
-                    \textbf{Non può scaricare oltre} perché $V_{SG} = |V_T|$ è la condizione di soglia (OFF).
-                }}
+                \vspace{0.05cm}
+                \textit{Motivo:} Nel pMOS, quando il condensatore (collegato al Source) si scarica, diminuisce $V_S$. Quando $V_S$ scende fino a $V_G + |V_T|$, si ha $V_{SG} = |V_T|$ → il MOSFET \textbf{si spegne}. \textbf{Non può scaricare oltre} perché $V_{SG} = |V_T|$ è la condizione di soglia (OFF).
 
                 \vspace{0.15cm}
-                \colorbox{purple!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Esempio pratico (SCARICA):}
+                \textbf{Esempio pratico (SCARICA):}
 
-                    Se $V_G = 2V$ e $|V_T| = 1V$ per un pMOS:
+                Se $V_G = 2V$ e $|V_T| = 1V$ per un pMOS:
 
-                    $V_{C,min} = 2V + 1V = 3V$ (non può scendere sotto!)
+                $V_{C,min} = 2V + 1V = 3V$ (non può scendere sotto!)
 
-                    \vspace{0.05cm}
-                    Con nMOS invece: $V_{C,min} = 0V$ (scarica completa)
-                }}
+                \vspace{0.05cm}
+                Con nMOS invece: $V_{C,min} = 0V$ (scarica completa)
 
                 \vspace{0.2cm}
                 \hrule
