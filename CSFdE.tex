@@ -1819,43 +1819,35 @@
                 \small
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Confronto:} Due approcci diversi per implementare porte logiche
-                }}
+                \textbf{Confronto:} Due approcci diversi per implementare porte logiche
 
                 \vspace{0.2cm}
                 \textbf{\underline{1. CMOS (Complementary MOS Logic)}}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Struttura:}
+                \textbf{Struttura:}
 
-                    • Rete \textbf{PUN} (pMOS) - pull-up network
+                • Rete \textbf{PUN} (pMOS) - pull-up network
 
-                    • Rete \textbf{PDN} (nMOS) - pull-down network
+                • Rete \textbf{PDN} (nMOS) - pull-down network
 
-                    • \textbf{Sempre} una rete ON, l'altra OFF
-                }}
+                • \textbf{Sempre} una rete ON, l'altra OFF
 
                 \vspace{0.1cm}
-                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Vantaggi:}
+                \textbf{Vantaggi:}
 
-                    • Uscita sempre a $V_{DD}$ o GND (livelli completi)
+                • Uscita sempre a $V_{DD}$ o GND (livelli completi)
 
-                    • Potenza statica = 0 (nessun percorso VDD→GND)
+                • Potenza statica = 0 (nessun percorso VDD→GND)
 
-                    • Immunità al rumore elevata
-                }}
+                • Immunità al rumore elevata
 
                 \vspace{0.1cm}
-                \colorbox{orange!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Svantaggi:}
+                \textbf{Svantaggi:}
 
-                    • Richiede reti complementari (più transistor)
+                • Richiede reti complementari (più transistor)
 
-                    • Area maggiore
-                }}
+                • Area maggiore
 
                 \vspace{0.2cm}
                 \hrule
@@ -1864,39 +1856,33 @@
                 \textbf{\underline{2. PTL (Pass Transistor Logic)}}
 
                 \vspace{0.1cm}
-                \colorbox{purple!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Struttura:}
+                \textbf{Struttura:}
 
-                    • Usa \textbf{singoli transistor} (nMOS o pMOS)
+                • Usa \textbf{singoli transistor} (nMOS o pMOS)
 
-                    • I transistor ``passano'' i segnali da ingresso a uscita
+                • I transistor ``passano'' i segnali da ingresso a uscita
 
-                    • NON usa reti complementari
-                }}
+                • NON usa reti complementari
 
                 \vspace{0.1cm}
-                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Vantaggi:}
+                \textbf{Vantaggi:}
 
-                    • Meno transistor (area ridotta)
+                • Meno transistor (area ridotta)
 
-                    • Circuiti più semplici
-                }}
+                • Circuiti più semplici
 
                 \vspace{0.1cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Svantaggi:}
+                \textbf{Svantaggi:}
 
-                    • \textbf{Livelli degradati}:
+                • \textbf{Livelli degradati}:
 
-                    \quad - nMOS carica solo fino a $V_G - V_T$
+                \quad - nMOS carica solo fino a $V_G - V_T$
 
-                    \quad - pMOS scarica solo fino a $V_G + |V_T|$
+                \quad - pMOS scarica solo fino a $V_G + |V_T|$
 
-                    • Immunità al rumore ridotta
+                • Immunità al rumore ridotta
 
-                    • Potenza statica $\neq$ 0 (possibili percorsi VDD→GND)
-                }}
+                • Potenza statica $\neq$ 0 (possibili percorsi VDD→GND)
 
                 \vspace{0.2cm}
                 \hrule
