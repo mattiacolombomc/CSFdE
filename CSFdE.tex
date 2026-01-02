@@ -2089,18 +2089,10 @@
 
                     \vspace{0.05cm}
                     Se $\tau_{prop} > \frac{T_{in}}{2}$, il circuito \textbf{NON ha tempo} di raggiungere il regime prima della prossima commutazione $\Rightarrow$ la formula \textbf{NON è valida}.
-
-                    \vspace{0.15cm}
-                    \colorbox{cyan!10}{\parbox{0.92\linewidth}{\tiny
-                        \textbf{Nota pratica:} Se hai calcolato $\tau_{prop}$ per una transizione (es. high$\to$low) ma la potenza dinamica riguarda la transizione opposta (low$\to$high), verifica l'\textbf{ordine di grandezza}.
-
-                        \vspace{0.05cm}
-                        \textbf{Se $K_n$ e $K_p$ sono comparabili numericamente:} I due tempi di propagazione saranno multipli ma \textbf{stesso ordine di grandezza}. Se $\tau_{prop} \ll \frac{T_{in}}{2}$ (molto minore), sei a posto anche senza calcolare l'altro!
-
-                        \vspace{0.05cm}
-                        \textbf{\color{red}ATTENZIONE:} Questa assunzione vale \textbf{SOLO se $K_n \approx K_p$}. Se i valori di $K$ sono molto diversi, devi calcolare entrambi i tempi di propagazione.
-                    }}
                 }}
+
+                \vspace{0.15cm}
+                \textit{Nota pratica:} Se hai calcolato $\tau_{prop}$ per una transizione (es. high$\to$low) ma la potenza dinamica riguarda la transizione opposta (low$\to$high), verifica l'\textbf{ordine di grandezza}. Se $K_n$ e $K_p$ sono comparabili numericamente, i due tempi di propagazione saranno multipli ma \textbf{stesso ordine di grandezza}. Se $\tau_{prop} \ll \frac{T_{in}}{2}$ (molto minore), sei a posto anche senza calcolare l'altro! \textbf{ATTENZIONE:} Questa assunzione vale \textbf{SOLO se $K_n \approx K_p$}. Se i valori di $K$ sono molto diversi, devi calcolare entrambi i tempi di propagazione.
 
                 \vspace{0.2cm}
                 \textbf{\color{purple}Formula generale:}
@@ -2109,10 +2101,8 @@
                 $$P_D = V_{DD} \sum_{i} (V_{OH,i} - V_{OL,i}) \cdot C_i \cdot f_i$$
 
                 \vspace{0.2cm}
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{
-                    \textbf{Caso semplificato} (un solo nodo d'uscita):
-                    $$P_D = V_{DD} \cdot (V_{OH} - V_{OL}) \cdot C_L \cdot f_{out}$$
-                }}
+                \textbf{Caso semplificato} (un solo nodo d'uscita):
+                $$P_D = V_{DD} \cdot (V_{OH} - V_{OL}) \cdot C_L \cdot f_{out}$$
 
                 \vspace{0.2cm}
                 Dove:
@@ -2125,45 +2115,39 @@
                 \end{itemize}
 
                 \vspace{0.2cm}
-                \colorbox{purple!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Duty Cycle (ciclo di lavoro):}
+                \textbf{Duty Cycle (ciclo di lavoro):}
 
-                    \vspace{0.05cm}
-                    Il \textbf{duty cycle} $\delta$ è il rapporto tra il tempo in cui il segnale è HIGH e il periodo totale:
+                \vspace{0.05cm}
+                Il \textbf{duty cycle} $\delta$ è il rapporto tra il tempo in cui il segnale è HIGH e il periodo totale:
 
-                    $$\delta = \frac{T_{HIGH}}{T} = \frac{T_{HIGH}}{T_{HIGH} + T_{LOW}}$$
+                $$\delta = \frac{T_{HIGH}}{T} = \frac{T_{HIGH}}{T_{HIGH} + T_{LOW}}$$
 
-                    \vspace{0.05cm}
-                    Espresso in percentuale: $\delta \% = \delta \times 100$
+                \vspace{0.05cm}
+                Espresso in percentuale: $\delta \% = \delta \times 100$
 
-                    \vspace{0.1cm}
-                    \textbf{Esempi:}
+                \vspace{0.1cm}
+                \textbf{Esempi:}
 
-                    • $\delta = 0.5$ (50\%) → onda quadra simmetrica (HIGH e LOW stesso tempo)
+                • $\delta = 0.5$ (50\%) → onda quadra simmetrica (HIGH e LOW stesso tempo)
 
-                    • $\delta = 0.25$ (25\%) → segnale HIGH per 25\% del periodo
+                • $\delta = 0.25$ (25\%) → segnale HIGH per 25\% del periodo
 
-                    • $\delta = 0.75$ (75\%) → segnale HIGH per 75\% del periodo
+                • $\delta = 0.75$ (75\%) → segnale HIGH per 75\% del periodo
 
-                    \vspace{0.1cm}
-                    \textbf{Relazione con la potenza:}
-
-                    Se il duty cycle $\neq$ 50\%, può influenzare la frequenza effettiva delle commutazioni complete. In molti esercizi si assume duty cycle = 50\% (onda quadra simmetrica).
-                }}
+                \vspace{0.1cm}
+                \textit{Relazione con la potenza:} Se il duty cycle $\neq$ 50\%, può influenzare la frequenza effettiva delle commutazioni complete. In molti esercizi si assume duty cycle = 50\% (onda quadra simmetrica).
 
                 \vspace{0.2cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Come determinare $V_{OH}$ e $V_{OL}$:}
+                \textbf{Come determinare $V_{OH}$ e $V_{OL}$:}
 
-                    Sono i valori massimo e minimo dell'uscita durante le commutazioni.
+                Sono i valori massimo e minimo dell'uscita durante le commutazioni.
 
-                    \textbf{Metodi:}
-                    \begin{itemize}[itemsep=1pt]
-                        \item Dal grafico di $V_{out}(t)$ (se richiesto in precedenza)
-                        \item Forniti direttamente nel testo dell'esercizio
-                        \item Analizzando le transizioni del circuito
-                    \end{itemize}
-                }}
+                \textbf{Metodi:}
+                \begin{itemize}[itemsep=1pt]
+                    \item Dal grafico di $V_{out}(t)$ (se richiesto in precedenza)
+                    \item Forniti direttamente nel testo dell'esercizio
+                    \item Analizzando le transizioni del circuito
+                \end{itemize}
 
             \end{minipage}
         };
