@@ -1956,16 +1956,9 @@
 
                 \vspace{0.05cm}
                 \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    $$\tau_{prop} = R_{eq} \cdot C \cdot \ln(2)$$
+                    $$\tau_{prop} = R_{eq} \cdot C$$
 
-                    \vspace{0.05cm}
-                    oppure approssimato:
-
-                    $$\tau_{prop} \approx 0.69 \cdot R_{eq} \cdot C$$
                 }}
-
-                \vspace{0.15cm}
-                \textit{Spiegazione:} Il coefficiente $\ln(2) \approx 0.69$ deriva dalla soluzione dell'equazione RC per una transizione da 0 a $\frac{V_{DD}}{2}$ (o viceversa). Formula completa RC: $V(t) = V_{finale}(1 - e^{-t/RC})$. Per $V(t) = \frac{V_{finale}}{2}$, si ottiene $t = RC \cdot \ln(2)$.
 
                 \vspace{0.2cm}
                 \hrule
@@ -1986,7 +1979,7 @@
                 $R_{eq} = \frac{1}{2 \cdot 1 \cdot 4} = 0.125$ k$\Omega$ = 125 $\Omega$
 
                 \vspace{0.03cm}
-                $\tau_{prop} = 0.69 \cdot 125 \cdot 10 \cdot 10^{-12} = 0.86$ ns
+                $\tau_{prop} = 125 \cdot 10 \cdot 10^{-12} $ = 1.25 ns
 
                 \vspace{0.15cm}
                 \textbf{Confronto con approssimazione a corrente costante:}
