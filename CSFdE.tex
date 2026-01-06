@@ -2167,14 +2167,12 @@
                 \small
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Definizione:} Una porta logica \textbf{cMOS} (Complementary MOS) è composta da due reti complementari:
+                \textbf{Definizione:} Una porta logica \textbf{cMOS} (Complementary MOS) è composta da due reti complementari:
 
-                    \vspace{0.05cm}
-                    • \textbf{PUN} (Pull-Up Network): rete di \textbf{pMOS}
+                \vspace{0.05cm}
+                • \textbf{PUN} (Pull-Up Network): rete di \textbf{pMOS}
 
-                    • \textbf{PDN} (Pull-Down Network): rete di \textbf{nMOS}
-                }}
+                • \textbf{PDN} (Pull-Down Network): rete di \textbf{nMOS}
 
                 \vspace{0.15cm}
                 \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
@@ -2196,48 +2194,40 @@
                 \textbf{\underline{Significato PRATICO negli esercizi:}}
 
                 \vspace{0.05cm}
-                \colorbox{green!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{1. Potenza statica = 0}
+                \textbf{1. Potenza statica = 0}
 
-                    Poiché una rete è sempre OFF, non c'è percorso diretto tra $V_{DD}$ e GND → $P_{statica} = 0$
-                }}
+                Poiché una rete è sempre OFF, non c'è percorso diretto tra $V_{DD}$ e GND → $P_{statica} = 0$
 
                 \vspace{0.1cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{2. Analisi per stati logici}
+                \textbf{2. Analisi per stati logici}
 
-                    Per ogni combinazione di ingressi, verifica:
+                Per ogni combinazione di ingressi, verifica:
 
-                    • Quali MOSFET sono ON/OFF
+                • Quali MOSFET sono ON/OFF
 
-                    • Quale rete (PUN o PDN) è attiva
+                • Quale rete (PUN o PDN) è attiva
 
-                    • Output = $V_{DD}$ se PUN ON, = GND se PDN ON
-                }}
+                • Output = $V_{DD}$ se PUN ON, = GND se PDN ON
 
                 \vspace{0.15cm}
                 \textbf{\underline{Esempio: cMOS Inverter}}
 
                 \vspace{0.05cm}
-                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Ingresso ALTO (``1''):}
+                \textbf{Ingresso ALTO (``1''):}
 
-                    • nMOS ON → PDN attiva → Uscita = GND (``0'')
+                • nMOS ON → PDN attiva → Uscita = GND (``0'')
 
-                    • pMOS OFF → PUN spenta
+                • pMOS OFF → PUN spenta
 
-                    \vspace{0.05cm}
-                    \textbf{Ingresso BASSO (``0''):}
+                \vspace{0.05cm}
+                \textbf{Ingresso BASSO (``0''):}
 
-                    • pMOS ON → PUN attiva → Uscita = $V_{DD}$ (``1'')
+                • pMOS ON → PUN attiva → Uscita = $V_{DD}$ (``1'')
 
-                    • nMOS OFF → PDN spenta
-                }}
+                • nMOS OFF → PDN spenta
 
                 \vspace{0.1cm}
-                \colorbox{orange!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Nota:} Le reti sono \textbf{complementari}: se PUN realizza $f$, PDN realizza $\overline{f}$
-                }}
+                \textit{Nota:} Le reti sono \textbf{complementari}: se PUN realizza $f$, PDN realizza $\overline{f}$
 
             \end{minipage}
         };
