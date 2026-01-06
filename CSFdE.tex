@@ -2244,9 +2244,7 @@
                 \small
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Problema:} Data la rete Pull-Down (PDN) con nMOS, costruire la rete Pull-Up (PUN) con pMOS
-                }}
+                \textbf{Problema:} Data la rete Pull-Down (PDN) con nMOS, costruire la rete Pull-Up (PUN) con pMOS
 
                 \vspace{0.15cm}
                 \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
@@ -2275,58 +2273,50 @@
                 \textbf{\underline{PROCEDURA MECCANICA:}}
 
                 \vspace{0.05cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Step 1:} Identifica la struttura della PDN
+                \textbf{Step 1:} Identifica la struttura della PDN
 
-                    • Individua le connessioni SERIE
+                • Individua le connessioni SERIE
 
-                    • Individua le connessioni PARALLELO
+                • Individua le connessioni PARALLELO
 
-                    \vspace{0.05cm}
-                    \textbf{Step 2:} Applica la trasformazione
+                \vspace{0.05cm}
+                \textbf{Step 2:} Applica la trasformazione
 
-                    • Ogni SERIE diventa PARALLELO
+                • Ogni SERIE diventa PARALLELO
 
-                    • Ogni PARALLELO diventa SERIE
+                • Ogni PARALLELO diventa SERIE
 
-                    • Sostituisci nMOS con pMOS
+                • Sostituisci nMOS con pMOS
 
-                    • Mantieni gli stessi gate
-                }}
+                • Mantieni gli stessi gate
 
                 \vspace{0.15cm}
-                \colorbox{purple!10}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Esempio pratico:}
+                \textbf{Esempio pratico:}
 
-                    \textbf{PDN:} nMOS(A) in SERIE con [nMOS(B) || nMOS(C)]
+                \textbf{PDN:} nMOS(A) in SERIE con [nMOS(B) || nMOS(C)]
 
-                    \vspace{0.05cm}
-                    \textbf{Applicazione trasformazione:}
+                \vspace{0.05cm}
+                \textbf{Applicazione trasformazione:}
 
-                    • A in SERIE → A in PARALLELO
+                • A in SERIE → A in PARALLELO
 
-                    • (B || C) → (B in SERIE con C)
+                • (B || C) → (B in SERIE con C)
 
-                    \vspace{0.05cm}
-                    \textbf{PUN:} pMOS(A) in PARALLELO con [pMOS(B) in SERIE con pMOS(C)]
+                \vspace{0.05cm}
+                \textbf{PUN:} pMOS(A) in PARALLELO con [pMOS(B) in SERIE con pMOS(C)]
 
-                    \vspace{0.05cm}
-                    In formula: $PUN = A \parallel (B \cdot C)$
-                }}
+                \vspace{0.05cm}
+                In formula: $PUN = A \parallel (B \cdot C)$
 
                 \vspace{0.15cm}
-                \colorbox{green!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Verifica:} Le due reti sono complementari
+                \textbf{Verifica:} Le due reti sono complementari
 
-                    • PDN: $f = A \cdot (B + C)$
+                • PDN: $f = A \cdot (B + C)$
 
-                    • PUN: $\overline{f} = \overline{A} + (\overline{B} \cdot \overline{C}) = \overline{A \cdot (B + C)}$ $\checkmark$
-                }}
+                • PUN: $\overline{f} = \overline{A} + (\overline{B} \cdot \overline{C}) = \overline{A \cdot (B + C)}$ $\checkmark$
 
                 \vspace{0.1cm}
-                \colorbox{orange!15}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{Nota:} Questo metodo garantisce che solo una rete sia ON alla volta (proprietà fondamentale delle porte cMOS)
-                }}
+                \textit{Nota:} Questo metodo garantisce che solo una rete sia ON alla volta (proprietà fondamentale delle porte cMOS)
 
             \end{minipage}
         };
