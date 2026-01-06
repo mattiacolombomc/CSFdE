@@ -1910,8 +1910,6 @@
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
-                \small
-                \textbf{\color{blue}Tempo di propagazione in PTL (Pass Transistor Logic)}
 
                 \vspace{0.2cm}
                 \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
@@ -2115,29 +2113,6 @@
                 \end{itemize}
 
                 \vspace{0.2cm}
-                \textbf{Duty Cycle (ciclo di lavoro):}
-
-                \vspace{0.05cm}
-                Il \textbf{duty cycle} $\delta$ è il rapporto tra il tempo in cui il segnale è HIGH e il periodo totale:
-
-                $$\delta = \frac{T_{HIGH}}{T} = \frac{T_{HIGH}}{T_{HIGH} + T_{LOW}}$$
-
-                \vspace{0.05cm}
-                Espresso in percentuale: $\delta \% = \delta \times 100$
-
-                \vspace{0.1cm}
-                \textbf{Esempi:}
-
-                • $\delta = 0.5$ (50\%) → onda quadra simmetrica (HIGH e LOW stesso tempo)
-
-                • $\delta = 0.25$ (25\%) → segnale HIGH per 25\% del periodo
-
-                • $\delta = 0.75$ (75\%) → segnale HIGH per 75\% del periodo
-
-                \vspace{0.1cm}
-                \textit{Relazione con la potenza:} Se il duty cycle $\neq$ 50\%, può influenzare la frequenza effettiva delle commutazioni complete. In molti esercizi si assume duty cycle = 50\% (onda quadra simmetrica).
-
-                \vspace{0.2cm}
                 \textbf{Come determinare $V_{OH}$ e $V_{OL}$:}
 
                 Sono i valori massimo e minimo dell'uscita durante le commutazioni.
@@ -2153,6 +2128,43 @@
         };
         %------------ Potenza dinamica Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza dinamica};
+    \end{tikzpicture}
+
+
+    %------------ Duty Cycle ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{blue}Duty Cycle (ciclo di lavoro)}
+
+                \vspace{0.2cm}
+                \textbf{Definizione:} Il \textbf{duty cycle} $\delta$ è il rapporto tra il tempo in cui il segnale è HIGH e il periodo totale:
+
+                \vspace{0.1cm}
+                $$\delta = \frac{T_{HIGH}}{T} = \frac{T_{HIGH}}{T_{HIGH} + T_{LOW}}$$
+
+                \vspace{0.15cm}
+                Espresso in percentuale: $\delta \% = \delta \times 100$
+
+                \vspace{0.2cm}
+                \textbf{Esempi comuni:}
+
+                \vspace{0.05cm}
+                • $\delta = 0.5$ (50\%) → onda quadra simmetrica (HIGH e LOW stesso tempo)
+
+                • $\delta = 0.25$ (25\%) → segnale HIGH per 25\% del periodo
+
+                • $\delta = 0.75$ (75\%) → segnale HIGH per 75\% del periodo
+
+                \vspace{0.2cm}
+                \textit{Relazione con la potenza dinamica:} Se il duty cycle $\neq$ 50\%, può influenzare la frequenza effettiva delle commutazioni complete. In molti esercizi si assume duty cycle = 50\% (onda quadra simmetrica).
+
+            \end{minipage}
+        };
+        %------------ Duty Cycle Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Duty Cycle};
     \end{tikzpicture}
 
     \newpage
