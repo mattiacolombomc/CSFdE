@@ -632,6 +632,91 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Notazione alimentazioni};
     \end{tikzpicture}
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %------------ Box: Onda Quadra Ideale ---------------
+    \label{Box Onda Quadra}
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \begin{itemize}
+                    \item Transizioni \textbf{verticali istantanee} (tempo di salita/discesa = 0)
+                    \item Due livelli costanti: $V_{HIGH}$ e $V_{LOW}$
+                    \item Periodo $T$ = tempo per completare un ciclo
+                \end{itemize}
+
+
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                        \textbf{DUTY CYCLE DEFAULT:} Se non specificato, un'onda quadra ha \textbf{duty cycle 50\%} (tempo HIGH = tempo LOW = $T/2$)
+                    }}
+
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.8]
+                        % Assi
+                        \draw[->] (-0.3,0) -- (5,0) node[right] {\small $t$};
+                        \draw[->] (0,-0.3) -- (0,2.5) node[above] {\small $V$};
+
+                        % Livelli di tensione
+                        \draw[dashed, gray] (0,2) -- (4.5,2);
+                        \draw[dashed, gray] (0,0.5) -- (4.5,0.5);
+                        \node[anchor=east, font=\footnotesize] at (-0.1,2) {$V_{HIGH}$};
+                        \node[anchor=east, font=\footnotesize] at (-0.1,0.5) {$V_{LOW}$};
+
+                        % Onda quadra ideale - parte da zero (V_LOW), duty cycle 25%
+                        \draw[very thick, blue] (0,0.5) -- (1,0.5) -- (1,2) -- (4,2) -- (4,0.5);
+
+                        % Periodo T
+                        \draw[<->, red, very thick] (0,-0.5) -- (4,-0.5);
+                        \node[anchor=north, color=red, font=\small\bfseries] at (2,-0.5) {$T$ (periodo)};
+
+                        % Duty cycle - tempo LOW (OFF)
+                        \draw[<->, purple!70!black, thick] (0,-0.9) -- (1,-0.9);
+                        \node[anchor=north, color=purple!70!black, font=\scriptsize] at (0.5,-0.9) {OFF};
+
+                        % Duty cycle - tempo HIGH (ON)
+                        \draw[<->, green!60!black, thick] (1,2.3) -- (4,2.3);
+                        \node[anchor=south, color=green!60!black, font=\scriptsize] at (2.5,2.3) {ON (75\% di $T$)};
+
+                        % Indicazioni transizioni verticali
+                        \draw[->, orange, ultra thick] (2,1.2) -- (2.4,1.2);
+                        \node[anchor=west, color=orange, font=\tiny, align=left] at (2.45,1.2) {Transizione\\istantanea};
+                    \end{tikzpicture}
+                \end{center}
+
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\small
+                        \textbf{COME DISEGNARE A MANO:}
+                        \begin{enumerate}
+                            \item Traccia gli assi $t$ (orizzontale) e $V$ (verticale)
+                            \item Segna i livelli $V_{HIGH}$ e $V_{LOW}$ con righe orizzontali
+                            \item Scegli quanti quadretti = $T$ (es: 4 quadretti = 1 periodo)
+                            \item Disegna righe verticali per le transizioni
+                            \item Collega con righe orizzontali ai livelli
+                        \end{enumerate}
+                    }}
+
+                \vspace{0.2cm}
+                \colorbox{red!15}{\parbox{0.95\linewidth}{\small
+                        \textbf{ERRORE COMUNE:} Non confondere il periodo $T$ con mezzo periodo!
+
+                        \textbf{Trucco:} Conta i quadretti da dove l'onda \textit{inizia a salire} fino a dove \textit{ricomincia a salire} la seconda volta. Quello è $T$!
+                    }}
+
+                \vspace{0.2cm}
+                \textbf{Esempio pratico (duty cycle 75\%):}
+                \begin{itemize}
+                    \item Se $T = 10\mu s$ e vuoi disegnare 2 periodi
+                    \item Usa 4 quadretti per ogni periodo (tot. 8 quadretti)
+                    \item Duty cycle 75\%: \textbf{1 quadretto LOW} (OFF), poi \textbf{3 quadretti HIGH} (ON)
+                    \item Ripeti il pattern: 1 LOW, 3 HIGH per il 2° periodo
+                \end{itemize}
+
+            \end{minipage}
+        };
+        %------------ Box Onda Quadra Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Onda Quadra Ideale - Guida al Disegno};
+    \end{tikzpicture}
+
 
     % Separa sezione MOSFET
     \newpage
