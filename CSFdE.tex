@@ -643,12 +643,11 @@
                 \begin{itemize}
                     \item Transizioni \textbf{verticali istantanee} (tempo di salita/discesa = 0)
                     \item Due livelli costanti: $V_{HIGH}$ e $V_{LOW}$
-                    \item Periodo $T$ = tempo per completare un ciclo
                 \end{itemize}
 
 
                 \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
-                        \textbf{DUTY CYCLE DEFAULT:} Se non specificato, un'onda quadra ha \textbf{duty cycle 50\%} (tempo HIGH = tempo LOW = $T/2$)
+                        \textbf{DUTY CYCLE DEFAULT:} Se non specificato, un'onda quadra ha \textbf{duty cycle 50\%} (HIGH = LOW = $T/2$)
                     }}
 
                 \begin{center}
@@ -687,7 +686,6 @@
                 \colorbox{yellow!20}{\parbox{0.95\linewidth}{\small
                         \textbf{COME DISEGNARE A MANO:}
                         \begin{enumerate}
-                            \item Traccia gli assi $t$ (orizzontale) e $V$ (verticale)
                             \item Segna i livelli $V_{HIGH}$ e $V_{LOW}$ con righe orizzontali
                             \item Scegli quanti quadretti = $T$ (es: 4 quadretti = 1 periodo)
                             \item Disegna righe verticali per le transizioni
@@ -697,9 +695,16 @@
 
                 \vspace{0.2cm}
                 \colorbox{red!15}{\parbox{0.95\linewidth}{\small
-                        \textbf{ERRORE COMUNE:} Non confondere il periodo $T$ con mezzo periodo!
+                        \textbf{COME TROVARE IL PERIODO $T$:}
 
-                        \textbf{Trucco:} Conta i quadretti da dove l'onda \textit{inizia a salire} fino a dove \textit{ricomincia a salire} la seconda volta. Quello è $T$!
+                        Il periodo è la distanza tra \textbf{due punti identici} del ciclo:
+                        \begin{itemize}
+                            \item Da LOW a LOW (stesso punto)
+                            \item Da HIGH a HIGH (stesso punto)
+                            \item Da salita a salita successiva
+                            \item Da discesa a discesa successiva
+                        \end{itemize}
+                        \textbf{Trucco:} Scegli un punto qualsiasi e conta i quadretti fino a quando si ripete!
                     }}
 
                 \vspace{0.2cm}
