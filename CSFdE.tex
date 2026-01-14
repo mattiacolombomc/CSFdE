@@ -2250,7 +2250,6 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Duty Cycle};
     \end{tikzpicture}
 
-    \newpage
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %------------ cMOS ---------------
@@ -2523,6 +2522,8 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Impedenza con Condensatori};
     \end{tikzpicture}
 
+    \newpage
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Forma Standard per Bode ---------------
 
@@ -2624,10 +2625,7 @@
                     • Se $n = 0$: calcola $|T(0)|$ e $\angle T(0)$ (sostituisci $s=0$)
 
                     \vspace{0.05cm}
-                    • Se $n \neq 0$: \textbf{NON puoi} calcolare a $s=0$ (singolarità!)
-
-                    \vspace{0.05cm}
-                    \textit{Caso con singolarità in zero: sezione da completare dopo spiegazione del professore}
+                    • Se $n \neq 0$: \textbf{NON puoi} calcolare a $s=0$ (singolarità!) $\rightarrow$ vedi box dedicato
                 }}
 
                 \vspace{0.2cm}
@@ -2686,7 +2684,7 @@
 
                 \vspace{0.05cm}
                 a) Parte da $K \cdot s^n$ con pendenza iniziale
-
+ 
                 \vspace{0.03cm}
                 \hspace{0.3cm} Se $n=0$: costante fino alla $1^a$ singolarità
 
@@ -2719,6 +2717,64 @@
         };
         %------------ Bode Modulo Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Diagramma del Modulo};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Bode - Singolarità in Zero ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Caso:} $T(s) = s\tau_0 \cdot \frac{(1 + s\tau_{z1})}{(1 + s\tau_{p1})}$ \quad (zero nell'origine)
+
+                \vspace{0.15cm}
+                \textbf{Procedimento:}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{1. Trova il punto di partenza (intersezione con 0 dB):}
+
+                    \vspace{0.1cm}
+                    Frequenza: $\boxed{f_0 = \frac{1}{2\pi\tau_0}}$ \quad oppure \quad $\boxed{\omega_0 = \frac{1}{\tau_0}}$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ A $\omega = \omega_0$ il contributo di $s\tau_0$ vale \textbf{0 dB}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{2. Traccia la retta con pendenza $+20$ dB/dec}
+
+                    \vspace{0.05cm}
+                    passante per il punto $(\omega_0, 0\text{ dB})$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{
+                    \textbf{3. Aggiungi i contributi di poli/zeri:}
+
+                    \vspace{0.05cm}
+                    • A $\omega_{z1} = 1/\tau_{z1}$: pendenza $+20$ dB/dec
+
+                    • A $\omega_{p1} = 1/\tau_{p1}$: pendenza $-20$ dB/dec
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ Se polo nell'origine} (es. $\frac{1}{s\tau_0}$):
+
+                    \vspace{0.05cm}
+                    • Pendenza iniziale \textbf{$-20$ dB/dec}
+
+                    • Stesso punto di partenza: $(\omega_0 = 1/\tau_0, 0\text{ dB})$
+                }}
+
+            \end{minipage}
+        };
+        %------------ Singolarità in Zero Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Singolarità in Zero ($n \neq 0$)};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2994,6 +3050,413 @@
         };
         %------------ Calcolo Guadagno Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Calcolo Guadagno a Frequenze Specifiche};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Guadagno Reale vs Ideale ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{\color{red!70!black}$\bigstar$ ESAME: Calcolo del GUADAGNO REALE}
+                }}
+
+                \vspace{0.2cm}
+                \textbf{Relazione tra i guadagni:}
+
+                \vspace{0.1cm}
+                $$\boxed{G_A = -G_{loop} \cdot G_{id}}$$
+
+                \vspace{0.05cm}
+                \small
+                $G_A$ = guadagno di andata, $G_{loop}$ = guadagno d'anello, $G_{id}$ = guadagno ideale
+
+                \vspace{0.2cm}
+                \textbf{Formula guadagno reale:}
+
+                \vspace{0.1cm}
+                $$\boxed{G_{\text{reale}} = \frac{G_{\text{ideale}}}{1 - \frac{1}{G_{loop}}}}$$
+
+                \vspace{0.25cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ METODO GRAFICO (pi\`u veloce!)}
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+
+                    \vspace{0.05cm}
+                    1. Traccia il Bode del \textbf{guadagno ideale} $G_{id}$
+
+                    \vspace{0.05cm}
+                    2. Traccia il Bode del \textbf{guadagno d'andata} $G_A$
+
+                    \vspace{0.05cm}
+                    3. \textbf{Per ogni frequenza}: prendi il \textbf{valore pi\`u BASSO} tra i due grafici
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Il risultato \`e il Bode del \textbf{guadagno reale}
+                }}
+
+                \vspace{0.2cm}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.55]
+                        % Assi
+                        \draw[->] (0,0) -- (6,0) node[right] {\tiny $\log\omega$};
+                        \draw[->] (0,-0.5) -- (0,3.5) node[above] {\tiny dB};
+
+                        % Guadagno ideale (costante)
+                        \draw[thick, blue, dashed] (0,2.5) -- (5.5,2.5);
+                        \node[blue, anchor=west] at (5.6,2.5) {\tiny $G_{id}$};
+
+                        % Guadagno d'andata (scende)
+                        \draw[thick, orange, dashed] (0,3) -- (1.5,3) -- (4.5,0.5);
+                        \node[orange, anchor=west] at (4.6,0.8) {\tiny $G_A$};
+
+                        % Guadagno reale (minimo dei due)
+                        \draw[very thick, red] (0,2.5) -- (2,2.5) -- (4.5,0.5);
+                        \node[red, anchor=north] at (3,1.2) {\tiny $G_{reale}$};
+
+                        % Punto di intersezione
+                        \fill (2,2.5) circle (2pt);
+                    \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Perch\'e funziona:}
+
+                    \vspace{0.05cm}
+                    • Se $|G_{loop}| \gg 1$: $G_{reale} \approx G_{id}$
+
+                    • Se $|G_{loop}| \ll 1$: $G_{reale} \approx G_A$ (segue l'andata)
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Il guadagno reale \`e \textbf{limitato} dal pi\`u piccolo dei due!
+                }}
+
+            \end{minipage}
+        };
+        %------------ Guadagno Reale Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Guadagno Reale vs Ideale};
+    \end{tikzpicture}
+
+    \newpage
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp - Retroazione Negativa ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Amplificatore Invertente:}
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.7]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Input
+                        \draw (opamp.-) -- ++(-0.5,0) to[R, l=$R_1$] ++(-1.5,0) node[left] {$V_{in}$};
+                        % Feedback
+                        \draw (opamp.-) -- ++(0,1.2) to[R, l=$R_f$] ++(2.2,0) -| (opamp.out);
+                        % Ground on +
+                        \draw (opamp.+) -- ++(-0.3,0) node[ground] {};
+                        % Output
+                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
+                        % Labels
+                        \node at (opamp.-) [above left] {\tiny $V^-$};
+                        \node at (opamp.+) [below left] {\tiny $V^+$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    $$\boxed{V_{out} = -\frac{R_f}{R_1} V_{in}}$$
+
+                    \vspace{0.05cm}
+                    Guadagno: $A_v = -\frac{R_f}{R_1}$ \hspace{0.3cm} (segno $-$ = inversione)
+                }}
+
+                \vspace{0.25cm}
+                \textbf{Amplificatore Non Invertente:}
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.7]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Input on +
+                        \draw (opamp.+) -- ++(-0.5,0) node[left] {$V_{in}$};
+                        % Feedback network
+                        \draw (opamp.-) -- ++(0,-0.8) coordinate (fb);
+                        \draw (fb) to[R, l_=$R_1$] ++(0,-1.2) node[ground] {};
+                        \draw (fb) to[R, l=$R_f$] ++(2,0) -| (opamp.out);
+                        % Output
+                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
+                        % Labels
+                        \node at (opamp.-) [above left] {\tiny $V^-$};
+                        \node at (opamp.+) [above left] {\tiny $V^+$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    $$\boxed{V_{out} = \left(1 + \frac{R_f}{R_1}\right) V_{in}}$$
+
+                    \vspace{0.05cm}
+                    Guadagno: $A_v = 1 + \frac{R_f}{R_1}$ \hspace{0.3cm} (sempre $\geq 1$)
+                }}
+
+                \vspace{0.25cm}
+                \textbf{Buffer (Voltage Follower):}
+
+                \vspace{0.1cm}
+                Caso speciale: $R_f = 0$, $R_1 \to \infty$ (aperto)
+
+                \vspace{0.05cm}
+                $$\boxed{V_{out} = V_{in}} \quad (A_v = 1)$$
+
+                Alta impedenza di ingresso, bassa impedenza di uscita.
+
+                \vspace{0.2cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ IPOTESI OpAmp IDEALE}
+
+                    \vspace{0.05cm}
+                    • $V^+ = V^-$ (massa virtuale se $V^+ = 0$)
+
+                    • $I^+ = I^- = 0$ (corrente negli ingressi nulla)
+
+                    • Guadagno ad anello aperto $A \to \infty$
+                }}
+
+            \end{minipage}
+        };
+        %------------ OpAmp Retroazione Negativa Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Retroazione Negativa};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp - Riconoscimento Rapido Configurazioni ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{gray!20}{\parbox{0.95\linewidth}{
+                    \textbf{$A_v$ = Guadagno di tensione:} \quad $\boxed{V_{out} = A_v \cdot V_{in}}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{\color{red!70!black}$\bigstar$ REGOLA D'ORO - Riconoscimento al volo}
+
+                    \vspace{0.1cm}
+                    \textbf{Dove entra il segnale $V_{in}$?}
+
+                    \vspace{0.1cm}
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        \textbf{Entra su $V^-$} & \textbf{Entra su $V^+$} \\
+                        \hline
+                        INVERTENTE & NON INVERTENTE \\
+                        $A_v = -\frac{R_f}{R_G}$ & $A_v = 1 + \frac{R_f}{R_G}$ \\
+                        \hline
+                    \end{tabular}
+                }}
+
+                \vspace{0.25cm}
+                \textbf{Procedimento rapido:}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{1. INVERTENTE} ($V_{in}$ su $V^-$, $V^+$ a massa)
+
+                    \vspace{0.1cm}
+                    \begin{enumerate}[leftmargin=*, itemsep=2pt]
+                        \item $V^+ = 0$ (a massa) $\Rightarrow$ $V^- = 0$ (massa virtuale)
+                        \item Corrente in $R_1$: $I = \frac{V_{in} - 0}{R_1} = \frac{V_{in}}{R_1}$
+                        \item Stessa $I$ passa in $R_f$ (no corrente in OpAmp)
+                        \item $V_{out} = 0 - I \cdot R_f = -\frac{R_f}{R_1} V_{in}$
+                    \end{enumerate}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{2. NON INVERTENTE} ($V_{in}$ su $V^+$)
+
+                    \vspace{0.1cm}
+                    \begin{enumerate}[leftmargin=*, itemsep=2pt]
+                        \item $V^+ = V_{in}$ $\Rightarrow$ $V^- = V_{in}$
+                        \item $V^-$ sta sul partitore $R_1$-$R_f$:
+                        $$V^- = V_{out} \cdot \frac{R_1}{R_1 + R_f} = V_{in}$$
+                        \item Risolvo: $V_{out} = V_{in} \cdot \frac{R_1 + R_f}{R_1} = \left(1 + \frac{R_f}{R_1}\right) V_{in}$
+                    \end{enumerate}
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                    \textbf{$R_f$ (Feedback) e $R_G$ (Ground) - Definizioni}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                        \begin{circuitikz}[scale=0.55]
+                            % OpAmp
+                            \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                            % Rf - feedback
+                            \draw (opamp.-) -- ++(0,1) to[R, l=$R_f$, color=red!70!black] ++(2,0) -| (opamp.out);
+                            % RG - ground
+                            \draw (opamp.-) -- ++(0,-0.6) to[R, l_=$R_G$, color=blue!70!black] ++(0,-1) node[ground] {};
+                            % Labels
+                            \node[red!70!black, anchor=west] at (4.2,2.5) {\scriptsize \textbf{Feedback}};
+                            \node[blue!70!black, anchor=west] at (1.3,-0.8) {\scriptsize \textbf{Ground}};
+                            \draw (opamp.out) -- ++(0.3,0) node[right] {\scriptsize $V_{out}$};
+                            \draw (opamp.+) -- ++(-0.3,0) node[left] {\scriptsize $V_{in}$};
+                        \end{circuitikz}
+                    \end{center}
+
+                    \vspace{0.05cm}
+                    • \textcolor{red!70!black}{\textbf{$R_f$}} = collega $V^-$ a $V_{out}$ (chiude l'anello)
+
+                    • \textcolor{blue!70!black}{\textbf{$R_G$}} = collega $V^-$ a \textbf{massa} (riferimento)
+
+                    \vspace{0.1cm}
+                    \textit{Nota: $R_G$ \`e anche chiamata $R_1$ in molti testi}
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ TRUCCO MNEMONICO}
+
+                    \vspace{0.05cm}
+                    • \textbf{Invertente}: segnale entra sul ``$-$'' $\Rightarrow$ guadagno con ``$-$''
+
+                    • \textbf{Non Inv.}: segnale entra sul ``$+$'' $\Rightarrow$ guadagno $\geq 1$ (positivo)
+
+                    \vspace{0.1cm}
+                    \textbf{Formula universale (non inv.):} $\boxed{A_v = 1 + \frac{R_{feedback}}{R_{GND}}}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{purple!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Caso misto (sommatore):}
+
+                    Se ci sono \textbf{pi\`u ingressi} su $V^-$ attraverso resistenze diverse:
+                    $$V_{out} = -R_f \left(\frac{V_1}{R_1} + \frac{V_2}{R_2} + \cdots\right)$$
+
+                    Ogni ingresso contribuisce con il proprio rapporto $-\frac{R_f}{R_i}$
+                }}
+
+            \end{minipage}
+        };
+        %------------ Riconoscimento Rapido Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Riconoscimento Rapido};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp - Retroazione Positiva ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Comparatore con Isteresi (Trigger di Schmitt):}
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.7]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Input on -
+                        \draw (opamp.-) -- ++(-0.5,0) node[left] {$V_{in}$};
+                        % Positive feedback network
+                        \draw (opamp.+) -- ++(0,-0.8) coordinate (fb);
+                        \draw (fb) to[R, l_=$R_1$] ++(0,-1.2) node[ground] {};
+                        \draw (fb) to[R, l=$R_2$] ++(2,0) -| (opamp.out);
+                        % Output
+                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
+                        % Labels
+                        \node at (opamp.-) [above left] {\tiny $V^-$};
+                        \node at (opamp.+) [above left] {\tiny $V^+$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.1cm}
+                \textbf{Tensione sull'ingresso non invertente:}
+                $$V^+ = V_{out} \cdot \frac{R_1}{R_1 + R_2}$$
+
+                \vspace{0.1cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{Soglie di commutazione:}
+
+                    \vspace{0.1cm}
+                    Se $V_{out}$ oscilla tra $\pm V_{sat}$:
+
+                    $$\boxed{V_{TH} = +V_{sat} \cdot \frac{R_1}{R_1 + R_2}}$$
+
+                    $$\boxed{V_{TL} = -V_{sat} \cdot \frac{R_1}{R_1 + R_2}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Isteresi:} $\Delta V = V_{TH} - V_{TL} = 2V_{sat} \cdot \frac{R_1}{R_1 + R_2}$
+                }}
+
+                \vspace{0.2cm}
+                \textbf{Comparatore Non Invertente con Isteresi:}
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.7]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Input through R1 to +
+                        \draw (opamp.+) -- ++(-0.3,0) coordinate (plus);
+                        \draw (plus) to[R, l=$R_1$] ++(-1.5,0) node[left] {$V_{in}$};
+                        % Feedback R2 from output to +
+                        \draw (plus) -- ++(0,1) to[R, l=$R_2$] ++(2.3,0) -| (opamp.out);
+                        % Ground on -
+                        \draw (opamp.-) -- ++(-0.3,0) node[ground] {};
+                        % Output
+                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{
+                    \textbf{Soglie:}
+
+                    $$V_{TH} = -V_{sat} \cdot \frac{R_2}{R_1}$$
+                    $$V_{TL} = +V_{sat} \cdot \frac{R_2}{R_1}$$
+
+                    \vspace{0.05cm}
+                    \textit{Nota: segni invertiti rispetto al caso invertente}
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{purple!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ DIFFERENZA FONDAMENTALE}
+
+                    \vspace{0.05cm}
+                    • \textbf{Retroazione NEGATIVA} ($R_f$ su $V^-$):
+
+                    \hspace{0.2cm} Sistema \textbf{stabile}, uscita proporzionale all'ingresso
+
+                    \vspace{0.05cm}
+                    • \textbf{Retroazione POSITIVA} ($R$ su $V^+$):
+
+                    \hspace{0.2cm} Sistema \textbf{bistabile}, uscita satura a $\pm V_{sat}$
+                }}
+
+            \end{minipage}
+        };
+        %------------ OpAmp Retroazione Positiva Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Retroazione Positiva (Isteresi)};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
