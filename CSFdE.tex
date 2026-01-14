@@ -2422,228 +2422,745 @@
 
     \newpage
 
-    %------------ AND/nAND ---------------
-    \label{AND/nAND}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp - Impedenza con Condensatori per Bode ---------------
+
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-                \noindent \textbf{AND (AND/nAND):}
-                \begin{enumerate}
-                    \item \textbf{Entrata:}
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 0, \quad B = 0 \\
-                                   & \text{Uscita: } 0
-                              \end{aligned}
-                          \end{equation*}
 
-                    \item
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 0, \quad B = 1 \\
-                                   & \text{Uscita: } 0
-                              \end{aligned}
-                          \end{equation*}
+                \small
+                \textbf{Impedenza del condensatore:}
 
-                    \item
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 1, \quad B = 0 \\
-                                   & \text{Uscita: } 0
-                              \end{aligned}
-                          \end{equation*}
+                \vspace{0.1cm}
+                $$Z_C(j\omega) = \frac{1}{j\omega C} = \frac{-j}{\omega C}$$
 
-                    \item
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 1, \quad B = 1 \\
-                                   & \text{Uscita: } 1
-                              \end{aligned}
-                          \end{equation*}
-                \end{enumerate}
+                Con modulo: $|Z_C| = \frac{1}{\omega C}$ e fase: $\angle Z_C = -90^\circ$
+
+                \vspace{0.2cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{orange}$\bigstar$ CONDENSATORE IN DC (Corrente Continua)}
+
+                    \vspace{0.05cm}
+                    Quando $\omega = 0$ (DC) → $|Z_C| \to \infty$
+
+                    \vspace{0.05cm}
+                    \textbf{Il condensatore diventa un APERTO}
+
+                    \vspace{0.05cm}
+                    • Con ingressi costanti (DC)
+
+                    • In sovrapposizione degli effetti con generatori costanti
+
+                    • Considera C come circuito aperto
+                }}
+
+                \vspace{0.2cm}
+                \textbf{Configurazioni comuni:}
+
+                \vspace{0.15cm}
+                \textbf{1. C in PARALLELO con R:}
+
+                \vspace{0.05cm}
+                $$Z(j\omega) = \frac{R \cdot \frac{1}{j\omega C}}{R + \frac{1}{j\omega C}} = \frac{R}{1 + j\omega RC}$$
+
+                \vspace{0.05cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{Notazione comoda per paralleli:} $Z = (R^{-1} + Z_C^{-1})^{-1}$
+
+                    \vspace{0.02cm}
+                    Più facile da manipolare rispetto a $\frac{Z_1 \cdot Z_2}{Z_1 + Z_2}$
+                }}
+
+                \vspace{0.05cm}
+                Polo in: $\omega_p = \frac{1}{RC}$
+
+                \vspace{0.15cm}
+                \textbf{2. C in SERIE con R:}
+
+                \vspace{0.05cm}
+                $$Z(j\omega) = R + \frac{1}{j\omega C} = \frac{1 + j\omega RC}{j\omega C}$$
+
+                \vspace{0.05cm}
+                Zero in: $\omega_z = \frac{1}{RC}$
+
+                \vspace{0.2cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ CONTROLLI (SANITY CHECKS)}
+
+                    \vspace{0.05cm}
+                    Dopo aver calcolato impedenze (serie/parallelo):
+
+                    \vspace{0.1cm}
+                    \textbf{1. Controllo Dimensionale:}
+
+                    \vspace{0.03cm}
+                    • L'impedenza $Z$ deve avere dimensione di $\Omega$ (ohm)
+
+                    • Il coefficiente $\tau$ che moltiplica $s$ deve essere in [s]
+
+                    • Relazione utile: $[\text{F}] \cdot [\Omega] = [\text{s}]$
+
+                    • Es: $RC$ ha dimensioni $[\Omega] \cdot [\text{F}] = [\text{s}]$ $\checkmark$
+
+                    \vspace{0.1cm}
+                    \textbf{2. Controllo a Frequenza Nulla ($s = 0$):}
+
+                    \vspace{0.03cm}
+                    • A $s = 0$ (DC), il condensatore è APERTO
+
+                    • Sostituisci $s = 0$ in $Z(s)$ calcolata
+
+                    • Deve dare la stessa $R_{eq}$ ottenuta considerando C aperto
+
+                    \vspace{0.03cm}
+                    Es: $Z = \frac{R}{1 + sRC}|_{s=0} = R$ (corretto: C aperto lascia R)
+                }}
 
             \end{minipage}
         };
-        %------------ AND/nAND Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}AND/nAND};
+        %------------ Impedenza con Condensatori Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Impedenza con Condensatori};
     \end{tikzpicture}
 
-    %------------ OR/nOR ---------------
-    \label{OR/nOR}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Forma Standard per Bode ---------------
+
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-                \noindent \textbf{OR (nOR):}
-                \begin{enumerate}
-                    \item \textbf{Entrata:}
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 0, \quad B = 0 \\
-                                   & \text{Uscita: } 0
-                              \end{aligned}
-                          \end{equation*}
 
-                    \item
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 0, \quad B = 1 \\
-                                   & \text{Uscita: } 1
-                              \end{aligned}
-                          \end{equation*}
+                \small
+                Data una funzione di trasferimento generica come $T(s) = \frac{V_{out}}{I_{in}}$, portala in forma:
 
-                    \item
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 1, \quad B = 0 \\
-                                   & \text{Uscita: } 1
-                              \end{aligned}
-                          \end{equation*}
+                \vspace{0.05cm}
+                $$T(s) = K \cdot s^n \cdot \frac{(1 + s\tau_{z1})(1 + s\tau_{z2})\cdots}{(1 + s\tau_{p1})(1 + s\tau_{p2})\cdots}$$
 
-                    \item
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 1, \quad B = 1 \\
-                                   & \text{Uscita: } 1
-                              \end{aligned}
-                          \end{equation*}
-                \end{enumerate}
+                \vspace{0.1cm}
+                Dove:
+
+                \vspace{0.05cm}
+                • $K$ = guadagno costante (può essere assente se $K=1$)
+
+                • $s^n$ = poli/zeri nell'origine (può essere assente se $n=0$)
+
+                \hspace{0.3cm} $n > 0$: zeri nell'origine, $n < 0$: poli nell'origine
+
+                • $\tau_{zi} = \frac{1}{\omega_{zi}}$ = costante di tempo dello zero $i$-esimo
+
+                • $\tau_{pi} = \frac{1}{\omega_{pi}}$ = costante di tempo del polo $i$-esimo
+
+                \vspace{0.15cm}
+                \textbf{Procedimento:}
+
+                \vspace{0.05cm}
+                1. Fattorizza numeratore e denominatore
+
+                2. Porta ogni fattore $(s + a)$ nella forma $(1 + s\tau)$:
+
+                \hspace{0.3cm} $(s + a) = a(1 + s/a)$ → raccolta $a$ in $K$, con $\tau = 1/a$
+
+                3. Raccogli tutti i coefficienti costanti in $K$
+
+                4. Eventuali $s$ isolati formano il termine $s^n$
+
+                \vspace{0.2cm}
+                \textit{Nota:} In questa forma, poli e zeri sono immediatamente visibili: $\omega_p = \frac{1}{\tau_p}$ e $\omega_z = \frac{1}{\tau_z}$
+
+                \vspace{0.2cm}
+                \colorbox{purple!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Conversione Scala Logaritmica $\leftrightarrow$ Lineare}
+
+                    \vspace{0.1cm}
+                    \textbf{Da LINEARE a dB (logaritmica):}
+
+                    \vspace{0.05cm}
+                    $$|T|_{\text{dB}} = 20\log_{10}(|T|_{\text{lin}})$$
+
+                    \vspace{0.1cm}
+                    \textbf{Da dB a LINEARE:}
+
+                    \vspace{0.05cm}
+                    $$|T|_{\text{lin}} = 10^{|T|_{\text{dB}}/20}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Valori utili da ricordare:}
+
+                    \vspace{0.05cm}
+                    • 0 dB $\leftrightarrow$ 1 (lineare)
+
+                    • 20 dB $\leftrightarrow$ 10 (lineare)
+
+                    • -20 dB $\leftrightarrow$ 0.1 (lineare)
+
+                    • 3 dB $\leftrightarrow$ $\sqrt{2} \approx 1.41$ (lineare)
+
+                    • -3 dB $\leftrightarrow$ $1/\sqrt{2} \approx 0.707$ (lineare)
+
+                    • 6 dB $\leftrightarrow$ 2 (lineare)
+                }}
 
             \end{minipage}
         };
-        %------------ OR/nOR Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OR/nOR};
+        %------------ Forma Standard per Bode Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Forma Standard per Bode};
     \end{tikzpicture}
 
-    %------------ XOR/nXOR ---------------
-    \label{XOR/nXOR}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Bode - Diagramma del Modulo ---------------
+
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-                \noindent \textbf{XOR (nXOR):}
-                \begin{enumerate}
-                    \item \textbf{Entrata:}
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 0, \quad B = 0 \\
-                                   & \text{Uscita: } 0
-                              \end{aligned}
-                          \end{equation*}
 
-                    \item
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 0, \quad B = 1 \\
-                                   & \text{Uscita: } 1
-                              \end{aligned}
-                          \end{equation*}
+                \small
+                Data $T(s) = K \cdot s^n \cdot \frac{(1 + s\tau_{z1})(1 + s\tau_{z2})\cdots}{(1 + s\tau_{p1})(1 + s\tau_{p2})\cdots}$
 
-                    \item
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 1, \quad B = 0 \\
-                                   & \text{Uscita: } 1
-                              \end{aligned}
-                          \end{equation*}
+                \vspace{0.15cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Punto di partenza per il tracciamento:}
 
-                    \item
-                          \begin{equation*}
-                              \begin{aligned}
-                                   & A = 1, \quad B = 1 \\
-                                   & \text{Uscita: } 0
-                              \end{aligned}
-                          \end{equation*}
-                \end{enumerate}
+                    \vspace{0.05cm}
+                    • Se $n = 0$: calcola $|T(0)|$ e $\angle T(0)$ (sostituisci $s=0$)
+
+                    \vspace{0.05cm}
+                    • Se $n \neq 0$: \textbf{NON puoi} calcolare a $s=0$ (singolarità!)
+
+                    \vspace{0.05cm}
+                    \textit{Caso con singolarità in zero: sezione da completare dopo spiegazione del professore}
+                }}
+
+                \vspace{0.2cm}
+                \textbf{Tracciamento del Modulo:}
+
+                \vspace{0.15cm}
+                \textbf{1. Contributo di K (guadagno costante):}
+
+                \vspace{0.05cm}
+                Retta orizzontale a: $20\log_{10}|K|$ dB
+
+                \vspace{0.05cm}
+                • Se $K > 0$: $20\log_{10}K$ dB
+
+                • Se $K < 0$: $20\log_{10}|K|$ dB (modulo positivo)
+
+                \vspace{0.15cm}
+                \textbf{2. Contributo di $s^n$ (poli/zeri nell'origine):}
+
+                \vspace{0.05cm}
+                Retta passante per $(1, 0\text{ dB})$ con pendenza:
+
+                \vspace{0.05cm}
+                • $+20n$ dB/dec se $n > 0$ (zeri nell'origine)
+
+                • $-20|n|$ dB/dec se $n < 0$ (poli nell'origine)
+
+                \vspace{0.15cm}
+                \textbf{3. Contributo degli ZERI $(1 + s\tau_z)$:}
+
+                \vspace{0.05cm}
+                Per $\omega_z = \frac{1}{\tau_z}$:
+
+                \vspace{0.05cm}
+                • $\omega < \omega_z$: contributo $\approx 0$ dB (retta orizzontale)
+
+                • $\omega = \omega_z$: punto di spigolo
+
+                • $\omega > \omega_z$: pendenza $+20$ dB/dec
+
+                \vspace{0.15cm}
+                \textbf{4. Contributo dei POLI $(1 + s\tau_p)$:}
+
+                \vspace{0.05cm}
+                Per $\omega_p = \frac{1}{\tau_p}$:
+
+                \vspace{0.05cm}
+                • $\omega < \omega_p$: contributo $\approx 0$ dB (retta orizzontale)
+
+                • $\omega = \omega_p$: punto di spigolo
+
+                • $\omega > \omega_p$: pendenza $-20$ dB/dec
+
+                \vspace{0.15cm}
+                \textbf{5. Tracciamento finale (METODO PRATICO):}
+
+                \vspace{0.05cm}
+                a) Parte da $K \cdot s^n$ con pendenza iniziale
+
+                \vspace{0.03cm}
+                \hspace{0.3cm} Se $n=0$: costante fino alla $1^a$ singolarità
+
+                b) Ordina poli e zeri per frequenza crescente
+
+                c) Ad ogni singolarità (da sinistra a destra):
+
+                \vspace{0.03cm}
+                \hspace{0.3cm} • Per ogni \textbf{zero}: aggiungi $+20$ dB/dec alla pendenza
+
+                \hspace{0.3cm} • Per ogni \textbf{polo}: aggiungi $-20$ dB/dec alla pendenza
+
+                d) Esempio: se hai pendenza 0 e incontri zero → diventa $+20$ dB/dec
+
+                \vspace{0.1cm}
+                \hspace{0.5cm} poi incontri polo → diventa 0 dB/dec
+
+                \vspace{0.2cm}
+                \textbf{Guadagno di Banda (GBW):}
+
+                \vspace{0.05cm}
+                Per amplificatori con 1 polo dominante:
+
+                \vspace{0.05cm}
+                $$\text{GBW} = |A_0| \cdot \omega_p$$
+
+                Dove $A_0$ è il guadagno a basse frequenze (prima del polo)
 
             \end{minipage}
         };
-        %------------ XOR/nXOR Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}XOR/nXOR};
+        %------------ Bode Modulo Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Diagramma del Modulo};
     \end{tikzpicture}
 
-    %------------ Box 17 ---------------
-    \label{Box 17}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Bode - Diagramma della Fase ---------------
+
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-                \dummytext{Content for Box 17}
+
+                \small
+                \textbf{Tracciamento della Fase:}
+
+                \vspace{0.15cm}
+                \textbf{1. Contributo di K:}
+
+                \vspace{0.05cm}
+                • Se $K > 0$ (cioè $T(0) > 0$): fase $= 0^\circ$
+
+                • Se $K < 0$ (cioè $T(0) < 0$): fase $= -180^\circ$
+
+                \vspace{0.05cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\tiny
+                    Se $T(0) < 0$, parti da $-180^\circ$ e somma i contributi
+                }}
+
+                \vspace{0.15cm}
+                \textbf{2. Contributo di $s^n$:}
+
+                \vspace{0.05cm}
+                Fase costante: $+90^\circ \cdot n$ per ogni frequenza
+
+                \vspace{0.15cm}
+                \textbf{3. Contributo degli ZERI $(1 + s\tau_z)$:}
+
+                \vspace{0.05cm}
+                Transizione centrata in $\omega_z = \frac{1}{\tau_z}$:
+
+                \vspace{0.05cm}
+                • $\omega < \omega_z/10$: fase $\approx 0^\circ$
+
+                • $\omega = \omega_z$: fase $= +45^\circ$
+
+                • $\omega > 10\omega_z$: fase $\approx +90^\circ$
+
+                \vspace{0.05cm}
+                Transizione lineare tra $\omega_z/10$ e $10\omega_z$
+
+                \vspace{0.15cm}
+                \textbf{4. Contributo dei POLI $(1 + s\tau_p)$:}
+
+                \vspace{0.05cm}
+                Transizione centrata in $\omega_p = \frac{1}{\tau_p}$:
+
+                \vspace{0.05cm}
+                • $\omega < \omega_p/10$: fase $\approx 0^\circ$
+
+                • $\omega = \omega_p$: fase $= -45^\circ$
+
+                • $\omega > 10\omega_p$: fase $\approx -90^\circ$
+
+                \vspace{0.05cm}
+                Transizione lineare tra $\omega_p/10$ e $10\omega_p$
+
+                \vspace{0.15cm}
+                \textbf{5. Tracciamento finale:}
+
+                \vspace{0.05cm}
+                a) Parti dalla fase iniziale:
+
+                \vspace{0.03cm}
+                \hspace{0.3cm} • Se $T(0) > 0$: parte da $0^\circ + 90^\circ \cdot n$
+
+                \hspace{0.3cm} • Se $T(0) < 0$: parte da $-180^\circ + 90^\circ \cdot n$
+
+                b) Somma algebrica dei contributi di poli e zeri:
+
+                \vspace{0.03cm}
+                \hspace{0.3cm} • Zeri: $+90^\circ$ asintoticamente (transizione da $\omega_z/10$ a $10\omega_z$)
+
+                \hspace{0.3cm} • Poli: $-90^\circ$ asintoticamente (transizione da $\omega_p/10$ a $10\omega_p$)
+
+                c) I contributi si \textbf{sovrappongono} se poli/zeri sono vicini
+
+                \vspace{0.2cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ ERRORE COMUNE}
+
+                    \vspace{0.05cm}
+                    Nel modulo, le pendenze si \textbf{sommano} ad ogni polo/zero
+
+                    \vspace{0.05cm}
+                    Nella fase, i contributi si \textbf{sovrappongono} (somma algebrica delle fasi)
+                }}
+
             \end{minipage}
         };
-        %------------ Box 17 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 17};
+        %------------ Bode Fase Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Diagramma della Fase};
     \end{tikzpicture}
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Intersezione 0 dB in Bode ---------------
 
-    %------------ Box 18 ---------------
-    \label{Box 18}
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-                \dummytext{Content for Box 18}
+
+                \small
+                \textbf{Problema:} Il diagramma passa vicino a 0 dB nei pressi di una singolarità. Interseca prima o dopo?
+
+                \vspace{0.2cm}
+                \textbf{Regola di Conservazione Guadagno-Frequenza:}
+
+                \vspace{0.1cm}
+                Su un tratto con pendenza costante di $m$ dB/dec, vale:
+
+                \vspace{0.05cm}
+                $$|T(\omega)| \cdot \omega^{m/20} = \text{costante}$$
+
+                \vspace{0.15cm}
+                \textbf{Metodo pratico (verifica per ipotesi):}
+
+                \vspace{0.1cm}
+                \textbf{IPOTESI:} Supponi che la retta continui \textbf{indisturbata} con la stessa pendenza (cioè che interseca 0 dB PRIMA della singolarità)
+
+                \vspace{0.1cm}
+                \textbf{1.} Identifica un punto noto sul tratto: $(\omega_1, |T(\omega_1)|)$
+
+                \vspace{0.05cm}
+                \hspace{0.3cm} Es: a basse frequenze, spesso $|T(0)| = K$
+
+                \vspace{0.1cm}
+                \textbf{2.} Con pendenza $m$ dB/dec costante, calcola $\omega_0$ dove $|T| = 1$:
+
+                \vspace{0.05cm}
+                $$\omega_0 = \omega_1 \cdot |T(\omega_1)|^{20/m}$$
+
+                \vspace{0.05cm}
+                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\tiny
+                    \textbf{ATTENZIONE:} $|T(\omega_1)|$ in \textbf{scala LINEARE}, non in dB!
+
+                    Se hai il valore in dB: $|T| = 10^{(\text{dB}/20)}$
+                }}
+
+                \vspace{0.1cm}
+                \textbf{3.} Confronta $\omega_0$ con la singolarità $\omega_s$:
+
+                \vspace{0.05cm}
+                • Se $\omega_0 < \omega_s$: ipotesi \textbf{CORRETTA} → interseca prima
+
+                \hspace{0.4cm} La retta raggiunge 0 dB prima di cambiare pendenza
+
+                \vspace{0.05cm}
+                • Se $\omega_0 > \omega_s$: ipotesi \textbf{ERRATA} → interseca dopo
+
+                \hspace{0.4cm} La pendenza cambia prima di raggiungere 0 dB
+
+                \vspace{0.2cm}
+                \textbf{Casi comuni:}
+
+                \vspace{0.1cm}
+                \textbf{Pendenza 0 dB/dec} ($m = 0$): costante, già noto
+
+                \vspace{0.1cm}
+                \textbf{Pendenza $-20$ dB/dec} ($m = -20$):
+
+                \vspace{0.05cm}
+                $$\omega_0 = \omega_1 \cdot |T(\omega_1)|$$
+
+                \vspace{0.05cm}
+                Questa è la formula del \textbf{GBW} (Guadagno di Banda)!
+
+                \vspace{0.1cm}
+                \textbf{Pendenza $+20$ dB/dec} ($m = +20$):
+
+                \vspace{0.05cm}
+                $$\omega_0 = \frac{\omega_1}{|T(\omega_1)|}$$
+
+                \vspace{0.2cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ UTILITÀ PRATICA}
+
+                    \vspace{0.05cm}
+                    Questo metodo evita di dover disegnare con precisione il diagramma per capire l'ordine di intersezione e singolarità, garantendo il tracciamento corretto dopo entrambi i punti.
+                }}
+
             \end{minipage}
         };
-        %------------ Box 18 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 18};
+        %------------ Intersezione 0 dB Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Intersezione 0 dB in Bode};
     \end{tikzpicture}
 
-    %------------ Box 19 ---------------
-    \label{Box 19}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Calcolo Guadagno a Frequenze Specifiche ---------------
+
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-                \dummytext{Content for Box 19}
+
+                \small
+                \textbf{Quando ti chiedono il guadagno a una frequenza specifica:}
+
+                \vspace{0.2cm}
+                \textbf{CASO 1: Lontano dalle singolarità ($\geq 1$ decade)}
+
+                \vspace{0.1cm}
+                Usa il \textbf{diagramma sintotico} (approssimazione):
+
+                \vspace{0.05cm}
+                • Se $\omega < \omega_p/10$ o $\omega > 10\omega_p$: il polo/zero ha effetto trascurabile
+
+                • Leggi il valore dal diagramma asintotico con la pendenza corrente
+
+                \vspace{0.05cm}
+                \textit{Esempio:} Con pendenza $-20$ dB/dec da $\omega_1$ a $\omega_2$:
+
+                \vspace{0.05cm}
+                $$|T(\omega_2)|_{\text{dB}} = |T(\omega_1)|_{\text{dB}} - 20\log_{10}\left(\frac{\omega_2}{\omega_1}\right)$$
+
+                \vspace{0.2cm}
+                \textbf{CASO 2: Esattamente sulla singolarità ($\omega = \omega_p$ o $\omega_z$)}
+
+                \vspace{0.1cm}
+                Usa le \textbf{formule esatte}:
+
+                \vspace{0.1cm}
+                \textbf{Modulo:}
+
+                \vspace{0.05cm}
+                • Polo: $|1 + j\omega_p\tau_p| = |1 + j| = \sqrt{2}$ → $\boxed{-3 \text{ dB}}$
+
+                • Zero: $|1 + j\omega_z\tau_z| = |1 + j| = \sqrt{2}$ → $\boxed{+3 \text{ dB}}$
+
+                \vspace{0.1cm}
+                \textbf{Fase:}
+
+                \vspace{0.05cm}
+                • Polo: $\angle(1 + j\omega_p\tau_p) = \arctan(1)$ → $\boxed{-45^\circ}$
+
+                • Zero: $\angle(1 + j\omega_z\tau_z) = \arctan(1)$ → $\boxed{+45^\circ}$
+
+                \vspace{0.2cm}
+                \textbf{CASO 3: Vicino alle singolarità ($< 1$ decade ma $\neq$ singolarità)}
+
+                \vspace{0.1cm}
+                Usa i \textbf{numeri complessi}, sostituendo $s = j\omega$:
+
+                \vspace{0.05cm}
+                $$T(j\omega) = K \cdot (j\omega)^n \cdot \frac{(1 + j\omega\tau_{z1})(1 + j\omega\tau_{z2})\cdots}{(1 + j\omega\tau_{p1})(1 + j\omega\tau_{p2})\cdots}$$
+
+                \vspace{0.1cm}
+                1. Sostituisci il valore numerico di $\omega$
+
+                2. Calcola ogni termine: $|1 + j\omega\tau| = \sqrt{1 + (\omega\tau)^2}$
+
+                3. Moltiplica/dividi i moduli per ottenere $|T(j\omega)|$
+
+                4. Converti in dB: $20\log_{10}|T(j\omega)|$
+
+                \vspace{0.2cm}
+                \colorbox{blue!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Regola pratica:}
+
+                    \vspace{0.05cm}
+                    • Lontano → diagramma sintotico (veloce)
+
+                    • Esattamente sopra → $\pm 3$ dB, $\pm 45^\circ$ (immediato)
+
+                    • Vicino → numeri complessi (calcolo esatto)
+                }}
+
             \end{minipage}
         };
-        %------------ Box 19 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 19};
+        %------------ Calcolo Guadagno Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Calcolo Guadagno a Frequenze Specifiche};
     \end{tikzpicture}
 
-    %------------ Box 20 ---------------
-    \label{Box 20}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Slew Rate OpAmp ---------------
+
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-                \dummytext{Content for Box 20}
+
+                \small
+                \textbf{Definizione:} Lo \textbf{Slew Rate (SR)} è la \textbf{massima velocità} con cui l'uscita di un OpAmp può variare nel tempo.
+
+                \vspace{0.15cm}
+                $$\text{SR} = \left|\frac{dV_{out}}{dt}\right|_{\text{max}}$$
+
+                \vspace{0.1cm}
+                Unità di misura: $\text{V}/\mu\text{s}$ oppure $\text{V/s}$
+
+                \vspace{0.2cm}
+                \textbf{A cosa serve:}
+
+                \vspace{0.1cm}
+                Lo slew rate è una \textbf{limitazione fisica} dell'OpAmp reale:
+
+                \vspace{0.05cm}
+                • Limita la velocità di risposta dell'amplificatore
+
+                • Se il segnale richiede una variazione più rapida, l'uscita viene \textbf{distorta}
+
+                • Importante per segnali ad alta frequenza o grande ampiezza
+
+                \vspace{0.2cm}
+                \textbf{Calcolo e Verifica:}
+
+                \vspace{0.1cm}
+                Per un segnale sinusoidale $V_{out}(t) = V_{\text{max}} \sin(\omega t)$:
+
+                \vspace{0.05cm}
+                $$\frac{dV_{out}}{dt} = V_{\text{max}} \omega \cos(\omega t)$$
+
+                \vspace{0.1cm}
+                La derivata massima è:
+
+                \vspace{0.05cm}
+                $$\left|\frac{dV_{out}}{dt}\right|_{\text{max}} = V_{\text{max}} \cdot \omega = 2\pi f V_{\text{max}}$$
+
+                \vspace{0.15cm}
+                \textbf{Condizione per evitare distorsione:}
+
+                \vspace{0.05cm}
+                $$\boxed{2\pi f V_{\text{max}} \leq \text{SR}}$$
+
+                \vspace{0.1cm}
+                Oppure, frequenza massima senza distorsione:
+
+                \vspace{0.05cm}
+                $$f_{\text{max}} = \frac{\text{SR}}{2\pi V_{\text{max}}}$$
+
+                \vspace{0.2cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ IMPORTANTE}
+
+                    \vspace{0.05cm}
+                    Se $2\pi f V_{\text{max}} > \text{SR}$:
+
+                    \vspace{0.05cm}
+                    • L'uscita NON segue l'ingresso
+
+                    • Si ha distorsione del segnale (tipicamente forma triangolare)
+
+                    \vspace{0.05cm}
+                    Lo slew rate è \textbf{indipendente dal guadagno} (caratteristica dell'OpAmp)
+                }}
+
+                \vspace{0.2cm}
+                \textbf{Esempio pratico:}
+
+                \vspace{0.05cm}
+                OpAmp con SR = 1 V/$\mu$s, segnale con $V_{\text{max}}$ = 10 V
+
+                \vspace{0.05cm}
+                $$f_{\text{max}} = \frac{1 \times 10^6 \text{ V/s}}{2\pi \times 10 \text{ V}} \approx 15.9 \text{ kHz}$$
+
+                \vspace{0.05cm}
+                A frequenze superiori, il segnale viene distorto.
+
             \end{minipage}
         };
-        %------------ Box 20 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 20};
+        %------------ Slew Rate Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Slew Rate OpAmp};
     \end{tikzpicture}
 
-    %------------ Box 21 ---------------
-    \label{Box 21}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Risposta al Gradino ---------------
+
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
-                \dummytext{Content for Box 21}
+
+                \small
+                \textbf{Sistema del primo ordine:}
+                $$T(s) = \frac{K}{1 + s\tau}$$
+
+                Dove:
+                \begin{itemize}
+                    \item $K$ = costante (guadagno statico)
+                    \item $\tau$ = costante di tempo (coefficiente di $s$)
+                    \item Polo in $\omega_p = \frac{1}{\tau}$
+                \end{itemize}
+
+                \vspace{0.15cm}
+                \textbf{Risposta al gradino di ampiezza $X_0$:}
+
+                \vspace{0.1cm}
+                L'uscita ha andamento \textbf{esponenziale}:
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    $$y(t) = K \cdot X_0 \cdot \left(1 - e^{-t/\tau}\right)$$
+                }}
+
+                \vspace{0.1cm}
+                \textbf{Valore asintotico} (per $t \to \infty$):
+                $$y_\infty = K \cdot X_0$$
+
+                Dove $X_0$ può essere una tensione o una corrente.
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{\color{red}$\triangle$ ATTENZIONE al segno di K:}
+
+                    \vspace{0.05cm}
+                    • Se $K > 0$: esponenziale \textbf{crescente} (parte da 0, sale verso $K \cdot X_0$)
+
+                    \vspace{0.05cm}
+                    • Se $K < 0$: esponenziale \textbf{decrescente} (parte da 0, scende verso $K \cdot X_0$)
+                }}
+
+                \vspace{0.2cm}
+                \textbf{Parametri chiave:}
+
+                \vspace{0.05cm}
+                • $\tau$ = costante di tempo (si legge direttamente dal denominatore come coefficiente di $s$)
+
+                \vspace{0.05cm}
+                • Dopo $t = 5\tau$ l'uscita raggiunge $\approx 99\%$ del valore finale
+
+                \vspace{0.2cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{
+                    \textbf{Caso con due poli (raro in questo corso):}
+
+                    \vspace{0.05cm}
+                    $$T(s) = \frac{K}{(1 + s\tau_1)(1 + s\tau_2)}$$
+
+                    \vspace{0.05cm}
+                    Se i due poli sono \textbf{ben separati} (uno molto più lento dell'altro), la dinamica è dominata dal \textbf{polo a frequenza minore} (quello con $\tau$ maggiore).
+
+                    \vspace{0.05cm}
+                    In questo caso si può approssimare il sistema come se avesse un solo polo dominante.
+                }}
+
             \end{minipage}
         };
-        %------------ Box 21 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 21};
+        %------------ Risposta al Gradino Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Risposta al Gradino - Sistema 1$^\circ$ Ordine};
     \end{tikzpicture}
 
-    %------------ Box 22 ---------------
-    \label{Box 22}
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-                \dummytext{Content for Box 22}
-            \end{minipage}
-        };
-        %------------ Box 22 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 22};
-    \end{tikzpicture}
-
-    %------------ Box 23 ---------------
-    \label{Box 23}
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-                \dummytext{Content for Box 23}
-            \end{minipage}
-        };
-        %------------ Box 23 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Box 23};
-    \end{tikzpicture}
 
 \end{multicols*}
 \end{document}
