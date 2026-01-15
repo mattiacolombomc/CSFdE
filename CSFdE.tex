@@ -72,6 +72,46 @@
             }
     }
 
+    %------------ Prefissi SI ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \begin{center}
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        \textbf{Simbolo} & \textbf{Nome} & \textbf{Fattore} \\
+                        \hline
+                        G & giga & $10^{9}$ \\
+                        \hline
+                        M & mega & $10^{6}$ \\
+                        \hline
+                        k & kilo & $10^{3}$ \\
+                        \hline
+                        h & etto & $10^{2}$ \\
+                        \hline
+                        da & deca & $10^{1}$ \\
+                        \hline
+                        d & deci & $10^{-1}$ \\
+                        \hline
+                        c & centi & $10^{-2}$ \\
+                        \hline
+                        m & milli & $10^{-3}$ \\
+                        \hline
+                        $\mu$ & micro & $10^{-6}$ \\
+                        \hline
+                        n & nano & $10^{-9}$ \\
+                        \hline
+                    \end{tabular}
+                \end{center}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Prefissi SI (Notazione Scientifica)};
+    \end{tikzpicture}
+
+    \newpage
+
     %SCALA TRANSITORI
 
     \resizebox{\columnwidth}{0.9\textheight}{%------------ Box 26 ---------------
@@ -2437,21 +2477,40 @@
                 Con modulo: $|Z_C| = \frac{1}{\omega C}$ e fase: $\angle Z_C = -90^\circ$
 
                 \vspace{0.2cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{Comportamento del condensatore in base alla frequenza:}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                    \begin{tabular}{|c|c|c|c|}
+                        \hline
+                        \textbf{Freq.} & \textbf{$Z_C$} & \textbf{Equiv.} & \textbf{Effetto} \\
+                        \hline
+                        DC ($\omega=0$) & $\infty$ & \textbf{Aperto} & Cancella ramo \\
+                        \hline
+                        Alta ($\omega \to \infty$) & $0$ & \textbf{Corto} & Filo (a GND) \\
+                        \hline
+                    \end{tabular}
+                    \end{center}
+                }}
+
+                \vspace{0.15cm}
                 \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{\color{orange}$\bigstar$ CONDENSATORE IN DC (Corrente Continua)}
+                    \textbf{\color{orange}$\bigstar$ DC ($\omega = 0$):} $Z_C = \frac{1}{0 \cdot C} \to \infty$ → \textbf{APERTO}
 
                     \vspace{0.05cm}
-                    Quando $\omega = 0$ (DC) → $|Z_C| \to \infty$
+                    Il condensatore \`e carico, blocca la corrente continua.
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{blue}$\bigstar$ Alta freq. ($\omega \to \infty$):} $Z_C = \frac{1}{\infty \cdot C} \to 0$ → \textbf{CORTO}
 
                     \vspace{0.05cm}
-                    \textbf{Il condensatore diventa un APERTO}
+                    Il condensatore non ha tempo di caricarsi, la corrente passa libera.
 
                     \vspace{0.05cm}
-                    • Con ingressi costanti (DC)
-
-                    • In sovrapposizione degli effetti con generatori costanti
-
-                    • Considera C come circuito aperto
+                    \textit{Nota:} Se C \`e collegato a massa, il nodo va a \textbf{GND}.
                 }}
 
                 \vspace{0.2cm}
@@ -2717,6 +2776,223 @@
         };
         %------------ Bode Modulo Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Diagramma del Modulo};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Bode - Metodo Generale Unificato ---------------
+
+    \resizebox{\columnwidth}{!}{
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.45\textwidth}
+
+                \small
+                \colorbox{red!25}{\parbox{0.97\linewidth}{
+                    \textbf{\color{red!70!black}$\bigstar$ METODO GENERALE UNIFICATO per Bode del Modulo}
+                }}
+
+                \vspace{0.2cm}
+                \textbf{\underline{PASSO 1: Analisi Strutturale (Scomposizione Visiva)}}
+
+                \vspace{0.1cm}
+                Guarda $G(s)$ e identifica \textbf{col dito} questi tre elementi (no calcoli, solo riconoscimento):
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.97\linewidth}{
+                    \textbf{1. Il Guadagno Statico ($K$):}
+
+                    Raccogli tutti i numeri costanti che moltiplicano la funzione.
+
+                    $\Rightarrow$ Determina l'\textbf{altezza verticale} del grafico.
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.97\linewidth}{
+                    \textbf{2. I Termini Binomiali $(1 + s\tau)$} (singolarit\`a standard):
+
+                    \vspace{0.05cm}
+                    • Se \`e al \textbf{NUMERATORE}: \`e uno \textbf{ZERO} (grafico \textbf{sale})
+
+                    • Se \`e al \textbf{DENOMINATORE}: \`e un \textbf{POLO} (grafico \textbf{scende})
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!20}{\parbox{0.97\linewidth}{
+                    \textbf{3. La ``S'' Isolata ($s^n$):}
+
+                    Cerca le $s$ che \textbf{NON} sono sommate a 1 (es: $s$, $s^2$, $1/s$, $1/s^2$)
+
+                    \vspace{0.05cm}
+                    • Se al \textbf{NUMERATORE} ($s$, $s^2$): hai $n$ \textbf{Zeri nell'origine}
+
+                    • Se al \textbf{DENOMINATORE} ($1/s$, $1/s^2$): hai $n$ \textbf{Poli nell'origine}
+
+                    • Se \textbf{non c'\`e}: $n = 0$
+                }}
+
+                \vspace{0.25cm}
+                \textbf{\underline{PASSO 2: Calcolo delle Frequenze di Taglio}}
+
+                \vspace{0.1cm}
+                Prendi tutti i \textit{Termini Binomiali} (Passo 1, punto 2) e calcola:
+
+                $$\boxed{f_p = \frac{1}{2\pi \cdot \tau}}$$
+
+                \textbf{Lista Ordinata:} metti le frequenze in ordine crescente $f_1 < f_2 < f_3 \dots$
+
+                $\Rightarrow$ Questi sono i ``paletti'' verticali sull'asse delle frequenze.
+
+                \vspace{0.25cm}
+                \textbf{\underline{PASSO 3: Il Confronto Cruciale (L'Attacco del Grafico)}}
+
+                \vspace{0.1cm}
+                Decidi come \textbf{inizia} il grafico a sinistra. Guarda solo la ``S'' Isolata (Passo 1, punto 3).
+
+                \vspace{0.1cm}
+                \colorbox{orange!25}{\parbox{0.97\linewidth}{
+                    \textbf{CASO A: Nessuna ``S'' Isolata} (singolarit\`a NON in zero)
+
+                    \vspace{0.05cm}
+                    • \textbf{Comportamento:} Il grafico parte \textbf{PIATTO} (orizzontale)
+
+                    • \textbf{Valore di partenza:} Converti $K$ da lineare a dB:
+
+                    $$\boxed{|K|_{\text{dB}} = 20 \log_{10}(|K|_{\text{lin}})}$$
+
+                    • \textbf{Azione:} Disegna retta orizzontale fino alla prima freq. $f_1$
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{red!15}{\parbox{0.97\linewidth}{
+                    \textbf{CASO B: Presenza di ``S'' Isolata} (singolarit\`a IN zero)
+
+                    \vspace{0.05cm}
+                    • \textbf{Comportamento:} Il grafico parte \textbf{IN PENDENZA}
+
+                    \hspace{0.3cm} -- Zero in origine ($s$): parte \textbf{salendo} (+20 dB/dec)
+
+                    \hspace{0.3cm} -- Polo in origine ($1/s$): parte \textbf{scendendo} (-20 dB/dec)
+
+                    \vspace{0.1cm}
+                    • \textbf{Punto di Ancoraggio (IL TRUCCO):}
+
+                    \hspace{0.3cm} Non calcolare la retta iniziale (difficile!)
+
+                    \hspace{0.3cm} Scegli $f_{test}$ \textbf{dopo} la prima singolarit\`a o nel ``centro banda''
+
+                    \hspace{0.3cm} Calcola il modulo con $s = j 2\pi f_{test}$
+
+                    \hspace{0.3cm} Segna quel punto e usalo come \textbf{perno} per le pendenze
+                }}
+
+                \vspace{0.25cm}
+                \textbf{\underline{PASSO 4: Tracciamento Dinamico (Disegno)}}
+
+                \vspace{0.1cm}
+                Percorri l'asse delle frequenze da \textbf{sinistra a destra}:
+
+                \vspace{0.1cm}
+                \colorbox{purple!15}{\parbox{0.97\linewidth}{
+                    1. Avanza fino alla prima frequenza $f_1$
+
+                    \vspace{0.05cm}
+                    2. \textbf{Applica la modifica:}
+
+                    \hspace{0.3cm} • Se $f_1$ era un \textbf{POLO}: \textbf{sottrai} 20 alla pendenza
+
+                    \hspace{0.5cm} (es: eri piatto 0 $\to$ diventi -20 dB/dec)
+
+                    \hspace{0.3cm} • Se $f_1$ era uno \textbf{ZERO}: \textbf{aggiungi} 20 alla pendenza
+
+                    \hspace{0.5cm} (es: scendevi -20 $\to$ diventi piatto 0)
+
+                    \vspace{0.05cm}
+                    3. Prosegui fino a $f_2$ e \textbf{ripeti}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Metodo Generale Unificato};
+    \end{tikzpicture}}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Formule Rapide di Navigazione sul Grafico ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{\color{red!70!black}$\bigstar$ REGOLE AUREE per muoversi sul grafico}
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                    \textbf{1. Sulla DISCESA (-20 dB/dec): Legge del Prodotto Costante}
+
+                    \vspace{0.1cm}
+                    $$\boxed{G \cdot f = \text{Costante}}$$
+
+                    \vspace{0.05cm}
+                    \textbf{Uso:} Da $(G_1, f_1)$ trovo $G_2$ a frequenza $f_2$:
+
+                    $$G_2 = \frac{G_1 \cdot f_1}{f_2}$$
+
+                    \vspace{0.05cm}
+                    \textit{Mnemonica: ``Pi\`u vado avanti in frequenza, pi\`u il guadagno scende: il loro prodotto resta uguale.''}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{2. Sulla SALITA (+20 dB/dec): Legge del Rapporto Costante}
+
+                    \vspace{0.1cm}
+                    $$\boxed{\frac{G}{f} = \text{Costante}}$$
+
+                    \vspace{0.05cm}
+                    \textbf{Uso:} Da $(G_1, f_1)$ trovo $G_2$ a frequenza $f_2$:
+
+                    $$G_2 = G_1 \cdot \frac{f_2}{f_1}$$
+
+                    \vspace{0.05cm}
+                    \textit{Mnemonica: ``Se la frequenza raddoppia, il guadagno raddoppia.''}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!30}{\parbox{0.95\linewidth}{
+                    \textbf{3. Intersezione con asse 0 dB: $G = 1$}
+
+                    \vspace{0.1cm}
+                    \textbf{$\triangle$ WARNING CRITICO:}
+
+                    Quando cerchi l'intersezione con l'asse 0 dB, usa:
+
+                    $$\boxed{G_{\text{lineare}} = 1} \quad \text{(NON 0!)}$$
+
+                    \textbf{Motivo:} $0 \text{ dB} \Leftrightarrow G_{\text{lin}} = 1$
+
+                    Se metti 0 nella moltiplicazione, annulli tutto!
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Esempio pratico:}
+
+                    \vspace{0.05cm}
+                    Plateau a $G = 100$ che finisce in polo a $f = 1$ kHz.
+
+                    A che frequenza taglio l'asse 0 dB scendendo?
+
+                    \vspace{0.1cm}
+                    Uso regola discesa: $G_1 \cdot f_1 = G_2 \cdot f_2$
+
+                    $$100 \cdot 1\text{k} = 1 \cdot f_x \Rightarrow \boxed{f_x = 100 \text{ kHz}}$$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Formule Rapide di Navigazione sul Grafico};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3065,6 +3341,35 @@
                 }}
 
                 \vspace{0.2cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Calcolo del guadagno d'anello $G_{loop}$:}
+
+                    \vspace{0.1cm}
+                    1. \textbf{Taglia l'anello} (apri il feedback)
+
+                    2. Inserisci generatore di test $V_t$ nel punto di taglio
+
+                    3. Calcola $V_x$ = tensione uscita dall'OpAmp
+
+                    \vspace{0.1cm}
+                    $$\boxed{G_{loop} = \frac{V_x}{V_t} = A(s) \cdot \beta}$$
+
+                    \vspace{0.1cm}
+                    \textbf{$A(s)$} = \textbf{guadagno ad anello aperto} dell'OpAmp:
+
+                    $$A(s) = \frac{A_0}{1 + s\tau_0}$$
+
+                    • $A_0 = A(0)$ = guadagno a freq. 0 (punto partenza Bode, $\sim 10^5$-$10^6$)
+
+                    • $\tau_0 = \frac{1}{\omega_p}$ = costante di tempo polo dominante
+
+                    \hspace{0.5cm} {\footnotesize (polo dominante = polo a freq. pi\`u bassa)}
+
+                    \vspace{0.1cm}
+                    \textbf{$\beta$} = fattore di retroazione (dipende da $R_f$, $R_G$)
+                }}
+
+                \vspace{0.2cm}
                 \textbf{Relazione tra i guadagni:}
 
                 \vspace{0.1cm}
@@ -3141,6 +3446,183 @@
         };
         %------------ Guadagno Reale Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Guadagno Reale vs Ideale};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Guadagno Reale - Attenzione alle Intersezioni ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{red!30}{\parbox{0.95\linewidth}{
+                    \textbf{\color{red!70!black}$\triangle$ ATTENZIONE alle INTERSEZIONI}
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Problema tipico:}
+
+                $G_A$ e $G_{id}$ hanno zeri/poli a frequenze diverse $\Rightarrow$ le intersezioni possono essere \textbf{non ovvie}.
+
+                \vspace{0.15cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{
+                    \textbf{Caso comune:}
+
+                    \vspace{0.05cm}
+                    • $G_A$ sale poi diventa piatto (a un certo valore)
+
+                    • $G_{id}$ sale poi diventa piatto (a valore \textbf{diverso})
+
+                    \vspace{0.1cm}
+                    \textbf{Domanda:} L'intersezione \`e \textbf{prima} o \textbf{dopo} il prossimo polo?
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Metodo per ipotesi:}
+
+                \vspace{0.1cm}
+                1. \textbf{Fai un'ipotesi} su quale tratto (salita/discesa/piatto) interseca
+
+                \vspace{0.05cm}
+                2. Usa le \textbf{regole di navigazione}:
+
+                \hspace{0.3cm} • Discesa: $G \cdot f = \text{cost}$
+
+                \hspace{0.3cm} • Salita: $G / f = \text{cost}$
+
+                \vspace{0.05cm}
+                3. Calcola la frequenza di intersezione $f_x$
+
+                \vspace{0.05cm}
+                4. \textbf{Verifica:} Se $f_x$ viene \textbf{pi\`u alta} del polo successivo $\Rightarrow$ \textbf{ipotesi sbagliata!}
+
+                \hspace{0.3cm} Rifai con pendenza diversa (es: crescente invece che decrescente)
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Alla fine:}
+
+                    Per ogni frequenza, evidenzia il \textbf{punto pi\`u basso} tra $G_A$ e $G_{id}$ $\Rightarrow$ ottieni $G_{reale}$
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ NOTA su $A_0$ e GBW:}
+
+                    \vspace{0.05cm}
+                    Se \textbf{non viene dato} $A_0$ ma viene dato $\tau_0$:
+
+                    \vspace{0.05cm}
+                    • Potrebbe essere dato il \textbf{GBW} (prodotto guadagno-banda)
+
+                    • Oppure c'\`e un altro modo per risolvere l'esercizio
+
+                    \vspace{0.05cm}
+                    Ricorda: $\text{GBW} = A_0 \cdot \omega_p = A_0 / \tau_0$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Guadagno Reale - Intersezioni};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Margine di Fase e Stabilità ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{\color{red!70!black}$\bigstar$ MARGINE DI FASE e STABILIT\`A}
+                }}
+
+                \vspace{0.2cm}
+                \textbf{Procedimento:}
+
+                \vspace{0.1cm}
+                1. Disegna il Bode di $G_{loop}$ (modulo e fase)
+
+                \vspace{0.05cm}
+                2. Trova la \textbf{frequenza di crossover} $f_c$:
+
+                \hspace{0.3cm} frequenza dove $|G_{loop}| = 0$ dB (taglia l'asse \textbf{orizzontale})
+
+                \vspace{0.05cm}
+                3. Leggi la \textbf{fase} di $G_{loop}$ a $f_c$: $\phi(f_c)$
+
+                \vspace{0.05cm}
+                4. Calcola il \textbf{margine di fase}:
+
+                \vspace{0.1cm}
+                $$\boxed{\text{PM} = 360° + \phi(f_c)}$$
+
+                \vspace{0.1cm}
+                \textbf{Formula esplicita per $\phi(f_c)$:}
+
+                $$\boxed{\phi(f_c) = 180^\circ - \sum_i \arctan\left(\frac{f_c}{f_{pi}}\right) + \sum_j \arctan\left(\frac{f_c}{f_{zj}}\right)}$$
+
+                \vspace{0.1cm}
+                {\footnotesize
+                • $f_c$ = frequenza di crossover (dove $|G_{loop}| = 0$ dB)
+
+                • $f_{pi}$ = frequenza del polo $i$-esimo
+
+                • $f_{zj}$ = frequenza dello zero $j$-esimo
+
+                \vspace{0.05cm}
+                I poli \textbf{sottraggono} fase, gli zeri \textbf{aggiungono} fase.
+                }
+
+                \vspace{0.2cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{Classificazione della stabilit\`a:}
+
+                    \vspace{0.1cm}
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        \textbf{Margine di Fase} & \textbf{Sistema} \\
+                        \hline
+                        PM $> 45°$ & \textbf{Asintoticamente stabile} \\
+                        \hline
+                        PM $= 0°$ & \textbf{Criticamente stabile} \\
+                        \hline
+                        PM $< 0°$ & \textbf{Instabile} \\
+                        \hline
+                    \end{tabular}
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ NOTA PRATICA:}
+
+                    \vspace{0.05cm}
+                    • PM $\approx 60°$-$70°$: risposta ben smorzata
+
+                    • PM $\approx 45°$: leggero overshoot
+
+                    • PM $< 45°$: oscillazioni/overshoot significativo
+
+                    \vspace{0.05cm}
+                    \textbf{Regola:} Pi\`u alto il PM, pi\`u stabile il sistema
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Interpretazione grafica:}
+
+                    \vspace{0.05cm}
+                    Il margine di fase \`e ``quanto manca'' alla fase per raggiungere $-360°$ (o $-180°$ in alcuni testi) quando il guadagno vale 0 dB.
+
+                    \vspace{0.05cm}
+                    Se la fase \`e gi\`a oltre $-360°$ quando $|G| = 0$ dB $\Rightarrow$ sistema \textbf{instabile}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Margine di Fase e Stabilit\`a};
     \end{tikzpicture}
 
     \newpage
