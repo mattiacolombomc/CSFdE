@@ -2960,8 +2960,34 @@
                 }}
 
                 \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{Caso Generale: pendenza $\pm n \cdot 20$ dB/dec}
+
+                    \vspace{0.1cm}
+                    \textbf{DISCESA} ($-n \cdot 20$ dB/dec):
+                    $$\boxed{G \cdot f^n = \text{Cost.}} \quad \Rightarrow \quad G_2 = G_1 \cdot \left(\frac{f_1}{f_2}\right)^n$$
+
+                    \vspace{0.05cm}
+                    \textbf{SALITA} ($+n \cdot 20$ dB/dec):
+                    $$\boxed{\frac{G}{f^n} = \text{Cost.}} \quad \Rightarrow \quad G_2 = G_1 \cdot \left(\frac{f_2}{f_1}\right)^n$$
+
+                    \vspace{0.1cm}
+                    {\footnotesize
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        \textbf{Pendenza} & \textbf{Discesa} & \textbf{Salita} \\
+                        \hline
+                        $\pm 20$ dB/dec & $G \cdot f$ & $G / f$ \\
+                        $\pm 40$ dB/dec & $G \cdot f^2$ & $G / f^2$ \\
+                        $\pm 60$ dB/dec & $G \cdot f^3$ & $G / f^3$ \\
+                        \hline
+                    \end{tabular}
+                    }
+                }}
+
+                \vspace{0.15cm}
                 \colorbox{red!30}{\parbox{0.95\linewidth}{
-                    \textbf{3. Intersezione con asse 0 dB: $G = 1$}
+                    \textbf{Intersezione con asse 0 dB: $G = 1$}
 
                     \vspace{0.1cm}
                     \textbf{$\triangle$ WARNING CRITICO:}
@@ -2992,7 +3018,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Formule Rapide di Navigazione sul Grafico};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Formule Rapide di Navigazione sul Bode};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3345,14 +3371,20 @@
                     \textbf{Calcolo del guadagno d'anello $G_{loop}$:}
 
                     \vspace{0.1cm}
-                    1. \textbf{Taglia l'anello} (apri il feedback)
+                    1. \textbf{Spegni tutti i generatori} (incluso $V_{in}$!)
 
-                    2. Inserisci generatore di test $V_t$ nel punto di taglio
+                    2. \textbf{Taglia l'anello} (apri il feedback)
 
-                    3. Calcola $V_x$ = tensione uscita dall'OpAmp
+                    3. Inserisci generatore di test $V_t$ nel punto di taglio
+
+                    4. Usa la caratteristica dell'OpAmp:
+
+                    \hspace{0.5cm} $V_y = A(s) \cdot (V^+ - V^-)$ \quad con $A(s) = \frac{A_0}{1 + s\tau_0}$
+
+                    5. Scrivi $G_{loop} = \frac{V_y}{V_t}$
 
                     \vspace{0.1cm}
-                    $$\boxed{G_{loop} = \frac{V_x}{V_t} = A(s) \cdot \beta}$$
+                    $$\boxed{G_{loop} = \frac{V_y}{V_t} = A(s) \cdot \beta}$$
 
                     \vspace{0.1cm}
                     \textbf{$A(s)$} = \textbf{guadagno ad anello aperto} dell'OpAmp:
@@ -3365,8 +3397,25 @@
 
                     \hspace{0.5cm} {\footnotesize (polo dominante = polo a freq. pi\`u bassa)}
 
+                    \vspace{0.15cm}
+                    \textbf{GBWP} (Gain-Bandwidth Product):
+                    $$\boxed{\text{GBWP} = A_0 \cdot f_0}$$
+
+                    {\footnotesize dove $f_0 = \frac{1}{2\pi\tau_0}$ = frequenza del polo. In questo corso gli OpAmp hanno \textbf{sempre una singola singolarit\`a}.}
+
                     \vspace{0.1cm}
                     \textbf{$\beta$} = fattore di retroazione (dipende da $R_f$, $R_G$)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ATTENZIONE: $V^+ = V^-$ NON vale qui!}
+
+                    \vspace{0.05cm}
+                    L'ipotesi $V^+ = V^-$ \`e valida \textbf{solo per OpAmp retroazionati} (ideali in catena chiusa).
+
+                    \vspace{0.05cm}
+                    Nel calcolo di $G_{loop}$ l'anello \`e \textbf{aperto} $\Rightarrow$ devi usare $V_{out} = A(s) \cdot (V^+ - V^-)$
                 }}
 
                 \vspace{0.2cm}
@@ -3662,6 +3711,9 @@
 
                     \vspace{0.05cm}
                     Guadagno: $A_v = -\frac{R_f}{R_1}$ \hspace{0.3cm} (segno $-$ = inversione)
+
+                    \vspace{0.05cm}
+                    {\footnotesize $R_1$ = impedenza di \textbf{ingresso} (tra $V_{in}$ e $V^-$)}
                 }}
 
                 \vspace{0.25cm}
@@ -3692,6 +3744,9 @@
 
                     \vspace{0.05cm}
                     Guadagno: $A_v = 1 + \frac{R_f}{R_1}$ \hspace{0.3cm} (sempre $\geq 1$)
+
+                    \vspace{0.05cm}
+                    {\footnotesize $R_1$ = impedenza verso \textbf{GND} (tra $V^-$ e massa)}
                 }}
 
                 \vspace{0.25cm}
@@ -3715,6 +3770,28 @@
                     • $I^+ = I^- = 0$ (corrente negli ingressi nulla)
 
                     • Guadagno ad anello aperto $A \to \infty$
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ATTENZIONE: $R_1$ ha significato DIVERSO!}
+
+                    \vspace{0.1cm}
+                    \textbf{INVERTENTE:}
+
+                    $R_1$ = $Z_{in}$ = impedenza di \textbf{ingresso}
+
+                    (tra $V_{in}$ e $V^-$, NON c'\`e $R$ verso GND)
+
+                    \vspace{0.1cm}
+                    \textbf{NON INVERTENTE:}
+
+                    $R_1$ = $Z_G$ = impedenza verso \textbf{ground}
+
+                    (tra $V^-$ e massa, $V_{in}$ entra direttamente su $V^+$)
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Stessa formula $\frac{R_f}{R_1}$, ma $R_1$ \`e diversa!
                 }}
 
             \end{minipage}
