@@ -4371,6 +4371,27 @@
                 }}
 
                 \vspace{0.15cm}
+                \colorbox{magenta!20}{\parbox{0.95\linewidth}{
+                    \textbf{FSR e LSB (DAC a N bit):}
+
+                    \vspace{0.1cm}
+                    \textbf{LSB} (Least Significant Bit) = tensione del bit meno significativo:
+                    $$\boxed{\text{LSB} = V_{out}(000...1) = I \cdot R_F}$$
+
+                    \vspace{0.1cm}
+                    \textbf{FSR} (Full Scale Range) = escursione massima:
+                    $$\boxed{\text{FSR} = V_{out,max} - V_{out,min}}$$
+
+                    \vspace{0.05cm}
+                    Con $V_{out,min} = 0$ (tutti i bit a 0):
+                    $$\text{FSR} = V_{out}(111...1) = \text{LSB} \cdot (2^N - 1)$$
+
+                    \vspace{0.1cm}
+                    \textbf{Relazione:}
+                    $$\boxed{\text{LSB} = \frac{\text{FSR}}{2^N - 1}}$$
+                }}
+
+                \vspace{0.15cm}
                 \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
                     \textbf{Nota:} Pi\`u biforcazioni $\Rightarrow$ corrente \textbf{esponenzialmente} pi\`u piccola
 
