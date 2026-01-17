@@ -2472,9 +2472,9 @@
                 \textbf{Impedenza del condensatore:}
 
                 \vspace{0.1cm}
-                $$Z_C(j\omega) = \frac{1}{j\omega C} = \frac{-j}{\omega C}$$
+                $$Z_C(s) = \frac{1}{sC}$$
 
-                Con modulo: $|Z_C| = \frac{1}{\omega C}$ e fase: $\angle Z_C = -90^\circ$
+                {\footnotesize Con $s = j\omega$: modulo $|Z_C| = \frac{1}{\omega C}$, fase $\angle Z_C = -90^\circ$}
 
                 \vspace{0.2cm}
                 \colorbox{red!20}{\parbox{0.95\linewidth}{
@@ -2520,7 +2520,7 @@
                 \textbf{1. C in PARALLELO con R:}
 
                 \vspace{0.05cm}
-                $$Z(j\omega) = \frac{R \cdot \frac{1}{j\omega C}}{R + \frac{1}{j\omega C}} = \frac{R}{1 + j\omega RC}$$
+                $$Z(s) = \frac{R \cdot \frac{1}{sC}}{R + \frac{1}{sC}} = \frac{R}{1 + sRC}$$
 
                 \vspace{0.05cm}
                 \colorbox{green!20}{\parbox{0.95\linewidth}{\tiny
@@ -2537,7 +2537,7 @@
                 \textbf{2. C in SERIE con R:}
 
                 \vspace{0.05cm}
-                $$Z(j\omega) = R + \frac{1}{j\omega C} = \frac{1 + j\omega RC}{j\omega C}$$
+                $$Z(s) = R + \frac{1}{sC} = \frac{1 + sRC}{sC}$$
 
                 \vspace{0.05cm}
                 Zero in: $\omega_z = \frac{1}{RC}$
@@ -2592,6 +2592,22 @@
 
                 \small
                 Data una funzione di trasferimento generica come $T(s) = \frac{V_{out}}{I_{in}}$, portala in forma:
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Trasferimento vs Guadagno:}
+
+                    \vspace{0.05cm}
+                    • \textbf{Guadagno} = numero \textbf{puro} (adimensionale): $\frac{V_{out}}{V_{in}}$
+
+                    \vspace{0.03cm}
+                    • \textbf{Trasferimento} = ha \textbf{unit\`a di misura}: es. $\frac{V_{out}}{I_{in}}$ [$\Omega$]
+
+                    \vspace{0.05cm}
+                    Es: amplificatore a \textbf{transimpedenza} ha trasferimento in $\Omega$
+                }}
+
+                \vspace{0.1cm}
 
                 \vspace{0.05cm}
                 $$T(s) = K \cdot s^n \cdot \frac{(1 + s\tau_{z1})(1 + s\tau_{z2})\cdots}{(1 + s\tau_{p1})(1 + s\tau_{p2})\cdots}$$
@@ -3071,6 +3087,26 @@
                     • Pendenza iniziale \textbf{$-20$ dB/dec}
 
                     • Stesso punto di partenza: $(\omega_0 = 1/\tau_0, 0\text{ dB})$
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{magenta!20}{\parbox{0.95\linewidth}{
+                    \textbf{FASE con singolarit\`a in zero:}
+
+                    \vspace{0.1cm}
+                    \textbf{Zero nell'origine} ($s^n$ al numeratore):
+
+                    \vspace{0.05cm}
+                    Fase iniziale: $\boxed{+90^\circ \cdot n}$ (costante $\forall \omega$)
+
+                    \vspace{0.1cm}
+                    \textbf{Polo nell'origine} ($s^n$ al denominatore):
+
+                    \vspace{0.05cm}
+                    Fase iniziale: $\boxed{-90^\circ \cdot n}$ (costante $\forall \omega$)
+
+                    \vspace{0.1cm}
+                    {\footnotesize Poi aggiungi i contributi dei poli/zeri normali ($\pm 90^\circ$ ciascuno)}
                 }}
 
             \end{minipage}
@@ -3571,6 +3607,17 @@
                     Ricorda: $\text{GBW} = A_0 \cdot \omega_p = A_0 / \tau_0$
                 }}
 
+                \vspace{0.15cm}
+                \colorbox{gray!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Calcolo analitico di $G_{id}$:}
+
+                    \vspace{0.05cm}
+                    Se richiesto esplicitamente, pu\`o portare a \textbf{equazioni di 2° grado in $s$} (conti lunghi).
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Raramente richiesto all'esame.
+                }}
+
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Guadagno Reale - Intersezioni};
@@ -3656,6 +3703,42 @@
 
                     \vspace{0.05cm}
                     \textbf{Regola:} Pi\`u alto il PM, pi\`u stabile il sistema
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!40}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ SISTEMA CON 2 POLI PRIMA DI $f_c$:}
+
+                    \vspace{0.05cm}
+                    Se $f_c$ viene \textbf{dopo} entrambi i poli (cio\`e $f_{p1}, f_{p2} < f_c$):
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Sistema \textbf{SICURAMENTE INSTABILE}
+
+                    \vspace{0.05cm}
+                    {\tiny (fase gi\`a a $-180°$ prima del taglio)}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ $f_c$ a meno di 1 decade dal 2° polo:}
+
+                    \vspace{0.05cm}
+                    Se $f_{p1} < f_c < f_{p2}$ ma $f_c < 10 \cdot f_{p2}$:
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Il grafico \textbf{ideale} della fase \textbf{NON \`e affidabile!}
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Devi calcolare il \textbf{PM analiticamente} con gli $\arctan$
+
+                    \vspace{0.1cm}
+                    \textbf{Verifica:} $f_c > 10 \cdot f_{p2}$? $\Rightarrow$ OK grafico ideale
+
+                    \vspace{0.05cm}
+                    Es: $f_{p2} = 15.92$ kHz $\Rightarrow$ serve $f_c > 159.2$ kHz
+
+                    Se $f_c = 90.9$ kHz $<$ 159.2 kHz $\Rightarrow$ \textbf{calcolo analitico!}
                 }}
 
                 \vspace{0.15cm}
@@ -4092,7 +4175,7 @@
 
                 \vspace{0.2cm}
                 \textbf{Esempio pratico:}
-
+ 
                 \vspace{0.05cm}
                 OpAmp con SR = 1 V/$\mu$s, segnale con $V_{\text{max}}$ = 10 V
 
@@ -4181,6 +4264,124 @@
         };
         %------------ Risposta al Gradino Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Risposta al Gradino - Sistema 1$^\circ$ Ordine};
+    \end{tikzpicture}
+
+    \newpage
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC R2R ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{blue!20}{\parbox{0.95\linewidth}{
+                    \textbf{DAC (Digital-to-Analog Converter)}
+
+                    \vspace{0.05cm}
+                    Converte un segnale \textbf{digitale} (N bit) in un segnale \textbf{analogico} (tensione o corrente proporzionale).
+                }}
+
+                \vspace{0.2cm}
+                \textbf{DAC R-2R (Resistor Ladder)}
+
+                \vspace{0.1cm}
+                Rete a scala con sole resistenze di valore $R$ e $2R$.
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Principio: Biforcazione delle Correnti}
+
+                    \vspace{0.1cm}
+                    Ad ogni nodo la corrente si \textbf{divide a met\`a}:
+
+                    \vspace{0.05cm}
+                    • 1 biforcazione: $I \to \frac{I}{2}$
+
+                    • 2 biforcazioni: $I \to \frac{I}{4}$
+
+                    • 3 biforcazioni: $I \to \frac{I}{8}$
+
+                    • $n$ biforcazioni: $I \to \frac{I}{2^n}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ TRUCCO: Rinomina la corrente!}
+
+                    \vspace{0.1cm}
+                    Per evitare frazioni, chiama la corrente in uscita (quella che va verso $V$ con $R$) con un multiplo di $2^n$:
+
+                    \vspace{0.1cm}
+                    \textbf{Esempio con 3 biforcazioni:}
+
+                    \vspace{0.05cm}
+                    Invece di $I_{out} = \frac{I}{8}$, chiama $I_{out} = 8I$
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Le correnti ai nodi saranno $8I$, $4I$, $2I$, $I$ (numeri interi!)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Procedimento di calcolo:}
+
+                    \vspace{0.1cm}
+                    1. Calcola la \textbf{resistenza equivalente} vista dal generatore $V$
+
+                    \vspace{0.05cm}
+                    2. Se c'\`e una $R$ in serie sotto, sommala a $R_{eq}$
+
+                    \vspace{0.05cm}
+                    3. Calcola $I = \frac{V}{R_{tot}}$
+
+                    \vspace{0.05cm}
+                    4. Segui le biforcazioni per trovare $I_{out}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{Deviatori (Switch):}
+
+                    \vspace{0.05cm}
+                    • $S_i = 1$ $\Rightarrow$ deviatore \textbf{CHIUSO} (corrente passa)
+
+                    • $S_i = 0$ $\Rightarrow$ deviatore \textbf{APERTO} (corrente non passa)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!30}{\parbox{0.95\linewidth}{
+                    \textbf{Formula $V_{out}$ (DAC R-2R a 3 bit):}
+
+                    \vspace{0.1cm}
+                    $$V_{out} = -I_F \cdot R_F$$
+
+                    dove $I_F$ = corrente di feedback:
+
+                    \vspace{0.05cm}
+                    $$I_F = I \cdot S_0 + 2I \cdot S_1 + 4I \cdot S_2$$
+
+                    \vspace{0.1cm}
+                    Quindi:
+                    $$\boxed{V_{out} = -I \cdot R_F \cdot (S_0 + 2S_1 + 4S_2)}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize I ``$+$'' funzionano come OR: solo i bit a 1 contribuiscono!}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Nota:} Pi\`u biforcazioni $\Rightarrow$ corrente \textbf{esponenzialmente} pi\`u piccola
+
+                    \vspace{0.05cm}
+                    Questo permette la \textbf{pesatura binaria} dei bit!
+                }}
+
+            \end{minipage}
+        };
+        %------------ DAC R2R Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC R-2R (Resistor Ladder)};
     \end{tikzpicture}
 
 
