@@ -4505,18 +4505,20 @@
                 \textbf{DNL (Differential Non-Linearity)}
 
                 \vspace{0.15cm}
-                Misura quanto ogni \textbf{step} della caratteristica reale si discosta dallo step ideale (1 LSB).
+                Misura lo \textbf{scostamento} tra il gradino reale e quello ideale nella caratteristica $V_{out}$ vs $S_{in}$.
 
                 \vspace{0.15cm}
                 \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    \textbf{Definizione:}
+                    \textbf{DNL Assoluta} (in Volt):
 
                     \vspace{0.1cm}
-                    Per ogni transizione da word $k$ a word $k+1$:
-                    $$\boxed{\text{DNL}(k) = \frac{V_{out}(k+1) - V_{out}(k)}{\text{LSB}_{ideale}} - 1}$$
+                    $$\boxed{\text{DNL}_{ass}(i) = V_{out}(i) - V_{out}(i-1) - \text{LSB}}$$
 
-                    \vspace{0.05cm}
-                    Espresso in \textbf{LSB ideali}
+                    \vspace{0.1cm}
+                    \textbf{DNL Relativa} (in LSB):
+
+                    \vspace{0.1cm}
+                    $$\boxed{\text{DNL}_{rel}(i) = \frac{\text{DNL}_{ass}(i)}{\text{LSB}}}$$
                 }}
 
                 \vspace{0.15cm}
@@ -4540,41 +4542,89 @@
                         \draw[dashed, gray] (0.5,0.5) -- (4,3.5);
                         \node[gray, anchor=west] at (4.1,3.5) {\tiny ideale};
 
-                        % Caratteristica reale (punti)
+                        % Caratteristica reale (punti) - errore sui dispari
                         \filldraw[blue] (0.5,0.5) circle (2pt);
-                        \filldraw[blue] (1.5,1.6) circle (2pt);
-                        \filldraw[blue] (2.5,2.3) circle (2pt);
-                        \filldraw[blue] (3.5,3.4) circle (2pt);
+                        \filldraw[red] (1.5,1.3) circle (2pt);
+                        \filldraw[blue] (2.5,2.5) circle (2pt);
+                        \filldraw[red] (3.5,3.3) circle (2pt);
 
-                        % Step reali
-                        \draw[blue, thick] (0.5,0.5) -- (1.5,0.5) -- (1.5,1.6);
-                        \draw[blue, thick] (1.5,1.6) -- (2.5,1.6) -- (2.5,2.3);
-                        \draw[blue, thick] (2.5,2.3) -- (3.5,2.3) -- (3.5,3.4);
-
-                        % Annotazione DNL
-                        \draw[<->, red, thick] (1.7,0.5) -- (1.7,1.6);
-                        \node[red, anchor=west] at (1.8,1.05) {\tiny step reale};
+                        % Annotazione errore
+                        \draw[<->, red, thick] (1.5,1.5) -- (1.5,1.3);
+                        \node[red, anchor=west] at (1.6,1.4) {\tiny $\Delta V$};
                     \end{tikzpicture}
                 \end{center}
 
-                \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Interpretazione:}
+            \end{minipage}
+        };
+        %------------ DAC DNL Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - DNL (1/2)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC - DNL (continua) ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Calcolo pratico:}
+
+                    \vspace{0.1cm}
+                    Se l'errore \`e su un \textbf{pattern} (es. tutti i dispari):
 
                     \vspace{0.05cm}
-                    • DNL $= 0$ $\Rightarrow$ step perfetto (= 1 LSB)
+                    1. Calcola $V_{out}$ per \textbf{un solo caso} (es. word = 1)
 
-                    • DNL $> 0$ $\Rightarrow$ step pi\`u grande del dovuto
+                    2. Trova $\text{DNL}_{ass} = V_{out,reale}(1) - V_{out,ideale}(1)$
 
-                    • DNL $< 0$ $\Rightarrow$ step pi\`u piccolo del dovuto
+                    3. Dividi per LSB $\Rightarrow$ $\text{DNL}_{rel}$
 
-                    • DNL $= -1$ $\Rightarrow$ \textbf{missing code} (step = 0)
+                    \vspace{0.1cm}
+                    {\footnotesize \textbf{Nota:} La word 0 \textbf{non si calcola} (nessun gradino precedente)}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ ATTENZIONE ai gradini di ``ritorno'':}
+
+                    \vspace{0.1cm}
+                    Se da 0$\to$1 ho un gradino di $-\Delta V$ (es. $-100$ mV):
+
+                    \vspace{0.05cm}
+                    • $V_{out}(1)$ \`e \textbf{sotto} la retta ideale
+
+                    \vspace{0.1cm}
+                    Quando passo da 1$\to$2 (e 2 \`e \textbf{corretto}):
+
+                    \vspace{0.05cm}
+                    • Devo ``recuperare'' il $\Delta V$ perso!
+
+                    • Il gradino 1$\to$2 sar\`a di $+\Delta V$ rispetto all'ideale
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ \textbf{DNL alternata}: $-\Delta V$, $+\Delta V$, $-\Delta V$, ...
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Interpretazione DNL:}
+
+                    \vspace{0.05cm}
+                    • $\text{DNL}_{rel} = 0$ $\Rightarrow$ gradino perfetto
+
+                    • $\text{DNL}_{rel} > 0$ $\Rightarrow$ gradino pi\`u grande
+
+                    • $\text{DNL}_{rel} < 0$ $\Rightarrow$ gradino pi\`u piccolo
+
+                    • $\text{DNL}_{rel} = -1$ $\Rightarrow$ \textbf{missing code}
                 }}
 
             \end{minipage}
         };
         %------------ DAC DNL Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - DNL (Differential Non-Linearity)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - DNL (2/2)};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4655,6 +4705,222 @@
         };
         %------------ DAC Dinamica Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - Dinamica Transizioni (OpAmp reale)};
+    \end{tikzpicture}
+
+    \newpage
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC a Correnti Pesate ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{blue!20}{\parbox{0.95\linewidth}{
+                    \textbf{DAC a Correnti Pesate}
+
+                    \vspace{0.05cm}
+                    Ogni bit controlla un \textbf{generatore di corrente} con peso binario. Le correnti vengono sommate e convertite in tensione.
+                }}
+
+                \vspace{0.2cm}
+                \textbf{Principio di funzionamento:}
+
+                \vspace{0.1cm}
+                Ogni bit $S_i$ attiva un generatore di corrente $I_i$:
+                $$I_i = 2^i \cdot I_{LSB}$$
+
+                dove $I_{LSB}$ = corrente del bit meno significativo.
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Corrente totale:}
+
+                    \vspace{0.1cm}
+                    $$I_{tot} = I_{LSB} \cdot (S_0 \cdot 2^0 + S_1 \cdot 2^1 + \cdots + S_{N-1} \cdot 2^{N-1})$$
+
+                    \vspace{0.1cm}
+                    Semplificando:
+                    $$\boxed{I_{tot} = I_{LSB} \cdot \sum_{i=0}^{N-1} S_i \cdot 2^i}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Formula $V_{out}$:}
+
+                    \vspace{0.1cm}
+                    Con OpAmp in configurazione transimpedenza:
+                    $$\boxed{V_{out} = -I_{tot} \cdot R_F}$$
+
+                    \vspace{0.05cm}
+                    $$V_{out} = -I_{LSB} \cdot R_F \cdot (S_0 + 2S_1 + 4S_2 + \cdots)$$
+                }}
+
+            \end{minipage}
+        };
+        %------------ DAC Correnti Pesate Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC a Correnti Pesate};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC Correnti Pesate - Deviatori e Vout ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{Deviatori (Switch):}
+
+                    \vspace{0.05cm}
+                    • $S_i = 1$ $\Rightarrow$ corrente $I_i$ va verso il \textbf{sommatore}
+
+                    • $S_i = 0$ $\Rightarrow$ corrente $I_i$ va verso \textbf{massa}
+
+                    \vspace{0.1cm}
+                    \textbf{Nota:} Le correnti scorrono \textbf{sempre}, cambiano solo direzione!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ Se una corrente cambia (es. $I_2 \to I_2'$):}
+
+                    \vspace{0.1cm}
+                    • Solo il contributo di quel bit cambia
+
+                    • Gli altri bit \textbf{non sono influenzati}
+
+                    \vspace{0.1cm}
+                    \textbf{Errore:} $\Delta V = (I_2' - I_2) \cdot R_F \cdot S_2$
+
+                    \vspace{0.1cm}
+                    \textbf{$\bigstar$ L'errore c'\`e SOLO se $S_i = 1$!}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{FSR e LSB:}
+
+                    \vspace{0.1cm}
+                    $$\text{LSB} = I_{LSB} \cdot R_F$$
+                    $$\text{FSR} = \text{LSB} \cdot 2^N$$
+                }}
+
+            \end{minipage}
+        };
+        %------------ DAC Correnti Pesate Deviatori Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - Deviatori};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC Correnti Pesate - DNL ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{DNL nel DAC a Correnti Pesate}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{DNL Assoluta} (in Volt):
+
+                    \vspace{0.1cm}
+                    $$\boxed{\text{DNL}_{ass}(i) = V_{out}(i) - V_{out}(i-1) - \text{LSB}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{DNL Relativa} (in LSB):
+
+                    \vspace{0.1cm}
+                    $$\boxed{\text{DNL}_{rel}(i) = \frac{\text{DNL}_{ass}(i)}{\text{LSB}}}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Calcolo pratico:}
+
+                    \vspace{0.1cm}
+                    Se una corrente $I_k$ \`e errata:
+
+                    \vspace{0.05cm}
+                    • L'errore appare su tutte le word con $S_k = 1$
+
+                    • Basta calcolare $V_{out}$ per \textbf{una} word con $S_k = 1$
+
+                    \vspace{0.1cm}
+                    {\footnotesize \textbf{Nota:} La word 0 \textbf{non si calcola}}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ Gradini di ``ritorno'':}
+
+                    \vspace{0.1cm}
+                    Stesso principio del DAC R-2R:
+
+                    \vspace{0.05cm}
+                    Se 0$\to$1 ha DNL $= -\Delta V$, allora 1$\to$2 (se corretto) ha DNL $= +\Delta V$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ \textbf{DNL alternata} sui pattern affetti
+                }}
+
+            \end{minipage}
+        };
+        %------------ DAC Correnti Pesate DNL Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - DNL};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC Correnti Pesate - Dinamica ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Dinamica delle Transizioni}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Caso ideale:} transizione istantanea
+
+                    \vspace{0.1cm}
+                    \textbf{Caso reale:} OpAmp con guadagno finito e polo
+                    $$A(s) = \frac{A_0}{1 + s\tau_0}$$
+
+                    $\Rightarrow$ Transizione esponenziale con $\tau = \tau_0$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Transizione:}
+                    $$V_{out}(t) = V_{finale} \cdot \left(1 - e^{-t/\tau_0}\right)$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ Configurazione influenza $G_{loop}$:}
+
+                    \vspace{0.05cm}
+                    Al cambiare della \textbf{word}, cambia l'impedenza vista dall'OpAmp.
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Cambia $G_{loop}$ $\Rightarrow$ Cambia $G_{reale}$
+
+                    $\Rightarrow$ Cambiano i \textbf{tempi di propagazione}!
+
+                    \vspace{0.05cm}
+                    \textbf{Conseguenza:} Settling time \textbf{dipende dalla word}
+                }}
+
+            \end{minipage}
+        };
+        %------------ DAC Correnti Pesate Dinamica Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - Dinamica};
     \end{tikzpicture}
 
 
