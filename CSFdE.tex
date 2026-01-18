@@ -2814,37 +2814,31 @@
                 Guarda $G(s)$ e identifica \textbf{col dito} questi tre elementi (no calcoli, solo riconoscimento):
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.97\linewidth}{
-                    \textbf{1. Il Guadagno Statico ($K$):}
+                \textbf{1. Il Guadagno Statico ($K$):}
 
-                    Raccogli tutti i numeri costanti che moltiplicano la funzione.
+                Raccogli tutti i numeri costanti che moltiplicano la funzione.
 
-                    $\Rightarrow$ Determina l'\textbf{altezza verticale} del grafico.
-                }}
+                $\Rightarrow$ Determina l'\textbf{altezza verticale} del grafico.
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.97\linewidth}{
-                    \textbf{2. I Termini Binomiali $(1 + s\tau)$} (singolarit\`a standard):
+                \textbf{2. I Termini Binomiali $(1 + s\tau)$} (singolarit\`a standard):
 
-                    \vspace{0.05cm}
-                    • Se \`e al \textbf{NUMERATORE}: \`e uno \textbf{ZERO} (grafico \textbf{sale})
+                \vspace{0.05cm}
+                • Se \`e al \textbf{NUMERATORE}: \`e uno \textbf{ZERO} (grafico \textbf{sale})
 
-                    • Se \`e al \textbf{DENOMINATORE}: \`e un \textbf{POLO} (grafico \textbf{scende})
-                }}
+                • Se \`e al \textbf{DENOMINATORE}: \`e un \textbf{POLO} (grafico \textbf{scende})
 
                 \vspace{0.1cm}
-                \colorbox{cyan!20}{\parbox{0.97\linewidth}{
-                    \textbf{3. La ``S'' Isolata ($s^n$):}
+                \textbf{3. La ``S'' Isolata ($s^n$):}
 
-                    Cerca le $s$ che \textbf{NON} sono sommate a 1 (es: $s$, $s^2$, $1/s$, $1/s^2$)
+                Cerca le $s$ che \textbf{NON} sono sommate a 1 (es: $s$, $s^2$, $1/s$, $1/s^2$)
 
-                    \vspace{0.05cm}
-                    • Se al \textbf{NUMERATORE} ($s$, $s^2$): hai $n$ \textbf{Zeri nell'origine}
+                \vspace{0.05cm}
+                • Se al \textbf{NUMERATORE} ($s$, $s^2$): hai $n$ \textbf{Zeri nell'origine}
 
-                    • Se al \textbf{DENOMINATORE} ($1/s$, $1/s^2$): hai $n$ \textbf{Poli nell'origine}
+                • Se al \textbf{DENOMINATORE} ($1/s$, $1/s^2$): hai $n$ \textbf{Poli nell'origine}
 
-                    • Se \textbf{non c'\`e}: $n = 0$
-                }}
+                • Se \textbf{non c'\`e}: $n = 0$
 
                 \vspace{0.25cm}
                 \textbf{\underline{PASSO 2: Calcolo delle Frequenze di Taglio}}
@@ -2865,41 +2859,37 @@
                 Decidi come \textbf{inizia} il grafico a sinistra. Guarda solo la ``S'' Isolata (Passo 1, punto 3).
 
                 \vspace{0.1cm}
-                \colorbox{orange!25}{\parbox{0.97\linewidth}{
-                    \textbf{CASO A: Nessuna ``S'' Isolata} (singolarit\`a NON in zero)
+                \textbf{CASO A: Nessuna ``S'' Isolata} (singolarit\`a NON in zero)
 
-                    \vspace{0.05cm}
-                    • \textbf{Comportamento:} Il grafico parte \textbf{PIATTO} (orizzontale)
+                \vspace{0.05cm}
+                • \textbf{Comportamento:} Il grafico parte \textbf{PIATTO} (orizzontale)
 
-                    • \textbf{Valore di partenza:} Converti $K$ da lineare a dB:
+                • \textbf{Valore di partenza:} Converti $K$ da lineare a dB:
 
-                    $$\boxed{|K|_{\text{dB}} = 20 \log_{10}(|K|_{\text{lin}})}$$
+                $$\boxed{|K|_{\text{dB}} = 20 \log_{10}(|K|_{\text{lin}})}$$
 
-                    • \textbf{Azione:} Disegna retta orizzontale fino alla prima freq. $f_1$
-                }}
+                • \textbf{Azione:} Disegna retta orizzontale fino alla prima freq. $f_1$
 
                 \vspace{0.1cm}
-                \colorbox{red!15}{\parbox{0.97\linewidth}{
-                    \textbf{CASO B: Presenza di ``S'' Isolata} (singolarit\`a IN zero)
+                \textbf{CASO B: Presenza di ``S'' Isolata} (singolarit\`a IN zero)
 
-                    \vspace{0.05cm}
-                    • \textbf{Comportamento:} Il grafico parte \textbf{IN PENDENZA}
+                \vspace{0.05cm}
+                • \textbf{Comportamento:} Il grafico parte \textbf{IN PENDENZA}
 
-                    \hspace{0.3cm} -- Zero in origine ($s$): parte \textbf{salendo} (+20 dB/dec)
+                \hspace{0.3cm} -- Zero in origine ($s$): parte \textbf{salendo} (+20 dB/dec)
 
-                    \hspace{0.3cm} -- Polo in origine ($1/s$): parte \textbf{scendendo} (-20 dB/dec)
+                \hspace{0.3cm} -- Polo in origine ($1/s$): parte \textbf{scendendo} (-20 dB/dec)
 
-                    \vspace{0.1cm}
-                    • \textbf{Punto di Ancoraggio (IL TRUCCO):}
+                \vspace{0.1cm}
+                • \textbf{Punto di Ancoraggio (IL TRUCCO):}
 
-                    \hspace{0.3cm} Non calcolare la retta iniziale (difficile!)
+                \hspace{0.3cm} Non calcolare la retta iniziale (difficile!)
 
-                    \hspace{0.3cm} Scegli $f_{test}$ \textbf{dopo} la prima singolarit\`a o nel ``centro banda''
+                \hspace{0.3cm} Scegli $f_{test}$ \textbf{dopo} la prima singolarit\`a o nel ``centro banda''
 
-                    \hspace{0.3cm} Calcola il modulo con $s = j 2\pi f_{test}$
+                \hspace{0.3cm} Calcola il modulo con $s = j 2\pi f_{test}$
 
-                    \hspace{0.3cm} Segna quel punto e usalo come \textbf{perno} per le pendenze
-                }}
+                \hspace{0.3cm} Segna quel punto e usalo come \textbf{perno} per le pendenze
 
                 \vspace{0.25cm}
                 \textbf{\underline{PASSO 4: Tracciamento Dinamico (Disegno)}}
@@ -2908,23 +2898,21 @@
                 Percorri l'asse delle frequenze da \textbf{sinistra a destra}:
 
                 \vspace{0.1cm}
-                \colorbox{purple!15}{\parbox{0.97\linewidth}{
-                    1. Avanza fino alla prima frequenza $f_1$
+                1. Avanza fino alla prima frequenza $f_1$
 
-                    \vspace{0.05cm}
-                    2. \textbf{Applica la modifica:}
+                \vspace{0.05cm}
+                2. \textbf{Applica la modifica:}
 
-                    \hspace{0.3cm} • Se $f_1$ era un \textbf{POLO}: \textbf{sottrai} 20 alla pendenza
+                \hspace{0.3cm} • Se $f_1$ era un \textbf{POLO}: \textbf{sottrai} 20 alla pendenza
 
-                    \hspace{0.5cm} (es: eri piatto 0 $\to$ diventi -20 dB/dec)
+                \hspace{0.5cm} (es: eri piatto 0 $\to$ diventi -20 dB/dec)
 
-                    \hspace{0.3cm} • Se $f_1$ era uno \textbf{ZERO}: \textbf{aggiungi} 20 alla pendenza
+                \hspace{0.3cm} • Se $f_1$ era uno \textbf{ZERO}: \textbf{aggiungi} 20 alla pendenza
 
-                    \hspace{0.5cm} (es: scendevi -20 $\to$ diventi piatto 0)
+                \hspace{0.5cm} (es: scendevi -20 $\to$ diventi piatto 0)
 
-                    \vspace{0.05cm}
-                    3. Prosegui fino a $f_2$ e \textbf{ripeti}
-                }}
+                \vspace{0.05cm}
+                3. Prosegui fino a $f_2$ e \textbf{ripeti}
 
             \end{minipage}
         };
@@ -3018,19 +3006,17 @@
                 }}
 
                 \vspace{0.2cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    \textbf{Esempio pratico:}
+                \textbf{Esempio pratico:}
 
-                    \vspace{0.05cm}
-                    Plateau a $G = 100$ che finisce in polo a $f = 1$ kHz.
+                \vspace{0.05cm}
+                Plateau a $G = 100$ che finisce in polo a $f = 1$ kHz.
 
-                    A che frequenza taglio l'asse 0 dB scendendo?
+                A che frequenza taglio l'asse 0 dB scendendo?
 
-                    \vspace{0.1cm}
-                    Uso regola discesa: $G_1 \cdot f_1 = G_2 \cdot f_2$
+                \vspace{0.1cm}
+                Uso regola discesa: $G_1 \cdot f_1 = G_2 \cdot f_2$
 
-                    $$100 \cdot 1\text{k} = 1 \cdot f_x \Rightarrow \boxed{f_x = 100 \text{ kHz}}$$
-                }}
+                $$100 \cdot 1\text{k} = 1 \cdot f_x \Rightarrow \boxed{f_x = 100 \text{ kHz}}$$
 
             \end{minipage}
         };
@@ -3062,32 +3048,28 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    \textbf{2. Traccia la retta con pendenza $+20$ dB/dec}
+                \textbf{2. Traccia la retta con pendenza $+20$ dB/dec}
 
-                    \vspace{0.05cm}
-                    passante per il punto $(\omega_0, 0\text{ dB})$
-                }}
+                \vspace{0.05cm}
+                passante per il punto $(\omega_0, 0\text{ dB})$
 
                 \vspace{0.15cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{
-                    \textbf{3. Aggiungi i contributi di poli/zeri:}
+                \textbf{3. Aggiungi i contributi di poli/zeri:}
 
-                    \vspace{0.05cm}
-                    • A $\omega_{z1} = 1/\tau_{z1}$: pendenza $+20$ dB/dec
+                \vspace{0.05cm}
+                • A $\omega_{z1} = 1/\tau_{z1}$: pendenza $+20$ dB/dec
 
-                    • A $\omega_{p1} = 1/\tau_{p1}$: pendenza $-20$ dB/dec
-                }}
+                • A $\omega_{p1} = 1/\tau_{p1}$: pendenza $-20$ dB/dec
 
                 \vspace{0.2cm}
-                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{$\triangle$ Se polo nell'origine} (es. $\frac{1}{s\tau_0}$):
+                {\footnotesize
+                \textbf{$\triangle$ Se polo nell'origine} (es. $\frac{1}{s\tau_0}$):
 
-                    \vspace{0.05cm}
-                    • Pendenza iniziale \textbf{$-20$ dB/dec}
+                \vspace{0.05cm}
+                • Pendenza iniziale \textbf{$-20$ dB/dec}
 
-                    • Stesso punto di partenza: $(\omega_0 = 1/\tau_0, 0\text{ dB})$
-                }}
+                • Stesso punto di partenza: $(\omega_0 = 1/\tau_0, 0\text{ dB})$
+                }
 
                 \vspace{0.2cm}
                 \colorbox{magenta!20}{\parbox{0.95\linewidth}{
@@ -3134,9 +3116,7 @@
                 • Se $K < 0$ (cioè $T(0) < 0$): fase $= -180^\circ$
 
                 \vspace{0.05cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\tiny
-                    Se $T(0) < 0$, parti da $-180^\circ$ e somma i contributi
-                }}
+                {\tiny Se $T(0) < 0$, parti da $-180^\circ$ e somma i contributi}
 
                 \vspace{0.15cm}
                 \textbf{2. Contributo di $s^n$:}
@@ -3251,11 +3231,11 @@
                 $$\omega_0 = \omega_1 \cdot |T(\omega_1)|^{20/m}$$
 
                 \vspace{0.05cm}
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\tiny
-                    \textbf{ATTENZIONE:} $|T(\omega_1)|$ in \textbf{scala LINEARE}, non in dB!
+                {\tiny
+                \textbf{ATTENZIONE:} $|T(\omega_1)|$ in \textbf{scala LINEARE}, non in dB!
 
-                    Se hai il valore in dB: $|T| = 10^{(\text{dB}/20)}$
-                }}
+                Se hai il valore in dB: $|T| = 10^{(\text{dB}/20)}$
+                }
 
                 \vspace{0.1cm}
                 \textbf{3.} Confronta $\omega_0$ con la singolarità $\omega_s$:
@@ -3292,12 +3272,12 @@
                 $$\omega_0 = \frac{\omega_1}{|T(\omega_1)|}$$
 
                 \vspace{0.2cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{$\bigstar$ UTILITÀ PRATICA}
+                {\footnotesize
+                \textbf{$\bigstar$ UTILITÀ PRATICA}
 
-                    \vspace{0.05cm}
-                    Questo metodo evita di dover disegnare con precisione il diagramma per capire l'ordine di intersezione e singolarità, garantendo il tracciamento corretto dopo entrambi i punti.
-                }}
+                \vspace{0.05cm}
+                Questo metodo evita di dover disegnare con precisione il diagramma per capire l'ordine di intersezione e singolarità, garantendo il tracciamento corretto dopo entrambi i punti.
+                }
 
             \end{minipage}
         };
@@ -3373,16 +3353,16 @@
                 4. Converti in dB: $20\log_{10}|T(j\omega)|$
 
                 \vspace{0.2cm}
-                \colorbox{blue!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Regola pratica:}
+                {\footnotesize
+                \textbf{Regola pratica:}
 
-                    \vspace{0.05cm}
-                    • Lontano → diagramma sintotico (veloce)
+                \vspace{0.05cm}
+                • Lontano → diagramma sintotico (veloce)
 
-                    • Esattamente sopra → $\pm 3$ dB, $\pm 45^\circ$ (immediato)
+                • Esattamente sopra → $\pm 3$ dB, $\pm 45^\circ$ (immediato)
 
-                    • Vicino → numeri complessi (calcolo esatto)
-                }}
+                • Vicino → numeri complessi (calcolo esatto)
+                }
 
             \end{minipage}
         };
@@ -3471,24 +3451,22 @@
                 $$\boxed{G_{\text{reale}} = \frac{G_{\text{ideale}}}{1 - \frac{1}{G_{loop}}}}$$
 
                 \vspace{0.25cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
-                    \textbf{$\bigstar$ METODO GRAFICO (pi\`u veloce!)}
+                \textbf{$\bigstar$ METODO GRAFICO (pi\`u veloce!)}
 
-                    \vspace{0.1cm}
-                    \textbf{Procedimento:}
+                \vspace{0.1cm}
+                \textbf{Procedimento:}
 
-                    \vspace{0.05cm}
-                    1. Traccia il Bode del \textbf{guadagno ideale} $G_{id}$
+                \vspace{0.05cm}
+                1. Traccia il Bode del \textbf{guadagno ideale} $G_{id}$
 
-                    \vspace{0.05cm}
-                    2. Traccia il Bode del \textbf{guadagno d'andata} $G_A$
+                \vspace{0.05cm}
+                2. Traccia il Bode del \textbf{guadagno d'andata} $G_A$
 
-                    \vspace{0.05cm}
-                    3. \textbf{Per ogni frequenza}: prendi il \textbf{valore pi\`u BASSO} tra i due grafici
+                \vspace{0.05cm}
+                3. \textbf{Per ogni frequenza}: prendi il \textbf{valore pi\`u BASSO} tra i due grafici
 
-                    \vspace{0.1cm}
-                    $\Rightarrow$ Il risultato \`e il Bode del \textbf{guadagno reale}
-                }}
+                \vspace{0.1cm}
+                $\Rightarrow$ Il risultato \`e il Bode del \textbf{guadagno reale}
 
                 \vspace{0.2cm}
                 \begin{center}
@@ -3515,17 +3493,17 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Perch\'e funziona:}
+                {\footnotesize
+                \textbf{Perch\'e funziona:}
 
-                    \vspace{0.05cm}
-                    • Se $|G_{loop}| \gg 1$: $G_{reale} \approx G_{id}$
+                \vspace{0.05cm}
+                • Se $|G_{loop}| \gg 1$: $G_{reale} \approx G_{id}$
 
-                    • Se $|G_{loop}| \ll 1$: $G_{reale} \approx G_A$ (segue l'andata)
+                • Se $|G_{loop}| \ll 1$: $G_{reale} \approx G_A$ (segue l'andata)
 
-                    \vspace{0.05cm}
-                    $\Rightarrow$ Il guadagno reale \`e \textbf{limitato} dal pi\`u piccolo dei due!
-                }}
+                \vspace{0.05cm}
+                $\Rightarrow$ Il guadagno reale \`e \textbf{limitato} dal pi\`u piccolo dei due!
+                }
 
             \end{minipage}
         };
@@ -3551,17 +3529,15 @@
                 $G_A$ e $G_{id}$ hanno zeri/poli a frequenze diverse $\Rightarrow$ le intersezioni possono essere \textbf{non ovvie}.
 
                 \vspace{0.15cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{
-                    \textbf{Caso comune:}
+                \textbf{Caso comune:}
 
-                    \vspace{0.05cm}
-                    • $G_A$ sale poi diventa piatto (a un certo valore)
+                \vspace{0.05cm}
+                • $G_A$ sale poi diventa piatto (a un certo valore)
 
-                    • $G_{id}$ sale poi diventa piatto (a valore \textbf{diverso})
+                • $G_{id}$ sale poi diventa piatto (a valore \textbf{diverso})
 
-                    \vspace{0.1cm}
-                    \textbf{Domanda:} L'intersezione \`e \textbf{prima} o \textbf{dopo} il prossimo polo?
-                }}
+                \vspace{0.1cm}
+                \textbf{Domanda:} L'intersezione \`e \textbf{prima} o \textbf{dopo} il prossimo polo?
 
                 \vspace{0.15cm}
                 \textbf{Metodo per ipotesi:}
@@ -3585,38 +3561,36 @@
                 \hspace{0.3cm} Rifai con pendenza diversa (es: crescente invece che decrescente)
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    \textbf{Alla fine:}
+                \textbf{Alla fine:}
 
-                    Per ogni frequenza, evidenzia il \textbf{punto pi\`u basso} tra $G_A$ e $G_{id}$ $\Rightarrow$ ottieni $G_{reale}$
-                }}
+                Per ogni frequenza, evidenzia il \textbf{punto pi\`u basso} tra $G_A$ e $G_{id}$ $\Rightarrow$ ottieni $G_{reale}$
 
                 \vspace{0.2cm}
-                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{$\bigstar$ NOTA su $A_0$ e GBW:}
+                {\footnotesize
+                \textbf{$\bigstar$ NOTA su $A_0$ e GBW:}
 
-                    \vspace{0.05cm}
-                    Se \textbf{non viene dato} $A_0$ ma viene dato $\tau_0$:
+                \vspace{0.05cm}
+                Se \textbf{non viene dato} $A_0$ ma viene dato $\tau_0$:
 
-                    \vspace{0.05cm}
-                    • Potrebbe essere dato il \textbf{GBW} (prodotto guadagno-banda)
+                \vspace{0.05cm}
+                • Potrebbe essere dato il \textbf{GBW} (prodotto guadagno-banda)
 
-                    • Oppure c'\`e un altro modo per risolvere l'esercizio
+                • Oppure c'\`e un altro modo per risolvere l'esercizio
 
-                    \vspace{0.05cm}
-                    Ricorda: $\text{GBW} = A_0 \cdot \omega_p = A_0 / \tau_0$
-                }}
+                \vspace{0.05cm}
+                Ricorda: $\text{GBW} = A_0 \cdot \omega_p = A_0 / \tau_0$
+                }
 
                 \vspace{0.15cm}
-                \colorbox{gray!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Calcolo analitico di $G_{id}$:}
+                {\footnotesize
+                \textbf{Calcolo analitico di $G_{id}$:}
 
-                    \vspace{0.05cm}
-                    Se richiesto esplicitamente, pu\`o portare a \textbf{equazioni di 2° grado in $s$} (conti lunghi).
+                \vspace{0.05cm}
+                Se richiesto esplicitamente, pu\`o portare a \textbf{equazioni di 2° grado in $s$} (conti lunghi).
 
-                    \vspace{0.05cm}
-                    $\Rightarrow$ Raramente richiesto all'esame.
-                }}
+                \vspace{0.05cm}
+                $\Rightarrow$ Raramente richiesto all'esame.
+                }
 
             \end{minipage}
         };
@@ -3691,19 +3665,19 @@
                 }}
 
                 \vspace{0.2cm}
-                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{$\triangle$ NOTA PRATICA:}
+                {\footnotesize
+                \textbf{$\triangle$ NOTA PRATICA:}
 
-                    \vspace{0.05cm}
-                    • PM $\approx 60°$-$70°$: risposta ben smorzata
+                \vspace{0.05cm}
+                • PM $\approx 60°$-$70°$: risposta ben smorzata
 
-                    • PM $\approx 45°$: leggero overshoot
+                • PM $\approx 45°$: leggero overshoot
 
-                    • PM $< 45°$: oscillazioni/overshoot significativo
+                • PM $< 45°$: oscillazioni/overshoot significativo
 
-                    \vspace{0.05cm}
-                    \textbf{Regola:} Pi\`u alto il PM, pi\`u stabile il sistema
-                }}
+                \vspace{0.05cm}
+                \textbf{Regola:} Pi\`u alto il PM, pi\`u stabile il sistema
+                }
 
                 \vspace{0.15cm}
                 \colorbox{red!40}{\parbox{0.95\linewidth}{\footnotesize
@@ -3742,15 +3716,15 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Interpretazione grafica:}
+                {\footnotesize
+                \textbf{Interpretazione grafica:}
 
-                    \vspace{0.05cm}
-                    Il margine di fase \`e ``quanto manca'' alla fase per raggiungere $-360°$ (o $-180°$ in alcuni testi) quando il guadagno vale 0 dB.
+                \vspace{0.05cm}
+                Il margine di fase \`e ``quanto manca'' alla fase per raggiungere $-360°$ (o $-180°$ in alcuni testi) quando il guadagno vale 0 dB.
 
-                    \vspace{0.05cm}
-                    Se la fase \`e gi\`a oltre $-360°$ quando $|G| = 0$ dB $\Rightarrow$ sistema \textbf{instabile}
-                }}
+                \vspace{0.05cm}
+                Se la fase \`e gi\`a oltre $-360°$ quando $|G| = 0$ dB $\Rightarrow$ sistema \textbf{instabile}
+                }
 
             \end{minipage}
         };
@@ -3891,9 +3865,7 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{gray!20}{\parbox{0.95\linewidth}{
-                    \textbf{$A_v$ = Guadagno di tensione:} \quad $\boxed{V_{out} = A_v \cdot V_{in}}$
-                }}
+                \textbf{$A_v$ = Guadagno di tensione:} \quad $\boxed{V_{out} = A_v \cdot V_{in}}$
 
                 \vspace{0.15cm}
                 \colorbox{red!25}{\parbox{0.95\linewidth}{
@@ -3917,83 +3889,77 @@
                 \textbf{Procedimento rapido:}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
-                    \textbf{1. INVERTENTE} ($V_{in}$ su $V^-$, $V^+$ a massa)
+                \textbf{1. INVERTENTE} ($V_{in}$ su $V^-$, $V^+$ a massa)
 
-                    \vspace{0.1cm}
-                    \begin{enumerate}[leftmargin=*, itemsep=2pt]
-                        \item $V^+ = 0$ (a massa) $\Rightarrow$ $V^- = 0$ (massa virtuale)
-                        \item Corrente in $R_1$: $I = \frac{V_{in} - 0}{R_1} = \frac{V_{in}}{R_1}$
-                        \item Stessa $I$ passa in $R_f$ (no corrente in OpAmp)
-                        \item $V_{out} = 0 - I \cdot R_f = -\frac{R_f}{R_1} V_{in}$
-                    \end{enumerate}
-                }}
+                \vspace{0.1cm}
+                \begin{enumerate}[leftmargin=*, itemsep=2pt]
+                    \item $V^+ = 0$ (a massa) $\Rightarrow$ $V^- = 0$ (massa virtuale)
+                    \item Corrente in $R_1$: $I = \frac{V_{in} - 0}{R_1} = \frac{V_{in}}{R_1}$
+                    \item Stessa $I$ passa in $R_f$ (no corrente in OpAmp)
+                    \item $V_{out} = 0 - I \cdot R_f = -\frac{R_f}{R_1} V_{in}$
+                \end{enumerate}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    \textbf{2. NON INVERTENTE} ($V_{in}$ su $V^+$)
+                \textbf{2. NON INVERTENTE} ($V_{in}$ su $V^+$)
 
-                    \vspace{0.1cm}
-                    \begin{enumerate}[leftmargin=*, itemsep=2pt]
-                        \item $V^+ = V_{in}$ $\Rightarrow$ $V^- = V_{in}$
-                        \item $V^-$ sta sul partitore $R_1$-$R_f$:
-                        $$V^- = V_{out} \cdot \frac{R_1}{R_1 + R_f} = V_{in}$$
-                        \item Risolvo: $V_{out} = V_{in} \cdot \frac{R_1 + R_f}{R_1} = \left(1 + \frac{R_f}{R_1}\right) V_{in}$
-                    \end{enumerate}
-                }}
+                \vspace{0.1cm}
+                \begin{enumerate}[leftmargin=*, itemsep=2pt]
+                    \item $V^+ = V_{in}$ $\Rightarrow$ $V^- = V_{in}$
+                    \item $V^-$ sta sul partitore $R_1$-$R_f$:
+                    $$V^- = V_{out} \cdot \frac{R_1}{R_1 + R_f} = V_{in}$$
+                    \item Risolvo: $V_{out} = V_{in} \cdot \frac{R_1 + R_f}{R_1} = \left(1 + \frac{R_f}{R_1}\right) V_{in}$
+                \end{enumerate}
 
                 \vspace{0.2cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{
-                    \textbf{$R_f$ (Feedback) e $R_G$ (Ground) - Definizioni}
+                \textbf{$R_f$ (Feedback) e $R_G$ (Ground) - Definizioni}
 
-                    \vspace{0.1cm}
-                    \begin{center}
-                        \begin{circuitikz}[scale=0.55]
-                            % OpAmp
-                            \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
-                            % Rf - feedback
-                            \draw (opamp.-) -- ++(0,1) to[R, l=$R_f$, color=red!70!black] ++(2,0) -| (opamp.out);
-                            % RG - ground
-                            \draw (opamp.-) -- ++(0,-0.6) to[R, l_=$R_G$, color=blue!70!black] ++(0,-1) node[ground] {};
-                            % Labels
-                            \node[red!70!black, anchor=west] at (4.2,2.5) {\scriptsize \textbf{Feedback}};
-                            \node[blue!70!black, anchor=west] at (1.3,-0.8) {\scriptsize \textbf{Ground}};
-                            \draw (opamp.out) -- ++(0.3,0) node[right] {\scriptsize $V_{out}$};
-                            \draw (opamp.+) -- ++(-0.3,0) node[left] {\scriptsize $V_{in}$};
-                        \end{circuitikz}
-                    \end{center}
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.55]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Rf - feedback
+                        \draw (opamp.-) -- ++(0,1) to[R, l=$R_f$, color=red!70!black] ++(2,0) -| (opamp.out);
+                        % RG - ground
+                        \draw (opamp.-) -- ++(0,-0.6) to[R, l_=$R_G$, color=blue!70!black] ++(0,-1) node[ground] {};
+                        % Labels
+                        \node[red!70!black, anchor=west] at (4.2,2.5) {\scriptsize \textbf{Feedback}};
+                        \node[blue!70!black, anchor=west] at (1.3,-0.8) {\scriptsize \textbf{Ground}};
+                        \draw (opamp.out) -- ++(0.3,0) node[right] {\scriptsize $V_{out}$};
+                        \draw (opamp.+) -- ++(-0.3,0) node[left] {\scriptsize $V_{in}$};
+                    \end{circuitikz}
+                \end{center}
 
-                    \vspace{0.05cm}
-                    • \textcolor{red!70!black}{\textbf{$R_f$}} = collega $V^-$ a $V_{out}$ (chiude l'anello)
+                \vspace{0.05cm}
+                • \textcolor{red!70!black}{\textbf{$R_f$}} = collega $V^-$ a $V_{out}$ (chiude l'anello)
 
-                    • \textcolor{blue!70!black}{\textbf{$R_G$}} = collega $V^-$ a \textbf{massa} (riferimento)
+                • \textcolor{blue!70!black}{\textbf{$R_G$}} = collega $V^-$ a \textbf{massa} (riferimento)
 
-                    \vspace{0.1cm}
-                    \textit{Nota: $R_G$ \`e anche chiamata $R_1$ in molti testi}
-                }}
+                \vspace{0.1cm}
+                \textit{Nota: $R_G$ \`e anche chiamata $R_1$ in molti testi}
 
                 \vspace{0.2cm}
-                \colorbox{yellow!40}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{$\triangle$ TRUCCO MNEMONICO}
+                {\footnotesize
+                \textbf{$\triangle$ TRUCCO MNEMONICO}
 
-                    \vspace{0.05cm}
-                    • \textbf{Invertente}: segnale entra sul ``$-$'' $\Rightarrow$ guadagno con ``$-$''
+                \vspace{0.05cm}
+                • \textbf{Invertente}: segnale entra sul ``$-$'' $\Rightarrow$ guadagno con ``$-$''
 
-                    • \textbf{Non Inv.}: segnale entra sul ``$+$'' $\Rightarrow$ guadagno $\geq 1$ (positivo)
+                • \textbf{Non Inv.}: segnale entra sul ``$+$'' $\Rightarrow$ guadagno $\geq 1$ (positivo)
 
-                    \vspace{0.1cm}
-                    \textbf{Formula universale (non inv.):} $\boxed{A_v = 1 + \frac{R_{feedback}}{R_{GND}}}$
-                }}
+                \vspace{0.1cm}
+                \textbf{Formula universale (non inv.):} $\boxed{A_v = 1 + \frac{R_{feedback}}{R_{GND}}}$
+                }
 
                 \vspace{0.15cm}
-                \colorbox{purple!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Caso misto (sommatore):}
+                {\footnotesize
+                \textbf{Caso misto (sommatore):}
 
-                    Se ci sono \textbf{pi\`u ingressi} su $V^-$ attraverso resistenze diverse:
-                    $$V_{out} = -R_f \left(\frac{V_1}{R_1} + \frac{V_2}{R_2} + \cdots\right)$$
+                Se ci sono \textbf{pi\`u ingressi} su $V^-$ attraverso resistenze diverse:
+                $$V_{out} = -R_f \left(\frac{V_1}{R_1} + \frac{V_2}{R_2} + \cdots\right)$$
 
-                    Ogni ingresso contribuisce con il proprio rapporto $-\frac{R_f}{R_i}$
-                }}
+                Ogni ingresso contribuisce con il proprio rapporto $-\frac{R_f}{R_i}$
+                }
 
             \end{minipage}
         };
@@ -4247,18 +4213,18 @@
                 • Dopo $t = 5\tau$ l'uscita raggiunge $\approx 99\%$ del valore finale
 
                 \vspace{0.2cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{
-                    \textbf{Caso con due poli (raro in questo corso):}
+                {\footnotesize
+                \textbf{Caso con due poli (raro in questo corso):}
 
-                    \vspace{0.05cm}
-                    $$T(s) = \frac{K}{(1 + s\tau_1)(1 + s\tau_2)}$$
+                \vspace{0.05cm}
+                $$T(s) = \frac{K}{(1 + s\tau_1)(1 + s\tau_2)}$$
 
-                    \vspace{0.05cm}
-                    Se i due poli sono \textbf{ben separati} (uno molto più lento dell'altro), la dinamica è dominata dal \textbf{polo a frequenza minore} (quello con $\tau$ maggiore).
+                \vspace{0.05cm}
+                Se i due poli sono \textbf{ben separati} (uno molto più lento dell'altro), la dinamica è dominata dal \textbf{polo a frequenza minore} (quello con $\tau$ maggiore).
 
-                    \vspace{0.05cm}
-                    In questo caso si può approssimare il sistema come se avesse un solo polo dominante.
-                }}
+                \vspace{0.05cm}
+                In questo caso si può approssimare il sistema come se avesse un solo polo dominante.
+                }
 
             \end{minipage}
         };
@@ -4276,12 +4242,10 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{blue!20}{\parbox{0.95\linewidth}{
-                    \textbf{DAC (Digital-to-Analog Converter)}
+                \textbf{DAC (Digital-to-Analog Converter)}
 
-                    \vspace{0.05cm}
-                    Converte un segnale \textbf{digitale} (N bit) in un segnale \textbf{analogico} (tensione o corrente proporzionale).
-                }}
+                \vspace{0.05cm}
+                Converte un segnale \textbf{digitale} (N bit) in un segnale \textbf{analogico} (tensione o corrente proporzionale).
 
                 \vspace{0.2cm}
                 \textbf{DAC R-2R (Resistor Ladder)}
@@ -4330,64 +4294,60 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{orange!30}{\parbox{0.95\linewidth}{
-                    \textbf{$\bigstar$ CASO SEMPLICE: cambio NON sul bit meno significativo}
+                \textbf{$\bigstar$ CASO SEMPLICE: cambio NON sul bit meno significativo}
 
-                    \vspace{0.1cm}
-                    Se la resistenza modificata \textbf{non \`e quella di $S_0$} (LSB):
+                \vspace{0.1cm}
+                Se la resistenza modificata \textbf{non \`e quella di $S_0$} (LSB):
 
-                    \vspace{0.05cm}
-                    $\Rightarrow$ Il cambio influisce \textbf{solo} sulla corrente di quel ramo!
+                \vspace{0.05cm}
+                $\Rightarrow$ Il cambio influisce \textbf{solo} sulla corrente di quel ramo!
 
-                    \vspace{0.05cm}
-                    $\Rightarrow$ Le correnti degli \textbf{altri bit restano invariate}
+                \vspace{0.05cm}
+                $\Rightarrow$ Le correnti degli \textbf{altri bit restano invariate}
 
-                    \vspace{0.1cm}
-                    \textbf{Calcolo $V_{out}$:}
-                    $$V_{out} = V_{out,ideale} + \Delta V \cdot S_i$$
+                \vspace{0.1cm}
+                \textbf{Calcolo $V_{out}$:}
+                $$V_{out} = V_{out,ideale} + \Delta V \cdot S_i$$
 
-                    dove $\Delta V$ = errore dovuto al cambio di R, $S_i$ = bit modificato
+                dove $\Delta V$ = errore dovuto al cambio di R, $S_i$ = bit modificato
 
-                    \vspace{0.1cm}
-                    \textbf{$\bigstar$ L'errore c'\`e SOLO se $S_i = 1$!}
+                \vspace{0.1cm}
+                \textbf{$\bigstar$ L'errore c'\`e SOLO se $S_i = 1$!}
 
-                    \vspace{0.1cm}
-                    \textbf{$\triangle$ Se cambia la R di $S_0$ (LSB):} tutte le correnti cambiano!
-                }}
+                \vspace{0.1cm}
+                \textbf{$\triangle$ Se cambia la R di $S_0$ (LSB):} tutte le correnti cambiano!
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
-                    \textbf{$\bigstar$ TRUCCO: Rinomina la corrente!}
+                {\footnotesize
+                \textbf{$\bigstar$ TRUCCO: Rinomina la corrente!}
 
-                    \vspace{0.1cm}
-                    Per evitare frazioni, chiama la corrente in uscita (quella che va verso $V$ con $R$) con un multiplo di $2^n$:
+                \vspace{0.1cm}
+                Per evitare frazioni, chiama la corrente in uscita (quella che va verso $V$ con $R$) con un multiplo di $2^n$:
 
-                    \vspace{0.1cm}
-                    \textbf{Esempio con 3 biforcazioni:}
+                \vspace{0.1cm}
+                \textbf{Esempio con 3 biforcazioni:}
 
-                    \vspace{0.05cm}
-                    Invßece di $I_{out} = \frac{I}{8}$, chiama $I_{out} = 8I$
+                \vspace{0.05cm}
+                Invece di $I_{out} = \frac{I}{8}$, chiama $I_{out} = 8I$
 
-                    \vspace{0.05cm}
-                    $\Rightarrow$ Le correnti ai nodi saranno $8I$, $4I$, $2I$, $I$ (numeri interi!)
-                }}
+                \vspace{0.05cm}
+                $\Rightarrow$ Le correnti ai nodi saranno $8I$, $4I$, $2I$, $I$ (numeri interi!)
+                }
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    \textbf{Procedimento di calcolo:}
+                \textbf{Procedimento di calcolo:}
 
-                    \vspace{0.1cm}
-                    1. Calcola la \textbf{resistenza equivalente} vista dal generatore $V$
+                \vspace{0.1cm}
+                1. Calcola la \textbf{resistenza equivalente} vista dal generatore $V$
 
-                    \vspace{0.05cm}
-                    2. Se c'\`e una $R$ in serie sotto, sommala a $R_{eq}$
+                \vspace{0.05cm}
+                2. Se c'\`e una $R$ in serie sotto, sommala a $R_{eq}$
 
-                    \vspace{0.05cm}
-                    3. Calcola $I = \frac{V}{R_{tot}}$
+                \vspace{0.05cm}
+                3. Calcola $I = \frac{V}{R_{tot}}$
 
-                    \vspace{0.05cm}
-                    4. Segui le biforcazioni per trovare $I_{out}$
-                }}
+                \vspace{0.05cm}
+                4. Segui le biforcazioni per trovare $I_{out}$
 
             \end{minipage}
         };
@@ -4403,19 +4363,17 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
-                    \textbf{Deviatori (Switch):}
+                \textbf{Deviatori (Switch):}
 
-                    \vspace{0.05cm}
-                    • $S_i = 1$ $\Rightarrow$ deviatore \textbf{CHIUSO} (corrente passa)
+                \vspace{0.05cm}
+                • $S_i = 1$ $\Rightarrow$ deviatore \textbf{CHIUSO} (corrente passa)
 
-                    • $S_i = 0$ $\Rightarrow$ deviatore \textbf{APERTO} (corrente non passa)
+                • $S_i = 0$ $\Rightarrow$ deviatore \textbf{APERTO} (corrente non passa)
 
-                    \vspace{0.1cm}
-                    \textbf{Tutti aperti} ($S_0 = S_1 = S_2 = 0$):
+                \vspace{0.1cm}
+                \textbf{Tutti aperti} ($S_0 = S_1 = S_2 = 0$):
 
-                    $R_{eq} = \infty$ $\Rightarrow$ utile per calcolo errore con $V_{offset}$
-                }}
+                $R_{eq} = \infty$ $\Rightarrow$ utile per calcolo errore con $V_{offset}$
 
                 \vspace{0.15cm}
                 \colorbox{green!30}{\parbox{0.95\linewidth}{
@@ -4484,9 +4442,9 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Nota:} Pi\`u bit $N$ $\Rightarrow$ LSB pi\`u piccolo $\Rightarrow$ risoluzione migliore
-                }}
+                {\footnotesize
+                \textbf{Nota:} Pi\`u bit $N$ $\Rightarrow$ LSB pi\`u piccolo $\Rightarrow$ risoluzione migliore
+                }
 
             \end{minipage}
         };
@@ -4568,22 +4526,20 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
-                    \textbf{Calcolo pratico:}
+                \textbf{Calcolo pratico:}
 
-                    \vspace{0.1cm}
-                    Se l'errore \`e su un \textbf{pattern} (es. tutti i dispari):
+                \vspace{0.1cm}
+                Se l'errore \`e su un \textbf{pattern} (es. tutti i dispari):
 
-                    \vspace{0.05cm}
-                    1. Calcola $V_{out}$ per \textbf{un solo caso} (es. word = 1)
+                \vspace{0.05cm}
+                1. Calcola $V_{out}$ per \textbf{un solo caso} (es. word = 1)
 
-                    2. Trova $\text{DNL}_{ABS} = V_{out,reale}(1) - V_{out,ideale}(1)$
+                2. Trova $\text{DNL}_{ABS} = V_{out,reale}(1) - V_{out,ideale}(1)$
 
-                    3. Dividi per LSB $\Rightarrow$ $\text{DNL}_{REL}$
+                3. Dividi per LSB $\Rightarrow$ $\text{DNL}_{REL}$
 
-                    \vspace{0.1cm}
-                    {\footnotesize \textbf{Nota:} La word 0 \textbf{non si calcola} (nessun gradino precedente)}
-                }}
+                \vspace{0.1cm}
+                {\footnotesize \textbf{Nota:} La word 0 \textbf{non si calcola} (nessun gradino precedente)}
 
                 \vspace{0.15cm}
                 \colorbox{red!25}{\parbox{0.95\linewidth}{
@@ -4608,18 +4564,18 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Interpretazione DNL:}
+                {\footnotesize
+                \textbf{Interpretazione DNL:}
 
-                    \vspace{0.05cm}
-                    • $\text{DNL}_{REL} = 0$ $\Rightarrow$ gradino perfetto
+                \vspace{0.05cm}
+                • $\text{DNL}_{REL} = 0$ $\Rightarrow$ gradino perfetto
 
-                    • $\text{DNL}_{REL} > 0$ $\Rightarrow$ gradino pi\`u grande
+                • $\text{DNL}_{REL} > 0$ $\Rightarrow$ gradino pi\`u grande
 
-                    • $\text{DNL}_{REL} < 0$ $\Rightarrow$ gradino pi\`u piccolo
+                • $\text{DNL}_{REL} < 0$ $\Rightarrow$ gradino pi\`u piccolo
 
-                    • $\text{DNL}_{REL} = -1$ $\Rightarrow$ \textbf{missing code}
-                }}
+                • $\text{DNL}_{REL} = -1$ $\Rightarrow$ \textbf{missing code}
+                }
 
             \end{minipage}
         };
@@ -4638,15 +4594,13 @@
                 \textbf{Dinamica delle Transizioni (OpAmp reale)}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    \textbf{Caso ideale:} transizione istantanea (gradino perfetto)
+                \textbf{Caso ideale:} transizione istantanea (gradino perfetto)
 
-                    \vspace{0.1cm}
-                    \textbf{Caso reale:} OpAmp con guadagno finito e polo
-                    $$A(s) = \frac{A_0}{1 + s\tau_0}$$
+                \vspace{0.1cm}
+                \textbf{Caso reale:} OpAmp con guadagno finito e polo
+                $$A(s) = \frac{A_0}{1 + s\tau_0}$$
 
-                    $\Rightarrow$ La transizione \`e un \textbf{esponenziale} con $\tau = \tau_0$
-                }}
+                $\Rightarrow$ La transizione \`e un \textbf{esponenziale} con $\tau = \tau_0$
 
                 \vspace{0.15cm}
                 \begin{center}
@@ -4679,9 +4633,9 @@
                 }}
 
                 \vspace{0.1cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Nota:} $\tau_0$ limita la \textbf{velocit\`a} del DAC (settling time)
-                }}
+                {\footnotesize
+                \textbf{Nota:} $\tau_0$ limita la \textbf{velocit\`a} del DAC (settling time)
+                }
 
                 \vspace{0.15cm}
                 \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
@@ -4717,12 +4671,10 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{blue!20}{\parbox{0.95\linewidth}{
-                    \textbf{DAC a Correnti Pesate}
+                \textbf{DAC a Correnti Pesate}
 
-                    \vspace{0.05cm}
-                    Ogni bit controlla un \textbf{generatore di corrente} con peso binario. Le correnti vengono sommate e convertite in tensione.
-                }}
+                \vspace{0.05cm}
+                Ogni bit controlla un \textbf{generatore di corrente} con peso binario. Le correnti vengono sommate e convertite in tensione.
 
                 \vspace{0.2cm}
                 \textbf{Principio di funzionamento:}
@@ -4771,33 +4723,29 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
-                    \textbf{Deviatori (Switch):}
+                \textbf{Deviatori (Switch):}
 
-                    \vspace{0.05cm}
-                    • $S_i = 1$ $\Rightarrow$ corrente $I_i$ va verso il \textbf{sommatore}
+                \vspace{0.05cm}
+                • $S_i = 1$ $\Rightarrow$ corrente $I_i$ va verso il \textbf{sommatore}
 
-                    • $S_i = 0$ $\Rightarrow$ corrente $I_i$ va verso \textbf{massa}
+                • $S_i = 0$ $\Rightarrow$ corrente $I_i$ va verso \textbf{massa}
 
-                    \vspace{0.1cm}
-                    \textbf{Nota:} Le correnti scorrono \textbf{sempre}, cambiano solo direzione!
-                }}
+                \vspace{0.1cm}
+                \textbf{Nota:} Le correnti scorrono \textbf{sempre}, cambiano solo direzione!
 
                 \vspace{0.15cm}
-                \colorbox{orange!30}{\parbox{0.95\linewidth}{
-                    \textbf{$\triangle$ Se una corrente cambia (es. $I_2 \to I_2'$):}
+                \textbf{$\triangle$ Se una corrente cambia (es. $I_2 \to I_2'$):}
 
-                    \vspace{0.1cm}
-                    • Solo il contributo di quel bit cambia
+                \vspace{0.1cm}
+                • Solo il contributo di quel bit cambia
 
-                    • Gli altri bit \textbf{non sono influenzati}
+                • Gli altri bit \textbf{non sono influenzati}
 
-                    \vspace{0.1cm}
-                    \textbf{Errore:} $\Delta V = (I_2' - I_2) \cdot R_F \cdot S_2$
+                \vspace{0.1cm}
+                \textbf{Errore:} $\Delta V = (I_2' - I_2) \cdot R_F \cdot S_2$
 
-                    \vspace{0.1cm}
-                    \textbf{$\bigstar$ L'errore c'\`e SOLO se $S_i = 1$!}
-                }}
+                \vspace{0.1cm}
+                \textbf{$\bigstar$ L'errore c'\`e SOLO se $S_i = 1$!}
 
                 \vspace{0.15cm}
                 \colorbox{yellow!30}{\parbox{0.95\linewidth}{
@@ -4839,20 +4787,18 @@
                 }}
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
-                    \textbf{Calcolo pratico:}
+                \textbf{Calcolo pratico:}
 
-                    \vspace{0.1cm}
-                    Se una corrente $I_k$ \`e errata:
+                \vspace{0.1cm}
+                Se una corrente $I_k$ \`e errata:
 
-                    \vspace{0.05cm}
-                    • L'errore appare su tutte le word con $S_k = 1$
+                \vspace{0.05cm}
+                • L'errore appare su tutte le word con $S_k = 1$
 
-                    • Basta calcolare $V_{out}$ per \textbf{una} word con $S_k = 1$
+                • Basta calcolare $V_{out}$ per \textbf{una} word con $S_k = 1$
 
-                    \vspace{0.1cm}
-                    {\footnotesize \textbf{Nota:} La word 0 \textbf{non si calcola}}
-                }}
+                \vspace{0.1cm}
+                {\footnotesize \textbf{Nota:} La word 0 \textbf{non si calcola}}
 
                 \vspace{0.15cm}
                 \colorbox{red!25}{\parbox{0.95\linewidth}{
@@ -4885,15 +4831,13 @@
                 \textbf{Dinamica delle Transizioni}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    \textbf{Caso ideale:} transizione istantanea
+                \textbf{Caso ideale:} transizione istantanea
 
-                    \vspace{0.1cm}
-                    \textbf{Caso reale:} OpAmp con guadagno finito e polo
-                    $$A(s) = \frac{A_0}{1 + s\tau_0}$$
+                \vspace{0.1cm}
+                \textbf{Caso reale:} OpAmp con guadagno finito e polo
+                $$A(s) = \frac{A_0}{1 + s\tau_0}$$
 
-                    $\Rightarrow$ Transizione esponenziale con $\tau = \tau_0$
-                }}
+                $\Rightarrow$ Transizione esponenziale con $\tau = \tau_0$
 
                 \vspace{0.15cm}
                 \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
