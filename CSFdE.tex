@@ -4348,6 +4348,11 @@
                     • $S_i = 1$ $\Rightarrow$ deviatore \textbf{CHIUSO} (corrente passa)
 
                     • $S_i = 0$ $\Rightarrow$ deviatore \textbf{APERTO} (corrente non passa)
+
+                    \vspace{0.1cm}
+                    \textbf{Tutti aperti} ($S_0 = S_1 = S_2 = 0$):
+
+                    $R_{eq} = \infty$ $\Rightarrow$ utile per calcolo errore con $V_{offset}$
                 }}
 
                 \vspace{0.15cm}
@@ -4370,39 +4375,61 @@
                     {\footnotesize I ``$+$'' funzionano come OR: solo i bit a 1 contribuiscono!}
                 }}
 
+                            \end{minipage}
+        };
+        %------------ DAC R2R Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC R-2R (Resistor Ladder)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC - FSR e LSB ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{FSR e LSB (DAC a N bit):}
+
                 \vspace{0.15cm}
-                \colorbox{magenta!20}{\parbox{0.95\linewidth}{
-                    \textbf{FSR e LSB (DAC a N bit):}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{LSB} (Least Significant Bit):
 
                     \vspace{0.1cm}
-                    \textbf{LSB} (Least Significant Bit) = tensione del bit meno significativo:
+                    Tensione corrispondente al bit meno significativo:
                     $$\boxed{\text{LSB} = V_{out}(000...1) = I \cdot R_F}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{FSR} (Full Scale Range):
 
                     \vspace{0.1cm}
-                    \textbf{FSR} (Full Scale Range) = escursione massima:
+                    Escursione massima dell'uscita:
                     $$\boxed{\text{FSR} = V_{out,max} - V_{out,min}}$$
 
-                    \vspace{0.05cm}
+                    \vspace{0.1cm}
                     Con $V_{out,min} = 0$ (tutti i bit a 0):
                     $$\text{FSR} = V_{out}(111...1) = \text{LSB} \cdot (2^N - 1)$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{Relazione LSB-FSR:}
 
                     \vspace{0.1cm}
-                    \textbf{Relazione:}
                     $$\boxed{\text{LSB} = \frac{\text{FSR}}{2^N - 1}}$$
                 }}
 
                 \vspace{0.15cm}
                 \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{Nota:} Pi\`u biforcazioni $\Rightarrow$ corrente \textbf{esponenzialmente} pi\`u piccola
-
-                    \vspace{0.05cm}
-                    Questo permette la \textbf{pesatura binaria} dei bit!
+                    \textbf{Nota:} Pi\`u bit $N$ $\Rightarrow$ LSB pi\`u piccolo $\Rightarrow$ risoluzione migliore
                 }}
 
             \end{minipage}
         };
-        %------------ DAC R2R Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC R-2R (Resistor Ladder)};
+        %------------ DAC FSR LSB Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - FSR e LSB};
     \end{tikzpicture}
 
 
