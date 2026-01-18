@@ -3968,106 +3968,6 @@
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %------------ OpAmp - Retroazione Positiva ---------------
-
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-
-                \small
-                \textbf{Comparatore con Isteresi (Trigger di Schmitt):}
-
-                \vspace{0.15cm}
-                \begin{center}
-                    \begin{circuitikz}[scale=0.7]
-                        % OpAmp
-                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
-                        % Input on -
-                        \draw (opamp.-) -- ++(-0.5,0) node[left] {$V_{in}$};
-                        % Positive feedback network
-                        \draw (opamp.+) -- ++(0,-0.8) coordinate (fb);
-                        \draw (fb) to[R, l_=$R_1$] ++(0,-1.2) node[ground] {};
-                        \draw (fb) to[R, l=$R_2$] ++(2,0) -| (opamp.out);
-                        % Output
-                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
-                        % Labels
-                        \node at (opamp.-) [above left] {\tiny $V^-$};
-                        \node at (opamp.+) [above left] {\tiny $V^+$};
-                    \end{circuitikz}
-                \end{center}
-
-                \vspace{0.1cm}
-                \textbf{Tensione sull'ingresso non invertente:}
-                $$V^+ = V_{out} \cdot \frac{R_1}{R_1 + R_2}$$
-
-                \vspace{0.1cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
-                    \textbf{Soglie di commutazione:}
-
-                    \vspace{0.1cm}
-                    Se $V_{out}$ oscilla tra $\pm V_{sat}$:
-
-                    $$\boxed{V_{TH} = +V_{sat} \cdot \frac{R_1}{R_1 + R_2}}$$
-
-                    $$\boxed{V_{TL} = -V_{sat} \cdot \frac{R_1}{R_1 + R_2}}$$
-
-                    \vspace{0.1cm}
-                    \textbf{Isteresi:} $\Delta V = V_{TH} - V_{TL} = 2V_{sat} \cdot \frac{R_1}{R_1 + R_2}$
-                }}
-
-                \vspace{0.2cm}
-                \textbf{Comparatore Non Invertente con Isteresi:}
-
-                \vspace{0.15cm}
-                \begin{center}
-                    \begin{circuitikz}[scale=0.7]
-                        % OpAmp
-                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
-                        % Input through R1 to +
-                        \draw (opamp.+) -- ++(-0.3,0) coordinate (plus);
-                        \draw (plus) to[R, l=$R_1$] ++(-1.5,0) node[left] {$V_{in}$};
-                        % Feedback R2 from output to +
-                        \draw (plus) -- ++(0,1) to[R, l=$R_2$] ++(2.3,0) -| (opamp.out);
-                        % Ground on -
-                        \draw (opamp.-) -- ++(-0.3,0) node[ground] {};
-                        % Output
-                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
-                    \end{circuitikz}
-                \end{center}
-
-                \vspace{0.1cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{
-                    \textbf{Soglie:}
-
-                    $$V_{TH} = -V_{sat} \cdot \frac{R_2}{R_1}$$
-                    $$V_{TL} = +V_{sat} \cdot \frac{R_2}{R_1}$$
-
-                    \vspace{0.05cm}
-                    \textit{Nota: segni invertiti rispetto al caso invertente}
-                }}
-
-                \vspace{0.2cm}
-                \colorbox{purple!15}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{$\triangle$ DIFFERENZA FONDAMENTALE}
-
-                    \vspace{0.05cm}
-                    • \textbf{Retroazione NEGATIVA} ($R_f$ su $V^-$):
-
-                    \hspace{0.2cm} Sistema \textbf{stabile}, uscita proporzionale all'ingresso
-
-                    \vspace{0.05cm}
-                    • \textbf{Retroazione POSITIVA} ($R$ su $V^+$):
-
-                    \hspace{0.2cm} Sistema \textbf{bistabile}, uscita satura a $\pm V_{sat}$
-                }}
-
-            \end{minipage}
-        };
-        %------------ OpAmp Retroazione Positiva Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Retroazione Positiva (Isteresi)};
-    \end{tikzpicture}
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Slew Rate OpAmp ---------------
 
     \begin{tikzpicture}
@@ -4865,6 +4765,174 @@
         };
         %------------ DAC Correnti Pesate Dinamica Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - Dinamica};
+    \end{tikzpicture}
+
+    \newpage
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Comparatore a Singola Soglia ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Comparatore a Singola Soglia}
+
+                \vspace{0.1cm}
+                Confronta $V_{in}$ con una tensione di riferimento $V_{ref}$ (soglia unica).
+
+                \vspace{0.2cm}
+                \textbf{INVERTENTE} ($V_{in}$ su $V^-$, $V_{ref}$ su $V^+$):
+
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.65]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Input on -
+                        \draw (opamp.-) -- ++(-0.5,0) node[left] {$V_{in}$};
+                        % Reference on +
+                        \draw (opamp.+) -- ++(-0.5,0) node[left] {$V_{ref}$};
+                        % Output
+                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.05cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    $$V_{out} = \begin{cases} +V_{sat} & \text{se } V_{in} < V_{ref} \\ -V_{sat} & \text{se } V_{in} > V_{ref} \end{cases}$$
+                }}
+
+                \vspace{0.15cm}
+                \textbf{NON INVERTENTE} ($V_{in}$ su $V^+$, $V_{ref}$ su $V^-$):
+
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.65]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Reference on -
+                        \draw (opamp.-) -- ++(-0.5,0) node[left] {$V_{ref}$};
+                        % Input on +
+                        \draw (opamp.+) -- ++(-0.5,0) node[left] {$V_{in}$};
+                        % Output
+                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.05cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    $$V_{out} = \begin{cases} +V_{sat} & \text{se } V_{in} > V_{ref} \\ -V_{sat} & \text{se } V_{in} < V_{ref} \end{cases}$$
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Soglia unica:} $\boxed{V_{TH} = V_{ref}}$
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ PROBLEMA: Rumore!}
+
+                    \vspace{0.05cm}
+                    Se $V_{in} \approx V_{ref}$, piccole oscillazioni causano \textbf{commutazioni multiple} indesiderate.
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Soluzione: \textbf{Comparatore a doppia soglia} (isteresi)
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Comparatore a Singola Soglia};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Comparatore a Doppia Soglia (Isteresi) ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Comparatore a Doppia Soglia (Trigger di Schmitt)}
+
+                \vspace{0.1cm}
+                Usa \textbf{retroazione positiva} per creare due soglie diverse: elimina il problema del rumore.
+
+                \vspace{0.15cm}
+                \textbf{INVERTENTE} ($V_{in}$ su $V^-$):
+
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.65]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Input on -
+                        \draw (opamp.-) -- ++(-0.5,0) node[left] {$V_{in}$};
+                        % Positive feedback network
+                        \draw (opamp.+) -- ++(0,-0.8) coordinate (fb);
+                        \draw (fb) to[R, l_=$R_1$] ++(0,-1.2) node[ground] {};
+                        \draw (fb) to[R, l=$R_2$] ++(2,0) -| (opamp.out);
+                        % Output
+                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.05cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Soglie di commutazione:}
+
+                    \vspace{0.05cm}
+                    $$\boxed{V_{TH} = +V_{sat} \cdot \frac{R_1}{R_1 + R_2}}$$
+                    $$\boxed{V_{TL} = -V_{sat} \cdot \frac{R_1}{R_1 + R_2}}$$
+
+                    \vspace{0.05cm}
+                    \textbf{Isteresi:} $\Delta V = V_{TH} - V_{TL} = 2V_{sat} \cdot \frac{R_1}{R_1 + R_2}$
+                }}
+
+                \vspace{0.15cm}
+                \textbf{NON INVERTENTE} ($V_{in}$ su $V^+$):
+
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.65]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Input through R1 to +
+                        \draw (opamp.+) -- ++(-0.3,0) coordinate (plus);
+                        \draw (plus) to[R, l=$R_1$] ++(-1.5,0) node[left] {$V_{in}$};
+                        % Feedback R2 from output to +
+                        \draw (plus) -- ++(0,1) to[R, l=$R_2$] ++(2.3,0) -| (opamp.out);
+                        % Ground on -
+                        \draw (opamp.-) -- ++(-0.3,0) node[ground] {};
+                        % Output
+                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.05cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Soglie:}
+
+                    \vspace{0.05cm}
+                    $$\boxed{V_{TH} = -V_{sat} \cdot \frac{R_2}{R_1}}$$
+                    $$\boxed{V_{TL} = +V_{sat} \cdot \frac{R_2}{R_1}}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize \textit{Nota: segni invertiti rispetto al caso invertente}}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ DIFFERENZA FONDAMENTALE}
+
+                    \vspace{0.05cm}
+                    • \textbf{Retroazione NEGATIVA} ($R_f$ su $V^-$): sistema \textbf{stabile}
+
+                    • \textbf{Retroazione POSITIVA} ($R$ su $V^+$): sistema \textbf{bistabile}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Comparatore a Doppia Soglia (Isteresi)};
     \end{tikzpicture}
 
 
