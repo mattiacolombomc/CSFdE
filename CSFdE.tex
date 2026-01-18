@@ -4633,6 +4633,24 @@
                     \textbf{Nota:} $\tau_0$ limita la \textbf{velocit\`a} del DAC (settling time)
                 }}
 
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ Configurazione influenza $G_{loop}$:}
+
+                    \vspace{0.05cm}
+                    Al cambiare della \textbf{word} (configurazione deviatori), cambia la $R_{eq}$ vista dall'OpAmp.
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Cambia il \textbf{guadagno d'anello} $G_{loop}$
+
+                    $\Rightarrow$ Cambia il \textbf{guadagno reale} $G_{reale}$
+
+                    $\Rightarrow$ Cambiano i \textbf{tempi di propagazione}!
+
+                    \vspace{0.05cm}
+                    \textbf{Conseguenza:} Il settling time \textbf{dipende dalla word}
+                }}
+
             \end{minipage}
         };
         %------------ DAC Dinamica Header ---------------------
