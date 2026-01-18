@@ -4294,16 +4294,39 @@
                     \textbf{Principio: Biforcazione delle Correnti}
 
                     \vspace{0.1cm}
-                    Ad ogni nodo la corrente si \textbf{divide a met\`a}:
+                    Ad ogni nodo la corrente si \textbf{divide esattamente a met\`a}:
 
                     \vspace{0.05cm}
-                    • 1 biforcazione: $I \to \frac{I}{2}$
+                    • Met\`a scende verso il ramo $2R$ (deviatore $S_i$)
 
-                    • 2 biforcazioni: $I \to \frac{I}{4}$
+                    • Met\`a prosegue orizzontalmente verso il nodo successivo
 
-                    • 3 biforcazioni: $I \to \frac{I}{8}$
+                    \vspace{0.1cm}
+                    \textbf{Perch\'e si divide a met\`a?}
 
+                    \vspace{0.05cm}
+                    Ad ogni nodo, la $R_{eq}$ vista ``a destra'' vale $2R$ (propriet\`a della rete R-2R), quindi le due vie hanno \textbf{stessa resistenza} $\Rightarrow$ stessa corrente!
+
+                    \vspace{0.1cm}
                     • $n$ biforcazioni: $I \to \frac{I}{2^n}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ Se una resistenza cambia (es. $2R \to R'$):}
+
+                    \vspace{0.1cm}
+                    La configurazione R-2R si \textbf{rompe}!
+
+                    \vspace{0.05cm}
+                    • La $R_{eq}$ vista dal nodo \textbf{non \`e pi\`u $2R$}
+
+                    • La corrente \textbf{non si divide pi\`u a met\`a}
+
+                    • Devi ricalcolare con partitore di corrente:
+
+                    \vspace{0.05cm}
+                    $$I_{ramo} = I_{tot} \cdot \frac{R_{altro}}{R_{ramo} + R_{altro}}$$
                 }}
 
                 \vspace{0.15cm}
@@ -4317,7 +4340,7 @@
                     \textbf{Esempio con 3 biforcazioni:}
 
                     \vspace{0.05cm}
-                    Invece di $I_{out} = \frac{I}{8}$, chiama $I_{out} = 8I$
+                    Invßece di $I_{out} = \frac{I}{8}$, chiama $I_{out} = 8I$
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Le correnti ai nodi saranno $8I$, $4I$, $2I$, $I$ (numeri interi!)
@@ -4340,7 +4363,20 @@
                     4. Segui le biforcazioni per trovare $I_{out}$
                 }}
 
-                \vspace{0.15cm}
+            \end{minipage}
+        };
+        %------------ DAC R2R Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC R-2R (Resistor Ladder)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC R2R - Deviatori e Vout ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
                 \colorbox{red!20}{\parbox{0.95\linewidth}{
                     \textbf{Deviatori (Switch):}
 
@@ -4375,10 +4411,10 @@
                     {\footnotesize I ``$+$'' funzionano come OR: solo i bit a 1 contribuiscono!}
                 }}
 
-                            \end{minipage}
+            \end{minipage}
         };
-        %------------ DAC R2R Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC R-2R (Resistor Ladder)};
+        %------------ DAC Deviatori Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC R-2R - Deviatori e $V_{out}$};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
