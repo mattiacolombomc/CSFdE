@@ -4319,7 +4319,7 @@
                     La configurazione R-2R si \textbf{rompe}!
 
                     \vspace{0.05cm}
-                    • La $R_{eq}$ vista dal nodo \textbf{non \`e pi\`u $2R$}
+                    • La $R_{eq}$ vista dal nodo modificato verso destra \textbf{non \`e pi\`u $2R$}
 
                     • La corrente \textbf{non si divide pi\`u a met\`a}
 
@@ -4327,6 +4327,32 @@
 
                     \vspace{0.05cm}
                     $$I_{ramo} = I_{tot} \cdot \frac{R_{altro}}{R_{ramo} + R_{altro}}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ CASO SEMPLICE: cambio NON sul bit meno significativo}
+
+                    \vspace{0.1cm}
+                    Se la resistenza modificata \textbf{non \`e quella di $S_0$} (LSB):
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Il cambio influisce \textbf{solo} sulla corrente di quel ramo!
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Le correnti degli \textbf{altri bit restano invariate}
+
+                    \vspace{0.1cm}
+                    \textbf{Calcolo $V_{out}$:}
+                    $$V_{out} = V_{out,ideale} + \Delta V \cdot S_i$$
+
+                    dove $\Delta V$ = errore dovuto al cambio di R, $S_i$ = bit modificato
+
+                    \vspace{0.1cm}
+                    \textbf{$\bigstar$ L'errore c'\`e SOLO se $S_i = 1$!}
+
+                    \vspace{0.1cm}
+                    \textbf{$\triangle$ Se cambia la R di $S_0$ (LSB):} tutte le correnti cambiano!
                 }}
 
                 \vspace{0.15cm}
@@ -4466,6 +4492,151 @@
         };
         %------------ DAC FSR LSB Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - FSR e LSB};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC - DNL ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{DNL (Differential Non-Linearity)}
+
+                \vspace{0.15cm}
+                Misura quanto ogni \textbf{step} della caratteristica reale si discosta dallo step ideale (1 LSB).
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Definizione:}
+
+                    \vspace{0.1cm}
+                    Per ogni transizione da word $k$ a word $k+1$:
+                    $$\boxed{\text{DNL}(k) = \frac{V_{out}(k+1) - V_{out}(k)}{\text{LSB}_{ideale}} - 1}$$
+
+                    \vspace{0.05cm}
+                    Espresso in \textbf{LSB ideali}
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Caratteristica $V_{out}$ vs $S_{in}$ (word):}
+
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.6]
+                        % Assi
+                        \draw[->] (0,0) -- (5,0) node[right] {\tiny $S_{in}$};
+                        \draw[->] (0,0) -- (0,4) node[above] {\tiny $V_{out}$};
+
+                        % Labels asse x
+                        \node[below] at (0.5,0) {\tiny 0};
+                        \node[below] at (1.5,0) {\tiny 1};
+                        \node[below] at (2.5,0) {\tiny 2};
+                        \node[below] at (3.5,0) {\tiny 3};
+                        \node[below] at (4.5,0) {\tiny ...};
+
+                        % Caratteristica ideale (linea tratteggiata)
+                        \draw[dashed, gray] (0.5,0.5) -- (4,3.5);
+                        \node[gray, anchor=west] at (4.1,3.5) {\tiny ideale};
+
+                        % Caratteristica reale (punti)
+                        \filldraw[blue] (0.5,0.5) circle (2pt);
+                        \filldraw[blue] (1.5,1.6) circle (2pt);
+                        \filldraw[blue] (2.5,2.3) circle (2pt);
+                        \filldraw[blue] (3.5,3.4) circle (2pt);
+
+                        % Step reali
+                        \draw[blue, thick] (0.5,0.5) -- (1.5,0.5) -- (1.5,1.6);
+                        \draw[blue, thick] (1.5,1.6) -- (2.5,1.6) -- (2.5,2.3);
+                        \draw[blue, thick] (2.5,2.3) -- (3.5,2.3) -- (3.5,3.4);
+
+                        % Annotazione DNL
+                        \draw[<->, red, thick] (1.7,0.5) -- (1.7,1.6);
+                        \node[red, anchor=west] at (1.8,1.05) {\tiny step reale};
+                    \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Interpretazione:}
+
+                    \vspace{0.05cm}
+                    • DNL $= 0$ $\Rightarrow$ step perfetto (= 1 LSB)
+
+                    • DNL $> 0$ $\Rightarrow$ step pi\`u grande del dovuto
+
+                    • DNL $< 0$ $\Rightarrow$ step pi\`u piccolo del dovuto
+
+                    • DNL $= -1$ $\Rightarrow$ \textbf{missing code} (step = 0)
+                }}
+
+            \end{minipage}
+        };
+        %------------ DAC DNL Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - DNL (Differential Non-Linearity)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ DAC - Dinamica Transizioni ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Dinamica delle Transizioni (OpAmp reale)}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Caso ideale:} transizione istantanea (gradino perfetto)
+
+                    \vspace{0.1cm}
+                    \textbf{Caso reale:} OpAmp con guadagno finito e polo
+                    $$A(s) = \frac{A_0}{1 + s\tau_0}$$
+
+                    $\Rightarrow$ La transizione \`e un \textbf{esponenziale} con $\tau = \tau_0$
+                }}
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.6]
+                        % Assi
+                        \draw[->] (0,0) -- (5,0) node[right] {\tiny $t$};
+                        \draw[->] (0,0) -- (0,3) node[above] {\tiny $V_{out}$};
+
+                        % Gradino ideale
+                        \draw[dashed, gray, thick] (0.5,0.5) -- (1.5,0.5) -- (1.5,2.5) -- (4.5,2.5);
+                        \node[gray] at (3.5,2.8) {\tiny ideale};
+
+                        % Esponenziale reale
+                        \draw[blue, thick] (0.5,0.5) -- (1.5,0.5);
+                        \draw[blue, thick, domain=1.5:4.5, samples=50] plot (\x, {2.5 - 2*exp(-(\x-1.5)/0.8)});
+                        \node[blue] at (3.5,1.2) {\tiny reale};
+
+                        % Tau
+                        \draw[<->, red] (1.5,-0.3) -- (2.3,-0.3);
+                        \node[red, below] at (1.9,-0.3) {\tiny $\tau_0$};
+                    \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Transizione} (es. da 000 a 100):
+                    $$V_{out}(t) = V_{finale} \cdot \left(1 - e^{-t/\tau_0}\right)$$
+
+                    dove $\tau_0$ = costante di tempo del polo dell'OpAmp
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Nota:} $\tau_0$ limita la \textbf{velocit\`a} del DAC (settling time)
+                }}
+
+            \end{minipage}
+        };
+        %------------ DAC Dinamica Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - Dinamica Transizioni (OpAmp reale)};
     \end{tikzpicture}
 
 
