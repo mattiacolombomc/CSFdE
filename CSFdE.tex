@@ -4847,6 +4847,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Comparatore a Doppia Soglia (Isteresi) ---------------
 
+    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -4930,9 +4931,400 @@
                     • \textbf{Retroazione POSITIVA} ($R$ su $V^+$): sistema \textbf{bistabile}
                 }}
 
+                \vspace{0.15cm}
+                \colorbox{red!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ REGOLA D'ORO - Riconoscimento:}
+
+                    \vspace{0.05cm}
+                    • $V_{out}$ \textbf{rientra su} $V^+$ $\Rightarrow$ \textbf{Trigger di Schmitt NON INVERTENTE}
+
+                    • $V_{out}$ \textbf{rientra su} $V^-$ $\Rightarrow$ \textbf{Trigger di Schmitt INVERTENTE}
+
+                    \vspace{0.1cm}
+                    \textbf{$\triangle$ ATTENZIONE:} In entrambi i casi \textbf{NON applicare} le regole della retroazione negativa ($V^+ = V^-$, $I^+ = I^- = 0$)!
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Usare analisi con $V_{out} = \pm V_{sat}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{OpAmp ``Rail-to-Rail'':}
+
+                    \vspace{0.05cm}
+                    L'uscita può raggiungere \textbf{esattamente} le tensioni di alimentazione:
+                    $$V_{sat}^+ = +V_{DD} \qquad V_{sat}^- = -V_{SS} \text{ (o } 0V \text{ se singola alim.)}$$
+
+                    \vspace{0.05cm}
+                    \textbf{OpAmp standard:} $V_{sat} \approx V_{alim} - 1\text{V} \div 2\text{V}$
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Nei trigger, se ``rail-to-rail'': usare $\pm V_{DD}$ nelle formule soglie
+                }}
+
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Comparatore a Doppia Soglia (Isteresi)};
+    \end{tikzpicture}%
+    }
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Trigger di Schmitt - Funzionamento Concettuale ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Come Funziona il Trigger di Schmitt}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{INVERTENTE} ($V_{in}$ su $V^-$, feedback su $V^+$)
+
+                    \vspace{0.1cm}
+                    \textbf{Idea:} L'ingresso ``combatte'' contro la retroazione positiva.
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ \textbf{basso} $\Rightarrow$ $V^- < V^+$ $\Rightarrow$ $V_{out} = +V_{sat}$
+
+                    \hspace{0.3cm} La retroazione porta $V^+ = +V_{sat} \cdot \frac{R_1}{R_1+R_2} = V_{TH}$
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ \textbf{sale e supera} $V_{TH}$ $\Rightarrow$ $V^- > V^+$ $\Rightarrow$ \textbf{COMMUTA!}
+
+                    \hspace{0.3cm} $V_{out} = -V_{sat}$ $\Rightarrow$ ora $V^+ = V_{TL}$ (soglia si abbassa!)
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ \textbf{scende sotto} $V_{TL}$ $\Rightarrow$ $V^- < V^+$ $\Rightarrow$ \textbf{COMMUTA!}
+
+                    \vspace{0.1cm}
+                    \textbf{Comportamento:} $V_{in} \uparrow$ $\Rightarrow$ $V_{out} \downarrow$ (invertente!)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{NON INVERTENTE} ($V_{in}$ e feedback entrambi su $V^+$)
+
+                    \vspace{0.1cm}
+                    \textbf{Idea:} Ingresso e retroazione si ``sommano'' su $V^+$.
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ \textbf{basso} $\Rightarrow$ $V^+$ basso $\Rightarrow$ $V^+ < V^-$ $\Rightarrow$ $V_{out} = -V_{sat}$
+
+                    \hspace{0.3cm} Retroazione ``tira giù'' ancora di più $V^+$
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ \textbf{sale abbastanza} da vincere retroazione negativa:
+
+                    \hspace{0.3cm} $V^+ > V^-$ $\Rightarrow$ \textbf{COMMUTA!} $V_{out} = +V_{sat}$
+
+                    \hspace{0.3cm} Ora retroazione ``aiuta'' a tenere $V^+$ alto
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ deve \textbf{scendere molto} per ricommutare
+
+                    \vspace{0.1cm}
+                    \textbf{Comportamento:} $V_{in} \uparrow$ $\Rightarrow$ $V_{out} \uparrow$ (non invertente!)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Perché c'è isteresi?}
+
+                    \vspace{0.05cm}
+                    La \textbf{retroazione positiva} sposta la soglia dopo ogni commutazione!
+
+                    \vspace{0.05cm}
+                    • Dopo $V_{out} = +V_{sat}$: soglia diventa $V_{TH}$ (alta)
+
+                    • Dopo $V_{out} = -V_{sat}$: soglia diventa $V_{TL}$ (bassa)
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Servono \textbf{variazioni più grandi} di $V_{in}$ per commutare $\Rightarrow$ \textbf{immunità al rumore}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Funzionamento};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Trigger di Schmitt - Disegno Caratteristica ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Disegno Caratteristica $V_{out}$ vs $V_{in}$}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLE FONDAMENTALI:}
+
+                    \vspace{0.1cm}
+                    \textbf{1.} $V_{in} < V_{TL}$ \textbf{E} $V_{in} < V_{TH}$ (sotto entrambe):
+
+                    \hspace{0.3cm} $\Rightarrow$ $V_{out}$ è \textbf{determinata} (HIGH o LOW)
+
+                    \vspace{0.1cm}
+                    \textbf{2.} $V_{in} > V_{TL}$ \textbf{E} $V_{in} > V_{TH}$ (sopra entrambe):
+
+                    \hspace{0.3cm} $\Rightarrow$ $V_{out}$ è \textbf{determinata} (opposta al caso 1)
+
+                    \vspace{0.1cm}
+                    \textbf{3.} $V_{TL} < V_{in} < V_{TH}$ (fra le due soglie):
+
+                    \hspace{0.3cm} $\Rightarrow$ $V_{out}$ \textbf{mantiene il valore precedente}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Regola pratica:}
+
+                    \vspace{0.05cm}
+                    ``Per \textbf{commutare} devo attraversare la \textbf{soglia più lontana}''
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Da HIGH: devo scendere sotto $V_{TL}$
+
+                    $\Rightarrow$ Da LOW: devo salire sopra $V_{TH}$
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Esempio con ingresso triangolare:}
+
+                {\footnotesize
+                \begin{enumerate}[leftmargin=*]
+                    \item Partenza: $V_{in}$ molto basso $\Rightarrow$ $V_{out}$ determinata
+                    \item $V_{in}$ sale, supera $V_{TL}$: \textbf{nessuna commutazione}
+                    \item $V_{in}$ supera $V_{TH}$: \textbf{COMMUTA!}
+                    \item $V_{in}$ scende, rientra sotto $V_{TH}$: \textbf{nessuna commutazione}
+                    \item $V_{in}$ scende sotto $V_{TL}$: \textbf{COMMUTA!}
+                \end{enumerate}
+                }
+
+                \vspace{0.1cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ METODO DI ANALISI TRIGGER:}
+
+                    \vspace{0.1cm}
+                    \textbf{1.} \textbf{Riconoscere} che è retroazione \textbf{positiva}:
+
+                    \hspace{0.3cm} $V_{out}$ torna su $V^+$? $\Rightarrow$ È un \textbf{Trigger di Schmitt}!
+
+                    \vspace{0.1cm}
+                    \textbf{2.} \textbf{Calcolare} $V^+$ e $V^-$ in funzione di $V_{in}$ e $V_{out}$
+
+                    \hspace{0.3cm} (usare partitore/sovrapposizione)
+
+                    \vspace{0.1cm}
+                    \textbf{3.} \textbf{Trovare le soglie:} valori di $V_{in}$ per cui $V^+ = V^-$
+
+                    \hspace{0.3cm} $\Rightarrow$ Con $V_{out} = +V_{sat}$: trovo $V_{TH}$
+
+                    \hspace{0.3cm} $\Rightarrow$ Con $V_{out} = -V_{sat}$: trovo $V_{TL}$
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Calcolo $V^+$ con sovrapposizione:}
+
+                    \vspace{0.05cm}
+                    \textbf{Trigger NON INV} ($V^-$ a massa):
+
+                    $V^-$ \textbf{non influisce} su $V_{out}$ (contributo = 0)
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Calcolare solo contributo di $V_{in}$ e $V_{out}$ su $V^+$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Caratteristica};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Trigger di Schmitt - Calcolo Soglie ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Calcolo Dettagliato delle Soglie}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{INVERTENTE} ($V_{in}$ su $V^-$, $R_1$-$R_2$ su $V^+$)
+
+                    \vspace{0.1cm}
+                    \textbf{Passo 1:} $V^- = V_{in}$ (collegamento diretto)
+
+                    \vspace{0.1cm}
+                    \textbf{Passo 2:} $V^+$ = partitore tra $V_{out}$ e massa:
+                    $$V^+ = V_{out} \cdot \frac{R_1}{R_1 + R_2}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Passo 3:} Soglia quando $V^+ = V^-$:
+                    $$V_{in} = V_{out} \cdot \frac{R_1}{R_1 + R_2}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Passo 4:} Sostituisco $V_{out} = \pm V_{sat}$:
+
+                    $\Rightarrow V_{TH} = +V_{sat} \cdot \frac{R_1}{R_1 + R_2}$ (quando $V_{out}$ è HIGH)
+
+                    $\Rightarrow V_{TL} = -V_{sat} \cdot \frac{R_1}{R_1 + R_2}$ (quando $V_{out}$ è LOW)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{NON INVERTENTE} ($V_{in}$ e $V_{out}$ entrambi su $V^+$)
+
+                    \vspace{0.1cm}
+                    \textbf{Passo 1:} $V^- = 0$ (a massa)
+
+                    \vspace{0.1cm}
+                    \textbf{Passo 2:} $V^+$ con sovrapposizione:
+                    $$V^+ = V_{in} \cdot \frac{R_2}{R_1 + R_2} + V_{out} \cdot \frac{R_1}{R_1 + R_2}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Passo 3:} Soglia quando $V^+ = V^- = 0$:
+                    $$V_{in} \cdot \frac{R_2}{R_1 + R_2} + V_{out} \cdot \frac{R_1}{R_1 + R_2} = 0$$
+                    $$V_{in} = -V_{out} \cdot \frac{R_1}{R_2}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Passo 4:} Sostituisco $V_{out} = \pm V_{sat}$:
+
+                    $\Rightarrow V_{TH} = -V_{sat} \cdot \frac{R_1}{R_2}$ (quando $V_{out}$ è LOW, per salire)
+
+                    $\Rightarrow V_{TL} = +V_{sat} \cdot \frac{R_1}{R_2}$ (quando $V_{out}$ è HIGH, per scendere)
+                }}
+
+                \vspace{0.1cm}
+                {\footnotesize \textit{Nota: nel non invertente $V_{TL} > V_{TH}$ (soglie ``invertite'')}}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ATTENZIONE - $V_{ref}$ generale:}
+
+                    \vspace{0.05cm}
+                    Le soglie vanno \textbf{sempre calcolate in funzione di $V_{ref}$}!
+
+                    \vspace{0.05cm}
+                    Se $V^-$ non è a massa ma a $V_{ref}$:
+                    $$V^+ = V^- = V_{ref} \Rightarrow \text{soglie traslate di } V_{ref}$$
+
+                    \vspace{0.05cm}
+                    \textbf{Con correnti di bias $I_B$:} se presenti, possono modificare le tensioni sui nodi $\Rightarrow$ \textbf{ricalcolare le soglie} tenendo conto della caduta $I_B \cdot R$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Calcolo Soglie};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Trigger di Schmitt - Grafici Isteresi ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Grafici Caratteristica e Isteresi}
+
+                \vspace{0.15cm}
+                \textbf{INVERTENTE:} (ciclo percorso in senso \textbf{antiorario})
+
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.55]
+                        % Axes
+                        \draw[->] (-2.5,0) -- (2.5,0) node[right] {\footnotesize $V_{in}$};
+                        \draw[->] (0,-1.8) -- (0,1.8) node[above] {\footnotesize $V_{out}$};
+                        % Labels
+                        \node[left] at (0,1.3) {\tiny $+V_{sat}$};
+                        \node[left] at (0,-1.3) {\tiny $-V_{sat}$};
+                        \node[below] at (-1.2,0) {\tiny $V_{TL}$};
+                        \node[below] at (1.2,0) {\tiny $V_{TH}$};
+                        % Hysteresis loop - INVERTED (counterclockwise)
+                        \draw[thick, blue] (-2.3,1.3) -- (1.2,1.3);
+                        \draw[thick, blue, ->] (1.2,1.3) -- (1.2,0);
+                        \draw[thick, blue] (1.2,-1.3) -- (1.2,0);
+                        \draw[thick, blue] (1.2,-1.3) -- (2.3,-1.3);
+                        \draw[thick, red] (2.3,-1.3) -- (-1.2,-1.3);
+                        \draw[thick, red, ->] (-1.2,-1.3) -- (-1.2,0);
+                        \draw[thick, red] (-1.2,1.3) -- (-1.2,0);
+                        \draw[thick, red] (-1.2,1.3) -- (-2.3,1.3);
+                        % Dashed lines
+                        \draw[dashed, gray] (-1.2,0) -- (-1.2,-1.3);
+                        \draw[dashed, gray] (1.2,0) -- (1.2,1.3);
+                    \end{tikzpicture}
+                \end{center}
+
+                {\footnotesize
+                \textcolor{blue}{$\rightarrow$ Blu: $V_{in}$ sale} $\Rightarrow$ a $V_{TH}$ commuta da HIGH a LOW
+
+                \textcolor{red}{$\leftarrow$ Rosso: $V_{in}$ scende} $\Rightarrow$ a $V_{TL}$ commuta da LOW a HIGH
+                }
+
+                \vspace{0.2cm}
+                \textbf{NON INVERTENTE:} (ciclo percorso in senso \textbf{orario})
+
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.55]
+                        % Axes
+                        \draw[->] (-2.5,0) -- (2.5,0) node[right] {\footnotesize $V_{in}$};
+                        \draw[->] (0,-1.8) -- (0,1.8) node[above] {\footnotesize $V_{out}$};
+                        % Labels
+                        \node[left] at (0,1.3) {\tiny $+V_{sat}$};
+                        \node[left] at (0,-1.3) {\tiny $-V_{sat}$};
+                        \node[below] at (-1.2,0) {\tiny $V_{TL}$};
+                        \node[below] at (1.2,0) {\tiny $V_{TH}$};
+                        % Hysteresis loop - NON INVERTED (clockwise)
+                        \draw[thick, blue] (-2.3,-1.3) -- (-1.2,-1.3);
+                        \draw[thick, blue, ->] (-1.2,-1.3) -- (-1.2,0);
+                        \draw[thick, blue] (-1.2,1.3) -- (-1.2,0);
+                        \draw[thick, blue] (-1.2,1.3) -- (2.3,1.3);
+                        \draw[thick, red] (2.3,1.3) -- (1.2,1.3);
+                        \draw[thick, red, ->] (1.2,1.3) -- (1.2,0);
+                        \draw[thick, red] (1.2,-1.3) -- (1.2,0);
+                        \draw[thick, red] (1.2,-1.3) -- (-2.3,-1.3);
+                        % Dashed lines
+                        \draw[dashed, gray] (-1.2,0) -- (-1.2,1.3);
+                        \draw[dashed, gray] (1.2,0) -- (1.2,-1.3);
+                    \end{tikzpicture}
+                \end{center}
+
+                {\footnotesize
+                \textcolor{blue}{$\rightarrow$ Blu: $V_{in}$ sale} $\Rightarrow$ a $V_{TH}$ commuta da LOW a HIGH
+
+                \textcolor{red}{$\leftarrow$ Rosso: $V_{in}$ scende} $\Rightarrow$ a $V_{TL}$ commuta da HIGH a LOW
+                }
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{Cos'è l'ISTERESI?}
+
+                    \vspace{0.1cm}
+                    È la \textbf{``memoria''} del sistema: l'uscita dipende non solo dal valore attuale di $V_{in}$, ma anche dalla \textbf{storia passata}.
+
+                    \vspace{0.1cm}
+                    \textbf{Graficamente:} è il ``rettangolo'' tra le due soglie. L'uscita può essere HIGH o LOW nella zona $V_{TL} < V_{in} < V_{TH}$ $\Rightarrow$ dipende da \textbf{dove arrivo}.
+
+                    \vspace{0.1cm}
+                    \textbf{Ampiezza isteresi:} $\boxed{\Delta V = V_{TH} - V_{TL}}$
+
+                    \vspace{0.1cm}
+                    \textbf{A cosa serve:} il rumore deve superare $\Delta V$ per causare commutazioni spurie $\Rightarrow$ \textbf{immunità al rumore}!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Grafici Isteresi};
     \end{tikzpicture}
 
 
