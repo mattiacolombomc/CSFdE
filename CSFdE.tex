@@ -5340,6 +5340,1198 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Grafici Isteresi};
     \end{tikzpicture}
 
+    \newpage
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Introduzione ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{ADC (Analog-to-Digital Converter)}
+
+                \vspace{0.1cm}
+                Converte un segnale \textbf{analogico} (tensione) in un segnale \textbf{digitale} (word a N bit).
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Input:} Tensione analogica $V_{in}$
+
+                    \textbf{Output:} Word digitale a $N$ bit
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Range di ingresso:}
+
+                \vspace{0.1cm}
+                L'ADC può convertire \textbf{solo} tensioni nel range:
+                $$\boxed{V_{SS} \leq V_{in} \leq V_{DD}}$$
+
+                dove $V_{SS}$ = tensione di alimentazione bassa, $V_{DD}$ = tensione di alimentazione alta.
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Principio di funzionamento:}
+
+                    \vspace{0.1cm}
+                    L'ADC suddivide internamente il range $[V_{SS}, V_{DD}]$ in $2^N$ \textbf{intervalli} (livelli di quantizzazione).
+
+                    \vspace{0.1cm}
+                    Ogni tensione in ingresso viene ``collocata'' in uno di questi intervalli $\Rightarrow$ associata a una word digitale.
+
+                    \vspace{0.1cm}
+                    \textbf{Risoluzione:} $\Delta V = \frac{V_{DD} - V_{SS}}{2^N}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ PROBLEMA: Segnale fuori range!}
+
+                    \vspace{0.1cm}
+                    Se $V_{in} < V_{SS}$ o $V_{in} > V_{DD}$, l'ADC \textbf{non può convertire} correttamente!
+
+                    \vspace{0.1cm}
+                    \textbf{Soluzione:} Serve un \textbf{blocco di condizionamento} (amplificatore + offset) prima dell'ADC per adattare il segnale al range $[V_{SS}, V_{DD}]$.
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Introduzione};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Catena di Acquisizione ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Catena di Acquisizione}
+
+                \vspace{0.1cm}
+                Schema tipico per acquisire un segnale analogico:
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.8}]
+                        % Blocks
+                        \draw[thick] (0,0) rectangle (1.8,1) node[midway] {\tiny Cond.};
+                        \draw[thick] (2.3,0) rectangle (4.1,1) node[midway] {\tiny S\&H};
+                        \draw[thick] (4.6,0) rectangle (6.4,1) node[midway] {\tiny ADC};
+                        % Arrows
+                        \draw[->, thick] (-0.8,0.5) -- (0,0.5) node[midway, above] {\tiny $V_{in}$};
+                        \draw[->, thick] (1.8,0.5) -- (2.3,0.5);
+                        \draw[->, thick] (4.1,0.5) -- (4.6,0.5);
+                        \draw[->, thick] (6.4,0.5) -- (7.2,0.5) node[midway, above] {\tiny Word};
+                    \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.1cm}
+                \textbf{1. Condizionamento} (opzionale):
+
+                \vspace{0.05cm}
+                Amplificatore + offset per adattare $V_{in}$ al range ADC
+
+                $$V_{out} = A \cdot V_{in} + V_{offset}$$
+
+                \vspace{0.1cm}
+                \textbf{2. Sample \& Hold} (S\&H):
+
+                \vspace{0.05cm}
+                ``Congela'' il valore di $V_{in}$ durante la conversione
+
+                \vspace{0.1cm}
+                \textbf{3. ADC}:
+
+                \vspace{0.05cm}
+                Converte la tensione ``congelata'' in word digitale
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Perché serve il S\&H?}
+
+                    \vspace{0.05cm}
+                    L'ADC impiega un \textbf{tempo finito} per convertire. Se $V_{in}$ varia durante la conversione, il risultato è \textbf{errato}!
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Il S\&H ``memorizza'' il valore all'istante di campionamento
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ Semplificazione S\&H:}
+
+                    \vspace{0.05cm}
+                    In prima approssimazione il S\&H \textbf{non introduce offset né guadagno}.
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Per l'\textbf{adattamento} tra $V_{in}$ e ADC, il S\&H si considera come un \textbf{filo} (passa la tensione inalterata).
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Catena di Acquisizione};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Sample & Hold ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Sample \& Hold (S\&H)}
+
+                \vspace{0.1cm}
+                Circuito che ``memorizza'' una tensione analogica.
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.7]
+                        % Input
+                        \draw (0,1.5) node[left] {$V_{in}$} -- (0.5,1.5);
+                        % Switch (nMOS)
+                        \draw (0.5,1.5) to[nos, l=$S$] (2,1.5);
+                        % Capacitor
+                        \draw (2,1.5) -- (2.5,1.5);
+                        \draw (2.5,1.5) to[C, l=$C$] (2.5,0);
+                        \draw (2.5,0) node[ground] {};
+                        % Output
+                        \draw (2.5,1.5) -- (3.5,1.5) node[right] {$V_C$};
+                        % Label
+                        \node at (1.25,0.5) {\footnotesize nMOS};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Fase di SAMPLE} (interruttore \textbf{chiuso}):
+
+                    \vspace{0.1cm}
+                    Il condensatore $C$ si carica a $V_{in}$
+
+                    $$V_C = V_{in}$$
+
+                    Il condensatore ``segue'' le variazioni di $V_{in}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Fase di HOLD} (interruttore \textbf{aperto}):
+
+                    \vspace{0.1cm}
+                    L'interruttore si apre $\Rightarrow$ il condensatore \textbf{rimane carico} a $V_{in,0}$ (valore all'istante di apertura)
+
+                    \vspace{0.1cm}
+                    $V_{in}$ può variare (es. oscillare a $V_{in,3}$), ma $V_C$ \textbf{resta fermo} a $V_{in,0}$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ L'ADC converte con calma $V_{in,0}$ senza essere influenzato da oscillazioni!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ È una MEMORIA ANALOGICA!}
+
+                    \vspace{0.05cm}
+                    Il condensatore ``ricorda'' il valore di tensione all'istante del campionamento.
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Perché $C$ non si scarica in fase di HOLD?}
+
+                    \vspace{0.05cm}
+                    • Verso \textbf{sinistra}: interruttore \textbf{aperto}!
+
+                    • Verso \textbf{destra}: ingresso ADC ha impedenza \textbf{infinita} (idealmente)
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Nessun percorso di scarica $\Rightarrow$ $V_C$ resta costante
+                }}
+
+                \vspace{0.15cm}
+                {\footnotesize \textbf{Implementazione tipica:} nMOS (interruttore) + Condensatore}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Sample \& Hold};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Sample & Hold con Buffer ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Sample \& Hold con Buffer}
+
+                \vspace{0.1cm}
+                Nella realtà, l'ADC ha una resistenza \textbf{finita} verso GND $\Rightarrow$ il condensatore si scaricherebbe lentamente!
+
+                \vspace{0.15cm}
+                \textbf{Soluzione:} Aggiungere un \textbf{OpAmp a guadagno 1} (buffer)
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.65]
+                        % Input
+                        \draw (0,1.5) node[left] {$V_{in}$} -- (0.5,1.5);
+                        % Switch
+                        \draw (0.5,1.5) to[nos, l=$S$] (2,1.5);
+                        % Capacitor
+                        \draw (2,1.5) -- (2.5,1.5);
+                        \draw (2.5,1.5) to[C, l=$C$] (2.5,0);
+                        \draw (2.5,0) node[ground] {};
+                        % Buffer OpAmp
+                        \draw (3.5,1.5) node[op amp, noinv input up, scale=0.6] (opamp) {};
+                        \draw (2.5,1.5) -- (opamp.+);
+                        \draw (opamp.-) -- ++(0,-0.8) -| (opamp.out);
+                        % Output to ADC
+                        \draw (opamp.out) -- ++(0.8,0) node[right] {\footnotesize ADC};
+                        % ADC resistance (shown as problem)
+                        \draw[dashed, gray] (5.2,1.5) -- (5.2,0.5);
+                        \draw[dashed, gray] (5.2,0.5) to[R, l_=\footnotesize $R_{ADC}$] (5.2,-0.5);
+                        \draw[dashed, gray] (5.2,-0.5) node[ground] {};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Come funziona:}
+
+                    \vspace{0.1cm}
+                    • Il buffer ha guadagno 1: $V_{out} = V^+ = V_C$
+
+                    • L'ADC vede una \textbf{replica} della tensione sul condensatore
+
+                    • L'ingresso $V^+$ dell'OpAmp ha impedenza \textbf{infinita}
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Il condensatore \textbf{non si scarica} anche se $R_{ADC}$ è bassa!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Funzione del buffer:}
+
+                    \vspace{0.1cm}
+                    \textbf{Separa} il condensatore dall'ADC (disaccoppiamento di impedenza)
+
+                    \vspace{0.1cm}
+                    • \textbf{Ingresso} buffer: impedenza $\infty$ (non carica $C$)
+
+                    • \textbf{Uscita} buffer: impedenza $\approx 0$ (pilota $R_{ADC}$)
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ $C$ ``vede'' impedenza infinita, ADC ``vede'' sorgente ideale
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ Senza buffer:}
+
+                    \vspace{0.05cm}
+                    Se $R_{ADC}$ fosse finita (anche alta), il condensatore si scaricherebbe lentamente attraverso $R_{ADC}$ durante la fase di HOLD.
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Errore nella conversione (tensione che ``cala'' nel tempo)
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Sample \& Hold con Buffer};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Adattamento e Dinamica ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Adattamento del Segnale (Fitting)}
+
+                \vspace{0.1cm}
+                \textbf{Obiettivo:} Sfruttare al meglio l'\textbf{escursione} (dinamica) dell'ADC.
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ PROBLEMA TIPICO D'ESAME:}
+
+                    \vspace{0.1cm}
+                    Dato un segnale $V_{in} \in [V_{in,min}, V_{in,max}]$, progettare il circuito di condizionamento per \textbf{mappare} il segnale sull'intero range ADC $[V_{SS}, V_{DD}]$.
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Mappatura lineare:}
+
+                \vspace{0.1cm}
+                Si vuole che:
+                \begin{itemize}[leftmargin=*, itemsep=0pt]
+                    \item $V_{in,min} \to V_{SS}$
+                    \item $V_{in,max} \to V_{DD}$
+                \end{itemize}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Formula del condizionamento:}
+                    $$\boxed{V_{ADC} = A \cdot V_{in} + V_{offset}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Guadagno:}
+                    $$\boxed{A = \frac{V_{DD} - V_{SS}}{V_{in,max} - V_{in,min}}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Offset:}
+                    $$\boxed{V_{offset} = V_{SS} - A \cdot V_{in,min}}$$
+
+                    oppure equivalentemente:
+                    $$V_{offset} = V_{DD} - A \cdot V_{in,max}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Esempio:}
+
+                    \vspace{0.05cm}
+                    $V_{in} \in [-1V, +3V]$, ADC con $V_{SS} = 0V$, $V_{DD} = 5V$
+
+                    \vspace{0.1cm}
+                    $A = \frac{5 - 0}{3 - (-1)} = \frac{5}{4} = 1.25$
+
+                    \vspace{0.05cm}
+                    $V_{offset} = 0 - 1.25 \cdot (-1) = 1.25V$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow V_{ADC} = 1.25 \cdot V_{in} + 1.25V$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Perché massimizzare la dinamica?}
+
+                    \vspace{0.05cm}
+                    Se il segnale usa solo una \textbf{parte} del range ADC, si ``sprecano'' bit di risoluzione!
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Mappando su tutto il range si sfrutta la \textbf{massima risoluzione} disponibile.
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Adattamento e Dinamica};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Metodo Calcolo VREF ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Calcolo $V_{REF}$ per Adattamento}
+
+                \vspace{0.1cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ METODO DI CALCOLO:}
+
+                    \vspace{0.1cm}
+                    \textbf{1.} Calcolare $V_{ADC}$ in funzione di $V_{in}$ e $V_{REF}$
+
+                    \vspace{0.1cm}
+                    \textbf{2.} Imporre le condizioni di mappatura:
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item $V_{in} = V_{in,min} \Rightarrow V_{ADC} = V_{SS}$
+                        \item $V_{in} = V_{in,max} \Rightarrow V_{ADC} = V_{DD}$
+                    \end{itemize}
+
+                    \vspace{0.1cm}
+                    \textbf{3.} Risolvere il sistema per trovare $V_{REF}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLE per il calcolo di $V_{ADC}$:}
+
+                    \vspace{0.1cm}
+                    \textbf{Sample \& Hold:} considerarlo come un \textbf{filo}!
+
+                    \vspace{0.05cm}
+                    {\footnotesize (S\&H influisce solo in fase di conversione, non modifica il mapping ingresso/uscita)}
+
+                    \vspace{0.1cm}
+                    \textbf{Condensatore:} diventa un \textbf{aperto}!
+
+                    \vspace{0.05cm}
+                    {\footnotesize (Stiamo studiando l'accoppiamento I/O, non il comportamento in frequenza $\Rightarrow$ siamo in \textbf{DC} $\Rightarrow$ $s = 0$ $\Rightarrow$ $C$ aperto)}
+
+                    \vspace{0.1cm}
+                    \textbf{Buffer (OpAmp guadagno 1):} $V_{out} = V^+$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Calcolo $V_{ADC}$ con sovrapposizione:}
+
+                    \vspace{0.1cm}
+                    Se il circuito ha $V_{in}$ e $V_{REF}$:
+
+                    \vspace{0.05cm}
+                    $$V_{ADC} = \underbrace{f_1(V_{in})}_{\text{contributo } V_{in}} + \underbrace{f_2(V_{REF})}_{\text{contributo } V_{REF}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+
+                    \vspace{0.05cm}
+                    1. Spegni $V_{REF}$ (= 0V) $\Rightarrow$ calcola contributo di $V_{in}$
+
+                    2. Spegni $V_{in}$ (= 0V) $\Rightarrow$ calcola contributo di $V_{REF}$
+
+                    3. Somma i due contributi
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ RICORDA:}
+
+                    \vspace{0.05cm}
+                    • Il secondo OpAmp (buffer) ha sempre \textbf{guadagno 1}
+
+                    • Non stai facendo analisi in frequenza $\Rightarrow$ \textbf{NO} Bode, \textbf{NO} poli/zeri
+
+                    • È come calcolare la caratteristica statica (tipo esercizi con diodi)
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Metodo Calcolo $V_{REF}$};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Buffer e Errore Statico ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Buffer prima dell'ADC - Errore Statico}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Buffer = Sample \& Hold in analisi statica}
+
+                    \vspace{0.05cm}
+                    In analisi statica, il S\&H si riduce \textbf{solo all'OpAmp} (il condensatore è aperto, l'interruttore è un filo).
+
+                    $\Rightarrow$ ``Buffer'' è un altro nome per il circuito S\&H quando lo analizzi in DC.
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Buffer di tensione (Voltage Follower):}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                        \begin{circuitikz}[scale=0.6]
+                            \draw (2,1.5) node[op amp, noinv input up, scale=0.8] (opamp) {};
+                            \draw (opamp.+) -- ++(-0.5,0) node[left] {\footnotesize $V_{in}$};
+                            \draw (opamp.-) -- ++(0,-0.6) -| (opamp.out);
+                            \draw (opamp.out) -- ++(0.5,0) node[right] {\footnotesize $V_{out}$};
+                        \end{circuitikz}
+                    \end{center}
+
+                    \vspace{0.05cm}
+                    Configurazione: $V^-$ collegato direttamente a $V_{out}$
+
+                    \vspace{0.1cm}
+                    $$\boxed{A_v = 1} \quad \Rightarrow \quad V_{out} = V_{in}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize \textbf{Ricordalo a memoria} per risparmiare conti!}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ Errore statico massimo di guadagno:}
+
+                    \vspace{0.1cm}
+                    Se l'esercizio chiede l'errore dovuto a variazione del guadagno $A_0$ del buffer:
+
+                    \vspace{0.1cm}
+                    \textbf{$\bigstar$ SEI SEMPRE IN ANALISI STATICA!}
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ \textbf{NON introdurre poli/zeri} a meno che l'esercizio lo richieda \textbf{esplicitamente}!
+
+                    \vspace{0.1cm}
+                    Assumi che il buffer \textbf{non abbia singolarità} (né poli né zeri).
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Guadagno reale del buffer:}
+
+                    \vspace{0.1cm}
+                    Con guadagno ad anello aperto finito $A_0$:
+
+                    $$G_{reale} = \frac{A_0}{1 + A_0} = \frac{1}{1 + \frac{1}{A_0}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Errore rispetto al guadagno ideale (=1):}
+
+                    $$\varepsilon = |G_{ideale} - G_{reale}| = \left|1 - \frac{A_0}{1 + A_0}\right| = \frac{1}{1 + A_0}$$
+
+                    \vspace{0.1cm}
+                    Se $A_0 \gg 1$: $\varepsilon \approx \frac{1}{A_0}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ TRUCCO VELOCE - Buffer:}
+
+                    \vspace{0.1cm}
+                    Per il buffer (follower): $\boxed{G_{loop} = -A_0}$
+
+                    \vspace{0.1cm}
+                    Quindi posso usare direttamente la formula generale:
+
+                    $$\boxed{G_{reale} = \frac{G_{ideale}}{1 - \frac{1}{G_{loop}}} = \frac{1}{1 + \frac{1}{A_0}}}$$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ \textbf{Non serve} tagliare l'anello e introdurre generatore di test!
+
+                    \vspace{0.05cm}
+                    {\footnotesize (Si può fare anche ``a mano'', ma così è più veloce)}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Calcolo $V_{ADC,reale}$ e Errore:}
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+
+                    \vspace{0.05cm}
+                    1. Calcola $V_{ADC,id}$ (caso ideale, buffer con guadagno 1)
+
+                    \vspace{0.05cm}
+                    2. Calcola $G_{reale}$ del buffer: $G_{reale} = \frac{1}{1 + \frac{1}{A_0}}$
+
+                    \vspace{0.05cm}
+                    3. Moltiplica:
+
+                    $$\boxed{V_{ADC,R} = V_{ADC,id} \cdot G_{reale}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Errore statico:}
+                    $$\boxed{\varepsilon = \left| V_{ADC,R} - V_{ADC,id} \right|}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Errore MASSIMO in funzione di LSB:}
+
+                    \vspace{0.1cm}
+                    Spesso viene chiesto di trovare $\varepsilon_{max}$ e esprimerlo in LSB:
+
+                    \vspace{0.1cm}
+                    $$\boxed{LSB = \frac{FSR}{2^N}}$$
+
+                    dove $FSR = V_{DD} - V_{SS}$ (Full Scale Range)
+
+                    \vspace{0.15cm}
+                    \textbf{Errore in LSB:}
+                    $$\boxed{\varepsilon_{max} [\text{LSB}] = \frac{\varepsilon_{max}}{LSB} = \frac{\varepsilon_{max} \cdot 2^N}{FSR}}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ Caso con $V_{OS}$ su ENTRAMBI gli OpAmp:}
+
+                    \vspace{0.1cm}
+                    Se l'esercizio introduce $V_{OS1}$ (primo OpAmp) e $V_{OS2}$ (buffer):
+
+                    \vspace{0.1cm}
+                    \textbf{Usa sovrapposizione!} Già conosci i contributi di $V_{in}$ e $V_{REF}$ dai calcoli precedenti.
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Devi calcolare \textbf{solo} i contributi di $V_{OS1}$ e $V_{OS2}$:
+
+                    $$V_{ADC} = \underbrace{f(V_{in}, V_{REF})}_{\text{già calcolato}} + \underbrace{g(V_{OS1})}_{\text{nuovo}} + \underbrace{h(V_{OS2})}_{\text{nuovo}}$$
+
+                    \vspace{0.1cm}
+                    Poi calcola errore e rapportalo a LSB come sempre.
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ RIASSUNTO:}
+
+                    \vspace{0.05cm}
+                    • Buffer = S\&H in analisi statica (solo OpAmp)
+
+                    • Buffer ideale: $A_v = 1$, $G_{loop} = -A_0$
+
+                    • $V_{ADC,R} = V_{ADC,id} \cdot G_{reale}$
+
+                    • Errore in LSB: $\frac{\varepsilon_{max}}{LSB}$ con $LSB = \frac{FSR}{2^N}$
+
+                    • Con $V_{OS}$: sovrapposizione (riusa calcoli precedenti!)
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Buffer e Errore Statico};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Richieste Tipiche d'Esame ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Richieste Tipiche d'Esame - Errori}
+
+                \vspace{0.1cm}
+                Le domande più frequenti sul calcolo degli errori nella catena di acquisizione:
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{1. Errore dovuto a GUADAGNO FINITO}
+
+                    \vspace{0.1cm}
+                    L'OpAmp (buffer) ha $A_0$ finito invece di $\infty$.
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item Calcola $G_{reale} = \frac{1}{1 + 1/A_0}$
+                        \item $V_{ADC,R} = V_{ADC,id} \cdot G_{reale}$
+                        \item $\varepsilon = |V_{ADC,R} - V_{ADC,id}|$
+                    \end{itemize}
+
+                    \vspace{0.05cm}
+                    {\footnotesize Il caso \textbf{peggiore} è quando $V_{ADC,id}$ è massimo!}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{2. Errore dovuto a $V_{OS}$}
+
+                    \vspace{0.1cm}
+                    Uno o più OpAmp hanno tensione di offset.
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item \textbf{Sovrapposizione}: spegni tutte le sorgenti tranne $V_{OS}$
+                        \item Calcola il contributo di $V_{OS}$ all'uscita
+                        \item Se ci sono più OpAmp: somma i contributi
+                    \end{itemize}
+
+                    \vspace{0.05cm}
+                    {\footnotesize \textbf{Tip:} $V_{OS}$ sul buffer si propaga direttamente con guadagno $\approx 1$}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{3. Errore dovuto a CORRENTE DI BIAS}
+
+                    \vspace{0.1cm}
+                    L'OpAmp ha corrente $I_B$ \textbf{entrante} o \textbf{uscente} negli ingressi.
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item Identifica su quale morsetto scorre $I_B$ ($V^+$ o $V^-$)
+                        \item Trova la \textbf{resistenza} vista da quel morsetto
+                        \item Calcola la caduta: $\Delta V = I_B \cdot R_{eq}$
+                        \item Propaga l'errore all'uscita
+                    \end{itemize}
+
+                    \vspace{0.05cm}
+                    {\footnotesize \textbf{Attenzione al verso!} Entrante vs uscente cambia il segno.}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ FORMULA FINALE - Tutti i casi:}
+
+                    \vspace{0.1cm}
+                    $$\boxed{\varepsilon_{max} [\text{LSB}] = \frac{\varepsilon_{max}}{LSB} = \frac{\varepsilon_{max} \cdot 2^N}{FSR}}$$
+
+                    \vspace{0.1cm}
+                    dove: $FSR = V_{DD} - V_{SS}$, $N$ = bit dell'ADC
+
+                    \vspace{0.1cm}
+                    \textbf{Caso peggiore:} Valuta $\varepsilon$ quando $V_{in}$ è al suo estremo (min o max).
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ERRORI COMBINATI:}
+
+                    \vspace{0.05cm}
+                    Se l'esercizio chiede errore totale con guadagno finito + $V_{OS}$ + $I_B$:
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Usa \textbf{sovrapposizione}! Calcola ogni contributo separatamente.
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Per il \textbf{caso peggiore}: somma i valori assoluti (worst case).
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Richieste Tipiche d'Esame};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Errore da Corrente di Bias nel S&H ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Errore da $I_B$ nel Sample \& Hold}
+
+                \vspace{0.1cm}
+                L'errore da corrente di bias va analizzato \textbf{separatamente} nelle due fasi!
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{FASE di SAMPLE} (switch \textbf{chiuso}):
+
+                    \vspace{0.1cm}
+                    Lo switch è chiuso $\Rightarrow$ il condensatore è collegato alla sorgente.
+
+                    \vspace{0.1cm}
+                    \textbf{Verifica:} La corrente $I_B$ causa variazione di $V_{ADC}$?
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Spesso \textbf{NO}! La sorgente ``forza'' la tensione sul condensatore, $I_B$ non ha effetto su $V_{ADC}$.
+
+                    \vspace{0.05cm}
+                    {\footnotesize (Dipende dalla topologia: analizza caso per caso)}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{FASE di HOLD} (switch \textbf{aperto}):
+
+                    \vspace{0.1cm}
+                    Lo switch si apre $\Rightarrow$ il condensatore è \textbf{isolato}.
+
+                    \vspace{0.1cm}
+                    \textbf{Idealmente:} $V_{ADC}$ rimane costante al valore campionato.
+
+                    \vspace{0.1cm}
+                    \textbf{Con $I_B$:} La corrente di bias del buffer \textbf{carica/scarica} il condensatore!
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ $V_{ADC}$ \textbf{deriva} (drift) nel tempo!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Formula della DERIVA:}
+
+                    \vspace{0.1cm}
+                    Carica del condensatore a corrente costante:
+
+                    $$\boxed{\Delta V = \frac{I_B \cdot T_{hold}}{C_H}}$$
+
+                    dove:
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item $I_B$ = corrente di bias (entrante o uscente)
+                        \item $T_{hold}$ = durata della fase di hold
+                        \item $C_H$ = capacità del condensatore di hold
+                    \end{itemize}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Andamento dell'ERRORE nel tempo:}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                        \begin{tikzpicture}[scale=0.55]
+                            % Axes
+                            \draw[->] (0,0) -- (6,0) node[right] {\footnotesize $t$};
+                            \draw[->] (0,0) -- (0,2.5) node[above] {\footnotesize $\varepsilon$};
+                            % Sample phase
+                            \fill[green!20] (0,0) rectangle (1.5,2.2);
+                            \node at (0.75,2.5) {\tiny SAMPLE};
+                            % Hold phase
+                            \fill[red!20] (1.5,0) rectangle (4.5,2.2);
+                            \node at (3,2.5) {\tiny HOLD};
+                            % Sample phase 2
+                            \fill[green!20] (4.5,0) rectangle (6,2.2);
+                            \node at (5.25,2.5) {\tiny SAMPLE};
+                            % Error line
+                            \draw[thick, blue] (0,0.2) -- (1.5,0.2);
+                            \draw[thick, blue] (1.5,0.2) -- (4.5,1.8);
+                            \draw[thick, blue] (4.5,0.2) -- (6,0.2);
+                            % Labels
+                            \draw[dashed] (1.5,0) -- (1.5,2.2);
+                            \draw[dashed] (4.5,0) -- (4.5,2.2);
+                            \node at (1.5,-0.3) {\tiny S$\to$H};
+                            \node at (4.5,-0.3) {\tiny H$\to$S};
+                            % Max error
+                            \draw[<->, red] (4.7,0.2) -- (4.7,1.8);
+                            \node[red, right] at (4.7,1) {\tiny $\varepsilon_{max}$};
+                        \end{tikzpicture}
+                    \end{center}
+
+                    \vspace{0.05cm}
+                    • Transizione S$\to$H: errore = 0 (appena campionato)
+
+                    • Durante HOLD: errore \textbf{cresce} linearmente
+
+                    • \textbf{Errore MASSIMO:} appena \textbf{prima} di tornare in SAMPLE!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ ERRORE MASSIMO:}
+
+                    $$\boxed{\varepsilon_{max} = \frac{I_B \cdot T_{hold}}{C_H}}$$
+
+                    L'errore è massimo alla fine della fase di hold (dopo tempo $T_{hold}$).
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ DIMENSIONAMENTO di $C_H$:}
+
+                    \vspace{0.1cm}
+                    Se viene chiesto: ``Dimensionare $C_H$ per avere $\varepsilon < \varepsilon_{spec}$''
+
+                    \vspace{0.1cm}
+                    Dalla formula: $\varepsilon_{max} = \frac{I_B \cdot T_{hold}}{C_H} < \varepsilon_{spec}$
+
+                    \vspace{0.1cm}
+                    $$\boxed{C_H > \frac{I_B \cdot T_{hold}}{\varepsilon_{spec}}}$$
+
+                    \vspace{0.1cm}
+                    Se $\varepsilon_{spec}$ è dato in LSB:
+
+                    $$\boxed{C_H > \frac{I_B \cdot T_{hold}}{\varepsilon_{spec} \cdot LSB}}$$
+
+                    dove $LSB = FSR / 2^N$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ATTENZIONE - Quale $I_B$ conta?}
+
+                    \vspace{0.05cm}
+                    Non tutte le correnti di bias causano deriva!
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Analizza il circuito in fase di HOLD:
+
+                    • Solo le $I_B$ che \textbf{scorrono nel condensatore} causano errore
+
+                    • Le $I_B$ che hanno un altro percorso \textbf{non} influenzano $V_{ADC}$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Errore da $I_B$ nel S\&H};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ S&H - Dimensionamento Tensioni di Comando nMOS ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Tensioni di Comando nMOS nel S\&H}
+
+                \vspace{0.1cm}
+                L'nMOS funge da interruttore: va dimensionato $V_G$ per le fasi ON/OFF.
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.6]
+                        % Input
+                        \draw (0,1.5) node[left] {$V_\beta$} -- (0.5,1.5);
+                        % nMOS as switch
+                        \draw (0.5,1.5) to[nos, l=$V_G$] (2.5,1.5);
+                        % Capacitor side
+                        \draw (2.5,1.5) -- (3,1.5) node[right] {$V_\gamma$};
+                        % Labels
+                        \node[above] at (1.5,1.8) {\footnotesize nMOS};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.05cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Premessa importante:}
+
+                    \vspace{0.1cm}
+                    • $V_\beta$ (sinistra) e $V_\gamma$ (destra, verso buffer) oscillano nel range ADC
+
+                    • Non sappiamo quale sia Source e quale Drain (dipende dal verso della corrente durante carica/scarica di $C$)
+
+                    • \textbf{Negli nMOS:} Source è il terminale a tensione \textbf{più bassa}
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Consideriamo i \textbf{casi peggiori} agli estremi del range!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ nMOS ON (fase SAMPLE):}
+
+                    \vspace{0.1cm}
+                    Condizione: $V_{GS} > V_T$
+
+                    $$V_G - V_S > V_T$$
+
+                    \vspace{0.1cm}
+                    \textbf{Caso peggiore:} $V_S$ \textbf{massima} (= $V_{ADC,max}$)
+
+                    \vspace{0.1cm}
+                    Deve valere $\forall V_S$ nel range, quindi:
+
+                    $$\boxed{V_{SH,ON} > V_T + V_{ADC,max}}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize Es: se $V_{ADC} \in [-5V, 0V]$ e $V_T = 0.5V$: $V_{SH,ON} > 0.5V$}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ nMOS OFF (fase HOLD):}
+
+                    \vspace{0.1cm}
+                    Condizione: $V_{GS} < V_T$
+
+                    $$V_G - V_S < V_T$$
+
+                    \vspace{0.1cm}
+                    \textbf{Caso peggiore:} $V_S$ \textbf{minima} (= $V_{ADC,min}$)
+
+                    \vspace{0.1cm}
+                    Deve valere $\forall V_S$ nel range, quindi:
+
+                    $$\boxed{V_{SH,OFF} < V_T + V_{ADC,min}}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize Es: se $V_{ADC} \in [-5V, 0V]$ e $V_T = 0.5V$: $V_{SH,OFF} < -4.5V$}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ RIASSUNTO:}
+
+                    \vspace{0.1cm}
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        \textbf{Fase} & \textbf{Condizione} & \textbf{Caso peggiore} \\
+                        \hline
+                        SAMPLE (ON) & $V_{GS} > V_T$ & $V_S = V_{ADC,max}$ \\
+                        \hline
+                        HOLD (OFF) & $V_{GS} < V_T$ & $V_S = V_{ADC,min}$ \\
+                        \hline
+                    \end{tabular}
+
+                    \vspace{0.15cm}
+                    $$\boxed{V_{SH,ON} > V_T + V_{ADC,max}}$$
+                    $$\boxed{V_{SH,OFF} < V_T + V_{ADC,min}}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ Perché questi casi peggiori?}
+
+                    \vspace{0.05cm}
+                    • \textbf{ON:} Se $V_S$ è alta, serve $V_G$ ancora più alta per avere $V_{GS} > V_T$
+
+                    • \textbf{OFF:} Se $V_S$ è bassa, anche una $V_G$ bassa potrebbe dare $V_{GS} > V_T$ (accensione indesiderata!)
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Comando nMOS};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ S&H - Charge Injection ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Errore da Charge Injection}
+
+                \vspace{0.1cm}
+                Quando l'nMOS passa da ON a OFF, la carica nel canale viene ``iniettata'' nel condensatore!
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Cosa succede fisicamente:}
+
+                    \vspace{0.1cm}
+                    • L'nMOS in conduzione ha un \textbf{canale} formato da cariche
+
+                    • Quando $V_G$ scende (transizione ON$\to$OFF), il canale si ``distrugge''
+
+                    • Le cariche del canale devono andare da qualche parte!
+
+                    • Una parte va verso il condensatore $C_H$ $\Rightarrow$ \textbf{errore}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{Modello a capacità parassite:}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                        \begin{circuitikz}[scale=0.55]
+                            % Gate
+                            \draw (1.5,2.5) node[above] {$V_G$} -- (1.5,2);
+                            % Cp parasitic
+                            \draw (1.5,2) to[C, l=$C_p$] (1.5,0.5);
+                            % Connection to CH
+                            \draw (1.5,0.5) -- (3,0.5);
+                            \draw (3,0.5) to[C, l=$C_H$] (3,-1);
+                            \draw (3,-1) node[ground] {};
+                            % Output node
+                            \draw (1.5,0.5) -- (0.5,0.5) node[left] {$V_\gamma$};
+                            % Voltage label
+                            \node at (3,0.8) {\footnotesize $\Delta V$};
+                        \end{circuitikz}
+                    \end{center}
+
+                    \vspace{0.05cm}
+                    $C_p$ = capacità parassita Gate-Canale dell'nMOS
+
+                    $C_H$ = capacità di hold
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ FORMULA del Charge Injection:}
+
+                    \vspace{0.1cm}
+                    $$\boxed{\Delta V = \Delta V_G \cdot \frac{C_p}{C_p + C_H}}$$
+
+                    \vspace{0.1cm}
+                    dove:
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item $\Delta V$ = errore sulla tensione di hold
+                        \item $\Delta V_G$ = escursione del gate (da $V_{SH,ON}$ a $V_{SH,OFF}$)
+                        \item $C_p$ = capacità parassita gate-canale dell'nMOS
+                        \item $C_H$ = capacità del condensatore di hold
+                    \end{itemize}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{Interpretazione fisica:}
+
+                    \vspace{0.1cm}
+                    È un \textbf{partitore capacitivo}!
+
+                    \vspace{0.1cm}
+                    La variazione $\Delta V_G$ si ripartisce tra $C_p$ e $C_H$:
+
+                    • Se $C_H \gg C_p$: $\Delta V \approx 0$ (errore piccolo)
+
+                    • Se $C_H \ll C_p$: $\Delta V \approx \Delta V_G$ (errore grande!)
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Serve $C_H$ \textbf{grande} per minimizzare l'errore
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Calcolo di $\Delta V_G$ (con SEGNO!):}
+
+                    \vspace{0.1cm}
+                    Per l'nMOS, la transizione ON$\to$OFF richiede di \textbf{abbassare} $V_G$:
+
+                    $$\boxed{\Delta V_G = V_{G,finale} - V_{G,iniziale} = V_{SH,OFF} - V_{SH,ON}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Esempio:} Se $V_{SH,ON} = +12V$ e $V_{SH,OFF} = -12V$:
+
+                    $$\Delta V_G = -12V - (+12V) = \mathbf{-24V}$$
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ $\Delta V$ è \textbf{NEGATIVO} $\Rightarrow$ tensione su $C_H$ \textbf{scende}!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ Perché NEGATIVO per nMOS?}
+
+                    \vspace{0.1cm}
+                    • Per \textbf{spegnere} un nMOS devo \textbf{abbassare} $V_G$
+
+                    • $V_G$ scende $\Rightarrow$ $\Delta V_G < 0$
+
+                    • Il charge injection \textbf{sottrae} carica a $C_H$
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ La tensione sul condensatore \textbf{diminuisce}!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ ATTENZIONE alla terminologia!}
+
+                    \vspace{0.1cm}
+                    \textbf{Caso 1:} ``$V_G$ ha ampiezza \textbf{12V p-p}'' (picco-picco)
+
+                    $\Rightarrow$ $|\Delta V_G| = 12V$, ma con segno: $\Delta V_G = -12V$
+
+                    \vspace{0.15cm}
+                    \textbf{Caso 2:} ``$V_G$ ha ampiezza \textbf{12V}'' (senza p-p)
+
+                    $\Rightarrow$ Oscillazione $\pm 12V$ $\Rightarrow$ escursione totale = 24V
+
+                    $$\boxed{\Delta V_G = -2 \times 12V = -24V}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize \textbf{Regola:} Ampiezza = semipicco $\Rightarrow$ moltiplica per 2, poi segno $-$!}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ NOTA:}
+
+                    \vspace{0.05cm}
+                    Il charge injection è un errore \textbf{sistematico} (sempre presente alla transizione ON$\to$OFF).
+
+                    \vspace{0.05cm}
+                    A differenza dell'errore da $I_B$ (che cresce nel tempo), questo errore è \textbf{istantaneo}!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Charge Injection};
+    \end{tikzpicture}
+
 
 \end{multicols*}
 \end{document}
