@@ -198,6 +198,94 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Grafico};
     \end{tikzpicture}
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Condensatore - Casi Semplici Carica/Scarica ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Carica e Scarica RC - Casi Semplici}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Costante di tempo:}
+                    $$\boxed{\tau = R \cdot C}$$
+
+                    Unità: $[\Omega] \cdot [F] = [s]$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{CARICA del condensatore}
+
+                    \vspace{0.1cm}
+                    Condensatore inizialmente scarico ($V_C(0) = 0$), caricato a $V_{finale}$:
+
+                    $$\boxed{V_C(t) = V_{finale} \cdot \left(1 - e^{-\frac{t}{\tau}}\right)}$$
+
+                    $$\boxed{I_C(t) = \frac{V_{finale}}{R} \cdot e^{-\frac{t}{\tau}}}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize La tensione \textbf{sale} da 0 a $V_{finale}$, la corrente \textbf{scende} da $I_{max}$ a 0}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{SCARICA del condensatore}
+
+                    \vspace{0.1cm}
+                    Condensatore inizialmente carico a $V_0$, scaricato a 0:
+
+                    $$\boxed{V_C(t) = V_0 \cdot e^{-\frac{t}{\tau}}}$$
+
+                    $$\boxed{I_C(t) = -\frac{V_0}{R} \cdot e^{-\frac{t}{\tau}}}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize La tensione \textbf{scende} da $V_0$ a 0, corrente negativa (verso opposto)}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Carica a CORRENTE COSTANTE:}
+
+                    \vspace{0.1cm}
+                    Se il condensatore è caricato da una corrente costante $I$:
+
+                    $$\boxed{V_C(t) = V_C(0) + \frac{I \cdot t}{C}}$$
+
+                    oppure: $\boxed{\Delta V_C = \frac{I \cdot \Delta t}{C}}$
+
+                    \vspace{0.05cm}
+                    {\footnotesize (Usata per errore da $I_B$ nel S\&H!)}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Valori notevoli:}
+
+                    \vspace{0.05cm}
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        $t$ & Carica & Scarica \\
+                        \hline
+                        $\tau$ & $63.2\%$ di $V_f$ & $36.8\%$ di $V_0$ \\
+                        \hline
+                        $3\tau$ & $95\%$ di $V_f$ & $5\%$ di $V_0$ \\
+                        \hline
+                        $5\tau$ & $99.3\%$ di $V_f$ & $\approx 0$ \\
+                        \hline
+                    \end{tabular}
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Dopo $5\tau$ si considera raggiunto il regime!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Condensatore - Carica/Scarica RC};
+    \end{tikzpicture}
 
 
     %------------ Box 4: Resistenze in parallelo ---------------
@@ -2462,6 +2550,116 @@
     \newpage
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp - Introduzione e Caratteristica ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Amplificatore Operazionale (OpAmp)}
+
+                \vspace{0.15cm}
+                \begin{center}
+                    \begin{circuitikz}[scale=0.7]
+                        % OpAmp
+                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
+                        % Labels
+                        \node at (opamp.-) [left] {\footnotesize $V^-$};
+                        \node at (opamp.+) [left] {\footnotesize $V^+$};
+                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
+                        % Power supplies (dashed)
+                        \draw[dashed] (opamp.up) -- ++(0,0.4) node[above] {\tiny $+V_{DD}$};
+                        \draw[dashed] (opamp.down) -- ++(0,-0.4) node[below] {\tiny $-V_{SS}$};
+                    \end{circuitikz}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Equazione fondamentale:}
+
+                    \vspace{0.1cm}
+                    $$\boxed{V_{out} = A_0 \cdot (V^+ - V^-)}$$
+
+                    dove $A_0$ = guadagno ad anello aperto ($A_0 \to \infty$ ideale)
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Caratteristica $V_{out}$ vs $(V^+ - V^-)$:}
+
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.55]
+                        % Axes
+                        \draw[->] (-2.5,0) -- (2.5,0) node[right] {\footnotesize $V^+ - V^-$};
+                        \draw[->] (0,-2.2) -- (0,2.5) node[above] {\footnotesize $V_{out}$};
+                        % Saturation levels
+                        \draw[dashed, red, thick] (-2.5,1.7) -- (2.5,1.7);
+                        \node[red, right] at (2.5,1.7) {\tiny $+V_{sat}$};
+                        \draw[dashed, red, thick] (-2.5,-1.7) -- (2.5,-1.7);
+                        \node[red, right] at (2.5,-1.7) {\tiny $-V_{sat}$};
+                        % Characteristic curve
+                        \draw[thick, blue] (-2.5,-1.7) -- (-0.3,-1.7) -- (0.3,1.7) -- (2.5,1.7);
+                        % Labels for zones
+                        \node[blue] at (-1.5,-2) {\tiny SAT$^-$};
+                        \node[blue] at (0,-0.6) {\tiny LIN};
+                        \node[blue] at (1.5,2) {\tiny SAT$^+$};
+                        % Slope annotation
+                        \draw[<->, green!50!black] (0.1,0) -- (0.25,1.2);
+                        \node[green!50!black, right] at (0.3,0.6) {\tiny $A_0$};
+                    \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{ZONA LINEARE} (tra le saturazioni):
+
+                    \vspace{0.05cm}
+                    $V_{out} = A_0 \cdot (V^+ - V^-)$
+
+                    \vspace{0.05cm}
+                    {\footnotesize L'OpAmp amplifica la differenza degli ingressi}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{ZONA di SATURAZIONE:}
+
+                    \vspace{0.05cm}
+                    • Se $(V^+ - V^-) > 0$ (anche di poco): $V_{out} = +V_{sat}$
+
+                    • Se $(V^+ - V^-) < 0$ (anche di poco): $V_{out} = -V_{sat}$
+
+                    \vspace{0.05cm}
+                    {\footnotesize L'uscita ``tocca'' le alimentazioni e non va oltre!}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ I trattini (- - -) nel grafico:}
+
+                    \vspace{0.05cm}
+                    Indicano i \textbf{limiti di saturazione} $\pm V_{sat}$.
+
+                    L'uscita si ``appiattisce'' su questi valori e non segue più $(V^+ - V^-)$!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Valori tipici di $V_{sat}$:}
+
+                    \vspace{0.05cm}
+                    • \textbf{Rail-to-rail:} $V_{sat} = V_{alim}$ esattamente
+
+                    • \textbf{Standard:} $V_{sat} \approx V_{alim} - 1V \div 2V$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Introduzione e Caratteristica};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ OpAmp - Impedenza con Condensatori per Bode ---------------
 
     \begin{tikzpicture}
@@ -3738,6 +3936,301 @@
     \newpage
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp - Retroazione e Saturazione ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Retroazione e Saturazione dell'OpAmp}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{RETROAZIONE NEGATIVA}
+
+                    \vspace{0.1cm}
+                    \textbf{Condizione:} $V_{out}$ ritorna su $V^-$ (morsetto invertente)
+
+                    \vspace{0.1cm}
+                    \textbf{Comportamento:}
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item Sistema \textbf{STABILE}
+                        \item L'OpAmp \textbf{NON satura} (lavora in zona lineare)
+                        \item Vale l'ipotesi: $\boxed{V^+ = V^-}$
+                        \item Vale l'ipotesi: $I^+ = I^- = 0$
+                    \end{itemize}
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Usare le formule degli amplificatori (inv, non-inv, sommatore...)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{RETROAZIONE POSITIVA}
+
+                    \vspace{0.1cm}
+                    \textbf{Condizione:} $V_{out}$ ritorna su $V^+$ (morsetto non invertente)
+
+                    \vspace{0.1cm}
+                    \textbf{Comportamento:}
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item Sistema \textbf{INSTABILE / BISTABILE}
+                        \item L'OpAmp \textbf{SATURA} sempre!
+                        \item $V_{out} = +V_{sat}$ oppure $V_{out} = -V_{sat}$
+                        \item \textbf{NON vale} $V^+ = V^-$
+                    \end{itemize}
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ L'uscita si comporta come \textbf{generatore indipendente}!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Come capire DOVE satura:}
+
+                    \vspace{0.1cm}
+                    Con retroazione positiva, confronta $V^+$ e $V^-$:
+
+                    \vspace{0.1cm}
+                    • Se $V^+ > V^-$ $\Rightarrow$ $\boxed{V_{out} = +V_{sat}}$
+
+                    • Se $V^+ < V^-$ $\Rightarrow$ $\boxed{V_{out} = -V_{sat}}$
+
+                    \vspace{0.1cm}
+                    {\footnotesize L'OpAmp ``amplifica'' la differenza $V^+ - V^-$ fino a saturare!}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLA PRATICA - Riconoscimento:}
+
+                    \vspace{0.1cm}
+                    \textbf{Guarda dove va $V_{out}$:}
+
+                    \vspace{0.05cm}
+                    • $V_{out}$ torna su $V^-$ $\Rightarrow$ Retroaz. \textbf{NEGATIVA} $\Rightarrow$ \textbf{NON satura}
+
+                    • $V_{out}$ torna su $V^+$ $\Rightarrow$ Retroaz. \textbf{POSITIVA} $\Rightarrow$ \textbf{SATURA}
+
+                    \vspace{0.1cm}
+                    {\footnotesize (Se non c'è retroazione, l'OpAmp è in \textbf{anello aperto} e satura!)}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ Caso COMPARATORE (no retroazione):}
+
+                    \vspace{0.05cm}
+                    Senza retroazione, l'OpAmp ha guadagno $A_0 \to \infty$:
+
+                    $\Rightarrow$ Anche una piccola differenza $V^+ - V^-$ porta a saturazione!
+
+                    $\Rightarrow$ $V_{out} = +V_{sat}$ se $V^+ > V^-$, altrimenti $V_{out} = -V_{sat}$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Retroazione e Saturazione};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp - Riconoscere la Configurazione ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Come Riconoscere la Configurazione}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLA FONDAMENTALE:}
+
+                    \vspace{0.1cm}
+                    \textbf{Retroazione} = esiste un \textbf{percorso} da $V_{out}$ verso un ingresso dell'OpAmp.
+
+                    \vspace{0.1cm}
+                    Il percorso può passare attraverso:
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item Resistenze ($R_f$)
+                        \item Condensatori
+                        \item Reti di componenti
+                        \item Collegamento diretto (buffer)
+                    \end{itemize}
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ \textbf{Non serve} collegamento diretto!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{PASSO 1: C'è retroazione?}
+
+                    \vspace{0.1cm}
+                    Parti da $V_{out}$ e chiediti:
+
+                    ``Posso raggiungere $V^+$ o $V^-$ seguendo un percorso?''
+
+                    \vspace{0.1cm}
+                    • \textbf{SÌ} $\Rightarrow$ C'è retroazione (vai al passo 2)
+
+                    • \textbf{NO} $\Rightarrow$ \textbf{Anello aperto} (comparatore) $\Rightarrow$ SATURA!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{PASSO 2: Su quale morsetto arriva?}
+
+                    \vspace{0.1cm}
+                    Segui il percorso da $V_{out}$:
+
+                    \vspace{0.1cm}
+                    • Arriva su $V^-$ $\Rightarrow$ \textbf{Retroazione NEGATIVA}
+
+                    \hspace{0.3cm} $\Rightarrow$ Stabile, NON satura, vale $V^+ = V^-$
+
+                    \vspace{0.1cm}
+                    • Arriva su $V^+$ $\Rightarrow$ \textbf{Retroazione POSITIVA}
+
+                    \hspace{0.3cm} $\Rightarrow$ Bistabile, SATURA, Trigger di Schmitt
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ATTENZIONE - Casi misti:}
+
+                    \vspace{0.05cm}
+                    Se $V_{out}$ arriva su \textbf{ENTRAMBI} $V^+$ e $V^-$:
+
+                    $\Rightarrow$ Analizza quale retroazione \textbf{domina}
+
+                    $\Rightarrow$ Di solito la negativa (se $R_f$ su $V^-$ è più ``forte'')
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ TRUCCO VELOCE:}
+
+                    \vspace{0.05cm}
+                    Guarda la resistenza di feedback $R_f$:
+
+                    • $R_f$ collega $V_{out}$ a $V^-$ $\Rightarrow$ Amplificatore (inv/non-inv)
+
+                    • $R_f$ collega $V_{out}$ a $V^+$ $\Rightarrow$ Trigger di Schmitt
+
+                    • Nessuna $R_f$ $\Rightarrow$ Comparatore (satura!)
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Riconoscere Configurazione};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp - Saturazione dell'Uscita ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Saturazione dell'Uscita dell'OpAmp}
+
+                \vspace{0.1cm}
+                L'uscita dell'OpAmp \textbf{non può superare} le tensioni di alimentazione!
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Limiti di saturazione:}
+
+                    \vspace{0.1cm}
+                    $$\boxed{-V_{sat} \leq V_{out} \leq +V_{sat}}$$
+
+                    \vspace{0.1cm}
+                    • $+V_{sat} \approx +V_{DD}$ (alimentazione positiva)
+
+                    • $-V_{sat} \approx -V_{SS}$ (o $\approx 0V$ se alim. singola)
+
+                    \vspace{0.05cm}
+                    {\footnotesize (OpAmp reali: $V_{sat} \approx V_{alim} - 1V \div 2V$)}
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Caratteristica $V_{out}$ vs $V_{in}$:}
+
+                \vspace{0.1cm}
+                \begin{center}
+                    \begin{tikzpicture}[scale=0.6]
+                        % Axes
+                        \draw[->] (-2.5,0) -- (2.5,0) node[right] {\footnotesize $V_{in}$};
+                        \draw[->] (0,-2) -- (0,2.5) node[above] {\footnotesize $V_{out}$};
+                        % Saturation levels (dashed lines)
+                        \draw[dashed, red, thick] (-2.5,1.5) -- (2.5,1.5) node[right] {\tiny $+V_{sat}$};
+                        \draw[dashed, red, thick] (-2.5,-1.5) -- (2.5,-1.5) node[right] {\tiny $-V_{sat}$};
+                        % Linear region + saturation (amplifier characteristic)
+                        \draw[thick, blue] (-2.5,-1.5) -- (-0.5,-1.5) -- (0.5,1.5) -- (2.5,1.5);
+                        % Labels
+                        \node[blue] at (-1.5,-1.8) {\tiny sat.};
+                        \node[blue] at (0,-0.5) {\tiny lin.};
+                        \node[blue] at (1.5,1.8) {\tiny sat.};
+                    \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.05cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    I \textbf{trattini orizzontali} (- - -) indicano i livelli di saturazione: l'uscita \textbf{si appiattisce} e non segue più l'ingresso!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{Zona LINEARE} (tra le saturazioni):
+
+                    \vspace{0.1cm}
+                    $$V_{out} = A_v \cdot V_{in}$$
+
+                    L'OpAmp amplifica normalmente (pendenza = guadagno $A_v$)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{Zona di SATURAZIONE:}
+
+                    \vspace{0.1cm}
+                    • \textbf{Saturazione ALTA:} $V_{out} = +V_{sat}$ (costante)
+
+                    \hspace{0.3cm} Si verifica quando $V_{in}$ è ``troppo positivo''
+
+                    \vspace{0.05cm}
+                    • \textbf{Saturazione BASSA:} $V_{out} = -V_{sat}$ (costante)
+
+                    \hspace{0.3cm} Si verifica quando $V_{in}$ è ``troppo negativo''
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ L'uscita \textbf{non cambia} anche se $V_{in}$ varia!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ Quando verificare la saturazione:}
+
+                    \vspace{0.05cm}
+                    Dopo aver calcolato $V_{out}$ con le formule, controlla:
+
+                    $$\text{Se } V_{out,calc} > +V_{sat} \Rightarrow V_{out} = +V_{sat}$$
+                    $$\text{Se } V_{out,calc} < -V_{sat} \Rightarrow V_{out} = -V_{sat}$$
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Le formule valgono \textbf{solo} se $V_{out}$ resta nella zona lineare!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Saturazione dell'Uscita};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ OpAmp - Retroazione Negativa ---------------
 
     \resizebox{0.8\linewidth}{!}{%
@@ -4619,6 +5112,24 @@
                     $$V_{out} = -I_{LSB} \cdot R_F \cdot (S_0 + 2S_1 + 4S_2 + \cdots)$$
                 }}
 
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ ATTENZIONE al VERSO della corrente!}
+
+                    \vspace{0.1cm}
+                    Il segno di $V_{out}$ dipende dal \textbf{verso} della corrente:
+
+                    \vspace{0.1cm}
+                    • Corrente \textbf{entrante} nel nodo $V^-$ (verso il basso):
+                    $$\boxed{V_{out} = +R_F \cdot I_{in}}$$
+
+                    • Corrente \textbf{uscente} dal nodo $V^-$ (verso l'alto):
+                    $$\boxed{V_{out} = -R_F \cdot I_{in}}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize \textbf{Regola:} Guarda il verso della freccia della corrente nel circuito!}
+                }}
+
             \end{minipage}
         };
         %------------ DAC Correnti Pesate Header ---------------------
@@ -5283,6 +5794,15 @@
                 \textcolor{red}{$\leftarrow$ Rosso: $V_{in}$ scende} $\Rightarrow$ a $V_{TL}$ commuta da LOW a HIGH
                 }
 
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ Come DISEGNARE (INV):}
+
+                    1. Disegno linea \textcolor{red}{\textbf{ROSSA}} da \textbf{SOPRA a SOTTO} (partendo da $+V_{sat}$)
+
+                    2. Completo con isteresi alla sua \textbf{DESTRA}
+                }}
+
                 \vspace{0.2cm}
                 \textbf{NON INVERTENTE:} (ciclo percorso in senso \textbf{orario})
 
@@ -5318,6 +5838,15 @@
                 \textcolor{red}{$\leftarrow$ Rosso: $V_{in}$ scende} $\Rightarrow$ a $V_{TL}$ commuta da HIGH a LOW
                 }
 
+                \vspace{0.1cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ Come DISEGNARE (NON INV):}
+
+                    1. Disegno linea \textcolor{blue}{\textbf{BLU}} da \textbf{BASSO ad ALTO} (partendo da $-V_{sat}$)
+
+                    2. Completo con isteresi alla sua \textbf{DESTRA}
+                }}
+
                 \vspace{0.15cm}
                 \colorbox{yellow!30}{\parbox{0.95\linewidth}{
                     \textbf{Cos'è l'ISTERESI?}
@@ -5333,6 +5862,59 @@
 
                     \vspace{0.1cm}
                     \textbf{A cosa serve:} il rumore deve superare $\Delta V$ per causare commutazioni spurie $\Rightarrow$ \textbf{immunità al rumore}!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLA MNEMONICA per disegnare:}
+
+                    \vspace{0.1cm}
+                    \textbf{1. Guarda dove entra $V_{in}$:}
+
+                    \vspace{0.05cm}
+                    • Entra su $V^-$ $\Rightarrow$ \textbf{INVERTENTE}
+
+                    • Entra su $V^+$ $\Rightarrow$ \textbf{NON INVERTENTE}
+
+                    \vspace{0.15cm}
+                    \textbf{2. Disegna la PRIMA transizione verticale:}
+
+                    \vspace{0.05cm}
+                    • \textbf{INV}: parto da \textbf{SOPRA} ($+V_{sat}$), scendo $\downarrow$
+
+                    \hspace{0.5cm} {\footnotesize (``MENO inverte'' $\Rightarrow$ parto dal PIÙ)}
+
+                    \vspace{0.05cm}
+                    • \textbf{NON INV}: parto da \textbf{SOTTO} ($-V_{sat}$), salgo $\uparrow$
+
+                    \hspace{0.5cm} {\footnotesize (``PIÙ non inverte'' $\Rightarrow$ parto dal MENO)}
+
+                    \vspace{0.15cm}
+                    \textbf{3. La transizione avviene alla soglia PIÙ LONTANA:}
+
+                    \vspace{0.05cm}
+                    • Se parto da SOPRA $\Rightarrow$ attraverso $V_{TH}$ (soglia a destra)
+
+                    • Se parto da SOTTO $\Rightarrow$ attraverso $V_{TL}$ (soglia a sinistra)
+
+                    \vspace{0.05cm}
+                    {\footnotesize \textbf{Regola:} devo sempre attraversare la soglia \textbf{più lontana} dal mio punto di partenza!}
+
+                    \vspace{0.15cm}
+                    \textbf{4. Completa il ciclo:}
+
+                    \vspace{0.05cm}
+                    Dall'arrivo, vai verso \textbf{DESTRA} e chiudi il rettangolo.
+
+                    \vspace{0.15cm}
+                    \textbf{5. FRECCE (verso di percorrenza):}
+
+                    \vspace{0.05cm}
+                    • Sulle linee \textbf{orizzontali}: freccia verso DESTRA $\rightarrow$ ($V_{in}$ sale)
+
+                    • Sulle linee \textbf{orizzontali}: freccia verso SINISTRA $\leftarrow$ ($V_{in}$ scende)
+
+                    • Sulle \textbf{transizioni verticali}: freccia nel verso della commutazione ($\uparrow$ o $\downarrow$)
                 }}
 
             \end{minipage}
@@ -6517,6 +7099,59 @@
                 }}
 
                 \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ CASO PEGGIORE per $\varepsilon_{max}$:}
+
+                    \vspace{0.1cm}
+                    L'errore da charge injection è \textbf{massimo} quando la tensione sul condensatore $V_C$ (= $V_{ADC}$) è a un \textbf{estremo del range}!
+
+                    \vspace{0.1cm}
+                    \textbf{Perché?} Alla transizione SAMPLE$\to$HOLD:
+
+                    \vspace{0.05cm}
+                    • Se $V_C = V_{DD}$ (max): $V_S$ è alta $\Rightarrow$ per avere nMOS ON serviva $V_G$ molto alta $\Rightarrow$ $|\Delta V_G|$ è \textbf{massimo}
+
+                    • Se $V_C = V_{SS}$ (min): stessa logica, escursione massima
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ \textbf{Negli esercizi:} considera $V_C = V_{DD}$ oppure $V_C = V_{SS}$ per trovare $\varepsilon_{max}$!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Verifica errore ammissibile:}
+
+                    \vspace{0.1cm}
+                    Calcola l'errore nel caso peggiore e confrontalo con la specifica:
+
+                    $$|\Delta V| = |\Delta V_G| \cdot \frac{C_p}{C_p + C_H}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Errore in LSB:}
+                    $$\varepsilon [\text{LSB}] = \frac{|\Delta V|}{LSB} = \frac{|\Delta V| \cdot 2^N}{FSR}$$
+
+                    \vspace{0.1cm}
+                    Se la specifica richiede $\varepsilon < k$ LSB (es. $k = 1$ o $k = 0.5$):
+
+                    $$\boxed{\frac{|\Delta V|}{LSB} < k \quad \Rightarrow \quad \text{Errore ammissibile!}}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ DIMENSIONAMENTO di $C_H$:}
+
+                    \vspace{0.05cm}
+                    Se viene chiesto di dimensionare $C_H$ per avere $\varepsilon < k$ LSB:
+
+                    \vspace{0.05cm}
+                    $$|\Delta V_G| \cdot \frac{C_p}{C_p + C_H} < k \cdot LSB$$
+
+                    \vspace{0.05cm}
+                    Risolvendo per $C_H$:
+                    $$\boxed{C_H > C_p \cdot \left( \frac{|\Delta V_G|}{k \cdot LSB} - 1 \right)}$$
+                }}
+
+                \vspace{0.15cm}
                 \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
                     \textbf{$\triangle$ NOTA:}
 
@@ -6530,6 +7165,207 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Charge Injection};
+    \end{tikzpicture}
+
+    \newpage
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ GUIDA - Riconoscere Configurazioni OpAmp ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{GUIDA: Riconoscere le Configurazioni OpAmp}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ PASSO 1: C'è retroazione?}
+
+                    \vspace{0.1cm}
+                    Parti da $V_{out}$: esiste un percorso verso $V^+$ o $V^-$?
+
+                    \vspace{0.1cm}
+                    • \textbf{NO} $\Rightarrow$ vai a \textcolor{red}{\textbf{COMPARATORE}}
+
+                    • \textbf{SÌ, verso $V^-$} $\Rightarrow$ vai a \textcolor{green!50!black}{\textbf{RETROAZ. NEGATIVA}}
+
+                    • \textbf{SÌ, verso $V^+$} $\Rightarrow$ vai a \textcolor{blue}{\textbf{RETROAZ. POSITIVA}}
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textcolor{red}{\textbf{COMPARATORE}} (no retroazione)
+
+                    \vspace{0.1cm}
+                    L'OpAmp è in \textbf{anello aperto} $\Rightarrow$ \textbf{SATURA sempre!}
+
+                    \vspace{0.1cm}
+                    • $V^+ > V^-$ $\Rightarrow$ $V_{out} = +V_{sat}$
+
+                    • $V^+ < V^-$ $\Rightarrow$ $V_{out} = -V_{sat}$
+
+                    \vspace{0.15cm}
+                    \textbf{C'è una $V_{ref}$ su un morsetto?}
+
+                    • \textbf{SÌ} $\Rightarrow$ \textbf{Comparatore a SINGOLA soglia}
+
+                    \hspace{0.5cm} Soglia = $V_{ref}$
+
+                    • \textbf{NO} $\Rightarrow$ Comparatore semplice (soglia = 0V o altra)
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textcolor{green!50!black}{\textbf{RETROAZIONE NEGATIVA}} ($V_{out}$ torna su $V^-$)
+
+                    \vspace{0.1cm}
+                    L'OpAmp \textbf{NON satura}, lavora in zona \textbf{lineare}.
+
+                    Vale: $V^+ = V^-$ e $I^+ = I^- = 0$
+
+                    \vspace{0.15cm}
+                    \textbf{Il collegamento $V^-$ a $V_{out}$ è DIRETTO?}
+
+                    \vspace{0.1cm}
+                    • \textbf{SÌ} (filo diretto) $\Rightarrow$ \textbf{BUFFER} (inseguitore)
+
+                    \hspace{0.5cm} $A_v = 1$, usato nel S\&H
+
+                    \vspace{0.1cm}
+                    • \textbf{NO} (c'è $R_f$) $\Rightarrow$ \textbf{Amplificatore}
+
+                    \hspace{0.5cm} Vai al PASSO 2
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{PASSO 2: Dove entra $V_{in}$?} (se amplificatore)
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ entra su $V^-$ (attraverso $R_1$) $\Rightarrow$ \textbf{INVERTENTE}
+
+                    \hspace{0.5cm} $A_v = -\frac{R_f}{R_1}$
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ entra su $V^+$ $\Rightarrow$ \textbf{NON INVERTENTE}
+
+                    \hspace{0.5cm} $A_v = 1 + \frac{R_f}{R_1}$
+
+                    \vspace{0.1cm}
+                    • Più ingressi su $V^-$ $\Rightarrow$ \textbf{SOMMATORE}
+
+                    \hspace{0.5cm} $V_{out} = -R_f \left( \frac{V_1}{R_1} + \frac{V_2}{R_2} + ... \right)$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Riconoscere Configurazioni (1/2)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ GUIDA - Riconoscere Configurazioni OpAmp (2/2) ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{blue!20}{\parbox{0.95\linewidth}{
+                    \textcolor{blue}{\textbf{RETROAZIONE POSITIVA}} ($V_{out}$ torna su $V^+$)
+
+                    \vspace{0.1cm}
+                    L'OpAmp \textbf{SATURA sempre}! Sistema \textbf{bistabile}.
+
+                    \textbf{NON vale} $V^+ = V^-$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ È un \textbf{TRIGGER DI SCHMITT} (comparatore a doppia soglia / isteresi)
+
+                    \vspace{0.15cm}
+                    \textbf{Dove entra $V_{in}$?}
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ entra su $V^-$ $\Rightarrow$ Trigger \textbf{INVERTENTE}
+
+                    \hspace{0.5cm} Ciclo percorso in senso \textbf{antiorario}
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ entra su $V^+$ $\Rightarrow$ Trigger \textbf{NON INVERTENTE}
+
+                    \hspace{0.5cm} Ciclo percorso in senso \textbf{orario}
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ SCHEMA RIASSUNTIVO:}
+
+                    \vspace{0.1cm}
+                    \begin{tabular}{|l|c|c|}
+                        \hline
+                        \textbf{Config.} & \textbf{Retroaz.} & \textbf{Satura?} \\
+                        \hline
+                        Comparatore & Nessuna & \textbf{SÌ} \\
+                        \hline
+                        Buffer & Neg. (diretto) & NO \\
+                        \hline
+                        Invertente & Neg. ($R_f$) & NO \\
+                        \hline
+                        Non Inv. & Neg. ($R_f$) & NO \\
+                        \hline
+                        Sommatore & Neg. ($R_f$) & NO \\
+                        \hline
+                        Trigger Schmitt & \textbf{Positiva} & \textbf{SÌ} \\
+                        \hline
+                    \end{tabular}
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ TRUCCHI VELOCI:}
+
+                    \vspace{0.1cm}
+                    • Vedi $R_f$ che va su $V^-$? $\Rightarrow$ Amplificatore (non satura)
+
+                    • Vedi $R$ che va su $V^+$ da $V_{out}$? $\Rightarrow$ Trigger (satura)
+
+                    • Vedi filo diretto $V^- \to V_{out}$? $\Rightarrow$ Buffer
+
+                    • Non vedi nulla che torna indietro? $\Rightarrow$ Comparatore (satura)
+
+                    • Vedi condensatore + switch prima dell'OpAmp? $\Rightarrow$ S\&H
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ FLOWCHART VELOCE:}
+
+                    \vspace{0.1cm}
+                    \texttt{1. Retroazione?}
+
+                    \hspace{0.3cm} \texttt{NO → COMPARATORE (satura)}
+
+                    \hspace{0.3cm} \texttt{SÌ → 2. Dove va?}
+
+                    \vspace{0.05cm}
+                    \texttt{2. Verso $V^+$ o $V^-$?}
+
+                    \hspace{0.3cm} \texttt{$V^+$ → TRIGGER (satura)}
+
+                    \hspace{0.3cm} \texttt{$V^-$ → 3. Diretto o con R?}
+
+                    \vspace{0.05cm}
+                    \texttt{3. Collegamento diretto?}
+
+                    \hspace{0.3cm} \texttt{SÌ → BUFFER}
+
+                    \hspace{0.3cm} \texttt{NO → AMPLIFICATORE (inv/non-inv)}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Riconoscere Configurazioni (2/2)};
     \end{tikzpicture}
 
 
