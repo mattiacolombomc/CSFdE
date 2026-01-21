@@ -2916,6 +2916,22 @@
                 • Se $K < 0$: $20\log_{10}|K|$ dB (modulo positivo)
 
                 \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ATTENZIONE - Modulo SEMPRE positivo!}
+
+                    \vspace{0.05cm}
+                    Se a basse frequenze calcoli un valore \textbf{negativo}, devi prendere il \textbf{valore assoluto} prima di convertire in dB!
+
+                    \vspace{0.05cm}
+                    \textbf{Esempio:} Se $T(0) = -10$ $\Rightarrow$ $|T(0)| = 10$
+
+                    $\Rightarrow$ Nel Bode: $20\log_{10}(10) = 20$ dB
+
+                    \vspace{0.05cm}
+                    Il segno negativo influenza solo la \textbf{FASE} ($+180°$), non il modulo!
+                }}
+
+                \vspace{0.15cm}
                 \textbf{2. Contributo di $s^n$ (poli/zeri nell'origine):}
 
                 \vspace{0.05cm}
@@ -3571,6 +3587,109 @@
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Bode - Polo e Zero alla Stessa Frequenza ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Polo e Zero alla STESSA Frequenza}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{Situazione:} Un polo e uno zero coincidono: $\omega_p = \omega_z$
+
+                    \vspace{0.1cm}
+                    \textbf{Esempio:}
+                    $$T(s) = K \cdot \frac{1 + s\tau}{1 + s\tau} \cdot \frac{1}{1 + s\tau_2}$$
+
+                    dove il polo e lo zero a $\omega = 1/\tau$ coincidono.
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{Effetto sul MODULO: si COMPENSANO}
+
+                    \vspace{0.1cm}
+                    • Polo: $-20$ dB/dec
+
+                    • Zero: $+20$ dB/dec
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Effetto netto: $\boxed{0 \text{ dB/dec}}$
+
+                    \vspace{0.1cm}
+                    Il modulo \textbf{non cambia pendenza} a quella frequenza!
+
+                    È come se polo e zero \textbf{non esistessero} per il modulo.
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{Effetto sulla FASE: NON si compensano!}
+
+                    \vspace{0.1cm}
+                    • Polo: $-90°$ (da $0°$ a $-90°$ attorno a $\omega_p$)
+
+                    • Zero: $+90°$ (da $0°$ a $+90°$ attorno a $\omega_z$)
+
+                    \vspace{0.1cm}
+                    \textbf{MA:} la transizione di fase avviene su \textbf{2 decadi} ($\omega/10$ a $10\omega$)
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Alla frequenza $\omega_p = \omega_z$:
+
+                    $$\text{Polo: } -45° \quad \text{Zero: } +45°$$
+
+                    $$\boxed{\text{Fase netta a } \omega_p = \omega_z: \quad -45° + 45° = 0°}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ MA c'è un TRANSITORIO di fase!}
+
+                    \vspace{0.1cm}
+                    \textbf{Prima} di $\omega_p = \omega_z$ (es. a $\omega_p/10$):
+
+                    \hspace{0.3cm} Polo: $\approx 0°$, Zero: $\approx 0°$ $\Rightarrow$ Fase $\approx 0°$
+
+                    \vspace{0.1cm}
+                    \textbf{Dopo} $\omega_p = \omega_z$ (es. a $10\omega_p$):
+
+                    \hspace{0.3cm} Polo: $\approx -90°$, Zero: $\approx +90°$ $\Rightarrow$ Fase $\approx 0°$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Alla fine si compensano, ma \textbf{durante la transizione} la fase può avere una ``gobba''!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ RIASSUNTO:}
+
+                    \vspace{0.05cm}
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        & \textbf{Modulo} & \textbf{Fase} \\
+                        \hline
+                        Effetto & Si compensano & Si compensano \\
+                        \hline
+                        A $\omega_p = \omega_z$ & Nessun cambio & $0°$ netto \\
+                        \hline
+                        Transitorio & Nessuno & Possibile ``gobba'' \\
+                        \hline
+                    \end{tabular}
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ In pratica: polo e zero coincidenti si \textbf{cancellano} (semplificazione algebrica)!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Polo e Zero Coincidenti};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Guadagno Reale vs Ideale ---------------
 
     \resizebox{0.72\linewidth}{!}{%
@@ -3931,6 +4050,312 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Margine di Fase e Stabilit\`a};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Stabilità - Modulo che non taglia 0 dB ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Stabilità: Modulo che NON taglia 0 dB}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{Problema:}
+
+                    \vspace{0.1cm}
+                    Il modulo di $G_{loop}$ rimane \textbf{sempre sopra} o \textbf{sempre sotto} 0 dB $\Rightarrow$ non esiste $f_c$!
+
+                    \vspace{0.1cm}
+                    Come calcolo il margine di fase se non c'è crossover?
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{CASO 1: $|G_{loop}|$ sempre $>$ 0 dB}
+
+                    \vspace{0.1cm}
+                    Il guadagno d'anello è \textbf{sempre maggiore di 1}.
+
+                    \vspace{0.1cm}
+                    \textbf{Analisi:} Guarda la \textbf{fase} a tutte le frequenze:
+
+                    \vspace{0.1cm}
+                    • Se la fase \textbf{non raggiunge mai} $-360°$:
+
+                    \hspace{0.3cm} $\Rightarrow$ Sistema \textbf{STABILE}
+
+                    \hspace{0.3cm} (PM $> 0$ a tutte le frequenze)
+
+                    \vspace{0.1cm}
+                    • Se la fase \textbf{raggiunge o supera} $-360°$:
+
+                    \hspace{0.3cm} $\Rightarrow$ Sistema \textbf{INSTABILE}
+
+                    \hspace{0.3cm} (il guadagno è $> 1$ quando la fase è critica)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{CASO 2: $|G_{loop}|$ sempre $<$ 0 dB}
+
+                    \vspace{0.1cm}
+                    Il guadagno d'anello è \textbf{sempre minore di 1}.
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Sistema \textbf{SEMPRE STABILE}!
+
+                    \vspace{0.1cm}
+                    \textbf{Perché?} Anche se la fase raggiunge $-360°$, il guadagno è $< 1$ quindi il segnale si \textbf{attenua} ad ogni giro dell'anello.
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Le oscillazioni si \textbf{smorzano} invece di crescere.
+
+                    \vspace{0.1cm}
+                    {\footnotesize \textbf{PM} = $\infty$ (o indefinito, ma sistema stabile)}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLA PRATICA:}
+
+                    \vspace{0.1cm}
+                    \textbf{Condizione di instabilità} (criterio di Barkhausen):
+
+                    $$\boxed{|G_{loop}| \geq 1 \quad \text{E} \quad \angle G_{loop} = -360°}$$
+
+                    \vspace{0.1cm}
+                    Servono \textbf{ENTRAMBE} le condizioni simultaneamente!
+
+                    \vspace{0.1cm}
+                    • Se $|G_{loop}| < 1$ sempre $\Rightarrow$ \textbf{stabile} (non importa la fase)
+
+                    • Se fase $\neq -360°$ sempre $\Rightarrow$ \textbf{stabile} (non importa il modulo)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ RIASSUNTO:}
+
+                    \vspace{0.05cm}
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        \textbf{Modulo} & \textbf{Fase} & \textbf{Stabilità} \\
+                        \hline
+                        Sempre $< 0$ dB & Qualsiasi & \textbf{STABILE} \\
+                        \hline
+                        Sempre $> 0$ dB & $> -360°$ & \textbf{STABILE} \\
+                        \hline
+                        Sempre $> 0$ dB & $\leq -360°$ & \textbf{INSTABILE} \\
+                        \hline
+                        Taglia 0 dB & -- & Usa PM normale \\
+                        \hline
+                    \end{tabular}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Stabilit\`a - Senza Crossover};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Stabilità - Segno di Gloop ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Stabilità dal SEGNO di $G_{loop}$ (senza Bode)}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLA VELOCE per la stabilità:}
+
+                    \vspace{0.1cm}
+                    In \textbf{analisi statica} (DC, $s = 0$), il segno di $G_{loop}$ determina la stabilità!
+
+                    \vspace{0.15cm}
+                    $$\boxed{G_{loop}(0) < 0 \Rightarrow \text{STABILE}}$$
+                    $$\boxed{G_{loop}(0) > 0 \Rightarrow \text{INSTABILE}}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$G_{loop} < 0$ (NEGATIVO) $\Rightarrow$ STABILE}
+
+                    \vspace{0.1cm}
+                    Il sistema è in \textbf{retroazione negativa}.
+
+                    \vspace{0.1cm}
+                    \textbf{Fisicamente:} una perturbazione viene \textbf{contrastata}
+
+                    $\Rightarrow$ Il sistema torna all'equilibrio
+
+                    \vspace{0.1cm}
+                    \textbf{Esempi:}
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item Buffer: $G_{loop} = -A_0 < 0$ \checkmark
+                        \item Amplificatore invertente: $G_{loop} < 0$ \checkmark
+                        \item Amplificatore non invertente: $G_{loop} < 0$ \checkmark
+                    \end{itemize}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$G_{loop} > 0$ (POSITIVO) $\Rightarrow$ INSTABILE}
+
+                    \vspace{0.1cm}
+                    Il sistema è in \textbf{retroazione positiva}.
+
+                    \vspace{0.1cm}
+                    \textbf{Fisicamente:} una perturbazione viene \textbf{amplificata}
+
+                    $\Rightarrow$ Il sistema ``scappa'' verso saturazione
+
+                    \vspace{0.1cm}
+                    \textbf{Esempi:}
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item Trigger di Schmitt: $G_{loop} > 0$ (bistabile)
+                        \item Comparatore con retroaz. positiva
+                    \end{itemize}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Perché funziona (intuizione):}
+
+                    \vspace{0.1cm}
+                    $G_{loop} = A_0 \cdot \beta$ dove $\beta$ = fattore di retroazione
+
+                    \vspace{0.1cm}
+                    • Se $\beta$ inverte il segno $\Rightarrow$ $G_{loop} < 0$ $\Rightarrow$ stabile
+
+                    • Se $\beta$ mantiene il segno $\Rightarrow$ $G_{loop} > 0$ $\Rightarrow$ instabile
+
+                    \vspace{0.1cm}
+                    {\footnotesize Il segno negativo indica che il feedback \textbf{contrasta} l'errore!}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ATTENZIONE - Quando serve Bode:}
+
+                    \vspace{0.05cm}
+                    Questa regola vale per \textbf{analisi DC} (stabilità asintotica).
+
+                    \vspace{0.05cm}
+                    Per sistemi con \textbf{poli/zeri} a frequenze specifiche, serve comunque il Bode per verificare il \textbf{margine di fase} a tutte le frequenze!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Stabilit\`a - Segno di $G_{loop}$};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Quando fare il Bode di Gloop ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Quando fare il Bode di $G_{loop}$?}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ SCOPO del Bode di $G_{loop}$:}
+
+                    \vspace{0.1cm}
+                    Analizzare la \textbf{STABILITÀ} del sistema retroazionato e calcolare il \textbf{margine di fase}.
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{Quando È UTILE farlo:}
+
+                    \vspace{0.1cm}
+                    \textbf{1. Verifica stabilità con poli/zeri:}
+
+                    \hspace{0.3cm} Se il sistema ha singolarità, il segno DC non basta!
+
+                    \hspace{0.3cm} $\Rightarrow$ Serve il margine di fase
+
+                    \vspace{0.1cm}
+                    \textbf{2. L'esercizio chiede il margine di fase:}
+
+                    \hspace{0.3cm} PM $= 360° + \phi(f_c)$
+
+                    \vspace{0.1cm}
+                    \textbf{3. Progettare una compensazione:}
+
+                    \hspace{0.3cm} Per stabilizzare un sistema instabile
+
+                    \vspace{0.1cm}
+                    \textbf{4. Trovare $G_{reale}$ a una certa frequenza:}
+
+                    \hspace{0.3cm} $G_{reale} = \min(G_A, G_{id})$ dipende da $G_{loop}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Quando NON serve farlo:}
+
+                    \vspace{0.1cm}
+                    • \textbf{Analisi statica (DC):} basta il segno di $G_{loop}(0)$
+
+                    • \textbf{Sistema semplice} senza poli/zeri critici
+
+                    • \textbf{Buffer ideale:} $G_{loop} = -A_0 < 0$ $\Rightarrow$ stabile
+
+                    • \textbf{Trigger di Schmitt:} già sai che è bistabile
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ PROCEDIMENTO Bode di $G_{loop}$:}
+
+                    \vspace{0.1cm}
+                    1. \textbf{Apri l'anello} (taglia il feedback)
+
+                    2. \textbf{Inserisci generatore di test} $V_t$
+
+                    3. \textbf{Calcola} $G_{loop} = V_y / V_t$
+
+                    4. \textbf{Disegna Bode} (modulo e fase)
+
+                    5. \textbf{Trova $f_c$} dove $|G_{loop}| = 0$ dB
+
+                    6. \textbf{Leggi fase} a $f_c$ $\Rightarrow$ calcola PM
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ RIASSUNTO:}
+
+                    \vspace{0.05cm}
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Obiettivo} & \textbf{Serve Bode $G_{loop}$?} \\
+                        \hline
+                        Stabilità DC & NO (usa segno) \\
+                        \hline
+                        Margine di fase & \textbf{SÌ} \\
+                        \hline
+                        $G_{reale}$ vs frequenza & \textbf{SÌ} \\
+                        \hline
+                        Compensazione & \textbf{SÌ} \\
+                        \hline
+                    \end{tabular}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Quando fare il Bode di $G_{loop}$};
     \end{tikzpicture}
 
     \newpage
@@ -5493,6 +5918,84 @@
     }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Trigger di Schmitt - Tabella Comparativa ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Trigger di Schmitt - Regola Base}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLA UNIVERSALE (vale SEMPRE):}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                    \renewcommand{\arraystretch}{1.3}
+                    \begin{tabular}{|c|c|}
+                    \hline
+                    \textbf{Condizione} & \textbf{Uscita} \\
+                    \hline
+                    $V^+ > V^-$ & $V_{out} = +V_{sat}$ (HIGH) \\
+                    \hline
+                    $V^+ < V^-$ & $V_{out} = -V_{sat}$ (LOW) \\
+                    \hline
+                    \end{tabular}
+                    \end{center}
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Questa regola vale per \textbf{qualsiasi} OpAmp!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ TABELLA COMPARATIVA INV vs NON INV:}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                    \renewcommand{\arraystretch}{1.3}
+                    \begin{tabular}{|c|c|c|}
+                    \hline
+                    \textbf{Tipo} & $V_{in} \uparrow$ & $V_{in} \downarrow$ \\
+                    \hline
+                    \textbf{INV} & $V_{out} \to -V_{sat}$ & $V_{out} \to +V_{sat}$ \\
+                    \hline
+                    \textbf{NON INV} & $V_{out} \to +V_{sat}$ & $V_{out} \to -V_{sat}$ \\
+                    \hline
+                    \end{tabular}
+                    \end{center}
+
+                    \vspace{0.1cm}
+                    \textbf{Perché?}
+
+                    • \textbf{INV:} $V_{in}$ entra su $V^-$, quindi $V_{in}\uparrow$ $\Rightarrow$ $V^-\uparrow$ $\Rightarrow$ $V^- > V^+$ $\Rightarrow$ LOW
+
+                    • \textbf{NON INV:} $V_{in}$ entra su $V^+$, quindi $V_{in}\uparrow$ $\Rightarrow$ $V^+\uparrow$ $\Rightarrow$ $V^+ > V^-$ $\Rightarrow$ HIGH
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ SCHEMA MENTALE:}
+
+                    \vspace{0.05cm}
+                    1. Guarda dove entra $V_{in}$ ($V^+$ o $V^-$?)
+
+                    2. Se $V_{in}$ sale, quel terminale sale
+
+                    3. Applica regola: $V^+ > V^-$ $\Rightarrow$ HIGH, $V^+ < V^-$ $\Rightarrow$ LOW
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ L'uscita ``segue'' chi vince tra $V^+$ e $V^-$!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Tabella Comparativa};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Trigger di Schmitt - Funzionamento Concettuale ---------------
 
     \begin{tikzpicture}
@@ -5747,6 +6250,95 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Calcolo Soglie};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Trigger di Schmitt - Metodo Calcolo Soglie ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{$\bigstar$ METODO per Calcolare le Soglie}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{STEP 1: Identificare il tipo}
+
+                    \vspace{0.1cm}
+                    • $V_{in}$ entra su $V^-$ $\Rightarrow$ \textbf{INVERTENTE}
+
+                    • $V_{in}$ entra su $V^+$ $\Rightarrow$ \textbf{NON INVERTENTE}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                    \textbf{STEP 2: Scrivere le equazioni dei nodi}
+
+                    \vspace{0.1cm}
+                    Per ogni ingresso ($V^+$ e $V^-$), scrivi la tensione:
+
+                    \vspace{0.1cm}
+                    • Se \textbf{collegato diretto}: $V = V_{sorgente}$
+
+                    • Se \textbf{partitore resistivo}: usa sovrapposizione
+
+                    \vspace{0.1cm}
+                    \textbf{Sovrapposizione} (nodo con più sorgenti):
+                    $$V_{nodo} = \sum_i V_i \cdot \frac{R_{eq,i}}{R_{tot}}$$
+
+                    dove $R_{eq,i}$ = parallelo di tutte le R \textbf{tranne} quella verso $V_i$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{STEP 3: Imporre la condizione di commutazione}
+
+                    \vspace{0.1cm}
+                    \textbf{La commutazione avviene quando:}
+                    $$\boxed{V^+ = V^-}$$
+
+                    \vspace{0.1cm}
+                    Sostituisci le equazioni dello Step 2 e risolvi per $V_{in}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{STEP 4: Calcolare $V_{TH}$ e $V_{TL}$}
+
+                    \vspace{0.1cm}
+                    Nell'equazione $V^+ = V^-$ compare $V_{out}$:
+
+                    \vspace{0.1cm}
+                    • Metti $V_{out} = +V_{sat}$ $\Rightarrow$ ottieni una soglia
+
+                    • Metti $V_{out} = -V_{sat}$ $\Rightarrow$ ottieni l'altra soglia
+
+                    \vspace{0.1cm}
+                    \textbf{Quale è $V_{TH}$ e quale $V_{TL}$?}
+
+                    $V_{TH}$ = soglia da superare \textbf{salendo}
+
+                    $V_{TL}$ = soglia da superare \textbf{scendendo}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ VERIFICA FINALE:}
+
+                    \vspace{0.05cm}
+                    • \textbf{INV:} $V_{TH} > V_{TL}$ (soglie ``normali'')
+
+                    • \textbf{NON INV:} $V_{TL} > V_{TH}$ (soglie ``invertite'' nel nome!)
+
+                    \vspace{0.05cm}
+                    • Isteresi: $\Delta V = |V_{TH} - V_{TL}|$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Metodo Calcolo Soglie};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7366,6 +7958,519 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Riconoscere Configurazioni (2/2)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Multivibratore Astabile ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Multivibratore Astabile con OpAmp}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ STRUTTURA:}
+
+                    \vspace{0.1cm}
+                    • \textbf{Trigger di Schmitt} + \textbf{rete RC} in retroazione
+
+                    • L'uscita oscilla tra $+V_{sat}$ e $-V_{sat}$ \textbf{senza ingresso esterno}
+
+                    • Il condensatore si carica/scarica attraverso la resistenza
+
+                    \vspace{0.1cm}
+                    \textbf{Componenti tipici:}
+
+                    • $R_1$, $R_2$: partitore per le soglie ($V_{TH}$, $V_{TL}$)
+
+                    • $R$, $C$: rete di timing (determinano il periodo)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ FUNZIONAMENTO:}
+
+                    \vspace{0.1cm}
+                    \textbf{1.} $V_{out} = +V_{sat}$ $\Rightarrow$ $C$ si carica verso $+V_{sat}$
+
+                    \hspace{0.3cm} $V_C$ sale fino a raggiungere $V_{TH}$
+
+                    \vspace{0.1cm}
+                    \textbf{2.} $V_C = V_{TH}$ $\Rightarrow$ \textbf{COMMUTA!} $V_{out} = -V_{sat}$
+
+                    \hspace{0.3cm} Ora $C$ si scarica verso $-V_{sat}$
+
+                    \vspace{0.1cm}
+                    \textbf{3.} $V_C$ scende fino a raggiungere $V_{TL}$
+
+                    \vspace{0.1cm}
+                    \textbf{4.} $V_C = V_{TL}$ $\Rightarrow$ \textbf{COMMUTA!} $V_{out} = +V_{sat}$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Il ciclo si ripete \textbf{indefinitamente}!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ FORMULE DEL PERIODO:}
+
+                    \vspace{0.1cm}
+                    \textbf{Soglie} (trigger invertente con $V^-$ a massa tramite $R_1$):
+                    $$V_{TH} = +V_{sat} \cdot \frac{R_1}{R_1 + R_2} \qquad V_{TL} = -V_{sat} \cdot \frac{R_1}{R_1 + R_2}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Semiperiodo} (tempo per andare da una soglia all'altra):
+                    $$T_{1/2} = RC \cdot \ln\left(\frac{V_{sat} - V_{TL}}{V_{sat} - V_{TH}}\right)$$
+
+                    \vspace{0.1cm}
+                    \textbf{Se simmetrico} ($V_{TH} = -V_{TL} = \beta V_{sat}$ con $\beta = \frac{R_1}{R_1+R_2}$):
+                    $$T = 2RC \cdot \ln\left(\frac{1 + \beta}{1 - \beta}\right)$$
+
+                    \vspace{0.1cm}
+                    \textbf{Frequenza:} $f = \frac{1}{T}$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile (1/2)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Multivibratore Astabile - Grafici Temporali ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Grafici $V_{out}(t)$ e $V_C(t)$ Allineati}
+
+                \vspace{0.15cm}
+                \begin{center}
+                \begin{tikzpicture}[scale=0.75]
+                    % Grafico Vout(t) - sopra
+                    \draw[->] (0,2.5) -- (6.5,2.5) node[right] {\tiny $t$};
+                    \draw[->] (0,1.5) -- (0,4) node[above] {\tiny $V_{out}$};
+
+                    % Livelli Vsat
+                    \draw[dashed, gray] (0,3.5) -- (6,3.5) node[right] {\tiny $+V_{sat}$};
+                    \draw[dashed, gray] (0,1.7) -- (6,1.7) node[right] {\tiny $-V_{sat}$};
+
+                    % Onda quadra Vout
+                    \draw[very thick, blue] (0,3.5) -- (1.5,3.5) -- (1.5,1.7) -- (3,1.7) -- (3,3.5) -- (4.5,3.5) -- (4.5,1.7) -- (6,1.7);
+
+                    % Label T_HIGH e T_LOW
+                    \draw[<->] (0,4.2) -- (1.5,4.2) node[midway, above] {\tiny $T_{HIGH}$};
+                    \draw[<->] (1.5,4.2) -- (3,4.2) node[midway, above] {\tiny $T_{LOW}$};
+
+                    % Grafico Vc(t) - sotto
+                    \draw[->] (0,-0.5) -- (6.5,-0.5) node[right] {\tiny $t$};
+                    \draw[->] (0,-1.5) -- (0,1.2) node[above] {\tiny $V_C$};
+
+                    % Soglie
+                    \draw[dashed, red] (0,0.5) -- (6,0.5) node[right] {\tiny $V_{TH}$};
+                    \draw[dashed, red] (0,-1) -- (6,-1) node[right] {\tiny $V_{TL}$};
+
+                    % Esponenziali Vc - partendo da VTL
+                    % Fase 1: carica da VTL verso +Vsat, arriva a VTH
+                    \draw[very thick, orange, domain=0:1.5, samples=50] plot (\x, {1.2 - 2.2*exp(-\x/0.7)});
+                    % Fase 2: scarica da VTH verso -Vsat, arriva a VTL
+                    \draw[very thick, orange, domain=1.5:3, samples=50] plot (\x, {-1.3 + 1.8*exp(-(\x-1.5)/0.7)});
+                    % Fase 3: carica da VTL verso +Vsat
+                    \draw[very thick, orange, domain=3:4.5, samples=50] plot (\x, {1.2 - 2.2*exp(-(\x-3)/0.7)});
+                    % Fase 4: scarica
+                    \draw[very thick, orange, domain=4.5:6, samples=50] plot (\x, {-1.3 + 1.8*exp(-(\x-4.5)/0.7)});
+
+                    % Linee verticali di commutazione
+                    \draw[dotted, thick, gray] (1.5,4) -- (1.5,-1.5);
+                    \draw[dotted, thick, gray] (3,4) -- (3,-1.5);
+                    \draw[dotted, thick, gray] (4.5,4) -- (4.5,-1.5);
+
+                    % Frecce che indicano commutazione
+                    \node at (1.5, 0.8) {\tiny $\downarrow$};
+                    \node at (3, -1.3) {\tiny $\uparrow$};
+                    \node at (4.5, 0.8) {\tiny $\downarrow$};
+                \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Lettura del grafico:}
+
+                    \vspace{0.05cm}
+                    • \textcolor{blue}{\textbf{Blu}}: $V_{out}$ oscilla tra $\pm V_{sat}$
+
+                    • \textcolor{orange}{\textbf{Arancio}}: $V_C$ oscilla tra $V_{TL}$ e $V_{TH}$
+
+                    • \textcolor{red}{\textbf{Rosso tratteggiato}}: soglie $V_{TH}$, $V_{TL}$
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Quando $V_C$ tocca una soglia, $V_{out}$ commuta!
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ Nota:} $V_C$ ha andamento \textbf{esponenziale}, non lineare!
+
+                    Il condensatore \textit{tenderebbe} verso $\pm V_{sat}$ ma commuta prima.
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore - Forme d'Onda};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Multivibratore Astabile - Parte 2 ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Multivibratore Astabile - Calcoli}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ METODO DI CALCOLO DEL PERIODO:}
+
+                    \vspace{0.1cm}
+                    \textbf{Step 1:} Calcola le soglie $V_{TH}$ e $V_{TL}$
+
+                    \vspace{0.1cm}
+                    \textbf{Step 2:} Scrivi l'equazione di carica/scarica del condensatore:
+                    $$V_C(t) = V_{finale} + (V_{iniziale} - V_{finale}) \cdot e^{-t/RC}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Step 3:} Imponi $V_C(T_{1/2}) = V_{soglia}$ e risolvi per $T_{1/2}$
+
+                    \vspace{0.1cm}
+                    \textbf{Step 4:} $T = T_{carica} + T_{scarica}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ DEFINIZIONE $T_{HIGH}$ e $T_{LOW}$:}
+
+                    \vspace{0.1cm}
+                    • $T_{HIGH}$ = tempo in cui $V_{out} = +V_{sat}$ (uscita ALTA)
+
+                    • $T_{LOW}$ = tempo in cui $V_{out} = -V_{sat}$ (uscita BASSA)
+
+                    \vspace{0.1cm}
+                    $$\boxed{T = T_{HIGH} + T_{LOW}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Come si calcolano:}
+
+                    • $T_{HIGH}$: tempo per cui $V_C$ va da $V_{TL}$ a $V_{TH}$
+
+                    \hspace{0.3cm} (il condensatore si carica verso $+V_{sat}$)
+
+                    • $T_{LOW}$: tempo per cui $V_C$ va da $V_{TH}$ a $V_{TL}$
+
+                    \hspace{0.3cm} (il condensatore si scarica verso $-V_{sat}$)
+
+                    \vspace{0.1cm}
+                    \textbf{$\triangle$ ATTENZIONE:} il primo semiperiodo dipende da $V_C(0)$!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ CASO SIMMETRICO - Duty Cycle 50\%:}
+
+                    \vspace{0.1cm}
+                    Se $|V_{TH}| = |V_{TL}|$ e $|+V_{sat}| = |-V_{sat}|$:
+
+                    \vspace{0.1cm}
+                    • $T_{HIGH} = T_{LOW}$ $\Rightarrow$ \textbf{onda quadra simmetrica}
+
+                    • Duty Cycle = 50\%
+
+                    \vspace{0.1cm}
+                    \textbf{Formula semplificata:}
+                    $$T = 2RC \cdot \ln\left(\frac{1 + \beta}{1 - \beta}\right) \quad \text{con } \beta = \frac{R_1}{R_1+R_2}$$
+
+                    \vspace{0.1cm}
+                    \colorbox{red!20}{\parbox{0.9\linewidth}{
+                        \textbf{$\bigstar$ IMPORTANTE:} Con alimentazione simmetrica ($+V_{DD} = -V_{SS}$), la frequenza \textbf{NON dipende} da $V_{DD}$! Dipende solo da $R$, $C$ e $\beta$.
+                    }}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ PUNTI CRITICI DA RICORDARE:}
+
+                    \vspace{0.1cm}
+                    • Il condensatore \textbf{non} si carica fino a $V_{sat}$!
+
+                    \hspace{0.3cm} $\Rightarrow$ Commuta \textbf{prima}, quando raggiunge la soglia
+
+                    \vspace{0.1cm}
+                    • $V_{finale}$ nell'esponenziale è $\pm V_{sat}$ (verso cui \textit{tenderebbe})
+
+                    • $V_{iniziale}$ è la soglia \textbf{appena superata}
+
+                    \vspace{0.1cm}
+                    • Nel $\ln$: argomento = $\frac{V_{finale} - V_{iniziale}}{V_{finale} - V_{finale,soglia}}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ DIMENSIONAMENTO INVERSO:}
+
+                    \vspace{0.05cm}
+                    \textbf{Dato} $T$ (o $f$), trovare $R$ e $C$:
+
+                    \vspace{0.05cm}
+                    1. Fissa $\beta$ (tipicamente 0.5 $\Rightarrow$ $R_1 = R_2$)
+
+                    2. Calcola $RC = \frac{T}{2 \ln\left(\frac{1+\beta}{1-\beta}\right)}$
+
+                    3. Scegli $C$ ragionevole, ricava $R = \frac{RC}{C}$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile (2/2)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Multivibratore Astabile - Meccanismo Commutazione ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Meccanismo di Commutazione}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ COME FUNZIONA LA COMMUTAZIONE:}
+
+                    \vspace{0.1cm}
+                    Il condensatore $C$ è collegato a $V^-$ del trigger (invertente).
+
+                    \vspace{0.1cm}
+                    \textbf{Durante $T_{HIGH}$} ($V_{out} = +V_{sat}$):
+
+                    • $V_C$ si carica verso $+V_{sat}$ (sale)
+
+                    • Quando $V_C$ supera $V_{TH}$ $\Rightarrow$ $V^- > V^+$
+
+                    • Il trigger \textbf{commuta}: $V_{out} \to -V_{sat}$
+
+                    \vspace{0.1cm}
+                    \textbf{Durante $T_{LOW}$} ($V_{out} = -V_{sat}$):
+
+                    • $V_C$ si scarica verso $-V_{sat}$ (scende)
+
+                    • Quando $V_C$ scende sotto $V_{TL}$ $\Rightarrow$ $V^- < V^+$
+
+                    • Il trigger \textbf{commuta}: $V_{out} \to +V_{sat}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ PRIMO SEMIPERIODO - Dipende da $V_C(0)$!}
+
+                    \vspace{0.1cm}
+                    \textbf{Dati iniziali tipici:} $V_C(0)$, $V_{out}(0)$
+
+                    \vspace{0.1cm}
+                    \textbf{Caso 1:} $V_{out}(0) = +V_{sat}$
+
+                    • $V_C$ parte da $V_C(0)$ e sale verso $+V_{sat}$
+
+                    • Commuta quando raggiunge $V_{TH}$
+
+                    • Tempo: $t_1 = RC \cdot \ln\left(\frac{V_{sat}^+ - V_C(0)}{V_{sat}^+ - V_{TH}}\right)$
+
+                    \vspace{0.1cm}
+                    \textbf{Caso 2:} $V_{out}(0) = -V_{sat}$
+
+                    • $V_C$ parte da $V_C(0)$ e scende verso $-V_{sat}$
+
+                    • Commuta quando raggiunge $V_{TL}$
+
+                    • Tempo: $t_1 = RC \cdot \ln\left(\frac{V_{sat}^- - V_C(0)}{V_{sat}^- - V_{TL}}\right)$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Il primo semiperiodo \textbf{non} è uguale ai successivi!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ A REGIME:}
+
+                    \vspace{0.05cm}
+                    Dopo il transitorio iniziale, $V_C$ oscilla tra $V_{TL}$ e $V_{TH}$.
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Il periodo $T = T_{HIGH} + T_{LOW}$ è \textbf{costante}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore - Commutazione};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Multivibratore Astabile - Domande Tipiche Esame ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Multivibratore Astabile - Domande Tipiche}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{a) Tracciare $V_C(t)$ da $t=0$ a $t=T_{tot}$}
+
+                    \vspace{0.1cm}
+                    \textbf{Dati tipici:} $V_C(0) = V_{DD}/2$, $V_{out}(0) = V_{SS}$
+
+                    \vspace{0.1cm}
+                    \textbf{Metodo:}
+
+                    1. Calcola $V_{TH}$ e $V_{TL}$ (con le formule delle soglie)
+
+                    2. Da $V_C(0)$, il condensatore va verso $V_{out}(0)$
+
+                    3. Scrivi: $V_C(t) = V_{out} + (V_C(0) - V_{out}) \cdot e^{-t/RC}$
+
+                    4. Trova $t_1$ tale che $V_C(t_1) = $ soglia $\Rightarrow$ commuta!
+
+                    5. Ripeti dal nuovo stato fino a $t = T_{tot}$
+
+                    \vspace{0.1cm}
+                    \textbf{Grafico:} esponenziali che ``rimbalzano'' tra $V_{TH}$ e $V_{TL}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                    \textbf{b) Effetto dell'offset $V_{off}$ sulla frequenza}
+
+                    \vspace{0.1cm}
+                    L'offset \textbf{trasla} le soglie:
+                    $$V_{TH}' = V_{TH} + V_{off} \qquad V_{TL}' = V_{TL} + V_{off}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Conseguenze:}
+
+                    • Le soglie \textbf{non sono più simmetriche} rispetto a 0
+
+                    • $T_{carica} \neq T_{scarica}$ $\Rightarrow$ duty cycle $\neq$ 50\%
+
+                    • Il periodo totale $T$ \textbf{cambia}!
+
+                    \vspace{0.1cm}
+                    \textbf{Variazione relativa:} $\frac{\Delta f}{f} = \frac{f' - f}{f}$
+
+                    Ricalcola $T'$ con le nuove soglie e confronta
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{c) Alimentazione asimmetrica ($V_{DD} \neq |V_{SS}|$)}
+
+                    \vspace{0.1cm}
+                    Es: $V_{DD} = +10V$, $V_{SS} = -10V$ (simmetrico)
+
+                    vs $V_{DD} = +10V$, $V_{SS} = -5V$ (asimmetrico)
+
+                    \vspace{0.1cm}
+                    \textbf{Effetto:}
+
+                    • $+V_{sat} = V_{DD}$, $-V_{sat} = V_{SS}$ (rail-to-rail)
+
+                    • $V_{TH} \neq |V_{TL}|$ $\Rightarrow$ soglie asimmetriche
+
+                    • $T_{carica} \neq T_{scarica}$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Calcola \textbf{separatamente} i due semiperiodi!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile - Esame (1/2)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Multivibratore Astabile - Domande Tipiche 2 ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Multivibratore Astabile - Domande Tipiche (cont.)}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{d) Raddoppiare $f$ senza cambiare $R_3$ (resistenza timing)}
+
+                    \vspace{0.1cm}
+                    Dalla formula: $T = 2R_3C \cdot \ln\left(\frac{1+\beta}{1-\beta}\right)$
+
+                    \vspace{0.1cm}
+                    \textbf{Opzioni (se $R_3$ è fissa):}
+
+                    \vspace{0.1cm}
+                    \textbf{1. Dimezzare $C$:} $C' = C/2$
+
+                    \hspace{0.3cm} $\Rightarrow$ $T' = T/2$ $\Rightarrow$ $f' = 2f$ \checkmark
+
+                    \vspace{0.1cm}
+                    \textbf{2. Modificare $\beta$:} cambiare $R_1$ e/o $R_2$
+
+                    \hspace{0.3cm} Serve: $\ln\left(\frac{1+\beta'}{1-\beta'}\right) = \frac{1}{2}\ln\left(\frac{1+\beta}{1-\beta}\right)$
+
+                    \hspace{0.3cm} $\Rightarrow$ $\frac{1+\beta'}{1-\beta'} = \sqrt{\frac{1+\beta}{1-\beta}}$
+
+                    \hspace{0.3cm} Ricava $\beta'$ e poi $R_1'/R_2'$
+
+                    \vspace{0.1cm}
+                    \textbf{Attenzione:} $\beta$ più piccolo = isteresi minore!
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ FORMULA GENERALE per semiperiodi:}
+
+                    \vspace{0.1cm}
+                    \textbf{Fase di carica} ($V_{out} = +V_{sat}$, da $V_{TL}$ a $V_{TH}$):
+                    $$T_{carica} = RC \cdot \ln\left(\frac{V_{sat}^+ - V_{TL}}{V_{sat}^+ - V_{TH}}\right)$$
+
+                    \vspace{0.1cm}
+                    \textbf{Fase di scarica} ($V_{out} = -V_{sat}$, da $V_{TH}$ a $V_{TL}$):
+                    $$T_{scarica} = RC \cdot \ln\left(\frac{V_{sat}^- - V_{TH}}{V_{sat}^- - V_{TL}}\right)$$
+
+                    \vspace{0.1cm}
+                    (Nota: $V_{sat}^-$ è negativo, quindi attento ai segni!)
+
+                    \vspace{0.1cm}
+                    \textbf{Periodo totale:} $T = T_{carica} + T_{scarica}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ DUTY CYCLE:}
+                    $$D = \frac{T_{HIGH}}{T} = \frac{T_{carica}}{T_{carica} + T_{scarica}}$$
+
+                    Se $D \neq 50\%$ $\Rightarrow$ onda quadra \textbf{asimmetrica}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile - Esame (2/2)};
     \end{tikzpicture}
 
 
