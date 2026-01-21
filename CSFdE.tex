@@ -422,15 +422,246 @@
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Box: Esercizio Tipico Diodi ---------------
 
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
 
+                \small
+                \textbf{Esercizio Tipico Diodi - Algoritmo}
 
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{a) Caratteristica statica $I_{out}$ vs $V_{in}$}
+
+                    \vspace{0.1cm}
+                    \textbf{Step 1: Ipotizza stato diodo}
+
+                    • Parti da $V_{in}$ molto negativo $\Rightarrow$ diodo probabilmente OFF
+
+                    • Oppure parti da $V_{in}$ molto positivo $\Rightarrow$ diodo probabilmente ON
+
+                    \vspace{0.1cm}
+                    \textbf{Step 2: Risolvi il circuito con l'ipotesi}
+
+                    • Diodo ON: sostituisci con $V_\gamma$ (es. 0.7V)
+
+                    • Diodo OFF: sostituisci con circuito aperto
+
+                    \vspace{0.1cm}
+                    \textbf{Step 3: Trova $V_{in}$ di commutazione}
+
+                    • Diodo ON $\to$ OFF: trova $V_{in}$ per cui $I_D = 0$
+
+                    • Diodo OFF $\to$ ON: trova $V_{in}$ per cui $V_D = V_\gamma$
+
+                    \vspace{0.1cm}
+                    \textbf{Step 4: Calcola $I_{out}(V_{in})$ in ogni regione}
+
+                    • Scrivi l'espressione di $I_{out}$ per ogni stato
+
+                    • Disegna la caratteristica (spesso lineare a tratti)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ TRUCCO per trovare la soglia:}
+
+                    \vspace{0.1cm}
+                    Per trovare $V_{in}$ di commutazione:
+
+                    \vspace{0.1cm}
+                    • Metti il diodo \textbf{al limite}: $V_D = V_\gamma$ e $I_D = 0$
+
+                    • In questa condizione le R in serie al diodo hanno $\Delta V = 0$
+
+                    • Risolvi il circuito semplificato per trovare $V_{in,soglia}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ Circuito tipico (raddrizzatore + filtro):}
+
+                    \vspace{0.1cm}
+                    $V_{in} \to D_1 \to C_1 \parallel R_1 \to V_{out}$
+
+                    \vspace{0.1cm}
+                    • $D_1$ ON: $V_{out} = V_{in} - V_\gamma$ (C si carica)
+
+                    • $D_1$ OFF: $V_{out}$ dipende dalla scarica di C su R
+
+                    \vspace{0.1cm}
+                    Soglia: $V_{in} = V_{out} + V_\gamma$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodi - Esercizio Tipico (1/2)};
+    \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Box: Esercizio Tipico Diodi - Parte 2 ---------------
 
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
 
+                \small
+                \textbf{Esercizio Tipico Diodi - Ripple}
 
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{b) Tensione di ripple e tensione inversa max}
 
+                    \vspace{0.1cm}
+                    \textbf{Dati tipici:} $V_{in} = V_m \sin(2\pi f_{in} t)$, $C_1$, $R_1$, $V_\gamma$
+
+                    \vspace{0.1cm}
+                    \textbf{Step 1: Tensione massima su C}
+                    $$V_{out,max} = V_m - V_\gamma$$
+
+                    \vspace{0.1cm}
+                    \textbf{Step 2: Calcolo del ripple}
+
+                    Se $RC \gg T$ (scarica lenta), approssimazione lineare:
+                    $$\Delta V_{ripple} \approx \frac{V_{out,max}}{R_1 C_1 f_{in}} = \frac{V_m - V_\gamma}{R_1 C_1 f_{in}}$$
+
+                    \vspace{0.1cm}
+                    Formula esatta (scarica esponenziale):
+                    $$V_{out,min} = V_{out,max} \cdot e^{-T/R_1C_1}$$
+                    $$\Delta V_{ripple} = V_{out,max} - V_{out,min}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Step 3: Tensione inversa massima sul diodo}
+
+                    Quando $V_{in} = -V_m$ e $V_{out} \approx V_{out,max}$:
+                    $$V_{D,inv,max} = V_{out,max} - (-V_m) = V_{out,max} + V_m$$
+                    $$\boxed{V_{D,inv,max} \approx 2V_m - V_\gamma}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ FORMULE RAPIDE:}
+
+                    \vspace{0.1cm}
+                    • $V_{out,max} = V_m - V_\gamma$
+
+                    • $\Delta V_{ripple} \approx \frac{V_{out,max}}{RC \cdot f}$ (se $RC \gg T$)
+
+                    • $V_{inv,max} \approx 2V_m - V_\gamma$
+
+                    • Duty cycle diodo $\approx \frac{\Delta V_{ripple}}{2\pi V_m}$ (piccolo!)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ VERIFICA FINALE:}
+
+                    \vspace{0.05cm}
+                    • Il diodo deve sopportare $V_{inv,max}$ $\Rightarrow$ scegliere diodo adeguato
+
+                    • Se $\Delta V_{ripple}$ troppo grande $\Rightarrow$ aumentare $C$ o $R$
+
+                    • Il diodo conduce solo per una piccola frazione del periodo!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodi - Esercizio Tipico (2/2)};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Box: Diodo + Condensatore ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Diodo + Condensatore: Come Gestirli Insieme}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLA FONDAMENTALE:}
+
+                    \vspace{0.1cm}
+                    Per la \textbf{caratteristica statica} ($I_{out}$ vs $V_{in}$):
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Il condensatore è un \textbf{CIRCUITO APERTO}!
+
+                    \vspace{0.1cm}
+                    Perché? In DC (statica) $I_C = C \frac{dV}{dt} = 0$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Tutta la corrente passa solo per $R_1$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{Caratteristica statica - Algoritmo:}
+
+                    \vspace{0.1cm}
+                    \textbf{1.} Sostituisci $C$ con circuito aperto
+
+                    \textbf{2.} Ora hai solo: $V_{in} \to D_1 \to R_1 \to$ massa
+
+                    \textbf{3.} Ipotizza stato diodo:
+
+                    \vspace{0.1cm}
+                    \textbf{Diodo OFF} ($V_{in} < V_\gamma$):
+
+                    \hspace{0.3cm} $I_{out} = 0$ (circuito aperto)
+
+                    \vspace{0.1cm}
+                    \textbf{Diodo ON} ($V_{in} \geq V_\gamma$):
+
+                    \hspace{0.3cm} $I_{out} = \frac{V_{in} - V_\gamma}{R_1}$
+
+                    \vspace{0.1cm}
+                    \textbf{4.} Soglia di commutazione: $V_{in} = V_\gamma$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ Per il RIPPLE invece:}
+
+                    \vspace{0.1cm}
+                    Il condensatore \textbf{NON} è aperto! È un elemento dinamico.
+
+                    \vspace{0.1cm}
+                    \textbf{Diodo ON:} $C$ si carica rapidamente
+
+                    \hspace{0.3cm} $V_{out} \approx V_{in} - V_\gamma$ (segue l'ingresso)
+
+                    \vspace{0.1cm}
+                    \textbf{Diodo OFF:} $C$ si scarica lentamente su $R$
+
+                    \hspace{0.3cm} $V_{out}(t) = V_{out,max} \cdot e^{-t/RC}$
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Il diodo si spegne quando $V_{in} < V_{out} + V_\gamma$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ RIASSUNTO:}
+
+                    \vspace{0.05cm}
+                    • \textbf{Caratteristica statica}: $C$ = aperto, analisi DC
+
+                    • \textbf{Ripple}: $C$ = elemento attivo, analisi dinamica
+
+                    • La soglia del diodo dipende da $V_{out}$ (che dipende da $C$!)
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodo + Condensatore};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %------------ Box 5: Capacità - Formule fondamentali ---------------------
     \label{Box 5}
