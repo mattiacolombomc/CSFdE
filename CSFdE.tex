@@ -201,6 +201,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Condensatore - Casi Semplici Carica/Scarica ---------------
 
+    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -285,7 +286,8 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Condensatore - Carica/Scarica RC};
-    \end{tikzpicture}
+    \end{tikzpicture}%
+    }
 
 
     %------------ Box 4: Resistenze in parallelo ---------------
@@ -664,6 +666,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Box: Raddrizzatore Singola Semionda ---------------
 
+    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -723,7 +726,8 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Raddrizzatore Singola Semionda};
-    \end{tikzpicture}
+    \end{tikzpicture}%
+    }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Box: Rilevatore di Picco ---------------
@@ -3166,6 +3170,613 @@
         %------------ Costruzione PUN da PDN Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Costruzione PUN da PDN};
     \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ GUIDA - Tabella di Verità Reti CMOS ---------------
+
+    \begin{tikzpicture} 
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ METODO SISTEMATICO:}
+
+                    \vspace{0.1cm}
+                    Per ogni combinazione di ingressi (A, B, C...):
+
+                    \vspace{0.05cm}
+                    \textbf{1.} Determina quali MOSFET sono \textbf{ON/OFF}
+
+                    \textbf{2.} Verifica se esiste \textbf{percorso} da $V_{DD}$ a OUT (PUN)
+
+                    \textbf{3.} Verifica se esiste \textbf{percorso} da GND a OUT (PDN)
+
+                    \textbf{4.} Determina l'uscita in base ai percorsi attivi
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLA ON/OFF dei MOSFET:}
+
+                    \vspace{0.1cm}
+                    \textbf{nMOS:} Gate = ``1'' ($V_{DD}$) $\Rightarrow$ \textbf{ON}
+
+                    \hspace{1cm} Gate = ``0'' (GND) $\Rightarrow$ \textbf{OFF}
+
+                    \vspace{0.1cm}
+                    \textbf{pMOS:} Gate = ``0'' (GND) $\Rightarrow$ \textbf{ON}
+
+                    \hspace{1cm} Gate = ``1'' ($V_{DD}$) $\Rightarrow$ \textbf{OFF}
+
+                    \vspace{0.1cm}
+                    {\footnotesize \textit{Mnemonico:} nMOS ON con HIGH, pMOS ON con LOW}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ DETERMINAZIONE USCITA:}
+
+                    \vspace{0.1cm}
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        \textbf{PUN} & \textbf{PDN} & \textbf{OUT} \\
+                        \hline
+                        Percorso & No percorso & $V_{DD}$ (``1'') \\
+                        \hline
+                        No percorso & Percorso & GND (``0'') \\
+                        \hline
+                        No percorso & No percorso & \textbf{Hi-Z} \\
+                        \hline
+                        Percorso & Percorso & \textbf{Contention!} \\
+                        \hline
+                    \end{tabular}
+
+                    \vspace{0.1cm}
+                    {\footnotesize \textbf{Contention $\neq$ cortocircuito ideale!}
+                    L'uscita si assesta a un valore \textbf{intermedio}
+                    ($V_{OL}$ o $V_{OH}$) determinato dal rapporto delle $K$.
+                    Solo in cMOS pura questo caso \textbf{non si verifica mai}.
+                    $\Rightarrow$ Vedi box ``Contention PUN/PDN''}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ ALTA IMPEDENZA (Hi-Z):}
+
+                    \vspace{0.1cm}
+                    \textbf{Cos'è:} L'uscita è ``scollegata'' - né HIGH né LOW
+
+                    \vspace{0.1cm}
+                    \textbf{Quando si verifica:}
+
+                    • \textbf{Entrambe} le reti PUN e PDN sono \textbf{OFF}
+
+                    • Nessun percorso verso $V_{DD}$ né verso GND
+
+                    \vspace{0.1cm}
+                    \textbf{Nella tabella:} Si indica con \textbf{``Z''} o \textbf{``Hi-Z''}
+
+                    \vspace{0.1cm}
+                    \textbf{Fisicamente:} L'uscita ``galleggia'' al valore precedente (se c'è C) o è indefinita
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ ATTENZIONE - Circuiti NON cMOS:}
+
+                    \vspace{0.1cm}
+                    Nei circuiti \textbf{cMOS puri}: sempre una sola rete ON $\Rightarrow$ \textbf{mai Hi-Z}
+
+                    \vspace{0.1cm}
+                    Hi-Z si verifica in:
+
+                    • \textbf{Transmission gate} (TG) quando è aperto
+
+                    • \textbf{Buffer tri-state} quando è disabilitato
+
+                    • Circuiti \textbf{PTL} (Pass Transistor Logic)
+
+                    • Reti con \textbf{segnali di enable/disable}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Tabella di Verità Reti CMOS};
+    \end{tikzpicture}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Livelli di Tensione e Soglia Logica ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ LIVELLI DI TENSIONE (se richiesti):}
+
+                    \vspace{0.1cm}
+                    \textbf{cMOS ideale:}
+
+                    • OUT = ``1'' $\Rightarrow$ $V_{OUT} = V_{DD}$
+
+                    • OUT = ``0'' $\Rightarrow$ $V_{OUT} = 0V$ (GND)
+
+                    \vspace{0.1cm}
+                    \textbf{PTL / Pass Transistor:}
+
+                    • nMOS passa LOW bene: $V_{OUT} = 0V$
+
+                    • nMOS passa HIGH male: $V_{OUT} = V_{DD} - V_T$ (degradato!)
+
+                    • pMOS passa HIGH bene: $V_{OUT} = V_{DD}$
+
+                    • pMOS passa LOW male: $V_{OUT} = |V_T|$ (degradato!)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ SOGLIA LOGICA (per valutazione):}
+
+                    \vspace{0.1cm}
+                    Se $V_{OUT}$ non è esattamente $V_{DD}$ o GND:
+
+                    \vspace{0.05cm}
+                    • $V_{OUT} > \frac{V_{DD}}{2}$ $\Rightarrow$ Logicamente ``\textbf{1}''
+
+                    • $V_{OUT} < \frac{V_{DD}}{2}$ $\Rightarrow$ Logicamente ``\textbf{0}''
+
+                    \vspace{0.05cm}
+                    \textit{Es:} $V_{DD}=3V$, $V_T=0.5V$ $\Rightarrow$ nMOS passa $2.5V > 1.5V$ $\Rightarrow$ ``1''
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Livelli di Tensione e Soglia Logica};
+    \end{tikzpicture}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Riconoscere Rete cMOS Completa ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Come riconoscere una rete cMOS completa (complementare)}
+
+                \vspace{0.15cm}
+                Una rete è \textbf{cMOS pura} se PUN e PDN sono \textbf{duali}:
+                per ogni combinazione di ingressi, \textbf{una sola} rete è ON.
+
+                \vspace{0.1cm}
+                $\Rightarrow$ Uscita \textbf{sempre} definita: solo ``1'' o ``0'', \textbf{mai} Hi-Z né cortocircuito.
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ CHECKLIST ``a occhio'':}
+
+                    \vspace{0.1cm}
+                    \textbf{1.} La \textbf{PDN} usa \textbf{solo nMOS}
+
+                    \textbf{2.} La \textbf{PUN} usa \textbf{solo pMOS}
+
+                    \textbf{3.} PUN è il \textbf{duale topologico} della PDN:
+
+                    \quad serie $\leftrightarrow$ parallelo
+
+                    \textbf{4.} \textbf{Stesso numero} di transistor sopra e sotto
+
+                    \textbf{5.} \textbf{Stessi segnali} di ingresso in entrambe le reti
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ NON è cMOS pura se:}
+
+                    \vspace{0.1cm}
+                    • Manca una delle due reti (PUN o PDN)
+
+                    • Ci sono segnali di \textbf{enable/disable} separati
+
+                    • La topologia \textbf{non è duale} (serie/parallelo non si corrispondono)
+
+                    • Sono presenti \textbf{transmission gate} o pass transistor
+
+                    \vspace{0.1cm}
+                    $\Rightarrow$ Possibili stati \textbf{Hi-Z} o \textbf{cortocircuito}!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riconoscere Rete cMOS Completa};
+    \end{tikzpicture}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{0.3cm}
+
+    \newpage
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Contention PUN/PDN - Teoria ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Contention: PUN e PDN entrambe ON}
+
+                \vspace{0.15cm}
+                Se la rete \textbf{non è cMOS pura}, può accadere che PUN e PDN siano
+                \textbf{entrambe ON} $\Rightarrow$ \textbf{non} è un semplice cortocircuito:
+                l'uscita si assesta a un valore intermedio determinato dal
+                \textbf{rapporto delle correnti}.
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ REGOLA CHIAVE:}
+
+                    \vspace{0.1cm}
+                    È il \textbf{valore dell'uscita} a determinare le zone di funzionamento:
+
+                    \vspace{0.1cm}
+                    \textbf{Se $V_{OUT}$ è basso} (PDN ``vince''):
+
+ 
+
+                    • pMOS: $|V_{DS}| \approx V_{DD} - V_{OL}$ grande $\Rightarrow$ \textbf{saturazione} \\
+                    • nMOS: $V_{DS} \approx V_{OL}$ piccolo $\Rightarrow$ \textbf{ohmica}
+
+                    \vspace{0.1cm}
+                    \textbf{Se $V_{OUT}$ è alto} (PUN ``vince''):
+                    • pMOS: $|V_{DS}| \approx V_{DD} - V_{OH}$ piccolo $\Rightarrow$ \textbf{ohmica}
+
+
+                    • nMOS: $V_{DS} \approx V_{OH}$ grande $\Rightarrow$ \textbf{saturazione}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ PROCEDIMENTO GENERALIZZATO:}
+
+                    \vspace{0.1cm}
+                    \textbf{1.} Ipotizzare uscita bassa/alta $\Rightarrow$ fissa le zone
+
+                    \textbf{2.} Scrivere $I_{PUN} = I_{PDN}$ (regime stazionario)
+
+                    \textbf{3.} Usare le formule appropriate:
+
+                    \vspace{0.05cm}
+                    \textbf{nMOS} ($V_{GS,n} = V_G - V_S$, $V_{DS,n} = V_D - V_S$):
+
+                    \quad Sat: $I_n = \frac{K_n}{2}(V_{GS,n} - V_{Tn})^2$
+
+                    \quad Ohm: $I_n = K_n\left[(V_{GS,n} - V_{Tn})V_{DS,n} - \frac{V_{DS,n}^2}{2}\right]$
+
+                    \vspace{0.05cm}
+                    \textbf{pMOS} ($V_{SG,p} = V_S - V_G$, $V_{SD,p} = V_S - V_D$):
+
+                    \quad Sat: $I_p = \frac{|K_p|}{2}(V_{SG,p} - |V_{Tp}|)^2$
+
+                    \quad Ohm: $I_p = |K_p|\left[(V_{SG,p} - |V_{Tp}|)V_{SD,p} - \frac{V_{SD,p}^2}{2}\right]$
+
+                    \textbf{4.} Risolvere per $V_{OUT}$ (o per $K_p$/$K_n$)
+
+                    \textbf{5.} Verificare consistenza delle ipotesi sulle zone
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ MOS IN SERIE --- $K$ EQUIVALENTE:}
+
+                    \vspace{0.1cm}
+                    $N$ transistor \textbf{uguali} in serie (stesso $K$):
+
+                    $$K_{eq} = \frac{K}{N}$$
+
+                    \textit{Es:} 2 nMOS in serie con $K_n$ ciascuno $\Rightarrow$ $K_{n,eq} = \frac{K_n}{2}$
+
+                    \vspace{0.1cm}
+                    $N$ transistor in \textbf{parallelo}:
+
+                    $$K_{eq} = N \cdot K$$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention PUN/PDN - Teoria};
+    \end{tikzpicture}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Contention PUN/PDN - Metodi di Calcolo ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Contention: Metodi di Calcolo $V_{OL}$/$V_{OH}$}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ SETUP} (esempio: uscita bassa, $V_{OL}$):
+
+                    \vspace{0.1cm}
+                    pMOS (sat.) $=$ nMOS eq. (ohm.):
+
+                    $$\frac{|K_p|}{2}(V_{DD} - |V_T|)^2 = K_{n,eq}\left[(V_{GS,n} - V_T)V_{OL} - \frac{V_{OL}^2}{2}\right]$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{violet!15}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ METODO 1: Equazione completa (esatto)}
+
+                    \vspace{0.1cm}
+                    Si risolve l'equazione $I_{sat} = I_{ohm}$ per $V_{OL}$:
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Equazione di \textbf{2° grado} in $V_{OL}$, si risolve con formula risolutiva.
+
+                    \vspace{0.1cm}
+                    Riarrangiando: $\frac{K_{n,eq}}{2}V_{OL}^2 - K_{n,eq}(V_{GS,n}-V_T)V_{OL} + I_{sat,p} = 0$
+
+                    \vspace{0.1cm}
+                    \textbf{Pro:} Risultato esatto
+
+                    \textbf{Contro:} Richiede risoluzione eq. 2° grado
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{violet!15}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ METODO 2: Approssimazione $R_{DS,on}$ (più rapido)}
+
+                    \vspace{0.1cm}
+                    Il MOS in \textbf{ohmica} con $V_{DS}$ piccolo si comporta come una
+                    \textbf{resistenza}. Per $N$ MOS uguali in serie: $R_{DS,on,eq} = N \cdot R_{DS,on}$
+
+                    \vspace{0.1cm}
+                    \textbf{Caso A --- Uscita bassa} (nMOS in ohmica):
+
+                    \quad $R_{DS,on,n} = \frac{1}{K_n(V_{GS,n} - V_{Tn})}$
+
+                    \quad $I_{sat,p} = \frac{|K_p|}{2}(V_{SG,p} - |V_{Tp}|)^2$
+
+                    $$\boxed{V_{OL} \approx I_{sat,p} \cdot R_{DS,on,n_{eq}}}$$
+
+                    \textbf{Caso B --- Uscita alta} (pMOS in ohmica):
+
+                    \quad $R_{DS,on,p} = \frac{1}{|K_p|(V_{SG,p} - |V_{Tp}|)}$
+
+                    \quad $I_{sat,n} = \frac{K_n}{2}(V_{GS,n} - V_{Tn})^2$
+
+                    $$\boxed{V_{OH} \approx V_{DD} - I_{sat,n} \cdot R_{DS,on,p_{eq}}}$$
+
+                    \vspace{0.1cm}
+                    \textbf{Pro:} Calcolo diretto, nessuna eq. 2° grado
+
+                    \textbf{Contro:} Approssimazione (trascura $V_{DS}^2/2$).
+
+                    Valida se $V_{OUT}$ è vicino al rail della rete che ``vince''
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ QUANDO USARE QUALE:}
+
+                    \vspace{0.05cm}
+                    • Valore \textbf{esatto} richiesto $\Rightarrow$ Metodo 1
+
+                    • \textbf{Dimensionare} $K_p$/$K_n$ dato $V_{OL,max}$ $\Rightarrow$ Metodo 2
+
+                    • $V_{OL}$ piccolo rispetto a $V_{GS}-V_T$ $\Rightarrow$ Metodo 2 OK
+
+                    • In \textbf{dubbio}: Metodo 2, poi verificare con Metodo 1
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention PUN/PDN - Calcolo};
+    \end{tikzpicture}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ R_DS,on - Riepilogo Formule ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{$R_{DS,on}$ --- Riepilogo e Significato Fisico}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ COS'È:}
+
+                    \vspace{0.1cm}
+                    Quando un MOS è in zona \textbf{ohmica} con $V_{DS}$ piccolo,
+                    il canale si comporta come una \textbf{resistenza controllata dal gate}:
+
+                    $$I_{DS} \approx K(V_{GS} - V_T) \cdot V_{DS}$$
+
+                    Quindi: $\quad R_{DS,on} = \frac{V_{DS}}{I_{DS}} = \frac{1}{K(V_{GS} - V_T)}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ FORMULE:}
+
+                    \vspace{0.1cm}
+                    \textbf{nMOS:}
+
+                    $$R_{DS,on,n} = \frac{1}{K_n(V_{GS,n} - V_{Tn})}$$
+
+                    \textbf{pMOS:}
+
+                    $$R_{DS,on,p} = \frac{1}{|K_p|(V_{SG,p} - |V_{Tp}|)}$$
+
+                    \vspace{0.1cm}
+                    \textbf{$N$ MOS uguali in serie:} $R_{DS,on,eq} = N \cdot R_{DS,on}$
+
+                    \textbf{$N$ MOS uguali in parallelo:} $R_{DS,on,eq} = \frac{R_{DS,on}}{N}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ APPLICAZIONE ALLA CONTENTION:}
+
+                    \vspace{0.1cm}
+                    La rete che ``vince'' (più forte) è in ohmica $\Rightarrow$ modellata come $R_{DS,on}$.
+
+                    La rete che ``perde'' (più debole) è in saturazione $\Rightarrow$ generatore di corrente $I_{sat}$.
+
+                    \vspace{0.1cm}
+                    \textbf{Uscita bassa} (PDN vince):
+
+                    $$V_{OL} \approx I_{sat,p} \cdot R_{DS,on,n_{eq}}$$
+
+                    \textbf{Uscita alta} (PUN vince):
+
+                    $$V_{OH} \approx V_{DD} - I_{sat,n} \cdot R_{DS,on,p_{eq}}$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ATTENZIONE ai $V_{GS}$/$V_{SG}$:}
+
+                    \vspace{0.05cm}
+                    • nMOS: $V_{GS,n}$ = tensione gate $-$ tensione source dell'nMOS
+
+                    \quad (source = GND se è il MOS più in basso della serie)
+
+                    • pMOS: $V_{SG,p}$ = tensione source $-$ tensione gate del pMOS
+
+                    \quad (source = $V_{DD}$ se è il MOS più in alto della serie)
+
+                    \vspace{0.05cm}
+                    \textit{Caso tipico:} gate a $V_{DD}$ (nMOS) o a GND (pMOS):
+
+                    \quad $V_{GS,n} = V_{DD}$, \quad $V_{SG,p} = V_{DD}$
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}$R_{DS,on}$ --- Riepilogo Formule};
+    \end{tikzpicture}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Soglia Logica della Porta (V_M) ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Soglia Logica della Porta ($V_M$)}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ COS'È:}
+
+                    \vspace{0.1cm}
+                    $V_M$ è il punto della caratteristica $V_{OUT}(V_{IN})$ in cui:
+
+                    $$\boxed{V_{IN} = V_{OUT} = V_M}$$
+
+                    È la tensione alla quale la porta ``commuta'': separa la
+                    zona in cui l'uscita è HIGH dalla zona in cui è LOW.
+
+                    \vspace{0.1cm}
+                    \textit{Idealmente:} $V_M = \frac{V_{DD}}{2}$ (margini di rumore simmetrici)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ COME SI CALCOLA:}
+
+                    \vspace{0.1cm}
+                    Nel punto $V_M$: $V_{IN} = V_{OUT} = V_M$
+
+                    $\Rightarrow$ \textbf{Entrambi} i MOS sono in \textbf{saturazione}
+                    (entrambi hanno $|V_{DS}| = V_M$ che è ``grande'')
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+
+                    \textbf{1.} Porre $V_{IN} = V_{OUT} = V_M$
+
+                    \textbf{2.} Entrambi i MOS in \textbf{saturazione}
+
+                    \textbf{3.} Imporre $I_n = I_p$:
+
+                    $$\frac{K_n}{2}(V_M - V_{Tn})^2 = \frac{|K_p|}{2}(V_{DD} - V_M - |V_{Tp}|)^2$$
+
+                    \textbf{4.} Risolvere per $V_M$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ SOLUZIONE (inverter cMOS):}
+
+                    \vspace{0.1cm}
+                    Prendendo la radice:
+
+                    $$\sqrt{K_n}(V_M - V_{Tn}) = \sqrt{|K_p|}(V_{DD} - V_M - |V_{Tp}|)$$
+
+                    \vspace{0.05cm}
+                    Risolvendo per $V_M$:
+
+                    $$\boxed{V_M = \frac{V_{Tn} + \sqrt{\frac{|K_p|}{K_n}}(V_{DD} - |V_{Tp}|)}{1 + \sqrt{\frac{|K_p|}{K_n}}}}$$
+
+                    \vspace{0.1cm}
+                    Se $V_{Tn} = |V_{Tp}| = V_T$:
+
+                    $$V_M = \frac{V_T + \sqrt{\frac{|K_p|}{K_n}}(V_{DD} - V_T)}{1 + \sqrt{\frac{|K_p|}{K_n}}}$$
+
+                    \vspace{0.05cm}
+                    Se inoltre $K_n = |K_p|$: $\quad V_M = \frac{V_{DD}}{2}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ PER PORTE COMPLESSE (NAND, NOR...):}
+
+                    \vspace{0.05cm}
+                    Stessa logica, ma si usa $K_{n,eq}$ o $K_{p,eq}$:
+
+                    \vspace{0.05cm}
+                    • \textbf{NAND} ($N$ nMOS in serie): $K_{n,eq} = \frac{K_n}{N}$
+
+                    \quad $\Rightarrow$ $V_M$ si \textbf{alza} (PDN più debole)
+
+                    • \textbf{NOR} ($N$ pMOS in serie): $K_{p,eq} = \frac{|K_p|}{N}$
+
+                    \quad $\Rightarrow$ $V_M$ si \textbf{abbassa} (PUN più debole)
+
+                    \vspace{0.05cm}
+                    Si sostituisce $K_{eq}$ nella formula e si calcola $V_M$ per il
+                    \textbf{caso peggiore} (un solo ingresso attivo nella rete in serie).
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Soglia Logica della Porta ($V_M$)};
+    \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     \newpage
@@ -3504,6 +4115,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Bode - Diagramma del Modulo ---------------
 
+    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -3627,7 +4239,8 @@
         };
         %------------ Bode Modulo Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Diagramma del Modulo};
-    \end{tikzpicture}
+    \end{tikzpicture}%
+    }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Bode - Metodo Generale Unificato ---------------
@@ -6965,6 +7578,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Trigger di Schmitt - Grafici Isteresi ---------------
 
+    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -7133,7 +7747,8 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Grafici Isteresi};
-    \end{tikzpicture}
+    \end{tikzpicture}%
+    }
 
     \newpage
 
@@ -7896,6 +8511,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ ADC - Errore da Corrente di Bias nel S&H ---------------
 
+    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -8047,11 +8663,13 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Errore da $I_B$ nel S\&H};
-    \end{tikzpicture}
+    \end{tikzpicture}%
+    }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ S&H - Dimensionamento Tensioni di Comando nMOS ---------------
 
+    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -8166,11 +8784,13 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Comando nMOS};
-    \end{tikzpicture}
+    \end{tikzpicture}%
+    }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ S&H - Charge Injection ---------------
 
+    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -8378,7 +8998,8 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Charge Injection};
-    \end{tikzpicture}
+    \end{tikzpicture}%
+    }
 
     \newpage
 
@@ -8747,6 +9368,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Multivibratore Astabile - Parte 2 ---------------
 
+    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -8857,7 +9479,8 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile (2/2)};
-    \end{tikzpicture}
+    \end{tikzpicture}%
+    }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Multivibratore Astabile - Meccanismo Commutazione ---------------
