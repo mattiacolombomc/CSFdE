@@ -1806,8 +1806,8 @@
 
                           \vspace{0.15cm}
                           \colorbox{cyan!10}{\parbox{0.93\linewidth}{\small
-                              \textbf{Formula alternativa:}
-                              $$I_D = \frac{1}{2} K_n V_{OV} \left(V_{DS} - \frac{V_{DS}^2}{2}\right)$$
+                              \textbf{Formula alternativa (fattorizzata):}
+                              $$I_D = K_n \cdot V_{DS}(2V_{OV} - V_{DS})$$
                           }}
                 \end{enumerate}
 
@@ -3456,16 +3456,16 @@
                     \vspace{0.05cm}
                     \textbf{nMOS} ($V_{GS,n} = V_G - V_S$, $V_{DS,n} = V_D - V_S$):
 
-                    \quad Sat: $I_n = \frac{K_n}{2}(V_{GS,n} - V_{Tn})^2$
+                    \quad Sat: $I_n = K_n(V_{GS,n} - V_{Tn})^2$
 
-                    \quad Ohm: $I_n = K_n\left[(V_{GS,n} - V_{Tn})V_{DS,n} - \frac{V_{DS,n}^2}{2}\right]$
+                    \quad Ohm: $I_n = K_n\left[2(V_{GS,n} - V_{Tn})V_{DS,n} - V_{DS,n}^2\right]$
 
                     \vspace{0.05cm}
                     \textbf{pMOS} ($V_{SG,p} = V_S - V_G$, $V_{SD,p} = V_S - V_D$):
 
-                    \quad Sat: $I_p = \frac{|K_p|}{2}(V_{SG,p} - |V_{Tp}|)^2$
+                    \quad Sat: $I_p = |K_p|(V_{SG,p} - |V_{Tp}|)^2$
 
-                    \quad Ohm: $I_p = |K_p|\left[(V_{SG,p} - |V_{Tp}|)V_{SD,p} - \frac{V_{SD,p}^2}{2}\right]$
+                    \quad Ohm: $I_p = |K_p|\left[2(V_{SG,p} - |V_{Tp}|)V_{SD,p} - V_{SD,p}^2\right]$
 
                     \textbf{4.} Risolvere per $V_{OUT}$ (o per $K_p$/$K_n$)
 
@@ -3514,7 +3514,7 @@
                     \vspace{0.1cm}
                     pMOS (sat.) $=$ nMOS eq. (ohm.):
 
-                    $$\frac{|K_p|}{2}(V_{DD} - |V_T|)^2 = K_{n,eq}\left[(V_{GS,n} - V_T)V_{OL} - \frac{V_{OL}^2}{2}\right]$$
+                    $$|K_p|(V_{DD} - |V_T|)^2 = K_{n,eq}\left[2(V_{GS,n} - V_T)V_{OL} - V_{OL}^2\right]$$
                 }}
 
                 \vspace{0.15cm}
@@ -3528,7 +3528,7 @@
                     $\Rightarrow$ Equazione di \textbf{2° grado} in $V_{OL}$, si risolve con formula risolutiva.
 
                     \vspace{0.1cm}
-                    Riarrangiando: $\frac{K_{n,eq}}{2}V_{OL}^2 - K_{n,eq}(V_{GS,n}-V_T)V_{OL} + I_{sat,p} = 0$
+                    Riarrangiando: $K_{n,eq}V_{OL}^2 - 2K_{n,eq}(V_{GS,n}-V_T)V_{OL} + I_{sat,p} = 0$
 
                     \vspace{0.1cm}
                     \textbf{Pro:} Risultato esatto
@@ -3547,24 +3547,24 @@
                     \vspace{0.1cm}
                     \textbf{Caso A --- Uscita bassa} (nMOS in ohmica):
 
-                    \quad $R_{DS,on,n} = \frac{1}{K_n(V_{GS,n} - V_{Tn})}$
+                    \quad $R_{DS,on,n} = \frac{1}{2K_n(V_{GS,n} - V_{Tn})}$
 
-                    \quad $I_{sat,p} = \frac{|K_p|}{2}(V_{SG,p} - |V_{Tp}|)^2$
+                    \quad $I_{sat,p} = |K_p|(V_{SG,p} - |V_{Tp}|)^2$
 
                     $$\boxed{V_{OL} \approx I_{sat,p} \cdot R_{DS,on,n_{eq}}}$$
 
                     \textbf{Caso B --- Uscita alta} (pMOS in ohmica):
 
-                    \quad $R_{DS,on,p} = \frac{1}{|K_p|(V_{SG,p} - |V_{Tp}|)}$
+                    \quad $R_{DS,on,p} = \frac{1}{2|K_p|(V_{SG,p} - |V_{Tp}|)}$
 
-                    \quad $I_{sat,n} = \frac{K_n}{2}(V_{GS,n} - V_{Tn})^2$
+                    \quad $I_{sat,n} = K_n(V_{GS,n} - V_{Tn})^2$
 
                     $$\boxed{V_{OH} \approx V_{DD} - I_{sat,n} \cdot R_{DS,on,p_{eq}}}$$
 
                     \vspace{0.1cm}
                     \textbf{Pro:} Calcolo diretto, nessuna eq. 2° grado
 
-                    \textbf{Contro:} Approssimazione (trascura $V_{DS}^2/2$).
+                    \textbf{Contro:} Approssimazione (trascura $V_{DS}^2$).
 
                     Valida se $V_{OUT}$ è vicino al rail della rete che ``vince''
                 }}
@@ -3609,9 +3609,9 @@
                     Quando un MOS è in zona \textbf{ohmica} con $V_{DS}$ piccolo,
                     il canale si comporta come una \textbf{resistenza controllata dal gate}:
 
-                    $$I_{DS} \approx K(V_{GS} - V_T) \cdot V_{DS}$$
+                    $$I_{DS} \approx 2K(V_{GS} - V_T) \cdot V_{DS}$$
 
-                    Quindi: $\quad R_{DS,on} = \frac{V_{DS}}{I_{DS}} = \frac{1}{K(V_{GS} - V_T)}$
+                    Quindi: $\quad R_{DS,on} = \frac{V_{DS}}{I_{DS}} = \frac{1}{2K(V_{GS} - V_T)}$
                 }}
 
                 \vspace{0.15cm}
@@ -3621,11 +3621,11 @@
                     \vspace{0.1cm}
                     \textbf{nMOS:}
 
-                    $$R_{DS,on,n} = \frac{1}{K_n(V_{GS,n} - V_{Tn})}$$
+                    $$R_{DS,on,n} = \frac{1}{2K_n(V_{GS,n} - V_{Tn})}$$
 
                     \textbf{pMOS:}
 
-                    $$R_{DS,on,p} = \frac{1}{|K_p|(V_{SG,p} - |V_{Tp}|)}$$
+                    $$R_{DS,on,p} = \frac{1}{2|K_p|(V_{SG,p} - |V_{Tp}|)}$$
 
                     \vspace{0.1cm}
                     \textbf{$N$ MOS uguali in serie:} $R_{DS,on,eq} = N \cdot R_{DS,on}$
@@ -3724,7 +3724,7 @@
 
                     \textbf{3.} Imporre $I_n = I_p$:
 
-                    $$\frac{K_n}{2}(V_M - V_{Tn})^2 = \frac{|K_p|}{2}(V_{DD} - V_M - |V_{Tp}|)^2$$
+                    $$K_n(V_M - V_{Tn})^2 = |K_p|(V_{DD} - V_M - |V_{Tp}|)^2$$
 
                     \textbf{4.} Risolvere per $V_M$
                 }}
