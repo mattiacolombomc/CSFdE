@@ -1547,10 +1547,10 @@
                         \node[anchor=north, font=\small] at ($(nmos.S)+(0,-0.001)$) {S};
 
                         % Freccia VGS - a sinistra con concavità invertita
-                        \draw[->, thick, color=red!70!black] ($(nmos.G)+(-0.2,-0.1)$) to[bend right=40] node[midway, left, font=\footnotesize] {$V_{GS}$} ($(nmos.S)+(-0.5,-0.15)$);
+                        \draw[<-, thick, color=red!70!black] ($(nmos.G)+(-0.2,-0.1)$) to[bend right=40] node[midway, left, font=\footnotesize] {$V_{GS}$} ($(nmos.S)+(-0.5,-0.15)$);
 
                         % Freccia VDS - a destra con concavità invertita
-                        \draw[->, thick, color=blue!70!black] ($(nmos.D)+(0.5,-0.15)$) to[bend left=40] node[midway, right, font=\footnotesize] {$V_{DS}$} ($(nmos.S)+(0.3,-0.15)$);
+                        \draw[<-, thick, color=blue!70!black] ($(nmos.D)+(0.5,-0.15)$) to[bend left=40] node[midway, right, font=\footnotesize] {$V_{DS}$} ($(nmos.S)+(0.3,-0.15)$);
 
                         % Freccia corrente - molto più a destra e accorciata
                         \draw[->, line width=2pt, color=green!60!black] ($(nmos.D)+(1.3,0.15)$) -- ($(nmos.S)+(1.3,-0.15)$);
@@ -1581,8 +1581,8 @@
                         \node[anchor=south, font=\small] at ($(pmos.D)+(0,0.65)$) {S};
                         \node[anchor=north, font=\small] at ($(pmos.S)+(0,-0.65)$) {D};
 
-                        % Freccia VGS - a sinistra con concavità invertita rispetto a nMOS
-                        \draw[->, thick, color=red!70!black] ($(pmos.G)+(-0.2,0.1)$) to[bend right=40] node[midway, left, font=\footnotesize] {$V_{GS}$} ($(pmos.D)+(-0.5,-0.15)$);
+                        % Freccia VSG - da G a S
+                        \draw[->, thick, color=red!70!black] ($(pmos.G)+(-0.15,0)$) to[bend left=40] node[midway, left, font=\footnotesize] {$V_{SG}$} ($(pmos.D)+(-0.15,0.7)$);
 
                         % Freccia VSD - a destra con concavità invertita rispetto a nMOS
                         \draw[->, thick, color=blue!70!black] ($(pmos.D)+(0.5,0.15)$) to[bend right=40] node[midway, right, font=\footnotesize] {$V_{SD}$} ($(pmos.S)+(0.3,0.15)$);
