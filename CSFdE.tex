@@ -1914,6 +1914,49 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{pMOS --- Formule con $V_{SG}$/$V_{SD}$ (senza moduli)}
+
+                \vspace{0.15cm}
+                Definendo $V_{SG} = V_S - V_G$ e $V_{SD} = V_S - V_D$
+
+                (entrambe \textbf{positive} quando pMOS è ON):
+
+                \vspace{0.15cm}
+                \textbf{ON} se $V_{SG} > |V_T|$ \quad (equiv. a $V_S > V_G + |V_T|$)
+
+                \vspace{0.05cm}
+                $V_{OV} = V_{SG} - |V_T|$
+
+                \vspace{0.15cm}
+                \colorbox{orange!15}{\parbox{0.95\linewidth}{
+                    \textbf{Saturazione} ($V_{SD} > V_{OV}$):
+
+                    $$I_D = K_p(V_{SG} - |V_T|)^2$$
+                }}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!15}{\parbox{0.95\linewidth}{
+                    \textbf{Ohmica} ($V_{SD} < V_{OV}$):
+
+                    $$I_D = K_p\left[2(V_{SG} - |V_T|)V_{SD} - V_{SD}^2\right]$$
+                }}
+
+                \vspace{0.15cm}
+                {\footnotesize Equivalenti alle formule con $|V_{GS}|$/$|V_{DS}|$, ma
+                $V_{SG}$ e $V_{SD}$ sono sempre $>0$ per pMOS ON $\Rightarrow$ niente moduli.}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}pMOS - Formule $V_{SG}$/$V_{SD}$};
+    \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
     %------------ Box: Riepilogo nMOS vs pMOS ---------------
     \begin{tikzpicture}
