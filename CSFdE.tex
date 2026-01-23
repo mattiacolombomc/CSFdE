@@ -1804,11 +1804,7 @@
                               \textbf{Nota:} La corrente dipende da \textbf{$V_{GS}$ E $V_{DS}$}
                           }}
 
-                          \vspace{0.15cm}
-                          \colorbox{cyan!10}{\parbox{0.93\linewidth}{\small
-                              \textbf{Formula alternativa (fattorizzata):}
-                              $$I_D = K_n \cdot V_{DS}(2V_{OV} - V_{DS})$$
-                          }}
+                         
                 \end{enumerate}
 
                 \small \textbf{Direzione corrente:} In nMOS, $I_D$ scorre da \textbf{Drain $\to$ Source}
@@ -3445,6 +3441,81 @@
 
     \vspace{0.3cm}
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Cosa Fare: Complementare vs Non Complementare --------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Cosa fare: complementare vs non complementare}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ STEP 1: Guardo la rete --- è complementare?}
+
+                    \vspace{0.1cm}
+                    Stesso numero di MOS sopra/sotto, stessi segnali,
+
+                    topologia duale (serie$\leftrightarrow$parallelo)?
+
+                    \vspace{0.1cm}
+                    • \textbf{SÌ} $\Rightarrow$ uscita sempre 0 o 1, \textbf{basta} la tabella
+
+                    • \textbf{NO} $\Rightarrow$ prosegui allo Step 2
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ STEP 2: Per ogni riga della tabella}
+
+                    \vspace{0.1cm}
+                    Stabilisci quali reti sono ON (percorso verso rail):
+
+                    \vspace{0.1cm}
+                    \begin{tabular}{|l|l|}
+                        \hline
+                        \textbf{Situazione} & \textbf{Uscita} \\
+                        \hline
+                        Solo PUN ON & $V_{DD}$ \\
+                        \hline
+                        Solo PDN ON & $0V$ \\
+                        \hline
+                        Entrambe ON & \textbf{Contention} $\Rightarrow$ Step 3 \\
+                        \hline
+                        Nessuna ON & \textbf{Hi-Z} \\
+                        \hline
+                    \end{tabular}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ STEP 3: Calcolo valore contention}
+
+                    \vspace{0.1cm}
+                    \textbf{Chi ``vince''?} La rete con $K_{eq}$ più grande tira
+                    l'uscita verso il proprio rail.
+
+                    \vspace{0.1cm}
+                    • PDN vince $\Rightarrow$ uscita bassa ($V_{OL}$):
+
+                    \quad nMOS ohmica, pMOS saturazione
+
+                    • PUN vince $\Rightarrow$ uscita alta ($V_{OH}$):
+
+                    \quad pMOS ohmica, nMOS saturazione
+
+                    \vspace{0.1cm}
+                    Poi: $I_{PUN} = I_{PDN}$ (Metodo 1 o 2, vedi box Calcolo)
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Complementare vs Non Complementare --- Cosa Fare};
+    \end{tikzpicture}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     \newpage
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Contention PUN/PDN - Teoria ---------------
@@ -3530,6 +3601,17 @@
                     $N$ transistor in \textbf{parallelo}:
 
                     $$K_{eq} = N \cdot K$$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ SOSTITUZIONE RAPIDA} (nei calcoli di contention):
+
+                    D = $V_{OUT}$ (sempre in mezzo), S$_n$ = GND, S$_p$ = $V_{DD}$
+
+                    $\Rightarrow$ $\boxed{V_{OV} = V_{DD} - V_T}$ \quad
+                    $\boxed{V_{DS,n} = V_{OUT}}$ \quad
+                    $\boxed{V_{SD,p} = V_{DD} - V_{OUT}}$
                 }}
 
             \end{minipage}
@@ -3693,25 +3775,6 @@
                     \textbf{Uscita alta} (PUN vince):
 
                     $$V_{OH} \approx V_{DD} - I_{sat,n} \cdot R_{DS,on,p_{eq}}$$
-                }}
-
-                \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{$\triangle$ ATTENZIONE ai $V_{GS}$/$V_{SG}$:}
-
-                    \vspace{0.05cm}
-                    • nMOS: $V_{GS,n}$ = tensione gate $-$ tensione source dell'nMOS
-
-                    \quad (source = GND se è il MOS più in basso della serie)
-
-                    • pMOS: $V_{SG,p}$ = tensione source $-$ tensione gate del pMOS
-
-                    \quad (source = $V_{DD}$ se è il MOS più in alto della serie)
-
-                    \vspace{0.05cm}
-                    \textit{Caso tipico:} gate a $V_{DD}$ (nMOS) o a GND (pMOS):
-
-                    \quad $V_{GS,n} = V_{DD}$, \quad $V_{SG,p} = V_{DD}$
                 }}
 
             \end{minipage}
