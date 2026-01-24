@@ -2911,10 +2911,23 @@
                 \textit{Nota:} Poiché il condensatore è un circuito aperto in regime stazionario (nessun $\frac{dV}{dt}$), si calcola solo la corrente continua che scorre attraverso i MOSFET.
 
                 \vspace{0.2cm}
-                \textbf{cMOS standard:} $P_{statica} = 0$ sempre. Non esistono configurazioni che consumano potenza statica.
+                \textbf{cMOS complementare:} $P_{statica} = 0$ sempre (mai contention).
 
                 \vspace{0.1cm}
-                \textbf{cMOS non standard:} Possono avere configurazioni in cui $P_{statica} \neq 0$.
+                \textbf{cMOS non complementare:} $P_{statica} \neq 0$ quando c'è \textbf{contention} (uscita a valore intermedio, non $V_{DD}$ né GND).
+
+                \vspace{0.2cm}
+                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ Regola:} Si consuma potenza statica \textbf{solo} quando l'uscita NON è a $V_{DD}$ o GND (= contention, cammino DC da $V_{DD}$ a GND).
+
+                    \vspace{0.1cm}
+                    \textbf{Formula con duty cycle:}
+                    $$\boxed{P_{stat} = V_{DD} \cdot I_{sat} \cdot \frac{T_{contention}}{T_{periodo}}}$$
+
+                    Dove $T_{contention}$ = tempo totale in un periodo in cui l'uscita è a un livello intermedio.
+
+                    $I_{sat}$ = corrente del MOS in saturazione durante contention.
+                }}
 
                 \vspace{0.2cm}
                 \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
@@ -3222,16 +3235,17 @@
                     \textbf{$\bigstar$ METODO SISTEMATICO:}
 
                     \vspace{0.1cm}
-                    Per ogni combinazione di ingressi (A, B, C...):
+                    \textbf{NON} enumerare tutte le $2^N$ combinazioni di ingresso!
 
                     \vspace{0.05cm}
-                    \textbf{1.} Determina quali MOSFET sono \textbf{ON/OFF}
+                    \textbf{1.} Analizza la \textbf{PUN}: con quali ingressi è ON? (serie/parallelo)
 
-                    \textbf{2.} Verifica se esiste \textbf{percorso} da $V_{DD}$ a OUT (PUN)
+                    \textbf{2.} Analizza la \textbf{PDN}: con quali ingressi è ON? (serie/parallelo)
 
-                    \textbf{3.} Verifica se esiste \textbf{percorso} da GND a OUT (PDN)
+                    \textbf{3.} Combina i casi (sono solo 4 possibili, vedi sotto)
 
-                    \textbf{4.} Determina l'uscita in base ai percorsi attivi
+                    \vspace{0.1cm}
+                    {\footnotesize \textbf{Trucco:} Transistor in \textbf{serie} spento $\Rightarrow$ tutta la branch spenta (don't care sugli altri). Transistor in \textbf{parallelo} $\Rightarrow$ basta uno acceso.}
                 }}
 
                 \vspace{0.15cm}
