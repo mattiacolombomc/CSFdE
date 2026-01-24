@@ -102,6 +102,8 @@
                         \hline
                         n & nano & $10^{-9}$ \\
                         \hline
+                        p & pico & $10^{-12}$ \\
+                        \hline
                     \end{tabular}
                 \end{center}
 
@@ -2686,6 +2688,11 @@
                     $$\Delta V = 2.5V - 0V = 2.5V$$
                 }}
 
+                \vspace{0.15cm}
+                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ ATTENZIONE:} Questo metodo vale per \textbf{CMOS} (transistor resta in saturazione). Per \textbf{PTL} il transistor passa da sat$\to$ohmica $\Rightarrow$ usa il metodo $R_{eq}$ (vedi box PTL).
+                }}
+
             \end{minipage}
         };
         %------------ Tempo propagazione Header ---------------------
@@ -2792,90 +2799,229 @@
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
-
-                \vspace{0.2cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
-                    \textbf{\color{red}$\bigstar$ PROBLEMA - Approssimazione a corrente costante}
-
-                    \vspace{0.05cm}
-                    L'approssimazione con $I = I_{sat}$ (corrente costante in saturazione) è \textbf{molto SOTTOSTIMATA} per la PTL!
-
-                    \vspace{0.05cm}
-                    \textbf{Motivo:} Nella PTL, durante la carica/scarica, il MOSFET passa dalla zona di saturazione alla zona omica, e la corrente diminuisce drasticamente.
-                }}
-
-                \vspace{0.2cm}
-                \textbf{\underline{METODO CORRETTO - Approssimazione RC}}
-
-                \vspace{0.15cm}
-                \textbf{Ipotesi da considerare:}
-
-                \vspace{0.05cm}
-                1. La corrente \textbf{finale} è circa \textbf{zero} (quando $V_C \approx V_G - V_T$ per nMOS)
-
-                \vspace{0.05cm}
-                2. La corrente a \textbf{metà tensione} ($V_{DD}/2$) è quella che determina il tempo
-
-                \vspace{0.05cm}
-                3. Sostituisci il transistor con una \textbf{resistenza equivalente} calcolata in zona omica
-
-                \vspace{0.2cm}
-                \textbf{\underline{Procedura:}}
+                \small
 
                 \vspace{0.1cm}
-                \textbf{Step 1:} Calcola la resistenza equivalente in zona omica
+                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{\color{red}$\bigstar$ NON usare corrente costante per PTL!}
 
-                \vspace{0.05cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    $$R_{eq} = \frac{1}{2K \cdot V_{OV}}$$
-
-                    \vspace{0.05cm}
-                    dove $V_{OV} = V_{GS} - V_T$ al punto di lavoro considerato (tipicamente a $V_{OUT} = \frac{V_{DD}}{2}$)
+                    Il metodo $\tau = \frac{\Delta V \cdot C}{I_{sat}}$ \textbf{sottostima} $t_p$ nella PTL perché il MOSFET passa da saturazione a ohmica e la corrente diminuisce.
                 }}
 
                 \vspace{0.15cm}
-                \textbf{Step 2:} Calcola il tempo di propagazione come circuito RC
-
-                \vspace{0.05cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    $$\tau_{prop} = R_{eq} \cdot C$$
-
+                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Scenario:} $N$ nMOS in serie (PTL), gate a $V_{DD}$, source a GND, uscita con $C_L$. Scarica da $V_{DD} - V_{Tn}$ verso GND.
                 }}
 
                 \vspace{0.2cm}
-                \hrule
-                \vspace{0.15cm}
+                \textbf{\underline{Step 1: $K$ equivalente}} (per $N$ in serie)
+                $$\boxed{K_{eq} = \frac{K_n}{N}}$$
 
-                \textbf{Esempio pratico (nMOS in PTL):}
-
-                $V_{DD} = 5V$, $V_G = 5V$, $V_T = 1V$, $K = 1$ mA/V$^2$, $C = 10$ pF
-
-                \vspace{0.03cm}
-                A metà tensione ($V_{OUT} = 2.5V$):
-
-                $V_{GS} = 5V$ (gate fisso), $V_S = 2.5V$ (source al condensatore)
-
-                $V_{OV} = 5V - 1V = 4V$
-
-                \vspace{0.03cm}
-                $R_{eq} = \frac{1}{2 \cdot 1 \cdot 4} = 0.125$ k$\Omega$ = 125 $\Omega$
-
-                \vspace{0.03cm}
-                $\tau_{prop} = 125 \cdot 10 \cdot 10^{-12} $ = 1.25 ns
+                \vspace{0.1cm}
+                \textbf{\underline{Step 2: Resistenza equivalente}} (scegli UNO, metodi Prof. Acconcia)
 
                 \vspace{0.15cm}
-                \textbf{Confronto con approssimazione a corrente costante:}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Metodo 1 - Retta origine $\to$ pinch-off:}
 
-                Se usassi $I_{sat} = K \cdot V_{OV}^2 = 1 \cdot 4^2 = 16$ mA (molto sovrastimato!)
+                    \vspace{0.05cm}
+                    Retta che passa per $(0, 0)$ e $(V_{OV}, I_{sat})$:
+                    $$\boxed{R_{eq} = \frac{V_{OV}}{I_{sat}} = \frac{1}{K_{eq} \cdot V_{OV}}}$$
+                }}
 
-                $\tau = \frac{\Delta V \cdot C}{I_{sat}} = \frac{2.5 \cdot 10p}{16m} = 1.56$ ns
+                \vspace{0.15cm}
+                \colorbox{violet!15}{\parbox{0.95\linewidth}{
+                    \textbf{Metodo 2 - $R_{DS,on}$} (tangente in $V_{DS}=0$):
+                    $$\boxed{R_{DS,on} = \frac{1}{2 K_{eq} \cdot V_{OV}}}$$
+                }}
 
-                Il metodo RC è più accurato perché considera la diminuzione della corrente!
+                \vspace{0.1cm}
+                {\footnotesize Con $V_{OV} = V_{GS} - V_{Tn} = V_{DD} - V_{Tn}$ (gate a $V_{DD}$, source a GND)}
+
+                \vspace{0.2cm}
+                \textbf{\underline{Step 3: Tempo di propagazione}}
+                $$\boxed{t_p = R_{eq} \cdot C_L \cdot \ln\left(\frac{V_{START}}{V_{END}}\right)}$$
+
+                \vspace{0.1cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+    \textbf{$\triangle$ Come scegliere le tensioni:}
+
+    $\bullet$ \textbf{$V_{START}$}: Tensione iniziale su $C_L$.
+    \\ \hspace*{1em}- \textit{nMOS [PTL]:} $V_{DD} - V_{Tn}$ (es. 4V)
+
+    $\bullet$ \textbf{$V_{END}$}: Soglia logica porta successiva.
+    \\ \hspace*{1em}- Spesso $V_{DD}/2$ (es. 2.5V).
+
+    \textit{Nota:} Metodo 1 sovrastima il ritardo, Metodo 2 lo sottostima.
+}}
 
             \end{minipage}
         };
-        %------------ Tempo propagazione PTL Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione - PTL (metodo accurato)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione - PTL};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %------------ Riconoscere PTL ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Come riconoscere un circuito PTL:}
+
+                    \vspace{0.1cm}
+                    \textbf{1.} I transistor \textbf{passano il segnale} attraverso Source/Drain (non solo Gate come in CMOS)
+
+                    \textbf{2.} \textbf{NON} c'è struttura PUN+PDN esplicita verso $V_{DD}$/GND
+
+                    \textbf{3.} Spesso c'è un \textbf{condensatore} sull'uscita senza logica di rigenerazione
+
+                    \textbf{4.} Livelli d'uscita \textbf{degradati} ($V_{DD} - V_T$ o $|V_T|$)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Regola rapida:}
+
+                    \vspace{0.05cm}
+                    • Vedi PUN sopra + PDN sotto con uscita in mezzo → \textbf{CMOS}
+
+                    • Vedi transistor che ``passano'' segnali da un nodo all'altro con C in uscita → \textbf{PTL}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riconoscere circuiti PTL};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %------------ Contention vs Limitazione PTL ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+
+                \vspace{0.1cm}
+                Entrambi danno uscite \textbf{non ideali}, ma il meccanismo è diverso:
+
+                \vspace{0.15cm}
+                \begin{tabular}{|p{2.5cm}|p{2.5cm}|}
+                    \hline
+                    \textbf{Contention (CMOS)} & \textbf{Limitazione (PTL)} \\
+                    \hline
+                    PUN e PDN entrambi ON & Transistor si spegne da solo \\
+                    \hline
+                    Corrente a regime: \textbf{sì} & Corrente a regime: \textbf{no} \\
+                    \hline
+                    $P_{stat} \neq 0$ & $P_{stat} = 0$ \\
+                    \hline
+                    $V_{OUT}$ da $I_p = I_n$ & $V_{OUT} = V_G \pm V_T$ \\
+                    \hline
+                    Calcolo: eq. 2° grado o $R_{DS,on}$ & Basta trovare $V_G$ e $V_T$ \\
+                    \hline
+                \end{tabular}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\triangle$ Analogia:}
+
+                    \textbf{Contention} = tiro alla fune (entrambi tirano, corrente continua)
+
+                    \textbf{PTL} = rubinetto che si chiude da solo (corrente si azzera)
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Limiti PTL (valgono SEMPRE, indipendenti da serie/parallelo):}
+
+                    • nMOS in carica: $V_{max} = V_G - V_{Tn}$ → \textbf{Weak 1} (W1)
+
+                    • pMOS in scarica: $V_{min} = V_G + |V_{Tp}|$ → \textbf{Weak 0} (W0)
+
+                    Serie/parallelo cambiano solo la \textbf{velocità} ($K_{eq}$), non il livello finale.
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention (CMOS) vs Limitazione (PTL)};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %------------ BOX SEMAFORO & PTL ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+
+            \small
+
+            % --- IL SEMAFORO (REGOLA DI SCELTA) ---
+            \textbf{\color{red}$\bigstar$ REGOLA D'ORO ESAME (Prof. Acconcia)}
+            \vspace{0.1cm}
+
+            \rowcolors{2}{gray!10}{white} % Opzionale: per alternare righe se usi xcolor
+            \begin{tabular}{|p{0.4\linewidth}|p{0.5\linewidth}|}
+                \hline
+                \textbf{COSA VEDI} & \textbf{CHE FORMULA USI} \\
+                \hline
+                \textbf{\color{blue}CMOS Standard} \newline (Inverter, NAND...) & \textbf{Corrente Costante:} \newline $\tau = \frac{C \cdot \Delta V}{I_{sat}}$ \\
+                \hline
+                \textbf{\color{orange}Pass Transistor} \newline (nMOS in serie) & \textbf{Resistenza Eq. ($R_{eq}$):} \newline Vedi procedura sotto $\downarrow$ \\
+                \hline
+            \end{tabular}
+
+        \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {\color{white}Soglia Logica CMOS vs. PTL};
+\end{tikzpicture}
+
+
+    %------------ Tabella Verità PTL ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ METODO per tabella di verità PTL:}
+
+                    \vspace{0.1cm}
+                    \textbf{1.} Identifica il \textbf{nodo di uscita} (spesso ha un C)
+
+                    \textbf{2.} Per ogni combinazione di ingressi, chiediti: c'è un \textbf{percorso} tra l'uscita e $V_{DD}$ o GND?
+
+                    \textbf{3.} Se sì: chi ``passa'' il segnale? nMOS o pMOS?
+
+                    \textbf{4.} Applica la limitazione:
+
+                    \quad • $V_{DD}$ tramite nMOS → $V_{OUT} = V_G - V_{Tn}$ (\textbf{W1})
+
+                    \quad • GND tramite pMOS → $V_{OUT} = V_G + |V_{Tp}|$ (\textbf{W0})
+
+                    \quad • $V_{DD}$ tramite pMOS → $V_{OUT} = V_{DD}$ (completa)
+
+                    \quad • GND tramite nMOS → $V_{OUT} = 0$ (completa)
+
+                    \textbf{5.} Valuta logicamente: $> V_{DD}/2$ → ``1'', $< V_{DD}/2$ → ``0''
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{Differenza chiave vs CMOS:}
+
+                    \vspace{0.05cm}
+                    • \textbf{CMOS}: analizza PUN e PDN (ON/OFF) → 4 casi
+
+                    • \textbf{PTL}: segui il \textbf{percorso del segnale} attraverso i pass-transistor e applica le limitazioni di carica/scarica
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tabella di Verità - Circuiti PTL};
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
