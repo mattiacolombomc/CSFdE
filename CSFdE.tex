@@ -3093,6 +3093,8 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza statica};
     \end{tikzpicture}
 
+    \newpage
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %------------ Potenza dinamica ---------------
@@ -3130,21 +3132,57 @@
                 \textbf{\color{purple}Formula generale:}
 
                 \vspace{0.1cm}
-                $$P_D = V_{DD} \sum_{i} (V_{OH,i} - V_{OL,i}) \cdot C_i \cdot f_i$$
+                $$\boxed{P_D = V_{DD} \sum_{i} (V_{OH,i} - V_{OL,i}) \cdot C_i \cdot \alpha_i \cdot f_i}$$
 
                 \vspace{0.2cm}
                 \textbf{Caso semplificato} (un solo nodo d'uscita):
-                $$P_D = V_{DD} \cdot (V_{OH} - V_{OL}) \cdot C_L \cdot f_{out}$$
+                $$\boxed{P_D = C_L \cdot \Delta V \cdot V_{DD} \cdot f \cdot \alpha}$$
 
-                \vspace{0.2cm}
-                Dove:
+               
                 \begin{itemize}[itemsep=2pt, leftmargin=*]
-                    \item $V_{DD}$ = tensione di alimentazione
-                    \item $V_{OH}$ = tensione output HIGH (valore massimo)
-                    \item $V_{OL}$ = tensione output LOW (valore minimo)
+                    \item $\Delta V = V_{OH} - V_{OL}$ = swing dell'uscita
                     \item $C_L$ = capacità del carico
-                    \item $f_{out}$ = frequenza di uscita
+                    \item $f = 1/T$ = frequenza del segnale di riferimento
+                    \item $\alpha$ = \textbf{\# fronti di salita} dell'uscita in un periodo $T$
                 \end{itemize}
+
+            \end{minipage}
+        };
+        %------------ Potenza dinamica Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza dinamica - Formula};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %------------ Potenza dinamica - Calcolo da grafico ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                    \textbf{$\bigstar$ Come trovare T sul grafico - Metodo ``La Foto'':}
+
+                    \vspace{0.05cm}
+                    \textbf{STEP 1 - Foto a $t=0$:} annota per \textbf{TUTTI} i segnali:
+                    \begin{itemize}[itemsep=0pt, leftmargin=1em]
+                        \item Valore (es. 2V, HIGH, LOW)
+                        \item Pendenza (salita $\nearrow$, discesa $\searrow$, costante $\rightarrow$)
+                        \item Fase del clock/ingressi
+                    \end{itemize}
+
+                    \vspace{0.05cm}
+                    \textbf{STEP 2:} Scorri in avanti finché l'uscita torna al valore iniziale.
+
+                    \vspace{0.05cm}
+                    \textbf{STEP 3 - Check:} Fermati \textbf{SOLO} quando la ``foto'' è \textbf{identica} a $t=0$ per \textbf{TUTTI} i segnali (uscita, clock, ingressi).
+
+                    \vspace{0.08cm}
+                    \colorbox{red!20}{\parbox{0.92\linewidth}{
+                        \textbf{Regola:} Il periodo del sistema è sempre un \textbf{multiplo intero} del clock: $T_{sys} = n \cdot T_{clk}$ con $n \in \mathbb{N}$
+                    }}
+                }}
 
                 \vspace{0.2cm}
                 \textbf{Come determinare $V_{OH}$ e $V_{OL}$:}
@@ -3158,11 +3196,17 @@
                     \item Analizzando le transizioni del circuito
                 \end{itemize}
 
+                \vspace{0.15cm}
+                \textbf{Come contare $\alpha$:}
+
+                Conta i \textbf{fronti di salita} dell'uscita nel periodo $T$ trovato con il metodo sopra.
+
             \end{minipage}
         };
-        %------------ Potenza dinamica Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza dinamica};
+        %------------ Potenza dinamica - Calcolo Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza dinamica - Calcolo da grafico};
     \end{tikzpicture}
+
 
 
     %------------ Duty Cycle ---------------
@@ -3201,6 +3245,7 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Duty Cycle};
     \end{tikzpicture}
 
+    \newpage
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %------------ cMOS ---------------
