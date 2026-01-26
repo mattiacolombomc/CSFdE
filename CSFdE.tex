@@ -1118,7 +1118,7 @@
                 Quando serve calcolare la potenza media dissipata da un diodo in un periodo di tempo $T$:
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ FORMULA GENERALE:}
 
                     \vspace{0.1cm}
@@ -1131,10 +1131,10 @@
                     • $V$ = tensione ai capi del diodo (in conduzione)
 
                     • $I_D$ = corrente attraverso il diodo
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ DIODO ZENER con segnale periodico:}
 
                     \vspace{0.1cm}
@@ -1153,7 +1153,7 @@
                     • $V_{dir}$ = tensione in conduzione diretta
 
                     • $V_{zener}$ = tensione zener
-                }}
+                
 
                 \vspace{0.15cm}
                 \footnotesize
@@ -1169,12 +1169,12 @@
                 • Le frazioni $\frac{\Delta t_1}{T}$ e $\frac{\Delta t_2}{T}$ rappresentano i pesi temporali
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ Verifica CRITICA:}
 
                     \vspace{0.05cm}
                     Controllare sempre: $P_{m,diss} < P_{max,spec}$ del datasheet!
-                }}
+                
 
                 \vspace{0.1cm}
                 \textit{Esempio TdE 3/11/23: calcolo con onda quadra}
@@ -3606,7 +3606,7 @@
                 \textit{Nota:} Questo metodo garantisce che solo una rete sia ON alla volta (proprietà fondamentale delle porte cMOS)
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA MNEMONICA:}
 
                     \vspace{0.1cm}
@@ -3620,7 +3620,7 @@
 
                     \vspace{0.05cm}
                     PDN implementa la funzione logica diretta, PUN implementa il complemento (per dualità).
-                }}
+                
 
             \end{minipage}
         };
@@ -6573,7 +6573,7 @@
                 \textbf{OpAmp - Alimentazione Rail-to-Rail}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{OpAmp Rail-to-Rail:}
 
                     \vspace{0.1cm}
@@ -6584,7 +6584,7 @@
 
                     \vspace{0.05cm}
                     \textit{(in realtà: piccolo offset di ~0.1-0.2V dalle rail)}
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Limiti su segnali sinusoidali:}
@@ -6604,12 +6604,12 @@
                 $$\boxed{A_{max} = \frac{V_{ALIM}^+ - V_{ALIM}^-}{2 \cdot |G_{id}|}}$$
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ Se supera: \textbf{distorsione} (clipping)!}
 
                     \vspace{0.05cm}
                     La sinusoide viene "tagliata" ai limiti delle alimentazioni $\Rightarrow$ forma d'onda distorta (non più sinusoidale).
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Esempio:}
@@ -7361,7 +7361,7 @@
                 Un OpAmp \textbf{non compensato} ha una funzione di trasferimento con \textbf{due poli}:
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Funzione di trasferimento:}
 
                     \vspace{0.1cm}
@@ -7376,10 +7376,10 @@
                     • $\omega_2$ = secondo polo (frequenza alta)
 
                     • $A_0$ = guadagno DC
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ PROBLEMA nel BUFFER:}
 
                     \vspace{0.1cm}
@@ -7392,10 +7392,10 @@
 
                     \vspace{0.1cm}
                     Il sistema può oscillare perché il loop gain attraversa 0 dB con pendenza -40 dB/dec (dovuto ai 2 poli).
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ BUFFER con OpAmp a SINGOLO POLO:}
 
                     \vspace{0.1cm}
@@ -7410,7 +7410,7 @@
                     • Nessun rischio di oscillazioni
 
                     • Utilizzabile direttamente senza preoccupazioni
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Trade-off con retroazione:}
@@ -7457,7 +7457,7 @@
                 • Ingresso non invertente (+) a GND
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ EQUAZIONE DIFFERENZIALE:}
 
                     \vspace{0.1cm}
@@ -7467,7 +7467,7 @@
                     Soluzione (integrale):
 
                     $$V_{out}(t) = -\frac{1}{RC} \int_0^t V_{in}(\tau) \, d\tau + V_{out}(0)$$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Funzione di trasferimento (dominio $s$):}
@@ -7516,7 +7516,7 @@
                 \textbf{Integratore REALE - Problema $I_B$}
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ PROBLEMA con OpAmp REALE:}
 
                     \vspace{0.1cm}
@@ -7533,10 +7533,10 @@
 
                     \vspace{0.05cm}
                     In pratica: $V_C(t) = \dfrac{I_B}{C} \cdot t + V_0$ $\to V_{alim}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ SOLUZIONE: Resistenza $R_2$ in parallelo a $C$}
 
                     \vspace{0.1cm}
@@ -7559,7 +7559,7 @@
 
                     \vspace{0.05cm}
                     Tipicamente: $R_2 \approx 10 \cdot R$ oppure $R_2 > \dfrac{V_{sat}}{I_B}$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Funzione di trasferimento modificata:}
@@ -8556,7 +8556,7 @@
                 \textbf{Comparatore Semplice vs con Isteresi}
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ PROBLEMA - Comparatore a soglia singola:}
 
                     \vspace{0.1cm}
@@ -8576,10 +8576,10 @@
 
                     \vspace{0.05cm}
                     Se $V_{in}$ = segnale reale + rumore, ogni piccola variazione causa commutazione!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ SOLUZIONE - Isteresi (Trigger di Schmitt):}
 
                     \vspace{0.1cm}
@@ -8599,7 +8599,7 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Il sistema è \textbf{stabile} anche in presenza di rumore fino a $\Delta V < |V_{HL} - V_{LH}|$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Dimensionamento banda morta:}
@@ -11472,7 +11472,7 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Etimologia:}
 
                     \vspace{0.05cm}
@@ -11482,7 +11482,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Il circuito oscilla continuamente tra i due stati senza input esterno!
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Multivibratore Astabile con OpAmp}
@@ -12033,7 +12033,7 @@
                 • Integratore trasforma onda quadra in \textbf{onda triangolare}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Funzionamento:}
 
                     \vspace{0.1cm}
@@ -12055,10 +12055,10 @@
                     • Quando $V_{in} = -V_{sat}$: rampa \textbf{ascendente}
 
                     • Risultato: \textbf{onda triangolare}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Ampiezza onda triangolare:}
 
                     \vspace{0.05cm}
@@ -12068,7 +12068,7 @@
 
                     \vspace{0.05cm}
                     Aumentando $RC$ dell'integratore si riduce l'ampiezza triangolare.
-                }}
+                
 
                 \vspace{0.15cm}
                 \footnotesize

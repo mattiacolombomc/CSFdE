@@ -14,6 +14,10 @@ Scarica direttamente il PDF: [CSFdE.pdf](CSFdE.pdf)
 
 **Mattia Colombo** - [GitHub](https://github.com/mattiacolombomc)
 
+## Contribuire
+
+Hai trovato un errore o hai un suggerimento? Apri una [issue](https://github.com/mattiacolombomc/CSFdE/issues)!
+
 ---
 
 Se questa cheat sheet ti è stata utile, una stella sarebbe molto apprezzata!
