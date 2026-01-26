@@ -6779,7 +6779,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ OpAmp - Riconoscimento Rapido Configurazioni ---------------
 
-    \resizebox{0.8\linewidth}{!}{%
+    \resizebox{\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -6830,35 +6830,7 @@
                     \item Risolvo: $V_{out} = V_{in} \cdot \frac{R_1 + R_f}{R_1} = \left(1 + \frac{R_f}{R_1}\right) V_{in}$
                 \end{enumerate}
 
-                \vspace{0.2cm}
-                \textbf{$R_f$ (Feedback) e $R_G$ (Ground) - Definizioni}
-
-                \vspace{0.1cm}
-                \begin{center}
-                    \begin{circuitikz}[scale=0.55, color=black]
-                        % OpAmp
-                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
-                        % Rf - feedback
-                        \draw (opamp.-) -- ++(0,1) to[R, l=$R_f$, color=red!70!black] ++(2,0) -| (opamp.out);
-                        % RG - ground
-                        \draw (opamp.-) -- ++(0,-0.6) to[R, l_=$R_G$, color=blue!70!black] ++(0,-1) node[ground] {};
-                        % Labels
-                        \node[red!70!black, anchor=west] at (4.2,2.5) {\scriptsize \textbf{Feedback}};
-                        \node[blue!70!black, anchor=west] at (1.3,-0.8) {\scriptsize \textbf{Ground}};
-                        \draw (opamp.out) -- ++(0.3,0) node[right] {\scriptsize $V_{out}$};
-                        \draw (opamp.+) -- ++(-0.3,0) node[left] {\scriptsize $V_{in}$};
-                    \end{circuitikz}
-                \end{center}
-
-                \vspace{0.05cm}
-                • \textcolor{red!70!black}{\textbf{$R_f$}} = collega $V^-$ a $V_{out}$ (chiude l'anello)
-
-                • \textcolor{blue!70!black}{\textbf{$R_G$}} = collega $V^-$ a \textbf{massa} (riferimento)
-
-                \vspace{0.1cm}
-                \textit{Nota: $R_G$ \`e anche chiamata $R_1$ in molti testi}
-
-                \vspace{0.2cm}
+                
                 {\footnotesize
                 \textbf{$\triangle$ TRUCCO MNEMONICO}
 
