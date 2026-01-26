@@ -30,11 +30,19 @@ def sanitize_toc_title(title):
 def add_toc_entries(content):
     """Modifica le righe fancytitle per aggiungere entry TOC inline."""
 
-    # PRIMA: Rimuovi tutti i \phantomsection\addcontentsline esistenti per evitare duplicati
-    content = re.sub(r'\\phantomsection\\addcontentsline\{toc\}\{subsection\}\{[^}]*\}', '', content)
+    # PRIMA: Pulisci TUTTO ciò che segue }; sulle righe fancytitle
+    # Questo rimuove qualsiasi phantomsection/addcontentsline esistente
+    # Uso .+? per gestire titoli con math mode che contengono {}
+    content = re.sub(
+        r'(\\node\[fancytitle[^\]]*\]\s*(?:at\s*\([^)]*\))?\s*\{[^{]*\\color\{white\}.+?\};).*$',
+        r'\1',
+        content,
+        flags=re.MULTILINE
+    )
 
     # POI: Cerco le righe con fancytitle e aggiungo l'addcontentsline SULLA STESSA RIGA
-    pattern = r'(\\node\[fancytitle[^\]]*\]\s*(?:at\s*\([^)]*\))?\s*\{[^}]*\\color\{white\})([^}]+)(\};)'
+    # Uso .+? (non-greedy) per catturare tutto fino a }; incluso math mode con {}
+    pattern = r'(\\node\[fancytitle[^\]]*\]\s*(?:at\s*\([^)]*\))?\s*\{[^{]*\\color\{white\}\s*)(.+?)(\};)'
 
     def replacement(match):
         prefix = match.group(1)
@@ -61,8 +69,9 @@ def add_toc_preamble(content):
             '\\usepackage{fancyhdr}\n\\usepackage[hidelinks, bookmarks=true]{hyperref}'
         )
 
-    # Aggiungi tableofcontents - versione con 3 colonne
-    toc_code = '''%------------ INDICE ---------------
+    # Aggiungi tableofcontents SOLO se non esiste già
+    if 'Indice delle Box' not in content:
+        toc_code = '''%------------ INDICE ---------------
 \\begin{center}{\\Large\\textbf{Indice delle Box}}\\end{center}
 \\vspace{0.5cm}
 {\\footnotesize
@@ -77,18 +86,18 @@ def add_toc_preamble(content):
 %-----------------------------------
 
 '''
+        # Inserisci prima di \begin{multicols*}{3}
+        content = content.replace(
+            '\\begin{multicols*}{3}',
+            toc_code + '\\begin{multicols*}{3}'
+        )
 
-    # Inserisci prima di \begin{multicols*}{3}
-    content = content.replace(
-        '\\begin{multicols*}{3}',
-        toc_code + '\\begin{multicols*}{3}'
-    )
-
-    # Rimuovi la numerazione delle subsection nel TOC
-    content = content.replace(
-        '\\begin{document}',
-        '\\begin{document}\n\\setcounter{tocdepth}{2}\n\\renewcommand{\\thesubsection}{}'
-    )
+    # Rimuovi la numerazione delle subsection nel TOC SOLO se non esiste già
+    if '\\setcounter{tocdepth}' not in content:
+        content = content.replace(
+            '\\begin{document}',
+            '\\begin{document}\n\\setcounter{tocdepth}{2}\n\\renewcommand{\\thesubsection}{}'
+        )
 
     return content
 
