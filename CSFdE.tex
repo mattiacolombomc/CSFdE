@@ -7,6 +7,7 @@
 \usepackage{amsfonts}
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{arrows.meta}
 \usepackage{caption}
 \usepackage{amsmath,amssymb}
 \usepackage{bbding}
@@ -6213,21 +6214,22 @@
 
                 \vspace{0.15cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.7]
-                        % OpAmp
-                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
-                        % Input
-                        \draw (opamp.-) -- ++(-0.5,0) to[R, l=$R_1$] ++(-1.5,0) node[left] {$V_{in}$};
-                        % Feedback
-                        \draw (opamp.-) -- ++(0,1.2) to[R, l=$R_f$] ++(2.2,0) -| (opamp.out);
-                        % Ground on +
-                        \draw (opamp.+) -- ++(-0.3,0) node[ground] {};
-                        % Output
-                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
-                        % Labels
-                        \node at (opamp.-) [above left] {\tiny $V^-$};
-                        \node at (opamp.+) [below left] {\tiny $V^+$};
-                    \end{circuitikz}
+                    \begin{tikzpicture}[scale=0.5, transform shape]
+                        % Paths, nodes and wires:
+                        \node[op amp](OpAmp) at (7.56, 6.75){};
+                        \node[ground] at (6.37, 6.26){};
+                        \draw (4, 7.25) to[american resistor] (6.37, 7.24);
+                        \draw (4, 7.25) to[american voltage source] (4, 5.5);
+                        \draw (6.25, 8.5) to[american resistor] (8.25, 8.5);
+                        \draw (6.25, 8.5) -- (6.25, 7.25);
+                        \draw (8.75, 6.75) -- (10.25, 6.75) -- (10.25, 8.5) -- (8.25, 8.5);
+                        \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N1) at (7.5, 9){} node[anchor=center] at (N1.text){$R_f$};
+                        \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N2) at (5, 7.875){} node[anchor=center] at (N2.text){$R_{in}$};
+                        \node[ground] at (4, 5.5){};
+                        \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N3) at (11.25, 6.625){} node[anchor=center] at (N3.text){$V_{out}$};
+                        \draw (10.25, 6.75) -- (10.75, 6.75);
+                        \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N4) at (3, 6.5){} node[anchor=center] at (N4.text){$V_{in}$};
+                    \end{tikzpicture}
                 \end{center}
 
                 \vspace{0.1cm}
@@ -6246,39 +6248,40 @@
 
                 \vspace{0.15cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.7]
-                        % OpAmp
-                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
-                        % Input on +
-                        \draw (opamp.+) -- ++(-0.5,0) node[left] {$V_{in}$};
-                        % Feedback network
-                        \draw (opamp.-) -- ++(0,-0.8) coordinate (fb);
-                        \draw (fb) to[R, l_=$R_1$] ++(0,-1.2) node[ground] {};
-                        \draw (fb) to[R, l=$R_f$] ++(2,0) -| (opamp.out);
-                        % Output
-                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
-                        % Labels
-                        \node at (opamp.-) [above left] {\tiny $V^-$};
-                        \node at (opamp.+) [above left] {\tiny $V^+$};
-                    \end{circuitikz}
+                    \begin{tikzpicture}[scale=0.5, transform shape]
+                        % Paths, nodes and wires:
+                        \node[op amp](OpAmp) at (7.56, 6.75){};
+                        \draw (4, 7.25) to[american resistor] (6.37, 7.24);
+                        \draw (6.37, 6.26) to[american voltage source] (6.37, 4.51);
+                        \draw (6.25, 8.5) to[american resistor] (8.25, 8.5);
+                        \draw (6.25, 8.5) -- (6.25, 7.25);
+                        \draw (8.75, 6.75) -- (10.25, 6.75) -- (10.25, 8.5) -- (8.25, 8.5);
+                        \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N1) at (7.5, 9){} node[anchor=center] at (N1.text){$R_f$};
+                        \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N2) at (5, 7.875){} node[anchor=center] at (N2.text){$R_{in}$};
+                        \node[ground] at (6.37, 4.51){};
+                        \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N3) at (11.25, 6.625){} node[anchor=center] at (N3.text){$V_{out}$};
+                        \draw (10.25, 6.75) -- (10.75, 6.75);
+                        \node[ground] at (4, 7.25){};
+                        \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N4) at (5.5, 5.375){} node[anchor=center] at (N4.text){$V_{in}$};
+                    \end{tikzpicture}
                 \end{center}
 
                 \vspace{0.1cm}
                 \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    $$\boxed{V_{out} = \left(1 + \frac{R_f}{R_1}\right) V_{in}}$$
+                    $$\boxed{V_{out} = \left(1 + \frac{R_f}{R_{in}}\right) V_{in}}$$
 
                     \vspace{0.05cm}
-                    Guadagno: $A_v = 1 + \frac{R_f}{R_1}$ \hspace{0.3cm} (sempre $\geq 1$)
+                    Guadagno: $A_v = 1 + \frac{R_f}{R_{in}}$ \hspace{0.3cm} (sempre $\geq 1$)
 
                     \vspace{0.05cm}
-                    {\footnotesize $R_1$ = impedenza verso \textbf{GND} (tra $V^-$ e massa)}
+                    {\footnotesize $R_{in}$ = impedenza verso \textbf{GND} (tra $V^-$ e massa)}
                 }}
 
                 \vspace{0.25cm}
                 \textbf{Buffer (Voltage Follower):}
 
                 \vspace{0.1cm}
-                Caso speciale: $R_f = 0$, $R_1 \to \infty$ (aperto)
+                Caso speciale: $R_f = 0$, $R_{in} \to \infty$ (aperto)
 
                 \vspace{0.05cm}
                 $$\boxed{V_{out} = V_{in}} \quad (A_v = 1)$$
