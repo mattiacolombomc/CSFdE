@@ -43,8 +43,8 @@ def add_toc_entries(content):
         toc_title = sanitize_toc_title(title)
 
         if toc_title and len(toc_title) > 2:
-            # Aggiungi addcontentsline dopo il ; ma sulla stessa riga
-            return f'{prefix}{title}{suffix}\\addcontentsline{{toc}}{{subsection}}{{\\texorpdfstring{{{toc_title}}}{{{toc_title}}}}}'
+            # Aggiungi phantomsection + addcontentsline dopo il ; ma sulla stessa riga
+            return f'{prefix}{title}{suffix}\\phantomsection\\addcontentsline{{toc}}{{subsection}}{{\\texorpdfstring{{{toc_title}}}{{{toc_title}}}}}'
         return match.group(0)
 
     result = re.sub(pattern, replacement, content)
