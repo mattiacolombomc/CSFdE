@@ -9315,6 +9315,350 @@
     \end{tikzpicture}%
     }
 
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - LSB all'Ingresso e Numero di Bit ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{ADC - LSB all'Ingresso e Numero di Bit}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Risoluzione all'INGRESSO del circuito:}
+
+                    \vspace{0.1cm}
+                    Se mi chiedono l'LSB \textbf{all'ingresso} (non all'ADC):
+
+                    $$\boxed{LSB_{ingresso} = \frac{LSB_{ADC}}{|G_{id}|}}$$
+
+                    dove $G_{id}$ è il guadagno ideale del circuito di condizionamento.
+
+                    \vspace{0.05cm}
+                    {\footnotesize (Il guadagno ``amplifica'' anche la risoluzione!)}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Calcolo NUMERO di BIT minimo:}
+
+                    \vspace{0.1cm}
+                    \textit{``Data una risoluzione $\Delta V$ (es. $a\,$mV), calcolare $n$ minimo.''}
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+                    \begin{enumerate}[leftmargin=*, itemsep=0pt]
+                        \item Calcola la minima variazione in ingresso ADC:
+                        $$\Delta V_{min,ADC} = \Delta V_{in} \cdot |G_{id}|$$
+                        \item Imponi che l'ADC possa distinguerla:
+                        $$\Delta V_{min,ADC} \geq LSB_{ADC} = \frac{FSR}{2^n}$$
+                        \item Risolvi per $n$:
+                        $$\boxed{n \geq \log_2\left(\frac{FSR}{\Delta V_{min,ADC}}\right)}$$
+                    \end{enumerate}
+
+                    \vspace{0.05cm}
+                    {\footnotesize Arrotonda $n$ all'\textbf{intero superiore}!}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - LSB all'Ingresso e Numero di Bit};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Tempi di Sample e Hold ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{ADC - Tempi di Sample e Hold}
+
+                \vspace{0.1cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Tempo di SAMPLE minimo:}
+
+                    \vspace{0.1cm}
+                    \textit{``Dato segnale in $[V_{min}, V_{max}]$, $R_{on}$ dello switch, trovare $t_{sample,min}$.''}
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item Prendi l'\textbf{escursione massima}: da $V_{min}$ a $V_{max}$ (o viceversa)
+                        \item Usa la formula esponenziale di carica:
+                    \end{itemize}
+
+                    $$V_C(t) = V(\infty) + (V(0) - V(\infty)) \cdot e^{-t/\tau}$$
+
+                    dove $\tau = R_{on} \cdot C_H$
+
+                    \vspace{0.1cm}
+                    \textbf{Condizione:} raggiungere il valore finale a meno di 1 LSB:
+                    $$|V_C(t) - V(\infty)| \leq LSB$$
+
+                    \vspace{0.1cm}
+                    Risolvendo: $\boxed{t_{sample} \geq \tau \cdot \ln\left(\frac{|V_{max} - V_{min}|}{LSB}\right)}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Tempo di HOLD massimo (con $I_B$):}
+
+                    \vspace{0.1cm}
+                    \textit{``Determinare massima durata della fase di Hold.''}
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+                    \begin{itemize}[leftmargin=*, itemsep=0pt]
+                        \item In HOLD lo switch è aperto
+                        \item $I_B$ carica/scarica il condensatore a corrente costante:
+                    \end{itemize}
+
+                    $$\Delta V = \frac{I_B \cdot \Delta t}{C_H}$$
+
+                    \textbf{Condizione:} $\Delta V \leq 1\,$LSB (o la specifica data)
+
+                    $$\boxed{t_{hold,max} = \frac{C_H \cdot LSB}{I_B}}$$
+
+                    \vspace{0.05cm}
+                    {\footnotesize Solitamente $t_{hold} = T_{conversione\,ADC}$}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Tempi di Sample e Hold};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Risposta con Guadagno A(s) ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{ADC - Risposta con Guadagno $A(s)$}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Risposta a SCALINO con OpAmp reale:}
+
+                    \vspace{0.1cm}
+                    \textit{``Dato ingresso a scalino $A_m$, tracciare $V_{out}(t)$ con $A(s)$.''}
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+                    \begin{enumerate}[leftmargin=*, itemsep=0pt]
+                        \item Calcola $G_{id}$ (guadagno ideale del circuito)
+                        \item Calcola $G_{loop}$ (guadagno d'anello)
+                        \item Calcola $G_{reale}$ con la formula \textbf{precisa}:
+                        $$G_{reale} = \frac{G_{id}}{1 + G_{id}/A_0}$$
+                        \item Trova la frequenza di taglio di $G_{loop}$ (da Bode)
+                        \item Calcola la costante di tempo:
+                        $$\tau = \frac{1}{2\pi f_{taglio,G_{loop}}}$$
+                    \end{enumerate}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Andamento di $V_{out}(t)$:}
+
+                    \vspace{0.1cm}
+                    $V_{out}$ evolve come esponenziale con costante $\tau$:
+
+                    $$\boxed{V_{out}(t) = G_{reale} \cdot A_m \cdot (1 - e^{-t/\tau})}$$
+
+                    \vspace{0.1cm}
+                    Valore finale: $V_{out}(\infty) = G_{reale} \cdot A_m$
+
+                    \vspace{0.05cm}
+                    {\footnotesize (Non $G_{id} \cdot A_m$ perché il guadagno reale è minore!)}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Risposta con Guadagno $A(s)$};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Dimensionamento VB e Errore Fondo Scala ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{ADC - Dimensionamento $V_B$ e Errore Fondo Scala}
+
+                \vspace{0.1cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Calcolo $V_B$ (o $V_{REF}$) per dinamica ottimale:}
+
+                    \vspace{0.1cm}
+                    \textit{``Determinare $V_B$ per sfruttare al meglio la dinamica ADC.''}
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+                    \begin{enumerate}[leftmargin=*, itemsep=0pt]
+                        \item Guarda il FSR dell'ADC: $[V_{SS}, V_{DD}]$
+                        \item L'ingresso ADC deve coprire \textbf{tutto} il range
+                        \item Per ogni OpAmp calcola prima il $G_{id}$
+                        \item Imponi le condizioni agli estremi e risolvi per $V_B$
+                    \end{enumerate}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Errore STATICO di guadagno a FONDO SCALA:}
+
+                    \vspace{0.1cm}
+                    \textbf{Procedimento:}
+                    \begin{enumerate}[leftmargin=*, itemsep=0pt]
+                        \item Trova $V_{in,fs}$ = valore max in ingresso tale che all'ADC si abbia $V_{REF}$:
+                        $$V_{in,fs} = \frac{V_{REF}}{G_{id}}$$
+                        \item Calcola l'errore:
+                        $$\varepsilon = G_{id} \cdot V_{in,fs} \cdot (1 - G_{reale})$$
+                        \item Se richiesto in LSB:
+                        $$\varepsilon_{LSB} = \frac{\varepsilon}{LSB_{ADC}}$$
+                    \end{enumerate}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Errore in LSB da $V_{OS}$:}
+
+                    \vspace{0.1cm}
+                    \begin{enumerate}[leftmargin=*, itemsep=0pt]
+                        \item Spegni generatore di input
+                        \item Inserisci $V_{OS}$ all'ingresso dell'OpAmp
+                        \item Calcola $V_{ADC,OS}$ all'uscita dell'OpAmp
+                        \item Errore in LSB:
+                        $$\boxed{\varepsilon_{OS} = \frac{V_{ADC,OS}}{LSB_{ADC}}}$$
+                    \end{enumerate}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Dimens. $V_B$ e Errore Fondo Scala};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Doppia Rampa ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{ADC a Doppia Rampa - Bit del Contatore}
+
+                \vspace{0.1cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Problema tipico:}
+
+                    \vspace{0.1cm}
+                    \textit{``Dato $T_{int}$ e $f_{ck}$, trovare il numero minimo di bit $n$ del contatore.''}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{$\bigstar$ Procedimento:}
+
+                    \vspace{0.1cm}
+                    \begin{enumerate}[leftmargin=*, itemsep=0pt]
+                        \item Calcola il numero massimo di colpi di clock:
+                        $$N_{max} = \frac{T_{int}}{T_{ck}} = T_{int} \cdot f_{ck}$$
+                        \item Il contatore deve poter contare fino a $N_{max}$:
+                        $$2^n \geq N_{max}$$
+                        \item Risolvi per $n$:
+                        $$\boxed{n \geq \log_2(N_{max})}$$
+                    \end{enumerate}
+
+                    \vspace{0.05cm}
+                    {\footnotesize Arrotonda $n$ all'\textbf{intero superiore}!}
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC a Doppia Rampa};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ ADC - Terminologia ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{ADC - Terminologia}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{RISOLUZIONE}
+
+                    \vspace{0.1cm}
+                    Larghezza dell'\textbf{intervallo di quantizzazione} (= LSB).
+
+                    \vspace{0.05cm}
+                    {\footnotesize Quanto è ``fine'' la suddivisione del range.}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{PRECISIONE}
+
+                    \vspace{0.1cm}
+                    Capacità di \textbf{ridare la stessa conversione} a fronte dello stesso segnale.
+
+                    \vspace{0.05cm}
+                    {\footnotesize Ripetibilità della misura (bassa dispersione).}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                    \textbf{ACCURATEZZA}
+
+                    \vspace{0.1cm}
+                    Vicinanza del valore ottenuto al \textbf{valore ideale} (vero).
+
+                    \vspace{0.05cm}
+                    {\footnotesize Quanto la conversione è ``giusta'' rispetto al target.}
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                    \textbf{$\triangle$ Se il segnale cambia durante la conversione?}
+
+                    \vspace{0.1cm}
+                    Se $V_{in}$ varia prima che l'ADC completi la conversione:
+
+                    $\Rightarrow$ Il risultato è \textbf{errato/inaffidabile}!
+
+                    \vspace{0.05cm}
+                    Per questo serve il \textbf{Sample \& Hold}: ``congela'' il valore per il tempo necessario alla conversione.
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Terminologia};
+    \end{tikzpicture}
+
     \newpage
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
