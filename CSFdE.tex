@@ -4999,7 +4999,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Formule Rapide di Navigazione sul Grafico ---------------
 
-    \resizebox{0.8\linewidth}{!}{%
+    \resizebox{0.62\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -8988,7 +8988,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Trigger di Schmitt - Grafici Isteresi ---------------
 
-    \resizebox{0.8\linewidth}{!}{%
+    \resizebox{\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -9082,11 +9082,25 @@
                     1. Disegno linea \textcolor{blue}{\textbf{BLU}} da \textbf{BASSO ad ALTO} (partendo da $-V_{sat}$)
 
                     2. Completo con isteresi alla sua \textbf{DESTRA}
-                
 
-                \vspace{0.15cm}
-                
-                    \textbf{Cos'è l'ISTERESI?}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Grafici Isteresi};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Trigger di Schmitt - Grafici Isteresi}{Trigger di Schmitt - Grafici Isteresi}}
+    \end{tikzpicture}%
+    }
+
+    \vspace{0.3cm}
+
+    %------------ Trigger di Schmitt - Regole Isteresi ---------------
+
+    \resizebox{0.8\linewidth}{!}{%
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Cos'è l'ISTERESI?}
 
                     \vspace{0.1cm}
                     È la \textbf{``memoria''} del sistema: l'uscita dipende non solo dal valore attuale di $V_{in}$, ma anche dalla \textbf{storia passata}.
@@ -9152,11 +9166,11 @@
                     • Sulle linee \textbf{orizzontali}: freccia verso SINISTRA $\leftarrow$ ($V_{in}$ scende)
 
                     • Sulle \textbf{transizioni verticali}: freccia nel verso della commutazione ($\uparrow$ o $\downarrow$)
-                
+
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Grafici Isteresi};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Trigger di Schmitt - Grafici Isteresi}{Trigger di Schmitt - Grafici Isteresi}}
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Regole Isteresi};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Trigger di Schmitt - Regole Isteresi}{Trigger di Schmitt - Regole Isteresi}}
     \end{tikzpicture}%
     }
 
@@ -9720,6 +9734,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ ADC - Buffer e Errore Statico ---------------
 
+    \resizebox{0.6\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -9893,7 +9908,8 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Buffer e Errore Statico};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Buffer e Errore Statico}{ADC - Buffer e Errore Statico}}
-    \end{tikzpicture}
+    \end{tikzpicture}%
+    }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ ADC - Richieste Tipiche d'Esame ---------------
@@ -10093,7 +10109,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ ADC - Errore da Corrente di Bias nel S&H ---------------
 
-    \resizebox{0.8\linewidth}{!}{%
+    \resizebox{0.7\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -10370,9 +10386,8 @@
     }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %------------ S&H - Charge Injection ---------------
+    %------------ S&H - Charge Injection (Teoria) ---------------
 
-    \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -10458,11 +10473,22 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Serve $C_H$ \textbf{grande} per minimizzare l'errore
-                
 
-                \vspace{0.15cm}
-                
-                    \textbf{$\bigstar$ Calcolo di $\Delta V_G$ (con SEGNO!):}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Charge Injection (Teoria)};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{SeH - Charge Injection (Teoria)}{SeH - Charge Injection (Teoria)}}
+    \end{tikzpicture}
+
+    %------------ S&H - Charge Injection (Calcoli) ---------------
+
+    \resizebox{0.95\linewidth}{!}{%
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{$\bigstar$ Calcolo di $\Delta V_G$ (con SEGNO!):}
 
                     \vspace{0.1cm}
                     Per l'nMOS, la transizione ON$\to$OFF richiede di \textbf{abbassare} $V_G$:
@@ -10580,7 +10606,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Charge Injection};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{SeH - Charge Injection}{SeH - Charge Injection}}
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Charge Injection (Calcoli)};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{SeH - Charge Injection (Calcoli)}{SeH - Charge Injection (Calcoli)}}
     \end{tikzpicture}%
     }
 
