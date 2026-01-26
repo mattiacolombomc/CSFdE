@@ -8334,7 +8334,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Comparatore a Doppia Soglia (Isteresi) ---------------
 
-    \resizebox{0.8\linewidth}{!}{%
+    \resizebox{0.88\linewidth}{!}{%
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -8350,18 +8350,24 @@
 
                 \vspace{0.1cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.65, color=black]
-                        % OpAmp
-                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
-                        % Input on -
-                        \draw (opamp.-) -- ++(-0.5,0) node[left] {$V_{in}$};
-                        % Positive feedback network
-                        \draw (opamp.+) -- ++(0,-0.8) coordinate (fb);
-                        \draw (fb) to[R, l_=$R_1$] ++(0,-1.2) node[ground] {};
-                        \draw (fb) to[R, l=$R_2$] ++(2,0) -| (opamp.out);
-                        % Output
-                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
-                    \end{circuitikz}
+                \resizebox{\linewidth}{!}{%
+                \begin{tikzpicture}
+                    % Paths, nodes and wires:
+                    \node[op amp, yscale=-1](OpAmp) at (7.56, 6.75){};
+                    \draw (4, 7.25) to[american resistor] (6.37, 7.24);
+                    \draw (6.37, 6.26) to[american voltage source] (6.37, 4.51);
+                    \draw (6.25, 8.5) to[american resistor] (8.25, 8.5);
+                    \draw (6.25, 8.5) -- (6.25, 7.25);
+                    \draw (8.75, 6.75) -- (10.25, 6.75) -- (10.25, 8.5) -- (8.25, 8.5);
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N1) at (7.5, 9){} node[anchor=center] at (N1.text){$R_2$};
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N2) at (5, 7.875){} node[anchor=center] at (N2.text){$R_{1}$};
+                    \node[ground] at (6.37, 4.51){};
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N3) at (11.25, 6.625){} node[anchor=center] at (N3.text){$V_{out}$};
+                    \draw (10.25, 6.75) -- (10.75, 6.75);
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N4) at (5.5, 5.375){} node[anchor=center] at (N4.text){$V_{in}$};
+                    \node[ground] at (4, 7.25){};
+                \end{tikzpicture}%
+                }
                 \end{center}
 
                 \vspace{0.05cm}
@@ -8381,19 +8387,24 @@
 
                 \vspace{0.1cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.65, color=black]
-                        % OpAmp
-                        \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
-                        % Input through R1 to +
-                        \draw (opamp.+) -- ++(-0.3,0) coordinate (plus);
-                        \draw (plus) to[R, l=$R_1$] ++(-1.5,0) node[left] {$V_{in}$};
-                        % Feedback R2 from output to +
-                        \draw (plus) -- ++(0,1) to[R, l=$R_2$] ++(2.3,0) -| (opamp.out);
-                        % Ground on -
-                        \draw (opamp.-) -- ++(-0.3,0) node[ground] {};
-                        % Output
-                        \draw (opamp.out) -- ++(0.5,0) node[right] {$V_{out}$};
-                    \end{circuitikz}
+                \resizebox{\linewidth}{!}{%
+                \begin{tikzpicture}
+                    % Paths, nodes and wires:
+                    \node[op amp, yscale=-1](OpAmp) at (7.56, 6.75){};
+                    \draw (4, 7.25) to[american resistor] (6.37, 7.24);
+                    \draw (4, 7.25) to[american voltage source] (4, 5.5);
+                    \draw (6.25, 8.5) to[american resistor] (8.25, 8.5);
+                    \draw (6.25, 8.5) -- (6.25, 7.25);
+                    \draw (8.75, 6.75) -- (10.25, 6.75) -- (10.25, 8.5) -- (8.25, 8.5);
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N1) at (7.5, 9){} node[anchor=center] at (N1.text){$R_2$};
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N2) at (5, 7.875){} node[anchor=center] at (N2.text){$R_{1}$};
+                    \node[ground] at (4, 5.5){};
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N3) at (11.25, 6.625){} node[anchor=center] at (N3.text){$V_{out}$};
+                    \draw (10.25, 6.75) -- (10.75, 6.75);
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N4) at (3.13, 6.365){} node[anchor=center] at (N4.text){$V_{in}$};
+                    \node[ground] at (6.37, 6.26){};
+                \end{tikzpicture}%
+                }
                 \end{center}
 
                 \vspace{0.05cm}
@@ -8406,7 +8417,24 @@
 
                     \vspace{0.05cm}
                     {\footnotesize \textit{Nota: segni invertiti rispetto al caso invertente}}
-                
+
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Comparatore a Doppia Soglia (Isteresi)};
+    \end{tikzpicture}%
+    }
+
+    \vspace{0.3cm}
+
+    %------------ Comparatore a Doppia Soglia - Regole ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Trigger di Schmitt - Regole Fondamentali}
 
                 \vspace{0.15cm}
                 \footnotesize
@@ -8454,9 +8482,8 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Comparatore a Doppia Soglia (Isteresi)};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Comparatore a Doppia Soglia (Isteresi)}{Comparatore a Doppia Soglia (Isteresi)}}
-    \end{tikzpicture}%
-    }
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Regole Fondamentali};
+    \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Trigger di Schmitt - Tabella Comparativa ---------------
@@ -9386,26 +9413,7 @@
 
                 \vspace{0.15cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.65, color=black]
-                        % Input
-                        \draw (0,1.5) node[left] {$V_{in}$} -- (0.5,1.5);
-                        % Switch
-                        \draw (0.5,1.5) to[nos, l=$S$] (2,1.5);
-                        % Capacitor
-                        \draw (2,1.5) -- (2.5,1.5);
-                        \draw (2.5,1.5) to[C, l=$C$] (2.5,0);
-                        \draw (2.5,0) node[ground] {};
-                        % Buffer OpAmp
-                        \draw (3.5,1.5) node[op amp, noinv input up, scale=0.6] (opamp) {};
-                        \draw (2.5,1.5) -- (opamp.+);
-                        \draw (opamp.-) -- ++(0,-0.8) -| (opamp.out);
-                        % Output to ADC
-                        \draw (opamp.out) -- ++(0.8,0) node[right] {\footnotesize ADC};
-                        % ADC resistance (shown as problem)
-                        \draw[dashed, gray] (5.2,1.5) -- (5.2,0.5);
-                        \draw[dashed, gray] (5.2,0.5) to[R, l_=\footnotesize $R_{ADC}$] (5.2,-0.5);
-                        \draw[dashed, gray] (5.2,-0.5) node[ground] {};
-                    \end{circuitikz}
+                    \includegraphics[width=0.9\linewidth]{SampleAndHold.jpg}
                 \end{center}
 
                 \vspace{0.1cm}
@@ -11427,6 +11435,54 @@
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Riconoscere Configurazioni (2/2)};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{GUIDA - Riconoscere Configurazioni (2/2)}{GUIDA - Riconoscere Configurazioni (2/2)}}
     \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Multivibratore Astabile - Circuito ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Multivibratore Astabile - Circuito}
+
+                \vspace{0.15cm}
+                \begin{center}
+                \resizebox{\linewidth}{!}{%
+                \begin{tikzpicture}
+                    % Paths, nodes and wires:
+                    \node[op amp, yscale=-1](OpAmp) at (7.56, 6.75){};
+                    \draw (4, 7.25) to[american resistor] (6.37, 7.24);
+                    \draw (6.25, 8.5) -- (6.25, 7.25);
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N1) at (8, 9){} node[anchor=center] at (N1.text){$R_2$};
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N2) at (5, 7.875){} node[anchor=center] at (N2.text){$R_{1}$};
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N3) at (11.25, 6.625){} node[anchor=center] at (N3.text){$V_{out}$};
+                    \draw (10.25, 6.75) -- (10.75, 6.75);
+                    \draw (6.25, 8.5) to[american resistor] (9.75, 8.5);
+                    \draw (9.75, 8.5) -| (9.75, 6.75) -- (10.25, 6.75) -- (8.75, 6.75);
+                    \draw (4.5, 5.25) to[capacitor] (5.5, 5.25);
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N4) at (5, 4.375){} node[anchor=center] at (N4.text){$C$};
+                    \node[ground, rotate=-90] at (4.5, 5.25){};
+                    \node[ground, rotate=-90] at (4, 7.25){};
+                    \draw (6.37, 6.26) |- (5.5, 6.25) -- (5.5, 5.25);
+                    \draw (9.75, 6.75) |- (7.75, 5.25);
+                    \draw (7.75, 5.25) to[american resistor] (6.5, 5.25);
+                    \draw (6.5, 5.25) -- (5.5, 5.25);
+                    \node[shape=rectangle, minimum width=0.965cm, minimum height=0.715cm](N5) at (7.25, 4.625){} node[anchor=center] at (N5.text){$R$};
+                    \node[circ] at (9.75, 6.75){};
+                    \node[circ] at (5.5, 5.25){};
+                    \node[circ] at (6.25, 7.25){};
+                    \node[circ] at (10.75, 6.75){};
+                \end{tikzpicture}%
+                }
+                \end{center}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile - Circuito};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ Multivibratore Astabile ---------------
