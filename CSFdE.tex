@@ -1,5 +1,5 @@
 \documentclass[dvipsnames]{article}
-\usepackage[a4paper, landscape]{geometry}
+\usepackage[a4paper, landscape, left=0.5cm, right=0.5cm, top=0.5cm, bottom=1.2cm, footskip=0.5cm]{geometry}
 \usepackage{url}
 \usepackage{multicol} 
 \usepackage{amsmath}
@@ -22,6 +22,8 @@
 \usepackage[american,european, siunitx]{circuitikz} %https://grex99.gitlab.io/circuitgui/
 \usepackage{graphicx}
 \usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage[hidelinks, bookmarks=true]{hyperref}
 
 \makeatletter
 
@@ -35,11 +37,6 @@
 \usepackage[brazilian]{babel}
 \usepackage[utf8]{inputenc}
 
-\advance\topmargin-.8in
-\advance\textheight3in
-\advance\textwidth3in
-\advance\oddsidemargin-1.5in
-\advance\evensidemargin-1.5in
 \parindent0pt
 \parskip2pt
 %------------ COMMANDS ---------------
@@ -53,10 +50,32 @@
 \newcommand\dummytext[1]{\if \conform S {#1} \else \vspace{5cm} \hspace{5cm} \fi}
 
 %---------------------------------------------------
+% Page numbers setup
+\pagestyle{fancy}
+\fancyhf{} % clear all
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\footskip}{20pt}
+
 \begin{document}
+\setcounter{tocdepth}{2}
+\renewcommand{\thesubsection}{}
 
 %\begin{center}{\huge{\textbf{Formulario esame elettrotecnica}}}\\
 %\end{center}
+%------------ INDICE ---------------
+{\footnotesize
+\setlength{\columnsep}{0.5cm}
+\begin{multicols}{4}
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{multicols}
+}
+\hrule
+\vspace{0.2cm}
+%-----------------------------------
+
 \begin{multicols*}{3}
 
     \tikzstyle{mybox} = [draw=CustomYellow, fill=white, very thick,
@@ -110,7 +129,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Prefissi SI (Notazione Scientifica)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Prefissi SI (Notazione Scientifica)};\addcontentsline{toc}{subsection}{\texorpdfstring{Prefissi SI (Notazione Scientifica)}{Prefissi SI (Notazione Scientifica)}}
     \end{tikzpicture}
 
     \newpage
@@ -180,7 +199,7 @@
                 \end{minipage}
             };
             %------------ Box 26 Header ---------------------
-            \node[fancytitle, right=10pt] at (box.north west) {\color{white}Procedimento transitori:};
+            \node[fancytitle, right=10pt] at (box.north west) {\color{white}Procedimento transitori:};\addcontentsline{toc}{subsection}{\texorpdfstring{Procedimento transitori:}{Procedimento transitori:}}
         \end{tikzpicture}}
 
 
@@ -198,7 +217,7 @@
             \end{minipage}
         };
         %------------ Box 27 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Grafico};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Grafico};\addcontentsline{toc}{subsection}{\texorpdfstring{Grafico}{Grafico}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -288,7 +307,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Condensatore - Carica/Scarica RC};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Condensatore - Carica/Scarica RC};\addcontentsline{toc}{subsection}{\texorpdfstring{Condensatore - Carica/Scarica RC}{Condensatore - Carica/Scarica RC}}
     \end{tikzpicture}%
     }
 
@@ -336,7 +355,7 @@
             \end{minipage}
         };
         %------------ Box 4 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Resistenze e Alimentazioni};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Resistenze e Alimentazioni};\addcontentsline{toc}{subsection}{\texorpdfstring{Resistenze e Alimentazioni}{Resistenze e Alimentazioni}}
     \end{tikzpicture}
 
     
@@ -423,7 +442,7 @@
             \end{minipage}
         };
         %------------ Box 3 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodi};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodi};\addcontentsline{toc}{subsection}{\texorpdfstring{Diodi}{Diodi}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -502,7 +521,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodi - Esercizio Tipico (1/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodi - Esercizio Tipico (1/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{Diodi - Esercizio Tipico (1/2)}{Diodi - Esercizio Tipico (1/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -573,7 +592,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodi - Esercizio Tipico (2/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodi - Esercizio Tipico (2/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{Diodi - Esercizio Tipico (2/2)}{Diodi - Esercizio Tipico (2/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -663,7 +682,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodo + Condensatore};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Diodo + Condensatore};\addcontentsline{toc}{subsection}{\texorpdfstring{Diodo + Condensatore}{Diodo + Condensatore}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -728,7 +747,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Raddrizzatore Singola Semionda};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Raddrizzatore Singola Semionda};\addcontentsline{toc}{subsection}{\texorpdfstring{Raddrizzatore Singola Semionda}{Raddrizzatore Singola Semionda}}
     \end{tikzpicture}%
     }
 
@@ -792,7 +811,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Rilevatore di Picco};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Rilevatore di Picco};\addcontentsline{toc}{subsection}{\texorpdfstring{Rilevatore di Picco}{Rilevatore di Picco}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -857,7 +876,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Alimentatore DC};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Alimentatore DC};\addcontentsline{toc}{subsection}{\texorpdfstring{Alimentatore DC}{Alimentatore DC}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -920,7 +939,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}RC + Diodo: Analisi STATICA};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}RC + Diodo: Analisi STATICA};\addcontentsline{toc}{subsection}{\texorpdfstring{RC + Diodo: Analisi STATICA}{RC + Diodo: Analisi STATICA}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -987,7 +1006,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}RC + Diodo: Analisi DINAMICA (1/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}RC + Diodo: Analisi DINAMICA (1/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{RC + Diodo: Analisi DINAMICA (1/2)}{RC + Diodo: Analisi DINAMICA (1/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1055,7 +1074,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}RC + Diodo: Analisi DINAMICA (2/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}RC + Diodo: Analisi DINAMICA (2/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{RC + Diodo: Analisi DINAMICA (2/2)}{RC + Diodo: Analisi DINAMICA (2/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1146,7 +1165,7 @@
             \end{minipage}
         };
         %------------ Box 5 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Capacità: Formule e Comportamento};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Capacità: Formule e Comportamento};\addcontentsline{toc}{subsection}{\texorpdfstring{Capacità: Formule e Comportamento}{Capacità: Formule e Comportamento}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1230,7 +1249,7 @@
             \end{minipage}
         };
         %------------ Box 6 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Transitori con gradini multipli};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Transitori con gradini multipli};\addcontentsline{toc}{subsection}{\texorpdfstring{Transitori con gradini multipli}{Transitori con gradini multipli}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1302,7 +1321,7 @@
             \end{minipage}
         };
         %------------ Box 7 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Verifica ipotesi stato diodi};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Verifica ipotesi stato diodi};\addcontentsline{toc}{subsection}{\texorpdfstring{Verifica ipotesi stato diodi}{Verifica ipotesi stato diodi}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1385,7 +1404,7 @@
             \end{minipage}
         };
         %------------ Box 8 Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Notazione alimentazioni};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Notazione alimentazioni};\addcontentsline{toc}{subsection}{\texorpdfstring{Notazione alimentazioni}{Notazione alimentazioni}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1475,7 +1494,7 @@
             \end{minipage}
         };
         %------------ Box Onda Quadra Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Onda Quadra Ideale - Guida al Disegno};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Onda Quadra Ideale - Guida al Disegno};\addcontentsline{toc}{subsection}{\texorpdfstring{Onda Quadra Ideale - Guida al Disegno}{Onda Quadra Ideale - Guida al Disegno}}
     \end{tikzpicture}
 
 
@@ -1522,7 +1541,7 @@
             \end{minipage}
         };
         %------------ Formazione del Canale nei MOSFET Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Formazione del Canale nei MOSFET};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Formazione del Canale nei MOSFET};\addcontentsline{toc}{subsection}{\texorpdfstring{Formazione del Canale nei MOSFET}{Formazione del Canale nei MOSFET}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1611,7 +1630,7 @@
             \end{minipage}
         };
         %------------ Box Simboli MOSFET Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Simboli e convenzioni nMOS/pMOS};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Simboli e convenzioni nMOS/pMOS};\addcontentsline{toc}{subsection}{\texorpdfstring{Simboli e convenzioni nMOS/pMOS}{Simboli e convenzioni nMOS/pMOS}}
     \end{tikzpicture}
 
 
@@ -1680,7 +1699,7 @@
             \end{minipage}
         };
         %------------ Box Caratteristica nMOS Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Caratteristica I-V nMOS};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Caratteristica I-V nMOS};\addcontentsline{toc}{subsection}{\texorpdfstring{Caratteristica I-V nMOS}{Caratteristica I-V nMOS}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1745,7 +1764,7 @@
             \end{minipage}
         };
         %------------ Box Caratteristica pMOS Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Caratteristica I-V pMOS};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Caratteristica I-V pMOS};\addcontentsline{toc}{subsection}{\texorpdfstring{Caratteristica I-V pMOS}{Caratteristica I-V pMOS}}
     \end{tikzpicture}
 
 
@@ -1815,7 +1834,7 @@
             \end{minipage}
         };
         %------------ Box nMOS Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}nMOS - Metodo operativo};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}nMOS - Metodo operativo};\addcontentsline{toc}{subsection}{\texorpdfstring{nMOS - Metodo operativo}{nMOS - Metodo operativo}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1908,7 +1927,7 @@
             \end{minipage}
         };
         %------------ Box pMOS Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}pMOS - Metodo operativo};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}pMOS - Metodo operativo};\addcontentsline{toc}{subsection}{\texorpdfstring{pMOS - Metodo operativo}{pMOS - Metodo operativo}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1997,7 +2016,7 @@
             \end{minipage}
         };
         %------------ Box Riepilogo Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riepilogo: nMOS vs pMOS};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riepilogo: nMOS vs pMOS};\addcontentsline{toc}{subsection}{\texorpdfstring{Riepilogo: nMOS vs pMOS}{Riepilogo: nMOS vs pMOS}}
     \end{tikzpicture}
 
     \columnbreak
@@ -2083,7 +2102,7 @@
             \end{minipage}
         };
         %------------ MOSFET simmetrici Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}MOSFET simmetrici - Source e Drain a runtime};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}MOSFET simmetrici - Source e Drain a runtime};\addcontentsline{toc}{subsection}{\texorpdfstring{MOSFET simmetrici - Source e Drain a runtime}{MOSFET simmetrici - Source e Drain a runtime}}
     \end{tikzpicture}
 
     \columnbreak
@@ -2163,7 +2182,7 @@
             \end{minipage}
         };
         %------------ Regola pratica Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Regola pratica - MOSFET ON/OFF veloce};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Regola pratica - MOSFET ON/OFF veloce};\addcontentsline{toc}{subsection}{\texorpdfstring{Regola pratica - MOSFET ON/OFF veloce}{Regola pratica - MOSFET ON/OFF veloce}}
     \end{tikzpicture}
 
 
@@ -2206,7 +2225,7 @@
             \end{minipage}
         };
         %------------ Overdrive Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Parametro K (Transconduttanza)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Parametro K (Transconduttanza)};\addcontentsline{toc}{subsection}{\texorpdfstring{Parametro K (Transconduttanza)}{Parametro K (Transconduttanza)}}
     \end{tikzpicture}
 
 
@@ -2271,7 +2290,7 @@
             \end{minipage}
         };
         %------------ Semplificazioni MOSFET Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Semplificazioni MOSFET};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Semplificazioni MOSFET};\addcontentsline{toc}{subsection}{\texorpdfstring{Semplificazioni MOSFET}{Semplificazioni MOSFET}}
     \end{tikzpicture}
 
 
@@ -2328,7 +2347,7 @@
             \end{minipage}
         };
         %------------ Analisi Porte Logiche Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Analisi Porte Logiche};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Analisi Porte Logiche};\addcontentsline{toc}{subsection}{\texorpdfstring{Analisi Porte Logiche}{Analisi Porte Logiche}}
     \end{tikzpicture}
 
 
@@ -2417,7 +2436,7 @@
             \end{minipage}
         };
         %------------ Resistenza di canale Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Resistenza di canale};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Resistenza di canale};\addcontentsline{toc}{subsection}{\texorpdfstring{Resistenza di canale}{Resistenza di canale}}
     \end{tikzpicture}
 
 
@@ -2485,7 +2504,7 @@
             \end{minipage}
         };
         %------------ Carica condensatore Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Carica di un condensatore con MOSFET};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Carica di un condensatore con MOSFET};\addcontentsline{toc}{subsection}{\texorpdfstring{Carica di un condensatore con MOSFET}{Carica di un condensatore con MOSFET}}
     \end{tikzpicture}
 
 
@@ -2559,7 +2578,7 @@
             \end{minipage}
         };
         %------------ Scarica condensatore Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Scarica di un condensatore con MOSFET};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Scarica di un condensatore con MOSFET};\addcontentsline{toc}{subsection}{\texorpdfstring{Scarica di un condensatore con MOSFET}{Scarica di un condensatore con MOSFET}}
     \end{tikzpicture}
 
 
@@ -2638,7 +2657,7 @@
             \end{minipage}
         };
         %------------ Valutazione logica Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Valutazione logica circuiti ibridi/intermedi (PTL)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Valutazione logica circuiti ibridi/intermedi (PTL)};\addcontentsline{toc}{subsection}{\texorpdfstring{Valutazione logica circuiti ibridi/intermedi (PTL)}{Valutazione logica circuiti ibridi/intermedi (PTL)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2697,7 +2716,7 @@
             \end{minipage}
         };
         %------------ Tempo propagazione Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione};\addcontentsline{toc}{subsection}{\texorpdfstring{Tempo di propagazione}{Tempo di propagazione}}
     \end{tikzpicture}
 
 
@@ -2791,7 +2810,7 @@
             \end{minipage}
         };
         %------------ PTL vs CMOS Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}PTL vs CMOS Logic};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}PTL vs CMOS Logic};\addcontentsline{toc}{subsection}{\texorpdfstring{PTL vs CMOS Logic}{PTL vs CMOS Logic}}
     \end{tikzpicture}
 
 
@@ -2858,7 +2877,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione - PTL};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione - PTL};\addcontentsline{toc}{subsection}{\texorpdfstring{Tempo di propagazione - PTL}{Tempo di propagazione - PTL}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -2894,7 +2913,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riconoscere circuiti PTL};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riconoscere circuiti PTL};\addcontentsline{toc}{subsection}{\texorpdfstring{Riconoscere circuiti PTL}{Riconoscere circuiti PTL}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -2948,7 +2967,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention (CMOS) vs Limitazione (PTL)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention (CMOS) vs Limitazione (PTL)};\addcontentsline{toc}{subsection}{\texorpdfstring{Contention (CMOS) vs Limitazione (PTL)}{Contention (CMOS) vs Limitazione (PTL)}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -2977,7 +2996,7 @@
 
         \end{minipage}
     };
-    \node[fancytitle, right=10pt] at (box.north west) {\color{white}Soglia Logica CMOS vs. PTL};
+    \node[fancytitle, right=10pt] at (box.north west) {\color{white}Soglia Logica CMOS vs. PTL};\addcontentsline{toc}{subsection}{\texorpdfstring{Soglia Logica CMOS vs. PTL}{Soglia Logica CMOS vs. PTL}}
 \end{tikzpicture}
 
 
@@ -3022,7 +3041,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tabella di Verità - Circuiti PTL};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tabella di Verità - Circuiti PTL};\addcontentsline{toc}{subsection}{\texorpdfstring{Tabella di Verità - Circuiti PTL}{Tabella di Verità - Circuiti PTL}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3091,7 +3110,7 @@
             \end{minipage}
         };
         %------------ Potenza statica Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza statica};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza statica};\addcontentsline{toc}{subsection}{\texorpdfstring{Potenza statica}{Potenza statica}}
     \end{tikzpicture}
 
     \newpage
@@ -3150,7 +3169,7 @@
             \end{minipage}
         };
         %------------ Potenza dinamica Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza dinamica - Formula};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza dinamica - Formula};\addcontentsline{toc}{subsection}{\texorpdfstring{Potenza dinamica - Formula}{Potenza dinamica - Formula}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -3205,7 +3224,7 @@
             \end{minipage}
         };
         %------------ Potenza dinamica - Calcolo Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza dinamica - Calcolo da grafico};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Potenza dinamica - Calcolo da grafico};\addcontentsline{toc}{subsection}{\texorpdfstring{Potenza dinamica - Calcolo da grafico}{Potenza dinamica - Calcolo da grafico}}
     \end{tikzpicture}
 
 
@@ -3243,7 +3262,7 @@
             \end{minipage}
         };
         %------------ Duty Cycle Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Duty Cycle};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Duty Cycle};\addcontentsline{toc}{subsection}{\texorpdfstring{Duty Cycle}{Duty Cycle}}
     \end{tikzpicture}
 
     \newpage
@@ -3323,7 +3342,7 @@
             \end{minipage}
         };
         %------------ cMOS Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Porte cMOS - Definizione};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Porte cMOS - Definizione};\addcontentsline{toc}{subsection}{\texorpdfstring{Porte cMOS - Definizione}{Porte cMOS - Definizione}}
     \end{tikzpicture}
 
 
@@ -3412,7 +3431,7 @@
             \end{minipage}
         };
         %------------ Costruzione PUN da PDN Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Costruzione PUN da PDN};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Costruzione PUN da PDN};\addcontentsline{toc}{subsection}{\texorpdfstring{Costruzione PUN da PDN}{Costruzione PUN da PDN}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3527,7 +3546,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Tabella di Verità Reti CMOS};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Tabella di Verità Reti CMOS};\addcontentsline{toc}{subsection}{\texorpdfstring{GUIDA - Tabella di Verità Reti CMOS}{GUIDA - Tabella di Verità Reti CMOS}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -3581,7 +3600,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Livelli di Tensione e Soglia Logica};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Livelli di Tensione e Soglia Logica};\addcontentsline{toc}{subsection}{\texorpdfstring{Livelli di Tensione e Soglia Logica}{Livelli di Tensione e Soglia Logica}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -3641,7 +3660,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riconoscere Rete cMOS Completa};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Riconoscere Rete cMOS Completa};\addcontentsline{toc}{subsection}{\texorpdfstring{Riconoscere Rete cMOS Completa}{Riconoscere Rete cMOS Completa}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -3718,7 +3737,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Complementare vs Non Complementare --- Cosa Fare};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Complementare vs Non Complementare --- Cosa Fare};\addcontentsline{toc}{subsection}{\texorpdfstring{Complementare vs Non Complementare --- Cosa Fare}{Complementare vs Non Complementare --- Cosa Fare}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -3822,7 +3841,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention PUN/PDN - Teoria};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention PUN/PDN - Teoria};\addcontentsline{toc}{subsection}{\texorpdfstring{Contention PUN/PDN - Teoria}{Contention PUN/PDN - Teoria}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -3916,7 +3935,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention PUN/PDN - Calcolo};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention PUN/PDN - Calcolo};\addcontentsline{toc}{subsection}{\texorpdfstring{Contention PUN/PDN - Calcolo}{Contention PUN/PDN - Calcolo}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -4087,7 +4106,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Soglia Logica della Porta ($V_M$)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Soglia Logica della Porta ($V_M$)};\addcontentsline{toc}{subsection}{\texorpdfstring{Soglia Logica della Porta ()}{Soglia Logica della Porta ()}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -4200,7 +4219,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Introduzione e Caratteristica};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Introduzione e Caratteristica};\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Introduzione e Caratteristica}{OpAmp - Introduzione e Caratteristica}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4320,7 +4339,7 @@
             \end{minipage}
         };
         %------------ Impedenza con Condensatori Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Impedenza con Condensatori};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Impedenza con Condensatori};\addcontentsline{toc}{subsection}{\texorpdfstring{Impedenza con Condensatori}{Impedenza con Condensatori}}
     \end{tikzpicture}
 
     \newpage
@@ -4421,7 +4440,7 @@
             \end{minipage}
         };
         %------------ Forma Standard per Bode Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Forma Standard per Bode};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Forma Standard per Bode};\addcontentsline{toc}{subsection}{\texorpdfstring{Forma Standard per Bode}{Forma Standard per Bode}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4550,7 +4569,7 @@
             \end{minipage}
         };
         %------------ Bode Modulo Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Diagramma del Modulo};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Diagramma del Modulo};\addcontentsline{toc}{subsection}{\texorpdfstring{Bode - Diagramma del Modulo}{Bode - Diagramma del Modulo}}
     \end{tikzpicture}%
     }
 
@@ -4676,7 +4695,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Metodo Generale Unificato};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Metodo Generale Unificato};\addcontentsline{toc}{subsection}{\texorpdfstring{Bode - Metodo Generale Unificato}{Bode - Metodo Generale Unificato}}
     \end{tikzpicture}}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4781,7 +4800,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Formule Rapide di Navigazione sul Bode};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Formule Rapide di Navigazione sul Bode};\addcontentsline{toc}{subsection}{\texorpdfstring{Formule Rapide di Navigazione sul Bode}{Formule Rapide di Navigazione sul Bode}}
     \end{tikzpicture}%
     }
 
@@ -4856,7 +4875,7 @@
             \end{minipage}
         };
         %------------ Singolarità in Zero Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Singolarità in Zero ($n \neq 0$)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Singolarità in Zero ($n \neq 0$)};\addcontentsline{toc}{subsection}{\texorpdfstring{Bode - Singolarità in Zero ()}{Bode - Singolarità in Zero ()}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4952,7 +4971,7 @@
             \end{minipage}
         };
         %------------ Bode Fase Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Diagramma della Fase};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Diagramma della Fase};\addcontentsline{toc}{subsection}{\texorpdfstring{Bode - Diagramma della Fase}{Bode - Diagramma della Fase}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5044,7 +5063,7 @@
             \end{minipage}
         };
         %------------ Intersezione 0 dB Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Intersezione 0 dB in Bode};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Intersezione 0 dB in Bode};\addcontentsline{toc}{subsection}{\texorpdfstring{Intersezione 0 dB in Bode}{Intersezione 0 dB in Bode}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5129,7 +5148,7 @@
             \end{minipage}
         };
         %------------ Calcolo Guadagno Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Calcolo Guadagno a Frequenze Specifiche};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Calcolo Guadagno a Frequenze Specifiche};\addcontentsline{toc}{subsection}{\texorpdfstring{Calcolo Guadagno a Frequenze Specifiche}{Calcolo Guadagno a Frequenze Specifiche}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5232,7 +5251,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Polo e Zero Coincidenti};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Bode - Polo e Zero Coincidenti};\addcontentsline{toc}{subsection}{\texorpdfstring{Bode - Polo e Zero Coincidenti}{Bode - Polo e Zero Coincidenti}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5374,7 +5393,7 @@
             \end{minipage}
         };
         %------------ Guadagno Reale Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Guadagno Reale vs Ideale};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Guadagno Reale vs Ideale};\addcontentsline{toc}{subsection}{\texorpdfstring{Guadagno Reale vs Ideale}{Guadagno Reale vs Ideale}}
     \end{tikzpicture}%
     }
 
@@ -5461,7 +5480,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Guadagno Reale - Intersezioni};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Guadagno Reale - Intersezioni};\addcontentsline{toc}{subsection}{\texorpdfstring{Guadagno Reale - Intersezioni}{Guadagno Reale - Intersezioni}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5595,7 +5614,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Margine di Fase e Stabilit\`a};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Margine di Fase e Stabilit\`a};\addcontentsline{toc}{subsection}{\texorpdfstring{Margine di Fase e Stabilit\`a}{Margine di Fase e Stabilit\`a}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5704,7 +5723,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Stabilit\`a - Senza Crossover};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Stabilit\`a - Senza Crossover};\addcontentsline{toc}{subsection}{\texorpdfstring{Stabilit\`a - Senza Crossover}{Stabilit\`a - Senza Crossover}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6002,7 +6021,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Retroazione e Saturazione};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Retroazione e Saturazione};\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Retroazione e Saturazione}{OpAmp - Retroazione e Saturazione}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6096,7 +6115,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Riconoscere Configurazione};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Riconoscere Configurazione};\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Riconoscere Configurazione}{OpAmp - Riconoscere Configurazione}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6198,7 +6217,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Saturazione dell'Uscita};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Saturazione dell'Uscita};\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Saturazione dell'Uscita}{OpAmp - Saturazione dell'Uscita}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6325,7 +6344,7 @@
             \end{minipage}
         };
         %------------ OpAmp Retroazione Negativa Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Retroazione Negativa};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Retroazione Negativa};\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Retroazione Negativa}{OpAmp - Retroazione Negativa}}
     \end{tikzpicture}%
     }
 
@@ -6437,7 +6456,7 @@
             \end{minipage}
         };
         %------------ Riconoscimento Rapido Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Riconoscimento Rapido};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Riconoscimento Rapido};\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Riconoscimento Rapido}{OpAmp - Riconoscimento Rapido}}
     \end{tikzpicture}%
     }
 
@@ -6528,7 +6547,7 @@
             \end{minipage}
         };
         %------------ Slew Rate Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Slew Rate OpAmp};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Slew Rate OpAmp};\addcontentsline{toc}{subsection}{\texorpdfstring{Slew Rate OpAmp}{Slew Rate OpAmp}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6603,7 +6622,7 @@
             \end{minipage}
         };
         %------------ Risposta al Gradino Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Risposta al Gradino - Sistema 1$^\circ$ Ordine};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Risposta al Gradino - Sistema 1$^\circ$ Ordine};\addcontentsline{toc}{subsection}{\texorpdfstring{Risposta al Gradino - Sistema 1 Ordine}{Risposta al Gradino - Sistema 1 Ordine}}
     \end{tikzpicture}
 
     \newpage
@@ -6727,7 +6746,7 @@
             \end{minipage}
         };
         %------------ DAC R2R Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC R-2R (Resistor Ladder)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC R-2R (Resistor Ladder)};\addcontentsline{toc}{subsection}{\texorpdfstring{DAC R-2R (Resistor Ladder)}{DAC R-2R (Resistor Ladder)}}
     \end{tikzpicture}%
     }
 
@@ -6825,7 +6844,7 @@
             \end{minipage}
         };
         %------------ DAC FSR LSB Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - FSR e LSB};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - FSR e LSB};\addcontentsline{toc}{subsection}{\texorpdfstring{DAC - FSR e LSB}{DAC - FSR e LSB}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6891,7 +6910,7 @@
             \end{minipage}
         };
         %------------ DAC DNL Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - DNL (1/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - DNL (1/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{DAC - DNL (1/2)}{DAC - DNL (1/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6956,7 +6975,7 @@
             \end{minipage}
         };
         %------------ DAC DNL Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - DNL (2/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - DNL (2/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{DAC - DNL (2/2)}{DAC - DNL (2/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7034,7 +7053,7 @@
             \end{minipage}
         };
         %------------ DAC Dinamica Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - Dinamica Transizioni (OpAmp reale)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC - Dinamica Transizioni (OpAmp reale)};\addcontentsline{toc}{subsection}{\texorpdfstring{DAC - Dinamica Transizioni (OpAmp reale)}{DAC - Dinamica Transizioni (OpAmp reale)}}
     \end{tikzpicture}
 
     \newpage
@@ -7106,7 +7125,7 @@
             \end{minipage}
         };
         %------------ DAC Correnti Pesate Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC a Correnti Pesate};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC a Correnti Pesate};\addcontentsline{toc}{subsection}{\texorpdfstring{DAC a Correnti Pesate}{DAC a Correnti Pesate}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7153,7 +7172,7 @@
             \end{minipage}
         };
         %------------ DAC Correnti Pesate Deviatori Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - Deviatori};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - Deviatori};\addcontentsline{toc}{subsection}{\texorpdfstring{DAC Correnti Pesate - Deviatori}{DAC Correnti Pesate - Deviatori}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7211,7 +7230,7 @@
             \end{minipage}
         };
         %------------ DAC Correnti Pesate DNL Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - DNL};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - DNL};\addcontentsline{toc}{subsection}{\texorpdfstring{DAC Correnti Pesate - DNL}{DAC Correnti Pesate - DNL}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7258,7 +7277,7 @@
             \end{minipage}
         };
         %------------ DAC Correnti Pesate Dinamica Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - Dinamica};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}DAC Correnti Pesate - Dinamica};\addcontentsline{toc}{subsection}{\texorpdfstring{DAC Correnti Pesate - Dinamica}{DAC Correnti Pesate - Dinamica}}
     \end{tikzpicture}
 
     \newpage
@@ -7335,7 +7354,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Comparatore a Singola Soglia};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Comparatore a Singola Soglia};\addcontentsline{toc}{subsection}{\texorpdfstring{Comparatore a Singola Soglia}{Comparatore a Singola Soglia}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7461,7 +7480,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Comparatore a Doppia Soglia (Isteresi)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Comparatore a Doppia Soglia (Isteresi)};\addcontentsline{toc}{subsection}{\texorpdfstring{Comparatore a Doppia Soglia (Isteresi)}{Comparatore a Doppia Soglia (Isteresi)}}
     \end{tikzpicture}%
     }
 
@@ -7540,7 +7559,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Tabella Comparativa};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Tabella Comparativa};\addcontentsline{toc}{subsection}{\texorpdfstring{Trigger di Schmitt - Tabella Comparativa}{Trigger di Schmitt - Tabella Comparativa}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7621,7 +7640,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Funzionamento};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Funzionamento};\addcontentsline{toc}{subsection}{\texorpdfstring{Trigger di Schmitt - Funzionamento}{Trigger di Schmitt - Funzionamento}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7717,7 +7736,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Caratteristica};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Caratteristica};\addcontentsline{toc}{subsection}{\texorpdfstring{Trigger di Schmitt - Caratteristica}{Trigger di Schmitt - Caratteristica}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7797,7 +7816,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Calcolo Soglie};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Calcolo Soglie};\addcontentsline{toc}{subsection}{\texorpdfstring{Trigger di Schmitt - Calcolo Soglie}{Trigger di Schmitt - Calcolo Soglie}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7886,7 +7905,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Metodo Calcolo Soglie};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Metodo Calcolo Soglie};\addcontentsline{toc}{subsection}{\texorpdfstring{Trigger di Schmitt - Metodo Calcolo Soglie}{Trigger di Schmitt - Metodo Calcolo Soglie}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8060,7 +8079,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Grafici Isteresi};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Trigger di Schmitt - Grafici Isteresi};\addcontentsline{toc}{subsection}{\texorpdfstring{Trigger di Schmitt - Grafici Isteresi}{Trigger di Schmitt - Grafici Isteresi}}
     \end{tikzpicture}%
     }
 
@@ -8122,7 +8141,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Introduzione};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Introduzione};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Introduzione}{ADC - Introduzione}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8197,7 +8216,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Catena di Acquisizione};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Catena di Acquisizione};\addcontentsline{toc}{subsection}{\texorpdfstring{Catena di Acquisizione}{Catena di Acquisizione}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8283,7 +8302,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Sample \& Hold};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Sample \& Hold};\addcontentsline{toc}{subsection}{\texorpdfstring{Sample e Hold}{Sample e Hold}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8370,7 +8389,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Sample \& Hold con Buffer};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Sample \& Hold con Buffer};\addcontentsline{toc}{subsection}{\texorpdfstring{Sample e Hold con Buffer}{Sample e Hold con Buffer}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8451,7 +8470,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Adattamento e Dinamica};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Adattamento e Dinamica};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Adattamento e Dinamica}{ADC - Adattamento e Dinamica}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8715,7 +8734,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Buffer e Errore Statico};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Buffer e Errore Statico};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Buffer e Errore Statico}{ADC - Buffer e Errore Statico}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8819,7 +8838,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Richieste Tipiche d'Esame};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Richieste Tipiche d'Esame};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Richieste Tipiche d'Esame}{ADC - Richieste Tipiche d'Esame}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8976,7 +8995,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Errore da $I_B$ nel S\&H};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Errore da $I_B$ nel S\&H};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Errore da  nel SeH}{ADC - Errore da  nel SeH}}
     \end{tikzpicture}%
     }
 
@@ -9097,7 +9116,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Comando nMOS};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Comando nMOS};\addcontentsline{toc}{subsection}{\texorpdfstring{SeH - Comando nMOS}{SeH - Comando nMOS}}
     \end{tikzpicture}%
     }
 
@@ -9311,7 +9330,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Charge Injection};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}S\&H - Charge Injection};\addcontentsline{toc}{subsection}{\texorpdfstring{SeH - Charge Injection}{SeH - Charge Injection}}
     \end{tikzpicture}%
     }
 
@@ -9366,7 +9385,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - LSB all'Ingresso e Numero di Bit};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - LSB all'Ingresso e Numero di Bit};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - LSB all'Ingresso e Numero di Bit}{ADC - LSB all'Ingresso e Numero di Bit}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -9433,7 +9452,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Tempi di Sample e Hold};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Tempi di Sample e Hold};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Tempi di Sample e Hold}{ADC - Tempi di Sample e Hold}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -9486,7 +9505,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Risposta con Guadagno $A(s)$};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Risposta con Guadagno $A(s)$};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Risposta con Guadagno}{ADC - Risposta con Guadagno}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -9550,7 +9569,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Dimens. $V_B$ e Errore Fondo Scala};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Dimens. $V_B$ e Errore Fondo Scala};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Dimens.  e Errore Fondo Scala}{ADC - Dimens.  e Errore Fondo Scala}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -9593,7 +9612,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC a Doppia Rampa};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC a Doppia Rampa};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC a Doppia Rampa}{ADC a Doppia Rampa}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -9656,7 +9675,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Terminologia};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}ADC - Terminologia};\addcontentsline{toc}{subsection}{\texorpdfstring{ADC - Terminologia}{ADC - Terminologia}}
     \end{tikzpicture}
 
     \newpage
@@ -9753,7 +9772,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Riconoscere Configurazioni (1/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Riconoscere Configurazioni (1/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{GUIDA - Riconoscere Configurazioni (1/2)}{GUIDA - Riconoscere Configurazioni (1/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9857,7 +9876,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Riconoscere Configurazioni (2/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}GUIDA - Riconoscere Configurazioni (2/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{GUIDA - Riconoscere Configurazioni (2/2)}{GUIDA - Riconoscere Configurazioni (2/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9935,7 +9954,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile (1/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile (1/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{Multivibratore Astabile (1/2)}{Multivibratore Astabile (1/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10020,7 +10039,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore - Forme d'Onda};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore - Forme d'Onda};\addcontentsline{toc}{subsection}{\texorpdfstring{Multivibratore - Forme d'Onda}{Multivibratore - Forme d'Onda}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10136,7 +10155,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile (2/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile (2/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{Multivibratore Astabile (2/2)}{Multivibratore Astabile (2/2)}}
     \end{tikzpicture}%
     }
 
@@ -10218,7 +10237,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore - Commutazione};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore - Commutazione};\addcontentsline{toc}{subsection}{\texorpdfstring{Multivibratore - Commutazione}{Multivibratore - Commutazione}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10302,7 +10321,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile - Esame (1/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile - Esame (1/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{Multivibratore Astabile - Esame (1/2)}{Multivibratore Astabile - Esame (1/2)}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10372,7 +10391,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile - Esame (2/2)};
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Multivibratore Astabile - Esame (2/2)};\addcontentsline{toc}{subsection}{\texorpdfstring{Multivibratore Astabile - Esame (2/2)}{Multivibratore Astabile - Esame (2/2)}}
     \end{tikzpicture}
 
 
