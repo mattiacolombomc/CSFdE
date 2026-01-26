@@ -20,4 +20,4 @@ Hai trovato un errore o hai un suggerimento? Apri una [issue](https://github.com
 
 ---
 
-Se questa cheat sheet ti è stata utile, una stella sarebbe molto apprezzata!
+Se questa cheat sheet ti è stata utile, una stella ⭐ sarebbe molto apprezzata!
