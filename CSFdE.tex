@@ -20,7 +20,11 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{fontawesome}
 \usepackage[american,european, siunitx]{circuitikz} %https://grex99.gitlab.io/circuitgui/
-\ctikzset{voltage/american font={\color{black}}}
+\ctikzset{
+    voltage/american font={\color{black}},
+    bipole voltage style=american,
+    color=black
+}
 \usepackage{graphicx}
 \usepackage{microtype}
 \usepackage{fancyhdr}
@@ -387,7 +391,7 @@
 
                 \vspace{0.2cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.9]
+                    \begin{circuitikz}[scale=0.9, color=black]
                         % Diodo ON
                         \draw (0,2) to[D, v=$V_D$, color=green!70!black, line width=1.2pt] (2,2);
                         \node[anchor=south] at (1,2.2) {\color{green!70!black}\textbf{ON}};
@@ -407,7 +411,7 @@
 
                 \vspace{0.2cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.8]
+                    \begin{circuitikz}[scale=0.8, color=black]
                         % Conduzione diretta
                         \draw (0,2.5) to[zD, v=$V_D$, color=green!70!black, line width=1.2pt] (2,2.5);
                         \node[anchor=south] at (1,2.7) {\color{green!70!black}\textbf{Diretta}};
@@ -428,7 +432,7 @@
                 \textbf{3. Configurazioni in serie:}
 
                 \begin{center}
-                    \begin{circuitikz}[scale=0.7]
+                    \begin{circuitikz}[scale=0.7, color=black]
                         % Serie discordi
                         \draw (0,1.5) to[D] (1.5,1.5) to[D, invert] (3,1.5);
                         \node[anchor=south] at (1.5,1.7) {\small Discordi};
@@ -1151,7 +1155,7 @@
 
                         Il condensatore accumula energia; $V_C \uparrow$
                         \begin{center}
-                            \begin{circuitikz}[scale=0.55]
+                            \begin{circuitikz}[scale=0.55, color=black]
                                 \draw (0,0) to[C=$C$, v=$V_C$] (0,2.5);
                                 \draw[->, thick, color=green!70!black, line width=1.5pt] (-0.9,1.2) -- (-0.15,1.2);
                                 \node[anchor=east, color=green!70!black] at (-0.9,1.2) {\small $I_C > 0$};
@@ -1166,7 +1170,7 @@
 
                         Il condensatore rilascia energia; $V_C \downarrow$
                         \begin{center}
-                            \begin{circuitikz}[scale=0.55]
+                            \begin{circuitikz}[scale=0.55, color=black]
                                 \draw (0,0) to[C=$C$, v=$V_C$] (0,2.5);
                                 \draw[->, thick, color=red!70!black, line width=1.5pt] (0.15,1.2) -- (0.9,1.2);
                                 \node[anchor=west, color=red!70!black] at (0.9,1.2) {\small $I_C < 0$};
@@ -1302,7 +1306,7 @@
 
                         \vspace{0.15cm}
                         \begin{center}
-                            \begin{circuitikz}[scale=0.65]
+                            \begin{circuitikz}[scale=0.65, color=black]
                                 \draw (0,0) node[ground]{} to[V, v=$V_{in}$] (0,2.5)
                                       to[D, l=$D$, color=red] (2.5,2.5)
                                       to[R, l=$R$] (5,2.5)
@@ -1363,7 +1367,7 @@
 
                 \begin{center}
                     {\color{black}
-                    \begin{circuitikz}[scale=1.0]
+                    \begin{circuitikz}[scale=1.0, color=black]
                         % Simbolo alimentazione VDD
                         \draw[very thick] (0,0) to[short] (0,0.5);
                         \draw[ultra thick, line width=2pt] (-0.5,0.5) -- (0.5,0.5);
@@ -1391,7 +1395,7 @@
 
                 \begin{center}
                     {\color{black}
-                    \begin{circuitikz}[scale=1.0]
+                    \begin{circuitikz}[scale=1.0, color=black]
                         % Simbolo alimentazione VSS
                         \draw[very thick] (0,0) to[short] (0,0.5);
                         \draw[ultra thick, line width=2pt] (-0.5,0.5) -- (0.5,0.5);
@@ -1577,7 +1581,7 @@
                 \textbf{\color{blue}nMOS:}
 
                 \begin{center}
-                    \begin{circuitikz}[scale=2.0]
+                    \begin{circuitikz}[scale=2.0, color=black]
                         % nMOS symbol
                         \draw (0,0) node[nmos, anchor=G] (nmos) {};
 
@@ -1612,7 +1616,7 @@
                 \textbf{\color{purple}pMOS:}
 
                 \begin{center}
-                    \begin{circuitikz}[scale=2.0]
+                    \begin{circuitikz}[scale=2.0, color=black]
                         % pMOS symbol (invertito)
                         \draw (0,0) node[pmos, anchor=G] (pmos) {};
 
@@ -4142,7 +4146,7 @@
 
                 \vspace{0.15cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.7]
+                    \begin{circuitikz}[scale=0.7, color=black]
                         % OpAmp
                         \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
                         % Labels
@@ -6425,7 +6429,7 @@
 
                 \vspace{0.1cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.55]
+                    \begin{circuitikz}[scale=0.55, color=black]
                         % OpAmp
                         \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
                         % Rf - feedback
@@ -7317,7 +7321,7 @@
 
                 \vspace{0.1cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.65]
+                    \begin{circuitikz}[scale=0.65, color=black]
                         % OpAmp
                         \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
                         % Input on -
@@ -7339,7 +7343,7 @@
 
                 \vspace{0.1cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.65]
+                    \begin{circuitikz}[scale=0.65, color=black]
                         % OpAmp
                         \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
                         % Reference on -
@@ -7394,7 +7398,7 @@
 
                 \vspace{0.1cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.65]
+                    \begin{circuitikz}[scale=0.65, color=black]
                         % OpAmp
                         \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
                         % Input on -
@@ -7425,7 +7429,7 @@
 
                 \vspace{0.1cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.65]
+                    \begin{circuitikz}[scale=0.65, color=black]
                         % OpAmp
                         \draw (2,1.5) node[op amp, noinv input up] (opamp) {};
                         % Input through R1 to +
@@ -8252,7 +8256,7 @@
 
                 \vspace{0.15cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.7]
+                    \begin{circuitikz}[scale=0.7, color=black]
                         % Input
                         \draw (0,1.5) node[left] {$V_{in}$} -- (0.5,1.5);
                         % Switch (nMOS)
@@ -8341,7 +8345,7 @@
 
                 \vspace{0.15cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.65]
+                    \begin{circuitikz}[scale=0.65, color=black]
                         % Input
                         \draw (0,1.5) node[left] {$V_{in}$} -- (0.5,1.5);
                         % Switch
@@ -8603,7 +8607,7 @@
 
                     \vspace{0.1cm}
                     \begin{center}
-                        \begin{circuitikz}[scale=0.6]
+                        \begin{circuitikz}[scale=0.6, color=black]
                             \draw (2,1.5) node[op amp, noinv input up, scale=0.8] (opamp) {};
                             \draw (opamp.+) -- ++(-0.5,0) node[left] {\footnotesize $V_{in}$};
                             \draw (opamp.-) -- ++(0,-0.6) -| (opamp.out);
@@ -9033,7 +9037,7 @@
 
                 \vspace{0.15cm}
                 \begin{center}
-                    \begin{circuitikz}[scale=0.6]
+                    \begin{circuitikz}[scale=0.6, color=black]
                         % Input
                         \draw (0,1.5) node[left] {$V_\beta$} -- (0.5,1.5);
                         % nMOS as switch
@@ -9172,7 +9176,7 @@
 
                     \vspace{0.1cm}
                     \begin{center}
-                        \begin{circuitikz}[scale=0.55]
+                        \begin{circuitikz}[scale=0.55, color=black]
                             % Gate
                             \draw (1.5,2.5) node[above] {$V_G$} -- (1.5,2);
                             % Cp parasitic
