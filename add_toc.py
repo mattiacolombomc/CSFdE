@@ -31,9 +31,9 @@ def add_toc_entries(content):
     """Modifica le righe fancytitle per aggiungere entry TOC inline."""
 
     # Cerco le righe con fancytitle e aggiungo l'addcontentsline SULLA STESSA RIGA
-    # dopo il ; finale
+    # dopo il ; finale (solo se non esiste già)
 
-    pattern = r'(\\node\[fancytitle[^\]]*\]\s*(?:at\s*\([^)]*\))?\s*\{[^}]*\\color\{white\})([^}]+)(\};)'
+    pattern = r'(\\node\[fancytitle[^\]]*\]\s*(?:at\s*\([^)]*\))?\s*\{[^}]*\\color\{white\})([^}]+)(\};)(?!\\addcontentsline)'
 
     def replacement(match):
         prefix = match.group(1)
