@@ -60,18 +60,19 @@ def add_toc_preamble(content):
             '\\usepackage{fancyhdr}\n\\usepackage[hidelinks, bookmarks=true]{hyperref}'
         )
 
-    # Aggiungi tableofcontents - versione compatta
+    # Aggiungi tableofcontents - versione compatta su pagina separata
     toc_code = '''%------------ INDICE ---------------
+\\begin{center}{\\Large\\textbf{Indice delle Box}}\\end{center}
+\\vspace{0.5cm}
 {\\footnotesize
-\\setlength{\\columnsep}{0.5cm}
-\\begin{multicols}{4}
+\\setlength{\\columnsep}{0.8cm}
+\\begin{multicols}{3}
 \\makeatletter
 \\@starttoc{toc}
 \\makeatother
 \\end{multicols}
 }
-\\hrule
-\\vspace{0.2cm}
+\\newpage
 %-----------------------------------
 
 '''
