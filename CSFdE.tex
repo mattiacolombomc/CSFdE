@@ -6484,48 +6484,204 @@
     }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %------------ Slew Rate OpAmp ---------------
+    %------------ OpAmp Non idealità - Tensione di Offset ---------------
 
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \textbf{Definizione:} Lo \textbf{Slew Rate (SR)} è la \textbf{massima velocità} con cui l'uscita di un OpAmp può variare nel tempo.
+                \textbf{Tensione di Offset ($V_{OS}$):}
 
                 \vspace{0.15cm}
-                $$\text{SR} = \left|\frac{dV_{out}}{dt}\right|_{\text{max}}$$
+                Differenza di tensione necessaria tra $V^+$ e $V^-$ per avere $V_{out} = 0$
+
+                \vspace{0.15cm}
+                \textbf{Metodo di calcolo:}
 
                 \vspace{0.1cm}
-                Unità di misura: $\text{V}/\mu\text{s}$ oppure $\text{V/s}$
-
-                \vspace{0.2cm}
-                \textbf{A cosa serve:}
+                \begin{enumerate}[leftmargin=*,itemsep=0pt]
+                    \item Spegnere tutti i generatori d'ingresso
+                    \item Aggiungere $V_{OS}$ a \textbf{uno dei due morsetti} (scegliere verso arbitrario)
+                    \item Calcolare il contributo all'uscita:
+                \end{enumerate}
 
                 \vspace{0.1cm}
-                Lo slew rate è una \textbf{limitazione fisica} dell'OpAmp reale:
+                $$\boxed{V_{out}\big|_{V_{OS}} = V_{OS} \cdot G_{ID}}$$
+
+                \vspace{0.1cm}
+                dove $G_{ID}$ è il guadagno ideale del circuito
+
+                \vspace{0.15cm}
+                \footnotesize
+                    \textbf{$\bigstar$ IMPORTANTE}
+
+                    \vspace{0.05cm}
+                    • Il verso di $V_{OS}$ è arbitrario $\Rightarrow$ l'effetto finale è $\pm V_{OS} \cdot G_{ID}$
+
+                    \vspace{0.05cm}
+                    • Il contributo ha limite superiore e inferiore
+
+                    \vspace{0.05cm}
+                    • L'OpAmp resta ideale: $V^+ = V^-$ (in retroazione negativa)
+
+
+            \end{minipage}
+        };
+        %------------ Non idealità Offset Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Non idealità: Tensione di Offset};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Non idealità: Tensione di Offset}{OpAmp - Non idealità: Tensione di Offset}}
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp Non idealità - Correnti di Bias ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Correnti di Bias ($I_B^+$ e $I_B^-$):}
+
+                \vspace{0.15cm}
+                Correnti che fluiscono negli ingressi dell'OpAmp reale
+
+                \vspace{0.15cm}
+                \textbf{Rappresentazione:}
+
+                \vspace{0.1cm}
+                I generatori di corrente $I_B^+$ e $I_B^-$ si collegano \textbf{esternamente ai nodi} $V^+$ e $V^-$
+
+                \vspace{0.1cm}
+                {\footnotesize\textit{(collegamento esterno evita confusione durante sovrapposizione effetti)}}
+
+                \vspace{0.1cm}
+                • Le correnti possono essere \textbf{entranti} $(\downarrow)$ o \textbf{uscenti} $(\uparrow)$ dall'OpAmp
+
+                \vspace{0.15cm}
+                \textbf{Metodo di calcolo:}
+
+                \vspace{0.1cm}
+                \begin{enumerate}[leftmargin=*,itemsep=0pt]
+                    \item Spegnere tutti i generatori d'ingresso
+                    \item Applicare \textbf{sovrapposizione degli effetti} tra $I_B^+$ e $I_B^-$
+                    \item Calcolare i contributi separatamente:
+                \end{enumerate}
+
+                \vspace{0.1cm}
+                $$V_{out}\big|_{I_B^+} \quad \text{e} \quad V_{out}\big|_{I_B^-}$$
 
                 \vspace{0.05cm}
-                • Limita la velocità di risposta dell'amplificatore
+                $$\boxed{V_{out}\big|_{I_B} = V_{out}\big|_{I_B^+} + V_{out}\big|_{I_B^-}}$$
 
-                • Se il segnale richiede una variazione più rapida, l'uscita viene \textbf{distorta}
+                \vspace{0.15cm}
+                \footnotesize
+                    \textbf{$\bigstar$ NOTA}
 
-                • Importante per segnali ad alta frequenza o grande ampiezza
+                    \vspace{0.05cm}
+                    • L'OpAmp resta ideale: $V^+ = V^-$ e $i^+ = i^- = 0$ \textbf{internamente}
 
-                \vspace{0.2cm}
-                \textbf{Calcolo e Verifica:}
+                    \vspace{0.05cm}
+                    • I generatori $I_B$ sono \textbf{esterni} ai nodi, quindi non violano $i^+ = i^- = 0$
+
+
+            \end{minipage}
+        };
+        %------------ Non idealità Correnti Bias Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Non idealità: Correnti di Bias};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Non idealità: Correnti di Bias}{OpAmp - Non idealità: Correnti di Bias}}
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp Non idealità - Correnti di Offset ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Correnti di Offset ($I_{OS}$):}
+
+                \vspace{0.15cm}
+                Contributo statistico alle correnti di bias (modellazione dell'incertezza)
+
+                \vspace{0.15cm}
+                \textbf{Rappresentazione:}
 
                 \vspace{0.1cm}
-                Per un segnale sinusoidale $V_{out}(t) = V_{\text{max}} \sin(\omega t)$:
+                Ogni morsetto ha un contributo pari a $\dfrac{I_{OS}}{2}$ con \textbf{versi opposti}:
+
+                \vspace{0.05cm}
+                • Su $V^+$: $+\dfrac{I_{OS}}{2}$ (verso arbitrario)
+
+                • Su $V^-$: $-\dfrac{I_{OS}}{2}$ (verso opposto)
+
+                \vspace{0.15cm}
+                \textbf{Metodo di calcolo:}
+
+                \vspace{0.1cm}
+                Come per le correnti di bias: sovrapposizione degli effetti
+
+                \vspace{0.1cm}
+                $$\boxed{V_{out}\big|_{I_{OS}} = V_{out}\big|_{I_{OS}/2,\,V^+} + V_{out}\big|_{I_{OS}/2,\,V^-}}$$
+
+                \vspace{0.15cm}
+                \footnotesize
+                    \textbf{$\bigstar$ IMPORTANTE}
+
+                    \vspace{0.05cm}
+                    • $I_{OS}$ è un contributo \textbf{statistico} $\Rightarrow$ l'effetto ha limite sup. e inf.
+
+                    \vspace{0.05cm}
+                    • I versi sono opposti per modellare l'asimmetria tra i due ingressi
+
+                    \vspace{0.05cm}
+                    • Si applica sovrapposizione come per $I_B$
+
+
+            \end{minipage}
+        };
+        %------------ Non idealità Correnti Offset Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Non idealità: Correnti di Offset};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Non idealità: Correnti di Offset}{OpAmp - Non idealità: Correnti di Offset}}
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp Non idealità - Slew Rate ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Slew Rate (SR):}
+
+                \vspace{0.15cm}
+                Massima pendenza di uscita che l'OpAmp può raggiungere (derivata massima)
+
+                \vspace{0.15cm}
+                $$\boxed{\text{SR} = \frac{d}{dt}\left(V_{out,\,OpAmp}\right)\bigg|_{\text{MAX}}}$$
+
+                \vspace{0.1cm}
+                Unità: V/$\mu$s oppure V/s
+
+                \vspace{0.15cm}
+                \textbf{Verifica per sinusoidi:}
+
+                \vspace{0.1cm}
+                Per $V_{out}(t) = V_{\text{max}} \sin(\omega t)$:
 
                 \vspace{0.05cm}
                 $$\frac{dV_{out}}{dt} = V_{\text{max}} \omega \cos(\omega t)$$
 
                 \vspace{0.1cm}
-                La derivata massima è:
+                Derivata massima:
 
                 \vspace{0.05cm}
-                $$\left|\frac{dV_{out}}{dt}\right|_{\text{max}} = V_{\text{max}} \cdot \omega = 2\pi f V_{\text{max}}$$
+                $$\boxed{\left|\frac{dV_{out}}{dt}\right|_{\text{max}} = 2\pi f V_{\text{max}}}$$
 
                 \vspace{0.15cm}
                 \textbf{Condizione per evitare distorsione:}
@@ -6533,44 +6689,83 @@
                 \vspace{0.05cm}
                 $$\boxed{2\pi f V_{\text{max}} \leq \text{SR}}$$
 
-                \vspace{0.1cm}
-                Oppure, frequenza massima senza distorsione:
-
-                \vspace{0.05cm}
-                $$f_{\text{max}} = \frac{\text{SR}}{2\pi V_{\text{max}}}$$
-
-                \vspace{0.2cm}
+                \vspace{0.15cm}
                 \footnotesize
-                    \textbf{\color{red}$\bigstar$ IMPORTANTE}
+                    \textbf{$\bigstar$ NOTE IMPORTANTI}
 
                     \vspace{0.05cm}
-                    Se $2\pi f V_{\text{max}} > \text{SR}$:
+                    • Se non specificato, usare $G_R$ (guadagno reale) invece di $G_{ID}$
 
                     \vspace{0.05cm}
-                    • L'uscita NON segue l'ingresso
-
-                    • Si ha distorsione del segnale (tipicamente forma triangolare)
+                    • Con più sinusoidi in uscita: se una domina in modulo e frequenza, approssimare $V_{out}$ solo a quella
 
                     \vspace{0.05cm}
-                    Lo slew rate è \textbf{indipendente dal guadagno} (caratteristica dell'OpAmp)
-                
+                    • SR è \textbf{indipendente dal guadagno} (caratteristica dell'OpAmp)
 
-                \vspace{0.2cm}
-                \textbf{Esempio pratico:}
- 
-                \vspace{0.05cm}
-                OpAmp con SR = 1 V/$\mu$s, segnale con $V_{\text{max}}$ = 10 V
-
-                \vspace{0.05cm}
-                $$f_{\text{max}} = \frac{1 \times 10^6 \text{ V/s}}{2\pi \times 10 \text{ V}} \approx 15.9 \text{ kHz}$$
-
-                \vspace{0.05cm}
-                A frequenze superiori, il segnale viene distorto.
 
             \end{minipage}
         };
-        %------------ Slew Rate Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Slew Rate OpAmp};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Slew Rate OpAmp}{Slew Rate OpAmp}}
+        %------------ Non idealità Slew Rate Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Non idealità: Slew Rate};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Non idealità: Slew Rate}{OpAmp - Non idealità: Slew Rate}}
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp Non idealità - Errore Statico di Guadagno ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Errore Statico di Guadagno:}
+
+                \vspace{0.15cm}
+                Differenza tra uscita ideale e reale dovuta a $G_{loop}$ finito
+
+                \vspace{0.15cm}
+                \textbf{Origine:} L'OpAmp reale ha $\varepsilon \neq 0$ (segnale d'errore non nullo)
+
+                \vspace{0.15cm}
+                \textbf{Formula errore:}
+
+                \vspace{0.1cm}
+                $$\text{Errore} = V_{IN}\,(G_{ID} - G_{reale})$$
+
+                \vspace{0.05cm}
+                $$= V_{IN}\left(G_{ID} - \frac{G_{ID}}{1 - \frac{1}{G_{loop}}}\right)$$
+
+                \vspace{0.05cm}
+                $$\boxed{\text{Errore} = V_{IN} \cdot \frac{G_{ID}}{1 - G_{loop}}}$$
+
+                \vspace{0.15cm}
+                \textbf{Caso pessimo:}
+
+                \vspace{0.1cm}
+                $$\text{Errore}_{\text{MAX}} = V_{IN}\big|_{\text{MAX}} \cdot \frac{G_{ID}}{1 - G_{loop}(0)}$$
+
+                \vspace{0.1cm}
+                dove $G_{loop}(0)$ è il guadagno d'anello in continua
+
+                \vspace{0.15cm}
+                \footnotesize
+                    \textbf{$\bigstar$ NOTE}
+
+                    \vspace{0.05cm}
+                    • Più grande è $G_{loop}$, più piccolo è l'errore
+
+                    \vspace{0.05cm}
+                    • Per ADC/DAC: errore accettabile se $< 1$ LSB
+
+                    \vspace{0.05cm}
+                    • Con più ingressi: applicare sovrapposizione degli effetti
+
+
+            \end{minipage}
+        };
+        %------------ Non idealità Errore Guadagno Header ---------------------
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Non idealità: Errore Statico di Guadagno};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Non idealità: Errore Statico di Guadagno}{OpAmp - Non idealità: Errore Statico di Guadagno}}
     \end{tikzpicture}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
