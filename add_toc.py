@@ -30,10 +30,11 @@ def sanitize_toc_title(title):
 def add_toc_entries(content):
     """Modifica le righe fancytitle per aggiungere entry TOC inline."""
 
-    # Cerco le righe con fancytitle e aggiungo l'addcontentsline SULLA STESSA RIGA
-    # dopo il ; finale (solo se non esiste già)
+    # PRIMA: Rimuovi tutti i \phantomsection\addcontentsline esistenti per evitare duplicati
+    content = re.sub(r'\\phantomsection\\addcontentsline\{toc\}\{subsection\}\{[^}]*\}', '', content)
 
-    pattern = r'(\\node\[fancytitle[^\]]*\]\s*(?:at\s*\([^)]*\))?\s*\{[^}]*\\color\{white\})([^}]+)(\};)(?!\\addcontentsline)'
+    # POI: Cerco le righe con fancytitle e aggiungo l'addcontentsline SULLA STESSA RIGA
+    pattern = r'(\\node\[fancytitle[^\]]*\]\s*(?:at\s*\([^)]*\))?\s*\{[^}]*\\color\{white\})([^}]+)(\};)'
 
     def replacement(match):
         prefix = match.group(1)
@@ -60,7 +61,7 @@ def add_toc_preamble(content):
             '\\usepackage{fancyhdr}\n\\usepackage[hidelinks, bookmarks=true]{hyperref}'
         )
 
-    # Aggiungi tableofcontents - versione compatta su pagina separata
+    # Aggiungi tableofcontents - versione con 3 colonne
     toc_code = '''%------------ INDICE ---------------
 \\begin{center}{\\Large\\textbf{Indice delle Box}}\\end{center}
 \\vspace{0.5cm}
