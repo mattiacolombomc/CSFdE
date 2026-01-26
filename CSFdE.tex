@@ -213,15 +213,15 @@
                 \textbf{Carica e Scarica RC - Casi Semplici}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Costante di tempo:}
                     $$\boxed{\tau = R \cdot C}$$
 
                     Unità: $[\Omega] \cdot [F] = [s]$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{CARICA del condensatore}
 
                     \vspace{0.1cm}
@@ -233,10 +233,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize La tensione \textbf{sale} da 0 a $V_{finale}$, la corrente \textbf{scende} da $I_{max}$ a 0}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{SCARICA del condensatore}
 
                     \vspace{0.1cm}
@@ -248,10 +248,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize La tensione \textbf{scende} da $V_0$ a 0, corrente negativa (verso opposto)}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Carica a CORRENTE COSTANTE:}
 
                     \vspace{0.1cm}
@@ -263,10 +263,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize (Usata per errore da $I_B$ nel S\&H!)}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Valori notevoli:}
 
                     \vspace{0.05cm}
@@ -284,7 +284,7 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Dopo $5\tau$ si considera raggiunto il regime!
-                }}
+                
 
             \end{minipage}
         };
@@ -310,7 +310,7 @@
                 \end{enumerate}
 
                 \vspace{0.3cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                
                         \textbf{\color{red}$\triangle$ NOTA IMPORTANTE - Tensioni di alimentazione}
 
                         Le tensioni fornite dalle alimentazioni sono le \textbf{massime e minime} possibili nel circuito.
@@ -323,15 +323,15 @@
                         \end{itemize}
 
                         \vspace{0.1cm}
-                        \colorbox{yellow!50}{\parbox{0.9\linewidth}{\footnotesize
+                        \footnotesize
                                 \textbf{ATTENZIONE:} Questo vale per le tensioni dei \textbf{NODI} (riferite a massa).
 
                                 Le \textbf{cadute di tensione} (misurate tra due nodi diversi) \underline{possono} superare questi limiti!
-                            }}
+                            
 
                         \vspace{0.1cm}
                         \textbf{Uso pratico:} Fondamentale quando si fanno ipotesi sullo stato dei diodi (ON/OFF). Se un'ipotesi porta un nodo oltre $V_{\text{max}}$ o sotto $V_{\text{min}}$, l'ipotesi è \textbf{sbagliata}.
-                    }}
+                    
 
             \end{minipage}
         };
@@ -385,7 +385,7 @@
                     \end{circuitikz}
                 \end{center}
 
-                \colorbox{yellow!30}{\parbox{0.9\linewidth}{\small \textbf{ATTENZIONE:} In breakdown, la tensione $V_D = -V_Z$ ha polarità \textbf{\color{red}opposta} rispetto ai $+0.7\text{V}$ della conduzione diretta!}}
+                \small \textbf{ATTENZIONE:} In breakdown, la tensione $V_D = -V_Z$ ha polarità \textbf{\color{red}opposta} rispetto ai $+0.7\text{V}$ della conduzione diretta!
 
                 \vspace{0.2cm}
                 \textbf{3. Configurazioni in serie:}
@@ -405,7 +405,7 @@
                 \end{center}
 
                 \vspace{0.2cm}
-                \colorbox{cyan!20}{\parbox{0.9\linewidth}{\footnotesize
+                \footnotesize
                         \textbf{$\bigstar$ TRUCCO PRATICO - Verifica stato diodo:}
 
                         Quando sei \textbf{in un intorno della soglia} ($V_D \approx 0.7V$, anche infinitesimamente superiore), le \textbf{correnti sono molto basse}.
@@ -418,7 +418,7 @@
                             \item $\hat{T}^+$ (istante dopo della transizione)
                             \item $t \to \infty$ (regime)
                         \end{itemize}
-                    }}
+                    
 
             \end{minipage}
         };
@@ -437,7 +437,7 @@
                 \textbf{Esercizio Tipico Diodi - Algoritmo}
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{a) Caratteristica statica $I_{out}$ vs $V_{in}$}
 
                     \vspace{0.1cm}
@@ -467,10 +467,10 @@
                     • Scrivi l'espressione di $I_{out}$ per ogni stato
 
                     • Disegna la caratteristica (spesso lineare a tratti)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ TRUCCO per trovare la soglia:}
 
                     \vspace{0.1cm}
@@ -482,10 +482,10 @@
                     • In questa condizione le R in serie al diodo hanno $\Delta V = 0$
 
                     • Risolvi il circuito semplificato per trovare $V_{in,soglia}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ Circuito tipico (raddrizzatore + filtro):}
 
                     \vspace{0.1cm}
@@ -498,7 +498,7 @@
 
                     \vspace{0.1cm}
                     Soglia: $V_{in} = V_{out} + V_\gamma$
-                }}
+                
 
             \end{minipage}
         };
@@ -516,7 +516,7 @@
                 \textbf{Esercizio Tipico Diodi - Ripple}
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{b) Tensione di ripple e tensione inversa max}
 
                     \vspace{0.1cm}
@@ -543,10 +543,10 @@
                     Quando $V_{in} = -V_m$ e $V_{out} \approx V_{out,max}$:
                     $$V_{D,inv,max} = V_{out,max} - (-V_m) = V_{out,max} + V_m$$
                     $$\boxed{V_{D,inv,max} \approx 2V_m - V_\gamma}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ FORMULE RAPIDE:}
 
                     \vspace{0.1cm}
@@ -557,10 +557,10 @@
                     • $V_{inv,max} \approx 2V_m - V_\gamma$
 
                     • Duty cycle diodo $\approx \frac{\Delta V_{ripple}}{2\pi V_m}$ (piccolo!)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ VERIFICA FINALE:}
 
                     \vspace{0.05cm}
@@ -569,7 +569,7 @@
                     • Se $\Delta V_{ripple}$ troppo grande $\Rightarrow$ aumentare $C$ o $R$
 
                     • Il diodo conduce solo per una piccola frazione del periodo!
-                }}
+                
 
             \end{minipage}
         };
@@ -587,7 +587,7 @@
                 \textbf{Diodo + Condensatore: Come Gestirli Insieme}
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA FONDAMENTALE:}
 
                     \vspace{0.1cm}
@@ -601,10 +601,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Tutta la corrente passa solo per $R_1$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{Caratteristica statica - Algoritmo:}
 
                     \vspace{0.1cm}
@@ -626,10 +626,10 @@
 
                     \vspace{0.1cm}
                     \textbf{4.} Soglia di commutazione: $V_{in} = V_\gamma$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ Per il RIPPLE invece:}
 
                     \vspace{0.1cm}
@@ -647,10 +647,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Il diodo si spegne quando $V_{in} < V_{out} + V_\gamma$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ RIASSUNTO:}
 
                     \vspace{0.05cm}
@@ -659,7 +659,7 @@
                     • \textbf{Ripple}: $C$ = elemento attivo, analisi dinamica
 
                     • La soglia del diodo dipende da $V_{out}$ (che dipende da $C$!)
-                }}
+                
 
             \end{minipage}
         };
@@ -678,22 +678,22 @@
                 \textbf{Raddrizzatore a Singola Semionda}
 
                 \vspace{0.1cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{SCOPO:} \textbf{Tagliare} la parte negativa di $V_{in}$ e \textbf{scalare} in ampiezza di $V_\gamma$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ RICONOSCIMENTO:}
 
                     \vspace{0.05cm}
                     • \textbf{1 solo diodo} in serie al carico
 
                     • $V_{in}$ sinusoidale $\to$ $D$ $\to$ $R_{load}$, no C (o C piccolo)
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{FUNZIONAMENTO:}
 
                     \vspace{0.05cm}
@@ -703,20 +703,20 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ \textbf{Taglia} parte negativa, \textbf{scala} ampiezza di $V_\gamma$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{FORMULE:}
 
                     \vspace{0.05cm}
                     • $V_{out,max} = V_m - V_\gamma$ (scalata!) \quad • $V_{out,medio} = \frac{V_m - V_\gamma}{\pi}$
 
                     • $V_{inv,max} = V_m$ \quad • $f_{ripple} = f_{in}$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ SANITY CHECK:}
 
                     • $V_{out} \geq 0$ \textbf{sempre} (parte negativa tagliata!)
@@ -724,7 +724,7 @@
                     • Forma d'onda: ``gobbe'' sinusoidali alternate a zeri
 
                     • Ampiezza ridotta: $V_{out,max} = V_m - V_\gamma$ (non $V_m$!)
-                }}
+                
 
             \end{minipage}
         };
@@ -743,22 +743,22 @@
                 \textbf{Rilevatore di Picco (Peak Detector)}
 
                 \vspace{0.1cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{SCOPO:} ``Ricordare'' il \textbf{valore massimo} raggiunto dal segnale
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ RICONOSCIMENTO:}
 
                     \vspace{0.05cm}
                     • $D + C$ \textbf{senza} $R_L$ (o $R_L$ molto grande, $R_L C \gg T$)
 
                     • Il condensatore \textbf{non si scarica}
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{FUNZIONAMENTO:}
 
                     \vspace{0.05cm}
@@ -767,20 +767,20 @@
                     \textbf{2.} $V_{in}$ scende $\Rightarrow$ $D$ OFF, $V_{out}$ \textbf{resta al picco!}
 
                     \textbf{3.} Nuovo picco solo se $V_{in} > V_{out} + V_\gamma$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{FORMULE:}
 
                     \vspace{0.05cm}
                     • $V_{out} = V_{in,max} - V_\gamma = V_m - V_\gamma$ (a regime)
 
                     • Con $R_L$: $\tau = R_L C$, ripple $\Delta V \approx \frac{V_{out}}{R_L C f}$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ SANITY CHECK:}
 
                     • $V_{out}$ può solo \textbf{salire o restare costante}, MAI scendere!
@@ -788,7 +788,7 @@
                     • Forma d'onda: rampa che sale, poi \textbf{piatta} al valore di picco
 
                     • Se $V_{out}$ scende $\Rightarrow$ NON è un rilevatore di picco puro
-                }}
+                
 
             \end{minipage}
         };
@@ -806,32 +806,32 @@
                 \textbf{Alimentatore DC (con filtro)}
 
                 \vspace{0.1cm}
-                \colorbox{orange!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{SCOPO:} Convertire AC $\to$ tensione \textbf{DC quasi costante} per alimentare circuiti
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ RICONOSCIMENTO:}
 
                     \vspace{0.05cm}
                     • Raddrizzatore + $C$ + $R_L$ (condensatore \textbf{filtra} il ripple)
 
                     • $R_L C \sim T$ o poco più grande
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{FUNZIONAMENTO:}
 
                     \vspace{0.05cm}
                     \textbf{Carica} ($D$ ON): $V_{in} > V_{out} + V_\gamma$ $\Rightarrow$ $V_{out}$ sale rapido
 
                     \textbf{Scarica} ($D$ OFF): $C$ alimenta $R_L$ $\Rightarrow$ $V_{out}$ scende lento
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{FORMULE:}
 
                     \vspace{0.05cm}
@@ -840,10 +840,10 @@
                     • $V_{DC} \approx V_m - V_\gamma - \frac{\Delta V_{ripple}}{2}$ \quad • $V_{inv,max} \approx 2V_m - V_\gamma$
 
                     • Dimensionamento: $C \geq \frac{V_m - V_\gamma}{R_L \cdot f \cdot \Delta V_{max}}$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ SANITY CHECK:}
 
                     • $V_{out} \approx$ costante, \textbf{MAI} zero (oscilla tra $V_{max}$ e $V_{min}$)
@@ -853,7 +853,7 @@
                     • $V_{out,medio}$ alto, vicino a $V_m - V_\gamma$
 
                     • Ripple piccolo se $RC \gg T$
-                }}
+                
 
             \end{minipage}
         };
@@ -871,12 +871,12 @@
                 \textbf{Esercizio RC + Diodo: ANALISI STATICA}
 
                 \vspace{0.1cm}
-                \colorbox{orange!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{QUANDO:} Ti chiedono caratteristica statica $I_{out}$ vs $V_{in}$ (o $V_{out}$ vs $V_{in}$)
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA FONDAMENTALE:}
 
                     \vspace{0.05cm}
@@ -886,10 +886,10 @@
                     Perché $I_C = C \frac{dV}{dt} = 0$ in DC!
 
                     $\Rightarrow$ \textbf{Ignora il condensatore}, analizza solo $D$ e $R$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{PROCEDURA:}
 
                     \vspace{0.05cm}
@@ -909,14 +909,14 @@
 
                     \vspace{0.05cm}
                     \textbf{4.} Disegna la caratteristica unendo i due tratti
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ NON devi verificare le ipotesi sul diodo!}
 
                     Devi solo capire cosa succede a $V_{out}$ e $I_D$ nei due casi (ON/OFF) e trovare dove avviene la transizione.
-                }}
+                
 
             \end{minipage}
         };
@@ -934,12 +934,12 @@
                 \textbf{Esercizio RC + Diodo: ANALISI DINAMICA}
 
                 \vspace{0.1cm}
-                \colorbox{orange!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{QUANDO:} Ti chiedono ripple, $V_{out}(t)$, tensione inversa massima
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ STRATEGIA GENERALE:}
 
                     \vspace{0.05cm}
@@ -951,10 +951,10 @@
                     \textbf{2.} Poi ``aggiusta'' il grafico con l'effetto di $C$
 
                     \hspace{0.3cm} (il condensatore ``tiene su'' la tensione)
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{COMPORTAMENTO TIPICO (singola semionda):}
 
                     \vspace{0.05cm}
@@ -972,10 +972,10 @@
                     • $C$ si scarica su $R_L$: $V_{out}(t) = V_{out,max} \cdot e^{-t/\tau}$
 
                     • con $\tau = R_L C$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ IMPORTANTE: Confronta $\tau$ con $T$!}
 
                     • Se $\tau \gg T$: scarica lenta, $C$ non arriva a regime
@@ -983,7 +983,7 @@
                     \hspace{0.3cm} $\Rightarrow$ Approssima $V_{out,min}$ con esponenziale troncato
 
                     • Se $\tau \sim T$: scarica significativa ogni periodo
-                }}
+                
 
             \end{minipage}
         };
@@ -1001,7 +1001,7 @@
                 \textbf{Analisi Dinamica: Calcolo Ripple e $V_{inv,max}$}
 
                 \vspace{0.1cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ CALCOLO DEL RIPPLE:}
 
                     \vspace{0.05cm}
@@ -1020,10 +1020,10 @@
                     \vspace{0.05cm}
                     \textbf{Approssimazione} (se $\tau \gg T$):
                     $$\Delta V_{ripple} \approx \frac{V_{out,max}}{R_L C f} = \frac{V_m - V_\gamma}{R_L C f}$$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ CALCOLO $V_{inv,max}$ (tensione inversa max):}
 
                     \vspace{0.05cm}
@@ -1040,10 +1040,10 @@
                     \textbf{3.} Quindi:
                     $$V_{inv,max} = V_{out} - V_{in,min} \approx (V_m - V_\gamma) - (-V_m)$$
                     $$\boxed{V_{inv,max} \approx 2V_m - V_\gamma}$$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ TRUCCO: Valore a metà scarica}
 
                     \vspace{0.05cm}
@@ -1051,7 +1051,7 @@
                     $$V_{out,meta'} \approx V_{out,max} - \frac{\Delta V_{ripple}}{2}$$
 
                     (approssimazione lineare della scarica esponenziale)
-                }}
+                
 
             \end{minipage}
         };
@@ -1078,7 +1078,7 @@
                 La \textbf{\color{red}corrente} varia \textbf{\color{red}istantaneamente}; La \textbf{\color{green!50!black}tensione} NON commuta: $V_C(t_0^-) = V_C(t_0^+)$
 
                 \vspace{0.25cm}
-                \colorbox{Dandelion!40}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{$\bigstar$ REGOLA D'ORO - A REGIME}
 
                         \vspace{0.1cm}
@@ -1087,7 +1087,7 @@
                         \textbf{Condensatore = CIRCUITO APERTO}
 
                         \vspace{0.15cm}
-                        \colorbox{white}{\parbox{0.9\linewidth}{\small
+                        \small
                                 \textbf{Per calcolare $V_C(\infty)$:}
                                 \begin{enumerate}[itemsep=2pt]
                                     \item Sostituisci C con \textbf{circuito aperto}
@@ -1099,8 +1099,8 @@
                                 \textbf{Es:} $V \xrightarrow{R_1} \bullet \xrightarrow{R_2} \text{GND}$ + C $\parallel$ $R_2$
 
                                 $\Rightarrow$ $V_C(\infty) = V \frac{R_2}{R_1+R_2}$ (partitore)
-                            }}
-                    }}
+                            
+                    
 
                 \vspace{0.2cm}
                 \textbf{3. Ripple:} $\Delta V_{out} = V_{picco} \frac{\Delta T}{\tau} = V_{picco} \frac{T}{f \cdot \tau}$
@@ -1109,7 +1109,7 @@
                 \textbf{4. Comportamento fisico} \small ($Q = C \cdot V$; $I = C \frac{dV}{dt}$)
 
                 \vspace{0.15cm}
-                \colorbox{green!15}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{\color{green!50!black}CARICA} ($\frac{dV_C}{dt} > 0$): Corrente \textbf{ENTRA} ($I_C > 0$)
 
                         Il condensatore accumula energia; $V_C \uparrow$
@@ -1121,10 +1121,10 @@
                                 \node[anchor=south] at (0,2.8) {\small Corrente ENTRA};
                             \end{circuitikz}
                         \end{center}
-                    }}
+                    
 
                 \vspace{0.15cm}
-                \colorbox{red!15}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{\color{red!70!black}SCARICA} ($\frac{dV_C}{dt} < 0$): Corrente \textbf{ESCE} ($I_C < 0$)
 
                         Il condensatore rilascia energia; $V_C \downarrow$
@@ -1136,12 +1136,12 @@
                                 \node[anchor=south] at (0,2.8) {\small Corrente ESCE};
                             \end{circuitikz}
                         \end{center}
-                    }}
+                    
 
                 \vspace{0.1cm}
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{Regola:} $V_C \uparrow$ $\Rightarrow$ CARICA; $V_C \downarrow$ $\Rightarrow$ SCARICA; segno $I_C$ indica verso
-                    }}
+                    
 
             \end{minipage}
         };
@@ -1164,11 +1164,11 @@
                 $$V_C(\hat{T}) = V_C(0^+)_{\hat{T}} + \left[V_C(\infty^*) - V_C(0^+)_{\hat{T}}\right] \left(1 - e^{-\frac{\hat{T}}{\tau}}\right)$$
 
                 \vspace{0.2cm}
-                \colorbox{Dandelion!30}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{Prassi: segnale rettangolare}
 
                         \underline{salita} $\to$ \underline{plateau} $\to$ \underline{discesa}
-                    }}
+                    
 
                 \vspace{0.25cm}
                 \textbf{Procedimento step-by-step:}
@@ -1245,14 +1245,14 @@
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{\color{red}$\triangle$ VERIFICA FONDAMENTALE}
 
                         Verifica ipotesi diodo (ON/OFF) rimanga valida per tutto il transitorio
-                    }}
+                    
 
                 \vspace{0.2cm}
-                \colorbox{cyan!15}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{\color{blue}FASE 0: Metodo intuitivo}
 
                         \textbf{Regola:} $I$ scorre da $V_{+}$ a $V_{-}$
@@ -1279,7 +1279,7 @@
                                 \small $\Rightarrow$ \textbf{D OFF}};
                             \end{circuitikz}
                         \end{center}
-                    }}
+                    
 
                 \vspace{0.2cm}
                 \begin{enumerate}[leftmargin=*, itemsep=2pt]
@@ -1288,13 +1288,13 @@
                     \item Calcola $V_C(t)$
                     \item Verifica $\forall t$:
 
-                          \colorbox{green!10}{\parbox{0.9\linewidth}{\small
+                          \small
                                   \textbf{ON:} $I_D(t) > 0$? No $\to$ errore
-                              }}
+                              
 
-                          \colorbox{orange!10}{\parbox{0.9\linewidth}{\small
+                          \small
                                   \textbf{OFF:} $V_D(t) < 0.7$V? No $\to$ errore
-                              }}
+                              
 
                     \item Se errore: dividi in 2 fasi ($t^*$ cambio), ricalcola
                 \end{enumerate}
@@ -1317,9 +1317,9 @@
                 \textbf{NOTAZIONE ALIMENTAZIONI}
 
                 \vspace{0.1cm}
-                \colorbox{orange!30}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{REGOLA D'ORO:} Il \textbf{trattino} indica SEMPRE il \textbf{polo + del generatore}, sia con tensione positiva che negativa!
-                    }}
+                    
 
                 \vspace{0.2cm}
                 \textbf{Caso 1: $V_{DD} = +1V$ (alimentazione positiva)}
@@ -1378,9 +1378,9 @@
                 {\footnotesize Tensione $-1V$ $\to$ polo + è comunque sul trattino!}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                         \textbf{TRUCCO:} Con $V_{SS}=-1V$ puoi ridisegnare il generatore invertendo polarità E segno: diventa $+1V$ con polo + su GND. Utile per evitare tensioni negative nei calcoli.
-                    }}
+                    
 
             \end{minipage}
         };
@@ -1402,9 +1402,9 @@
                 \end{itemize}
 
 
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                         \textbf{DUTY CYCLE DEFAULT:} Se non specificato, un'onda quadra ha \textbf{duty cycle 50\%} (HIGH = LOW = $T/2$)
-                    }}
+                    
 
                 \begin{center}
                     \begin{tikzpicture}[scale=0.8]
@@ -1439,7 +1439,7 @@
                     \end{tikzpicture}
                 \end{center}
 
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{COME DISEGNARE A MANO:}
                         \begin{enumerate}
                             \item Segna i livelli $V_{HIGH}$ e $V_{LOW}$ con righe orizzontali
@@ -1447,10 +1447,10 @@
                             \item Disegna righe verticali per le transizioni
                             \item Collega con righe orizzontali ai livelli
                         \end{enumerate}
-                    }}
+                    
 
                 \vspace{0.2cm}
-                \colorbox{red!15}{\parbox{0.95\linewidth}{\small
+                \small
                         \textbf{COME TROVARE IL PERIODO $T$:}
 
                         Il periodo è la distanza tra \textbf{due punti identici} del ciclo:
@@ -1461,7 +1461,7 @@
                             \item Da discesa a discesa successiva
                         \end{itemize}
                         \textbf{Trucco:} Scegli un punto qualsiasi e conta i quadretti fino a quando si ripete!
-                    }}
+                    
 
                 \vspace{0.2cm}
                 \textbf{Esempio pratico (duty cycle 75\%):}
@@ -1565,11 +1565,11 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{green!15}{\parbox{0.95\linewidth}{\small
+                \small
                     \textbf{nMOS:} Gate a sinistra, Drain in alto, Source in basso
 
                     \textbf{Corrente:} Da Drain $\to$ Source (verso il basso)
-                }}
+                
 
                 \vspace{0.4cm}
                 \textbf{\color{purple}pMOS:}
@@ -1600,13 +1600,13 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{purple!15}{\parbox{0.95\linewidth}{\small
+                \small
                     \textbf{pMOS:} Gate a sinistra, Source in alto, Drain in basso
 
                     \textbf{Corrente:} Da Source $\to$ Drain (verso il basso)
 
                     \textbf{NOTA:} Nel pMOS il source è in alto (invertito rispetto a nMOS)!
-                }}
+                
 
             \end{minipage}
         };
@@ -1668,14 +1668,14 @@
                 \end{center}
 
                 \vspace{0.2cm}
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\small
+                \small
                     \textbf{Zone di funzionamento:}
                     \begin{itemize}[itemsep=1pt, leftmargin=*]
                         \item \textbf{\color{red!70!black}INTERDIZIONE}: $V_{GS} < V_T$ → $I_D = 0$
                         \item \textbf{\color{cyan!70!black}TRIODO}: $V_{GS} > V_T$ e $V_{DS} < (V_{GS}-V_T)$
                         \item \textbf{\color{green!60!black}SATURAZIONE}: $V_{GS} > V_T$ e $V_{DS} > (V_{GS}-V_T)$
                     \end{itemize}
-                }}
+                
 
             \end{minipage}
         };
@@ -1733,14 +1733,14 @@
                 \end{center}
 
                 \vspace{0.2cm}
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{\small
+                \small
                     \textbf{Zone di funzionamento:}
                     \begin{itemize}[itemsep=1pt, leftmargin=*]
                         \item \textbf{\color{red!70!black}INTERDIZIONE}: $V_{SG} < |V_T|$ → $I_D = 0$
                         \item \textbf{\color{cyan!70!black}TRIODO}: $V_{SG} > |V_T|$ e $V_{SD} < (V_{SG}-|V_T|)$
                         \item \textbf{\color{green!60!black}SATURAZIONE}: $V_{SG} > |V_T|$ e $V_{SD} > (V_{SG}-|V_T|)$
                     \end{itemize}
-                }}
+                
 
             \end{minipage}
         };
@@ -1782,30 +1782,30 @@
                 \textbf{\color{blue}SECONDO CONTROLLO (solo se ON): $V_{DS}$ vs $(V_{GS} - V_T)$}
 
                 \vspace{0.1cm}
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Tensione di Overdrive:}
                     $$V_{OV} = V_{GS} - V_T$$
-                }}
+                
 
                 \vspace{0.15cm}
                 \begin{enumerate}[leftmargin=*, itemsep=3pt]
                     \item \textbf{\color{orange}ZONA DI SATURAZIONE}: Se $V_{DS} > (V_{GS} - V_T)$
 
-                          \colorbox{orange!15}{\parbox{0.93\linewidth}{
+                          
                               $$I_D = K_n(V_{GS} - V_T)^2$$
 
                               \vspace{0.1cm}
                               \textbf{Nota:} La corrente dipende \textbf{SOLO da $V_{GS}$}
-                          }}
+                          
 
                     \item \textbf{\color{cyan!70!black}ZONA OHMICA (Triodo)}: Se $V_{DS} < (V_{GS} - V_T)$
 
-                          \colorbox{cyan!15}{\parbox{0.93\linewidth}{
+                          
                               $$I_D = K_n\left[2(V_{GS} - V_T)V_{DS} - V_{DS}^2\right]$$
 
                               \vspace{0.1cm}
                               \textbf{Nota:} La corrente dipende da \textbf{$V_{GS}$ E $V_{DS}$}
-                          }}
+                          
 
                          
                 \end{enumerate}
@@ -1832,7 +1832,7 @@
                 \textbf{\color{blue}PROCEDIMENTO OPERATIVO PER pMOS}
 
                 \vspace{0.15cm}
-                \colorbox{red!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ STEP 0 - CONTROLLO POLARITÀ}
 
                     \vspace{0.05cm}
@@ -1844,7 +1844,7 @@
 
                     \vspace{0.05cm}
                     \textbf{Motivo:} Il modulo $|V_{GS}|$ nasconde il segno! Potresti avere $|V_{GS}| \geq |V_T|$ ma con polarità sbagliata (es. $V_{GS} > 0$), e il pMOS sarebbe OFF.
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{\color{blue}Step 1: Calcolare $|V_{GS}|$}
@@ -1873,25 +1873,25 @@
                 \textbf{\color{blue}Step 3: SECONDO CONTROLLO - $|V_{DS}|$ vs $V_{OV}$}
 
                 \vspace{0.1cm}
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Tensione di Overdrive:}
                     $$V_{OV} = |V_{GS}| - |V_T|$$
-                }}
+                
 
                 \vspace{0.15cm}
                 \begin{enumerate}[leftmargin=*, itemsep=3pt]
                     \item \textbf{\color{orange}ZONA DI SATURAZIONE}: Se $|V_{DS}| > V_{OV}$
 
-                          \colorbox{orange!15}{\parbox{0.93\linewidth}{
+                          
                               $$I_D = K_p \cdot V_{OV}^2 = K_p(|V_{GS}| - |V_T|)^2$$
 
                               \vspace{0.1cm}
                               \textbf{Nota:} La corrente dipende \textbf{SOLO dall'overdrive}
-                          }}
+                          
 
                     \item \textbf{\color{cyan!70!black}ZONA OHMICA (Triodo)}: Se $|V_{DS}| < V_{OV}$
 
-                          \colorbox{cyan!15}{\parbox{0.93\linewidth}{
+                          
                               $$I_D = K_p\left[2 V_{OV} \cdot |V_{DS}| - |V_{DS}|^2\right]$$
 
                               \vspace{0.05cm}
@@ -1899,7 +1899,7 @@
 
                               \vspace{0.1cm}
                               \textbf{Nota:} La corrente dipende da \textbf{$V_{OV}$ E $|V_{DS}|$}
-                          }}
+                          
                 \end{enumerate}
 
                 \vspace{0.2cm}
@@ -1932,18 +1932,18 @@
                 $V_{OV} = V_{SG} - |V_T|$
 
                 \vspace{0.15cm}
-                \colorbox{orange!15}{\parbox{0.95\linewidth}{
+                
                     \textbf{Saturazione} ($V_{SD} > V_{OV}$):
 
                     $$I_D = K_p(V_{SG} - |V_T|)^2$$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{cyan!15}{\parbox{0.95\linewidth}{
+                
                     \textbf{Ohmica} ($V_{SD} < V_{OV}$):
 
                     $$I_D = K_p\left[2(V_{SG} - |V_T|)V_{SD} - V_{SD}^2\right]$$
-                }}
+                
 
                 \vspace{0.15cm}
                 {\footnotesize Equivalenti alle formule con $|V_{GS}|$/$|V_{DS}|$, ma
@@ -1983,7 +1983,7 @@
                 \end{tabular}
 
                 \vspace{0.2cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Controlli identici:}
                     \begin{enumerate}[itemsep=1pt, leftmargin=*]
                         \item Se $V_{GS}$ (o $|V_{GS}|$) $<$ $V_T$ (o $|V_T|$) $\Rightarrow$ OFF
@@ -1992,7 +1992,7 @@
 
                     \vspace{0.05cm}
                     La \textbf{procedura è identica}, solo che per pMOS si usano i \textbf{valori assoluti}.
-                }}
+                
 
             \end{minipage}
         };
@@ -2010,12 +2010,12 @@
                 \small
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ MOSFET SIMMETRICI}
 
                     \vspace{0.05cm}
                     I MOSFET sono dispositivi \textbf{simmetrici}: Source e Drain \textbf{NON sono fissi} ma vengono determinati dalle \textbf{tensioni a runtime}!
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{\underline{Come identificare i terminali negli esercizi:}}
@@ -2055,7 +2055,7 @@
                 \hrule
                 \vspace{0.15cm}
 
-                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ ATTENZIONE - Riassegnazione a RUNTIME}
 
                     \vspace{0.05cm}
@@ -2066,7 +2066,7 @@
 
                     \vspace{0.05cm}
                     Devi \textbf{verificare quale nodo ha la tensione più alta/bassa} in ogni fase dell'analisi!
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Esempio pratico (nMOS):}
@@ -2096,13 +2096,13 @@
                 \small
 
                 \vspace{0.15cm}
-                \colorbox{yellow!50}{\parbox{0.95\linewidth}{
+                
                     \centering
                     \textbf{REGOLA PRATICA VELOCE:}
 
                     \vspace{0.1cm}
                     \textbf{Come capire subito se un MOSFET è probabilmente ON o OFF?}
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{\underline{nMOS:}}
@@ -2184,7 +2184,7 @@
                 \end{itemize}
 
                 \vspace{0.2cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{\small
+                \small
                     \textbf{\color{red}$\triangle$ NOTA IMPORTANTE - Fattore 1/2}
 
                     \vspace{0.1cm}
@@ -2201,7 +2201,7 @@
                               $I = K\left[(V_{GS}-V_T)V_{DS} - \frac{V_{DS}^2}{2}\right]$ \\
                               invece di $I = K\left[2(V_{GS}-V_T)V_{DS} - V_{DS}^2\right]$
                     \end{itemize}
-                }}
+                
 
             \end{minipage}
         };
@@ -2219,11 +2219,11 @@
 
 
                 \vspace{0.1cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ CONDIZIONE FONDAMENTALE:}
 
                     Tutti i \textbf{GATE devono essere in COMUNE} (stessa tensione al gate)
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{\underline{1. MOSFET in PARALLELO}}
@@ -2283,9 +2283,9 @@
                 \small
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Quando usare:} Dopo aver fatto semplificazioni (serie/parallelo), quando $V_{DS} = V_{OUT}$ e devi capire la zona di funzionamento.
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{IPOTESI:} Se ti hanno chiesto l'espressione logica della porta, puoi ipotizzare che sia \textbf{ideale}:
@@ -2354,13 +2354,13 @@
                 \textbf{\underline{FORMULA:}}
 
                 \vspace{0.1cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     $$R_{CH} = R_{eq} = \frac{1}{2K \cdot V_{OV}}$$
 
                     \vspace{0.05cm}
                     \centering
                     dove $V_{OV} = V_{GS} - V_T$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textit{Nota:} $K$ può essere il $K$ del singolo MOSFET o il $K_{eq}$ del MOSFET equivalente (dopo semplificazioni serie/parallelo)
@@ -2384,7 +2384,7 @@
                 $\times$ In altri punti di lavoro (devi ricalcolare la derivata nel punto specifico)
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ SANITY CHECK}
 
                     Dopo aver calcolato $I_D$ usando $R_{CH}$, \textbf{DEVI verificare}:
@@ -2395,7 +2395,7 @@
 
                     \vspace{0.05cm}
                     Se $V_{R_{CH}} \approx V_{OV}$ o maggiore, l'approssimazione \textbf{NON è valida}!
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Esempio pratico:}
@@ -2435,7 +2435,7 @@
                 \textbf{Nota importante:} La tensione massima/minima raggiungibile sul condensatore dipende dal \textbf{tipo di MOSFET}!
 
                 \vspace{0.2cm}
-                \colorbox{yellow!50}{\parbox{0.95\linewidth}{
+                
                     \centering
                     \textbf{REGOLA MNEMONICA:}
 
@@ -2443,7 +2443,7 @@
                     \textbf{Gli nMOS NON sono bravi a CARICARE}
 
                     \textbf{I pMOS NON sono bravi a SCARICARE}
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{\underline{CARICA - 1. Con pMOS}}
@@ -2540,7 +2540,7 @@
                 \hrule
                 \vspace{0.15cm}
 
-                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\triangle$ CONSEGUENZA PRATICA - Simmetria CARICA/SCARICA}
 
                     \vspace{0.05cm}
@@ -2554,7 +2554,7 @@
                     • \textbf{pMOS} nella rete \textbf{pull-up} (PUN) → porta uscita a $V_{DD}$
 
                     • \textbf{nMOS} nella rete \textbf{pull-down} (PDN) → porta uscita a GND
-                }}
+                
 
             \end{minipage}
         };
@@ -2574,7 +2574,7 @@
                 \textbf{Scenario:} Circuiti con un solo MOSFET + condensatore (non completamente cMOS)
 
                 \vspace{0.15cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ SOGLIA LOGICA: $\frac{V_{DD}}{2}$}
 
                     \vspace{0.05cm}
@@ -2583,7 +2583,7 @@
                     • \textbf{HIGH} se $V_{OUT} > \frac{V_{DD}}{2}$
 
                     • \textbf{LOW} se $V_{OUT} < \frac{V_{DD}}{2}$
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{\underline{Caso 1: nMOS sulla pull-up + condensatore}}
@@ -2660,10 +2660,10 @@
                 \textbf{Definizione:} Tempo impiegato a raggiungere la soglia della porta logica successiva.
 
                 \vspace{0.15cm}
-                \colorbox{yellow!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Convenzione:} Se non specificato, si prende:
                     $$V_{finale} = \frac{V_{DD}}{2}$$
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{\color{purple}Metodo 1: Approssimazione a corrente costante}
@@ -2681,18 +2681,18 @@
                 \end{itemize}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!10}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Esempio:} Se $V_{DD} = 5V$ e $V_{iniziale} = 0V$:
 
                     La transizione è da $0V$ a $\frac{5V}{2} = 2.5V$ (NON a 5V!)
 
                     $$\Delta V = 2.5V - 0V = 2.5V$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ ATTENZIONE:} Questo metodo vale per \textbf{CMOS} (transistor resta in saturazione). Per \textbf{PTL} il transistor passa da sat$\to$ohmica $\Rightarrow$ usa il metodo $R_{eq}$ (vedi box PTL).
-                }}
+                
 
             \end{minipage}
         };
@@ -2778,7 +2778,7 @@
                 \hrule
                 \vspace{0.15cm}
 
-                \colorbox{yellow!50}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \centering
                     \textbf{CONFRONTO RAPIDO:}
 
@@ -2786,7 +2786,7 @@
                     \textbf{CMOS}: Livelli completi, 0 potenza statica, + area
 
                     \textbf{PTL}: Livelli degradati, potenza statica, - area
-                }}
+                
 
             \end{minipage}
         };
@@ -2803,16 +2803,16 @@
                 \small
 
                 \vspace{0.1cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ NON usare corrente costante per PTL!}
 
                     Il metodo $\tau = \frac{\Delta V \cdot C}{I_{sat}}$ \textbf{sottostima} $t_p$ nella PTL perché il MOSFET passa da saturazione a ohmica e la corrente diminuisce.
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Scenario:} $N$ nMOS in serie (PTL), gate a $V_{DD}$, source a GND, uscita con $C_L$. Scarica da $V_{DD} - V_{Tn}$ verso GND.
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{\underline{Step 1: $K$ equivalente}} (per $N$ in serie)
@@ -2822,19 +2822,19 @@
                 \textbf{\underline{Step 2: Resistenza equivalente}} (scegli UNO, metodi Prof. Acconcia)
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Metodo 1 - Retta origine $\to$ pinch-off:}
 
                     \vspace{0.05cm}
                     Retta che passa per $(0, 0)$ e $(V_{OV}, I_{sat})$:
                     $$\boxed{R_{eq} = \frac{V_{OV}}{I_{sat}} = \frac{1}{K_{eq} \cdot V_{OV}}}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{violet!15}{\parbox{0.95\linewidth}{
+                
                     \textbf{Metodo 2 - $R_{DS,on}$} (tangente in $V_{DS}=0$):
                     $$\boxed{R_{DS,on} = \frac{1}{2 K_{eq} \cdot V_{OV}}}$$
-                }}
+                
 
                 \vspace{0.1cm}
                 {\footnotesize Con $V_{OV} = V_{GS} - V_{Tn} = V_{DD} - V_{Tn}$ (gate a $V_{DD}$, source a GND)}
@@ -2844,7 +2844,7 @@
                 $$\boxed{t_p = R_{eq} \cdot C_L \cdot \ln\left(\frac{V_{START}}{V_{END}}\right)}$$
 
                 \vspace{0.1cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
     \textbf{$\triangle$ Come scegliere le tensioni:}
 
     $\bullet$ \textbf{$V_{START}$}: Tensione iniziale su $C_L$.
@@ -2854,7 +2854,7 @@
     \\ \hspace*{1em}- Spesso $V_{DD}/2$ (es. 2.5V).
 
     \textit{Nota:} Metodo 1 sovrastima il ritardo, Metodo 2 lo sottostima.
-}}
+
 
             \end{minipage}
         };
@@ -2869,7 +2869,7 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Come riconoscere un circuito PTL:}
 
                     \vspace{0.1cm}
@@ -2880,17 +2880,17 @@
                     \textbf{3.} Spesso c'è un \textbf{condensatore} sull'uscita senza logica di rigenerazione
 
                     \textbf{4.} Livelli d'uscita \textbf{degradati} ($V_{DD} - V_T$ o $|V_T|$)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Regola rapida:}
 
                     \vspace{0.05cm}
                     • Vedi PUN sopra + PDN sotto con uscita in mezzo → \textbf{CMOS}
 
                     • Vedi transistor che ``passano'' segnali da un nodo all'altro con C in uscita → \textbf{PTL}
-                }}
+                
 
             \end{minipage}
         };
@@ -2927,16 +2927,16 @@
                 \end{tabular}
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ Analogia:}
 
                     \textbf{Contention} = tiro alla fune (entrambi tirano, corrente continua)
 
                     \textbf{PTL} = rubinetto che si chiude da solo (corrente si azzera)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Limiti PTL (valgono SEMPRE, indipendenti da serie/parallelo):}
 
                     • nMOS in carica: $V_{max} = V_G - V_{Tn}$ → \textbf{Weak 1} (W1)
@@ -2944,7 +2944,7 @@
                     • pMOS in scarica: $V_{min} = V_G + |V_{Tp}|$ → \textbf{Weak 0} (W0)
 
                     Serie/parallelo cambiano solo la \textbf{velocità} ($K_{eq}$), non il livello finale.
-                }}
+                
 
             \end{minipage}
         };
@@ -2987,7 +2987,7 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ METODO per tabella di verità PTL:}
 
                     \vspace{0.1cm}
@@ -3008,17 +3008,17 @@
                     \quad • GND tramite nMOS → $V_{OUT} = 0$ (completa)
 
                     \textbf{5.} Valuta logicamente: $> V_{DD}/2$ → ``1'', $< V_{DD}/2$ → ``0''
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Differenza chiave vs CMOS:}
 
                     \vspace{0.05cm}
                     • \textbf{CMOS}: analizza PUN e PDN (ON/OFF) → 4 casi
 
                     • \textbf{PTL}: segui il \textbf{percorso del segnale} attraverso i pass-transistor e applica le limitazioni di carica/scarica
-                }}
+                
 
             \end{minipage}
         };
@@ -3064,7 +3064,7 @@
                 \textbf{cMOS non complementare:} $P_{statica} \neq 0$ quando c'è \textbf{contention} (uscita a valore intermedio, non $V_{DD}$ né GND).
 
                 \vspace{0.2cm}
-                \colorbox{orange!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ Regola:} Si consuma potenza statica \textbf{solo} quando l'uscita NON è a $V_{DD}$ o GND (= contention, cammino DC da $V_{DD}$ a GND).
 
                     \vspace{0.1cm}
@@ -3074,10 +3074,10 @@
                     Dove $T_{contention}$ = tempo totale in un periodo in cui l'uscita è a un livello intermedio.
 
                     $I_{sat}$ = corrente del MOS in saturazione durante contention.
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{red!15}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ IMPORTANTE - Calcolo $V_{GS}$}
 
                     In analisi statica, se il \textbf{source dell'nMOS NON è a massa} (ma collegato a un'altra alimentazione):
@@ -3086,7 +3086,7 @@
                     $$V_{GS} = V_G - V_S$$
 
                     Lo stesso vale per pMOS se il source NON è a $V_{DD}$.
-                }}
+                
 
             \end{minipage}
         };
@@ -3109,7 +3109,7 @@
                 \textbf{Definizione:} Potenza consumata durante le commutazioni degli ingressi uscite.
 
                 \vspace{0.2cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ CONDIZIONE FONDAMENTALE}
 
                     \vspace{0.1cm}
@@ -3124,7 +3124,7 @@
 
                     \vspace{0.05cm}
                     Se $\tau_{prop} > \frac{T_{in}}{2}$, il circuito \textbf{NON ha tempo} di raggiungere il regime prima della prossima commutazione $\Rightarrow$ la formula \textbf{NON è valida}.
-                }}
+                
 
                 \vspace{0.15cm}
                 \textit{Nota pratica:} Se hai calcolato $\tau_{prop}$ per una transizione (es. high$\to$low) ma la potenza dinamica riguarda la transizione opposta (low$\to$high), verifica l'\textbf{ordine di grandezza}. Se $K_n$ e $K_p$ sono comparabili numericamente, i due tempi di propagazione saranno multipli ma \textbf{stesso ordine di grandezza}. Se $\tau_{prop} \ll \frac{T_{in}}{2}$ (molto minore), sei a posto anche senza calcolare l'altro! \textbf{ATTENZIONE:} Questa assunzione vale \textbf{SOLO se $K_n \approx K_p$}. Se i valori di $K$ sono molto diversi, devi calcolare entrambi i tempi di propagazione.
@@ -3162,7 +3162,7 @@
 
                 \small
 
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ Come trovare T sul grafico - Metodo ``La Foto'':}
 
                     \vspace{0.05cm}
@@ -3180,10 +3180,10 @@
                     \textbf{STEP 3 - Check:} Fermati \textbf{SOLO} quando la ``foto'' è \textbf{identica} a $t=0$ per \textbf{TUTTI} i segnali (uscita, clock, ingressi).
 
                     \vspace{0.08cm}
-                    \colorbox{red!20}{\parbox{0.92\linewidth}{
+                    
                         \textbf{Regola:} Il periodo del sistema è sempre un \textbf{multiplo intero} del clock: $T_{sys} = n \cdot T_{clk}$ con $n \in \mathbb{N}$
-                    }}
-                }}
+                    
+                
 
                 \vspace{0.2cm}
                 \textbf{Come determinare $V_{OH}$ e $V_{OL}$:}
@@ -3266,7 +3266,7 @@
                 • \textbf{PDN} (Pull-Down Network): rete di \textbf{nMOS}
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ REGOLA FONDAMENTALE}
 
                     \vspace{0.05cm}
@@ -3279,7 +3279,7 @@
                     • Se PUN è ON → PDN è OFF (uscita = $V_{DD}$)
 
                     • Se PDN è ON → PUN è OFF (uscita = GND)
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{\underline{Significato PRATICO negli esercizi:}}
@@ -3338,14 +3338,14 @@
                 \textbf{Problema:} Data la rete Pull-Down (PDN) con nMOS, costruire la rete Pull-Up (PUN) con pMOS
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ METODO - Trasformazione DUALE}
 
                     \vspace{0.05cm}
-                    \colorbox{yellow!40}{\parbox{0.92\linewidth}{\tiny
+                    \tiny
                         \centering
                         \textbf{In pratica: INVERSIONE RICORSIVA di SERIE e PARALLELO}
-                    }}
+                    
 
                     \vspace{0.05cm}
                     Dalla PDN alla PUN:
@@ -3358,7 +3358,7 @@
                     \textbf{3.} nMOS → pMOS
 
                     \textbf{4.} Gate (ingressi) → RIMANGONO UGUALI
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{\underline{PROCEDURA MECCANICA:}}
@@ -3423,7 +3423,7 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ METODO SISTEMATICO:}
 
                     \vspace{0.1cm}
@@ -3438,10 +3438,10 @@
 
                     \vspace{0.1cm}
                     {\footnotesize \textbf{Trucco:} Transistor in \textbf{serie} spento $\Rightarrow$ tutta la branch spenta (don't care sugli altri). Transistor in \textbf{parallelo} $\Rightarrow$ basta uno acceso.}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA ON/OFF dei MOSFET:}
 
                     \vspace{0.1cm}
@@ -3456,10 +3456,10 @@
 
                     \vspace{0.1cm}
                     {\footnotesize \textit{Mnemonico:} nMOS ON con HIGH, pMOS ON con LOW}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ DETERMINAZIONE USCITA:}
 
                     \vspace{0.1cm}
@@ -3483,10 +3483,10 @@
                     ($V_{OL}$ o $V_{OH}$) determinato dal rapporto delle $K$.
                     Solo in cMOS pura questo caso \textbf{non si verifica mai}.
                     $\Rightarrow$ Vedi box ``Contention PUN/PDN''}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ ALTA IMPEDENZA (Hi-Z):}
 
                     \vspace{0.1cm}
@@ -3504,10 +3504,10 @@
 
                     \vspace{0.1cm}
                     \textbf{Fisicamente:} L'uscita ``galleggia'' al valore precedente (se c'è C) o è indefinita
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ ATTENZIONE - Circuiti NON cMOS:}
 
                     \vspace{0.1cm}
@@ -3523,7 +3523,7 @@
                     • Circuiti \textbf{PTL} (Pass Transistor Logic)
 
                     • Reti con \textbf{segnali di enable/disable}
-                }}
+                
 
             \end{minipage}
         };
@@ -3541,7 +3541,7 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ LIVELLI DI TENSIONE (se richiesti):}
 
                     \vspace{0.1cm}
@@ -3561,10 +3561,10 @@
                     • pMOS passa HIGH bene: $V_{OUT} = V_{DD}$
 
                     • pMOS passa LOW male: $V_{OUT} = |V_T|$ (degradato!)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ SOGLIA LOGICA (per valutazione):}
 
                     \vspace{0.1cm}
@@ -3577,7 +3577,7 @@
 
                     \vspace{0.05cm}
                     \textit{Es:} $V_{DD}=3V$, $V_T=0.5V$ $\Rightarrow$ nMOS passa $2.5V > 1.5V$ $\Rightarrow$ ``1''
-                }}
+                
 
             \end{minipage}
         };
@@ -3605,7 +3605,7 @@
                 $\Rightarrow$ Uscita \textbf{sempre} definita: solo ``1'' o ``0'', \textbf{mai} Hi-Z né cortocircuito.
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ CHECKLIST ``a occhio'':}
 
                     \vspace{0.1cm}
@@ -3620,10 +3620,10 @@
                     \textbf{4.} \textbf{Stesso numero} di transistor sopra e sotto
 
                     \textbf{5.} \textbf{Stessi segnali} di ingresso in entrambe le reti
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ NON è cMOS pura se:}
 
                     \vspace{0.1cm}
@@ -3637,7 +3637,7 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Possibili stati \textbf{Hi-Z} o \textbf{cortocircuito}!
-                }}
+                
 
             \end{minipage}
         };
@@ -3658,7 +3658,7 @@
                 \textbf{Cosa fare: complementare vs non complementare}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ STEP 1: Guardo la rete --- è complementare?}
 
                     \vspace{0.1cm}
@@ -3670,10 +3670,10 @@
                     • \textbf{SÌ} $\Rightarrow$ uscita sempre 0 o 1, \textbf{basta} la tabella
 
                     • \textbf{NO} $\Rightarrow$ prosegui allo Step 2
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ STEP 2: Per ogni riga della tabella}
 
                     \vspace{0.1cm}
@@ -3693,10 +3693,10 @@
                         Nessuna ON & \textbf{Hi-Z} \\
                         \hline
                     \end{tabular}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ STEP 3: Calcolo valore contention}
 
                     \vspace{0.1cm}
@@ -3714,7 +3714,7 @@
 
                     \vspace{0.1cm}
                     Poi: $I_{PUN} = I_{PDN}$ (Metodo 1 o 2, vedi box Calcolo)
-                }}
+                
 
             \end{minipage}
         };
@@ -3740,7 +3740,7 @@
                 \textbf{rapporto delle correnti}.
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA CHIAVE:}
 
                     \vspace{0.1cm}
@@ -3760,10 +3760,10 @@
 
 
                     • nMOS: $V_{DS} \approx V_{OH}$ grande $\Rightarrow$ \textbf{saturazione}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ PROCEDIMENTO GENERALIZZATO:}
 
                     \vspace{0.1cm}
@@ -3790,10 +3790,10 @@
                     \textbf{4.} Risolvere per $V_{OUT}$ (o per $K_p$/$K_n$)
 
                     \textbf{5.} Verificare consistenza delle ipotesi sulle zone
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ MOS IN SERIE --- $K$ EQUIVALENTE:}
 
                     \vspace{0.1cm}
@@ -3807,10 +3807,10 @@
                     $N$ transistor in \textbf{parallelo}:
 
                     $$K_{eq} = N \cdot K$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ SOSTITUZIONE RAPIDA} (nei calcoli di contention):
 
                     D = $V_{OUT}$ (sempre in mezzo), S$_n$ = GND, S$_p$ = $V_{DD}$
@@ -3818,7 +3818,7 @@
                     $\Rightarrow$ $\boxed{V_{OV} = V_{DD} - V_T}$ \quad
                     $\boxed{V_{DS,n} = V_{OUT}}$ \quad
                     $\boxed{V_{SD,p} = V_{DD} - V_{OUT}}$
-                }}
+                
 
             \end{minipage}
         };
@@ -3839,17 +3839,17 @@
                 \textbf{Contention: Metodi di Calcolo $V_{OL}$/$V_{OH}$}
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ SETUP} (esempio: uscita bassa, $V_{OL}$):
 
                     \vspace{0.1cm}
                     pMOS (sat.) $=$ nMOS eq. (ohm.):
 
                     $$|K_p|(V_{DD} - |V_T|)^2 = K_{n,eq}\left[2(V_{GS,n} - V_T)V_{OL} - V_{OL}^2\right]$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{violet!15}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ METODO 1: Equazione completa (esatto)}
 
                     \vspace{0.1cm}
@@ -3865,10 +3865,10 @@
                     \textbf{Pro:} Risultato esatto
 
                     \textbf{Contro:} Richiede risoluzione eq. 2° grado
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{violet!15}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ METODO 2: Approssimazione $R_{DS,on}$ (più rapido)}
 
                     \vspace{0.1cm}
@@ -3898,10 +3898,10 @@
                     \textbf{Contro:} Approssimazione (trascura $V_{DS}^2$).
 
                     Valida se $V_{OUT}$ è vicino al rail della rete che ``vince''
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ QUANDO USARE QUALE:}
 
                     \vspace{0.05cm}
@@ -3912,7 +3912,7 @@
                     • $V_{OL}$ piccolo rispetto a $V_{GS}-V_T$ $\Rightarrow$ Metodo 2 OK
 
                     • In \textbf{dubbio}: Metodo 2, poi verificare con Metodo 1
-                }}
+                
 
             \end{minipage}
         };
@@ -3933,7 +3933,7 @@
                 \textbf{$R_{DS,on}$ --- Riepilogo e Significato Fisico}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ COS'È:}
 
                     \vspace{0.1cm}
@@ -3943,10 +3943,10 @@
                     $$I_{DS} \approx 2K(V_{GS} - V_T) \cdot V_{DS}$$
 
                     Quindi: $\quad R_{DS,on} = \frac{V_{DS}}{I_{DS}} = \frac{1}{2K(V_{GS} - V_T)}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ FORMULE:}
 
                     \vspace{0.1cm}
@@ -3962,10 +3962,10 @@
                     \textbf{$N$ MOS uguali in serie:} $R_{DS,on,eq} = N \cdot R_{DS,on}$
 
                     \textbf{$N$ MOS uguali in parallelo:} $R_{DS,on,eq} = \frac{R_{DS,on}}{N}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ APPLICAZIONE ALLA CONTENTION:}
 
                     \vspace{0.1cm}
@@ -3981,7 +3981,7 @@
                     \textbf{Uscita alta} (PUN vince):
 
                     $$V_{OH} \approx V_{DD} - I_{sat,n} \cdot R_{DS,on,p_{eq}}$$
-                }}
+                
 
             \end{minipage}
         };
@@ -4002,7 +4002,7 @@
                 \textbf{Soglia Logica della Porta ($V_M$)}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ COS'È:}
 
                     \vspace{0.1cm}
@@ -4015,10 +4015,10 @@
 
                     \vspace{0.1cm}
                     \textit{Idealmente:} $V_M = \frac{V_{DD}}{2}$ (margini di rumore simmetrici)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ COME SI CALCOLA:}
 
                     \vspace{0.1cm}
@@ -4039,10 +4039,10 @@
                     $$K_n(V_M - V_{Tn})^2 = |K_p|(V_{DD} - V_M - |V_{Tp}|)^2$$
 
                     \textbf{4.} Risolvere per $V_M$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ SOLUZIONE (inverter cMOS):}
 
                     \vspace{0.1cm}
@@ -4062,10 +4062,10 @@
 
                     \vspace{0.05cm}
                     Se inoltre $K_n = |K_p|$: $\quad V_M = \frac{V_{DD}}{2}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ PER PORTE COMPLESSE (NAND, NOR...):}
 
                     \vspace{0.05cm}
@@ -4083,7 +4083,7 @@
                     \vspace{0.05cm}
                     Si sostituisce $K_{eq}$ nella formula e si calcola $V_M$ per il
                     \textbf{caso peggiore} (un solo ingresso attivo nella rete in serie).
-                }}
+                
 
             \end{minipage}
         };
@@ -4119,14 +4119,14 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Equazione fondamentale:}
 
                     \vspace{0.1cm}
                     $$\boxed{V_{out} = A_0 \cdot (V^+ - V^-)}$$
 
                     dove $A_0$ = guadagno ad anello aperto ($A_0 \to \infty$ ideale)
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Caratteristica $V_{out}$ vs $(V^+ - V^-)$:}
@@ -4155,7 +4155,7 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{ZONA LINEARE} (tra le saturazioni):
 
                     \vspace{0.05cm}
@@ -4163,10 +4163,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize L'OpAmp amplifica la differenza degli ingressi}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{ZONA di SATURAZIONE:}
 
                     \vspace{0.05cm}
@@ -4176,27 +4176,27 @@
 
                     \vspace{0.05cm}
                     {\footnotesize L'uscita ``tocca'' le alimentazioni e non va oltre!}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ I trattini (- - -) nel grafico:}
 
                     \vspace{0.05cm}
                     Indicano i \textbf{limiti di saturazione} $\pm V_{sat}$.
 
                     L'uscita si ``appiattisce'' su questi valori e non segue più $(V^+ - V^-)$!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Valori tipici di $V_{sat}$:}
 
                     \vspace{0.05cm}
                     • \textbf{Rail-to-rail:} $V_{sat} = V_{alim}$ esattamente
 
                     • \textbf{Standard:} $V_{sat} \approx V_{alim} - 1V \div 2V$
-                }}
+                
 
             \end{minipage}
         };
@@ -4219,7 +4219,7 @@
                 {\footnotesize Con $s = j\omega$: modulo $|Z_C| = \frac{1}{\omega C}$, fase $\angle Z_C = -90^\circ$}
 
                 \vspace{0.2cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Comportamento del condensatore in base alla frequenza:}
 
                     \vspace{0.1cm}
@@ -4234,18 +4234,18 @@
                         \hline
                     \end{tabular}
                     \end{center}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{orange}$\bigstar$ DC ($\omega = 0$):} $Z_C = \frac{1}{0 \cdot C} \to \infty$ → \textbf{APERTO}
 
                     \vspace{0.05cm}
                     Il condensatore \`e carico, blocca la corrente continua.
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{cyan!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{blue}$\bigstar$ Alta freq. ($\omega \to \infty$):} $Z_C = \frac{1}{\infty \cdot C} \to 0$ → \textbf{CORTO}
 
                     \vspace{0.05cm}
@@ -4253,7 +4253,7 @@
 
                     \vspace{0.05cm}
                     \textit{Nota:} Se C \`e collegato a massa, il nodo va a \textbf{GND}.
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{Configurazioni comuni:}
@@ -4265,12 +4265,12 @@
                 $$Z(s) = \frac{R \cdot \frac{1}{sC}}{R + \frac{1}{sC}} = \frac{R}{1 + sRC}$$
 
                 \vspace{0.05cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\tiny
+                \tiny
                     \textbf{Notazione comoda per paralleli:} $Z = (R^{-1} + Z_C^{-1})^{-1}$
 
                     \vspace{0.02cm}
                     Più facile da manipolare rispetto a $\frac{Z_1 \cdot Z_2}{Z_1 + Z_2}$
-                }}
+                
 
                 \vspace{0.05cm}
                 Polo in: $\omega_p = \frac{1}{RC}$
@@ -4285,7 +4285,7 @@
                 Zero in: $\omega_z = \frac{1}{RC}$
 
                 \vspace{0.2cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ CONTROLLI (SANITY CHECKS)}
 
                     \vspace{0.05cm}
@@ -4315,7 +4315,7 @@
 
                     \vspace{0.03cm}
                     Es: $Z = \frac{R}{1 + sRC}|_{s=0} = R$ (corretto: C aperto lascia R)
-                }}
+                
 
             \end{minipage}
         };
@@ -4336,7 +4336,7 @@
                 Data una funzione di trasferimento generica come $T(s) = \frac{V_{out}}{I_{in}}$, portala in forma:
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Trasferimento vs Guadagno:}
 
                     \vspace{0.05cm}
@@ -4347,7 +4347,7 @@
 
                     \vspace{0.05cm}
                     Es: amplificatore a \textbf{transimpedenza} ha trasferimento in $\Omega$
-                }}
+                
 
                 \vspace{0.1cm}
 
@@ -4386,7 +4386,7 @@
                 \textit{Nota:} In questa forma, poli e zeri sono immediatamente visibili: $\omega_p = \frac{1}{\tau_p}$ e $\omega_z = \frac{1}{\tau_z}$
 
                 \vspace{0.2cm}
-                \colorbox{purple!15}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Conversione Scala Logaritmica $\leftrightarrow$ Lineare}
 
                     \vspace{0.1cm}
@@ -4416,7 +4416,7 @@
                     • -3 dB $\leftrightarrow$ $1/\sqrt{2} \approx 0.707$ (lineare)
 
                     • 6 dB $\leftrightarrow$ 2 (lineare)
-                }}
+                
 
             \end{minipage}
         };
@@ -4461,7 +4461,7 @@
                 • Se $K < 0$: $20\log_{10}|K|$ dB (modulo positivo)
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ ATTENZIONE - Modulo SEMPRE positivo!}
 
                     \vspace{0.05cm}
@@ -4474,7 +4474,7 @@
 
                     \vspace{0.05cm}
                     Il segno negativo influenza solo la \textbf{FASE} ($+180°$), non il modulo!
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{2. Contributo di $s^n$ (poli/zeri nell'origine):}
@@ -4563,9 +4563,9 @@
             \begin{minipage}{0.45\textwidth}
 
                 \small
-                \colorbox{red!25}{\parbox{0.97\linewidth}{
+                
                     \textbf{\color{red!70!black}$\bigstar$ METODO GENERALE UNIFICATO per Bode del Modulo}
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{\underline{PASSO 1: Analisi Strutturale (Scomposizione Visiva)}}
@@ -4688,12 +4688,12 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{\color{red!70!black}$\bigstar$ REGOLE AUREE per muoversi sul grafico}
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{1. Sulla DISCESA (-20 dB/dec): Legge del Prodotto Costante}
 
                     \vspace{0.1cm}
@@ -4706,10 +4706,10 @@
 
                     \vspace{0.05cm}
                     \textit{Mnemonica: ``Pi\`u vado avanti in frequenza, pi\`u il guadagno scende: il loro prodotto resta uguale.''}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{2. Sulla SALITA (+20 dB/dec): Legge del Rapporto Costante}
 
                     \vspace{0.1cm}
@@ -4722,10 +4722,10 @@
 
                     \vspace{0.05cm}
                     \textit{Mnemonica: ``Se la frequenza raddoppia, il guadagno raddoppia.''}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{Caso Generale: pendenza $\pm n \cdot 20$ dB/dec}
 
                     \vspace{0.1cm}
@@ -4748,10 +4748,10 @@
                         \hline
                     \end{tabular}
                     }
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{Intersezione con asse 0 dB: $G = 1$}
 
                     \vspace{0.1cm}
@@ -4764,7 +4764,7 @@
                     \textbf{Motivo:} $0 \text{ dB} \Leftrightarrow G_{\text{lin}} = 1$
 
                     Se metti 0 nella moltiplicazione, annulli tutto!
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{Esempio pratico:}
@@ -4799,7 +4799,7 @@
                 \textbf{Procedimento:}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{1. Trova il punto di partenza (intersezione con 0 dB):}
 
                     \vspace{0.1cm}
@@ -4807,7 +4807,7 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ A $\omega = \omega_0$ il contributo di $s\tau_0$ vale \textbf{0 dB}
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{2. Traccia la retta con pendenza $+20$ dB/dec}
@@ -4834,7 +4834,7 @@
                 }
 
                 \vspace{0.2cm}
-                \colorbox{magenta!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{FASE con singolarit\`a in zero:}
 
                     \vspace{0.1cm}
@@ -4851,7 +4851,7 @@
 
                     \vspace{0.1cm}
                     {\footnotesize Poi aggiungi i contributi dei poli/zeri normali ($\pm 90^\circ$ ciascuno)}
-                }}
+                
 
             \end{minipage}
         };
@@ -4939,7 +4939,7 @@
                 c) I contributi si \textbf{sovrappongono} se poli/zeri sono vicini
 
                 \vspace{0.2cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ ERRORE COMUNE}
 
                     \vspace{0.05cm}
@@ -4947,7 +4947,7 @@
 
                     \vspace{0.05cm}
                     Nella fase, i contributi si \textbf{sovrappongono} (somma algebrica delle fasi)
-                }}
+                
 
             \end{minipage}
         };
@@ -5143,7 +5143,7 @@
                 \textbf{Polo e Zero alla STESSA Frequenza}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{Situazione:} Un polo e uno zero coincidono: $\omega_p = \omega_z$
 
                     \vspace{0.1cm}
@@ -5151,10 +5151,10 @@
                     $$T(s) = K \cdot \frac{1 + s\tau}{1 + s\tau} \cdot \frac{1}{1 + s\tau_2}$$
 
                     dove il polo e lo zero a $\omega = 1/\tau$ coincidono.
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{Effetto sul MODULO: si COMPENSANO}
 
                     \vspace{0.1cm}
@@ -5169,10 +5169,10 @@
                     Il modulo \textbf{non cambia pendenza} a quella frequenza!
 
                     È come se polo e zero \textbf{non esistessero} per il modulo.
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{Effetto sulla FASE: NON si compensano!}
 
                     \vspace{0.1cm}
@@ -5189,10 +5189,10 @@
                     $$\text{Polo: } -45° \quad \text{Zero: } +45°$$
 
                     $$\boxed{\text{Fase netta a } \omega_p = \omega_z: \quad -45° + 45° = 0°}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ MA c'è un TRANSITORIO di fase!}
 
                     \vspace{0.1cm}
@@ -5207,10 +5207,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Alla fine si compensano, ma \textbf{durante la transizione} la fase può avere una ``gobba''!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ RIASSUNTO:}
 
                     \vspace{0.05cm}
@@ -5228,7 +5228,7 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ In pratica: polo e zero coincidenti si \textbf{cancellano} (semplificazione algebrica)!
-                }}
+                
 
             \end{minipage}
         };
@@ -5244,12 +5244,12 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{\color{red!70!black}$\bigstar$ ESAME: Calcolo del GUADAGNO REALE}
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Calcolo del guadagno d'anello $G_{loop}$:}
 
                     \vspace{0.1cm}
@@ -5287,10 +5287,10 @@
 
                     \vspace{0.1cm}
                     \textbf{$\beta$} = fattore di retroazione (dipende da $R_f$, $R_G$)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ ATTENZIONE: $V^+ = V^-$ NON vale qui!}
 
                     \vspace{0.05cm}
@@ -5298,7 +5298,7 @@
 
                     \vspace{0.05cm}
                     Nel calcolo di $G_{loop}$ l'anello \`e \textbf{aperto} $\Rightarrow$ devi usare $V_{out} = A(s) \cdot (V^+ - V^-)$
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{Relazione tra i guadagni:}
@@ -5386,9 +5386,9 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{red!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{\color{red!70!black}$\triangle$ ATTENZIONE alle INTERSEZIONI}
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Problema tipico:}
@@ -5472,9 +5472,9 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{\color{red!70!black}$\bigstar$ MARGINE DI FASE e STABILIT\`A}
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{Procedimento:}
@@ -5514,7 +5514,7 @@
                 }
 
                 \vspace{0.2cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{Classificazione della stabilit\`a:}
 
                     \vspace{0.1cm}
@@ -5529,7 +5529,7 @@
                         PM $< 0°$ & \textbf{Instabile} \\
                         \hline
                     \end{tabular}
-                }}
+                
 
                 \vspace{0.2cm}
                 {\footnotesize
@@ -5547,7 +5547,7 @@
                 }
 
                 \vspace{0.15cm}
-                \colorbox{red!40}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ SISTEMA CON 2 POLI PRIMA DI $f_c$:}
 
                     \vspace{0.05cm}
@@ -5558,10 +5558,10 @@
 
                     \vspace{0.05cm}
                     {\tiny (fase gi\`a a $-180°$ prima del taglio)}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{orange!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ $f_c$ a meno di 1 decade dal 2° polo:}
 
                     \vspace{0.05cm}
@@ -5580,7 +5580,7 @@
                     Es: $f_{p2} = 15.92$ kHz $\Rightarrow$ serve $f_c > 159.2$ kHz
 
                     Se $f_c = 90.9$ kHz $<$ 159.2 kHz $\Rightarrow$ \textbf{calcolo analitico!}
-                }}
+                
 
                 \vspace{0.15cm}
                 {\footnotesize
@@ -5609,7 +5609,7 @@
                 \textbf{Stabilità: Modulo che NON taglia 0 dB}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{Problema:}
 
                     \vspace{0.1cm}
@@ -5617,10 +5617,10 @@
 
                     \vspace{0.1cm}
                     Come calcolo il margine di fase se non c'è crossover?
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{CASO 1: $|G_{loop}|$ sempre $>$ 0 dB}
 
                     \vspace{0.1cm}
@@ -5642,10 +5642,10 @@
                     \hspace{0.3cm} $\Rightarrow$ Sistema \textbf{INSTABILE}
 
                     \hspace{0.3cm} (il guadagno è $> 1$ quando la fase è critica)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{CASO 2: $|G_{loop}|$ sempre $<$ 0 dB}
 
                     \vspace{0.1cm}
@@ -5662,10 +5662,10 @@
 
                     \vspace{0.1cm}
                     {\footnotesize \textbf{PM} = $\infty$ (o indefinito, ma sistema stabile)}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA PRATICA:}
 
                     \vspace{0.1cm}
@@ -5680,10 +5680,10 @@
                     • Se $|G_{loop}| < 1$ sempre $\Rightarrow$ \textbf{stabile} (non importa la fase)
 
                     • Se fase $\neq -360°$ sempre $\Rightarrow$ \textbf{stabile} (non importa il modulo)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ RIASSUNTO:}
 
                     \vspace{0.05cm}
@@ -5700,7 +5700,7 @@
                         Taglia 0 dB & -- & Usa PM normale \\
                         \hline
                     \end{tabular}
-                }}
+                
 
             \end{minipage}
         };
@@ -5718,7 +5718,7 @@
                 \textbf{Stabilità dal SEGNO di $G_{loop}$ (senza Bode)}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA VELOCE per la stabilità:}
 
                     \vspace{0.1cm}
@@ -5727,10 +5727,10 @@
                     \vspace{0.15cm}
                     $$\boxed{G_{loop}(0) < 0 \Rightarrow \text{STABILE}}$$
                     $$\boxed{G_{loop}(0) > 0 \Rightarrow \text{INSTABILE}}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$G_{loop} < 0$ (NEGATIVO) $\Rightarrow$ STABILE}
 
                     \vspace{0.1cm}
@@ -5748,10 +5748,10 @@
                         \item Amplificatore invertente: $G_{loop} < 0$ \checkmark
                         \item Amplificatore non invertente: $G_{loop} < 0$ \checkmark
                     \end{itemize}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$G_{loop} > 0$ (POSITIVO) $\Rightarrow$ INSTABILE}
 
                     \vspace{0.1cm}
@@ -5768,10 +5768,10 @@
                         \item Trigger di Schmitt: $G_{loop} > 0$ (bistabile)
                         \item Comparatore con retroaz. positiva
                     \end{itemize}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Perché funziona (intuizione):}
 
                     \vspace{0.1cm}
@@ -5784,10 +5784,10 @@
 
                     \vspace{0.1cm}
                     {\footnotesize Il segno negativo indica che il feedback \textbf{contrasta} l'errore!}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ ATTENZIONE - Quando serve Bode:}
 
                     \vspace{0.05cm}
@@ -5795,7 +5795,7 @@
 
                     \vspace{0.05cm}
                     Per sistemi con \textbf{poli/zeri} a frequenze specifiche, serve comunque il Bode per verificare il \textbf{margine di fase} a tutte le frequenze!
-                }}
+                
 
             \end{minipage}
         };
@@ -5813,15 +5813,15 @@
                 \textbf{Quando fare il Bode di $G_{loop}$?}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ SCOPO del Bode di $G_{loop}$:}
 
                     \vspace{0.1cm}
                     Analizzare la \textbf{STABILITÀ} del sistema retroazionato e calcolare il \textbf{margine di fase}.
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{Quando È UTILE farlo:}
 
                     \vspace{0.1cm}
@@ -5845,10 +5845,10 @@
                     \textbf{4. Trovare $G_{reale}$ a una certa frequenza:}
 
                     \hspace{0.3cm} $G_{reale} = \min(G_A, G_{id})$ dipende da $G_{loop}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Quando NON serve farlo:}
 
                     \vspace{0.1cm}
@@ -5859,10 +5859,10 @@
                     • \textbf{Buffer ideale:} $G_{loop} = -A_0 < 0$ $\Rightarrow$ stabile
 
                     • \textbf{Trigger di Schmitt:} già sai che è bistabile
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ PROCEDIMENTO Bode di $G_{loop}$:}
 
                     \vspace{0.1cm}
@@ -5877,10 +5877,10 @@
                     5. \textbf{Trova $f_c$} dove $|G_{loop}| = 0$ dB
 
                     6. \textbf{Leggi fase} a $f_c$ $\Rightarrow$ calcola PM
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ RIASSUNTO:}
 
                     \vspace{0.05cm}
@@ -5897,7 +5897,7 @@
                         Compensazione & \textbf{SÌ} \\
                         \hline
                     \end{tabular}
-                }}
+                
 
             \end{minipage}
         };
@@ -5917,7 +5917,7 @@
                 \textbf{Retroazione e Saturazione dell'OpAmp}
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{RETROAZIONE NEGATIVA}
 
                     \vspace{0.1cm}
@@ -5934,10 +5934,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Usare le formule degli amplificatori (inv, non-inv, sommatore...)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{RETROAZIONE POSITIVA}
 
                     \vspace{0.1cm}
@@ -5954,10 +5954,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ L'uscita si comporta come \textbf{generatore indipendente}!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Come capire DOVE satura:}
 
                     \vspace{0.1cm}
@@ -5970,10 +5970,10 @@
 
                     \vspace{0.1cm}
                     {\footnotesize L'OpAmp ``amplifica'' la differenza $V^+ - V^-$ fino a saturare!}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA PRATICA - Riconoscimento:}
 
                     \vspace{0.1cm}
@@ -5986,10 +5986,10 @@
 
                     \vspace{0.1cm}
                     {\footnotesize (Se non c'è retroazione, l'OpAmp è in \textbf{anello aperto} e satura!)}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ Caso COMPARATORE (no retroazione):}
 
                     \vspace{0.05cm}
@@ -5998,7 +5998,7 @@
                     $\Rightarrow$ Anche una piccola differenza $V^+ - V^-$ porta a saturazione!
 
                     $\Rightarrow$ $V_{out} = +V_{sat}$ se $V^+ > V^-$, altrimenti $V_{out} = -V_{sat}$
-                }}
+                
 
             \end{minipage}
         };
@@ -6016,7 +6016,7 @@
                 \textbf{Come Riconoscere la Configurazione}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA FONDAMENTALE:}
 
                     \vspace{0.1cm}
@@ -6033,10 +6033,10 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ \textbf{Non serve} collegamento diretto!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{PASSO 1: C'è retroazione?}
 
                     \vspace{0.1cm}
@@ -6048,10 +6048,10 @@
                     • \textbf{SÌ} $\Rightarrow$ C'è retroazione (vai al passo 2)
 
                     • \textbf{NO} $\Rightarrow$ \textbf{Anello aperto} (comparatore) $\Rightarrow$ SATURA!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{PASSO 2: Su quale morsetto arriva?}
 
                     \vspace{0.1cm}
@@ -6066,10 +6066,10 @@
                     • Arriva su $V^+$ $\Rightarrow$ \textbf{Retroazione POSITIVA}
 
                     \hspace{0.3cm} $\Rightarrow$ Bistabile, SATURA, Trigger di Schmitt
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ ATTENZIONE - Casi misti:}
 
                     \vspace{0.05cm}
@@ -6078,10 +6078,10 @@
                     $\Rightarrow$ Analizza quale retroazione \textbf{domina}
 
                     $\Rightarrow$ Di solito la negativa (se $R_f$ su $V^-$ è più ``forte'')
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ TRUCCO VELOCE:}
 
                     \vspace{0.05cm}
@@ -6092,7 +6092,7 @@
                     • $R_f$ collega $V_{out}$ a $V^+$ $\Rightarrow$ Trigger di Schmitt
 
                     • Nessuna $R_f$ $\Rightarrow$ Comparatore (satura!)
-                }}
+                
 
             \end{minipage}
         };
@@ -6113,7 +6113,7 @@
                 L'uscita dell'OpAmp \textbf{non può superare} le tensioni di alimentazione!
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Limiti di saturazione:}
 
                     \vspace{0.1cm}
@@ -6126,7 +6126,7 @@
 
                     \vspace{0.05cm}
                     {\footnotesize (OpAmp reali: $V_{sat} \approx V_{alim} - 1V \div 2V$)}
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Caratteristica $V_{out}$ vs $V_{in}$:}
@@ -6150,22 +6150,22 @@
                 \end{center}
 
                 \vspace{0.05cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     I \textbf{trattini orizzontali} (- - -) indicano i livelli di saturazione: l'uscita \textbf{si appiattisce} e non segue più l'ingresso!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{Zona LINEARE} (tra le saturazioni):
 
                     \vspace{0.1cm}
                     $$V_{out} = A_v \cdot V_{in}$$
 
                     L'OpAmp amplifica normalmente (pendenza = guadagno $A_v$)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{Zona di SATURAZIONE:}
 
                     \vspace{0.1cm}
@@ -6180,10 +6180,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ L'uscita \textbf{non cambia} anche se $V_{in}$ varia!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ Quando verificare la saturazione:}
 
                     \vspace{0.05cm}
@@ -6194,7 +6194,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Le formule valgono \textbf{solo} se $V_{out}$ resta nella zona lineare!
-                }}
+                
 
             \end{minipage}
         };
@@ -6233,7 +6233,7 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     $$\boxed{V_{out} = -\frac{R_f}{R_1} V_{in}}$$
 
                     \vspace{0.05cm}
@@ -6241,7 +6241,7 @@
 
                     \vspace{0.05cm}
                     {\footnotesize $R_1$ = impedenza di \textbf{ingresso} (tra $V_{in}$ e $V^-$)}
-                }}
+                
 
                 \vspace{0.25cm}
                 \textbf{Amplificatore Non Invertente:}
@@ -6267,7 +6267,7 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     $$\boxed{V_{out} = \left(1 + \frac{R_f}{R_{in}}\right) V_{in}}$$
 
                     \vspace{0.05cm}
@@ -6275,7 +6275,7 @@
 
                     \vspace{0.05cm}
                     {\footnotesize $R_{in}$ = impedenza verso \textbf{GND} (tra $V^-$ e massa)}
-                }}
+                
 
                 \vspace{0.25cm}
                 \textbf{Buffer (Voltage Follower):}
@@ -6289,7 +6289,7 @@
                 Alta impedenza di ingresso, bassa impedenza di uscita.
 
                 \vspace{0.2cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ IPOTESI OpAmp IDEALE}
 
                     \vspace{0.05cm}
@@ -6298,10 +6298,10 @@
                     • $I^+ = I^- = 0$ (corrente negli ingressi nulla)
 
                     • Guadagno ad anello aperto $A \to \infty$
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ ATTENZIONE: $R_1$ ha significato DIVERSO!}
 
                     \vspace{0.1cm}
@@ -6320,7 +6320,7 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Stessa formula $\frac{R_f}{R_1}$, ma $R_1$ \`e diversa!
-                }}
+                
 
             \end{minipage}
         };
@@ -6341,7 +6341,7 @@
                 \textbf{$A_v$ = Guadagno di tensione:} \quad $\boxed{V_{out} = A_v \cdot V_{in}}$
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{\color{red!70!black}$\bigstar$ REGOLA D'ORO - Riconoscimento al volo}
 
                     \vspace{0.1cm}
@@ -6356,7 +6356,7 @@
                         $A_v = -\frac{R_f}{R_G}$ & $A_v = 1 + \frac{R_f}{R_G}$ \\
                         \hline
                     \end{tabular}
-                }}
+                
 
                 \vspace{0.25cm}
                 \textbf{Procedimento rapido:}
@@ -6498,7 +6498,7 @@
                 $$f_{\text{max}} = \frac{\text{SR}}{2\pi V_{\text{max}}}$$
 
                 \vspace{0.2cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{\color{red}$\bigstar$ IMPORTANTE}
 
                     \vspace{0.05cm}
@@ -6511,7 +6511,7 @@
 
                     \vspace{0.05cm}
                     Lo slew rate è \textbf{indipendente dal guadagno} (caratteristica dell'OpAmp)
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{Esempio pratico:}
@@ -6556,9 +6556,9 @@
                 L'uscita ha andamento \textbf{esponenziale}:
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     $$y(t) = K \cdot X_0 \cdot \left(1 - e^{-t/\tau}\right)$$
-                }}
+                
 
                 \vspace{0.1cm}
                 \textbf{Valore  asintotico} (per $t \to \infty$):
@@ -6567,7 +6567,7 @@
                 Dove $X_0$ può essere una tensione o una corrente.
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{\color{red}$\triangle$ ATTENZIONE al segno di K:}
 
                     \vspace{0.05cm}
@@ -6575,7 +6575,7 @@
 
                     \vspace{0.05cm}
                     • Se $K < 0$: esponenziale \textbf{decrescente} (parte da 0, scende verso $K \cdot X_0$)
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{Parametri chiave:}
@@ -6629,7 +6629,7 @@
                 Rete a scala con sole resistenze di valore $R$ e $2R$.
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Principio: Biforcazione delle Correnti}
 
                     \vspace{0.1cm}
@@ -6648,10 +6648,10 @@
 
                     \vspace{0.1cm}
                     • $n$ biforcazioni: $I \to \frac{I}{2^n}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ Se una resistenza cambia (es. $2R \to R'$):}
 
                     \vspace{0.1cm}
@@ -6666,7 +6666,7 @@
 
                     \vspace{0.05cm}
                     $$I_{ramo} = I_{tot} \cdot \frac{R_{altro}}{R_{ramo} + R_{altro}}$$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{$\bigstar$ CASO SEMPLICE: cambio NON sul bit meno significativo}
@@ -6752,7 +6752,7 @@
                 $R_{eq} = \infty$ $\Rightarrow$ utile per calcolo errore con $V_{offset}$
 
                 \vspace{0.15cm}
-                \colorbox{green!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{Formula $V_{out}$ (DAC R-2R a 3 bit):}
 
                     \vspace{0.1cm}
@@ -6769,7 +6769,7 @@
 
                     \vspace{0.05cm}
                     {\footnotesize I ``$+$'' funzionano come OR: solo i bit a 1 contribuiscono!}
-                }}
+                
 
             \end{minipage}
         };
@@ -6788,16 +6788,16 @@
                 \textbf{FSR e LSB (DAC a N bit):}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{LSB} (Least Significant Bit):
 
                     \vspace{0.1cm}
                     Tensione corrispondente al bit meno significativo:
                     $$\boxed{\text{LSB} = V_{out}(000...1) = I \cdot R_F}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{FSR} (Full Scale Range):
 
                     \vspace{0.1cm}
@@ -6807,15 +6807,15 @@
                     \vspace{0.1cm}
                     Con $V_{out,min} = 0$ (tutti i bit a 0):
                     $$\text{FSR} = V_{out}(111...1) = \text{LSB} \cdot 2^N$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{Relazione LSB-FSR:}
 
                     \vspace{0.1cm}
                     $$\boxed{\text{LSB} = \frac{\text{FSR}}{2^N}}$$
-                }}
+                
 
                 \vspace{0.15cm}
                 {\footnotesize
@@ -6842,7 +6842,7 @@
                 Misura lo \textbf{scostamento} tra il gradino reale e quello ideale nella caratteristica $V_{out}$ vs $S_{in}$.
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{DNL Assoluta} (in Volt):
 
                     \vspace{0.1cm}
@@ -6853,7 +6853,7 @@
 
                     \vspace{0.1cm}
                     $$\boxed{\text{DNL}_{REL}(i) = \frac{\text{DNL}_{ABS}(i)}{\text{LSB}}}$$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Caratteristica $V_{out}$ vs $S_{in}$ (word):}
@@ -6918,7 +6918,7 @@
                 {\footnotesize \textbf{Nota:} La word 0 \textbf{non si calcola} (nessun gradino precedente)}
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ ATTENZIONE ai gradini di ``ritorno'':}
 
                     \vspace{0.1cm}
@@ -6937,7 +6937,7 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ \textbf{DNL alternata}: $-\Delta V$, $+\Delta V$, $-\Delta V$, ...
-                }}
+                
 
                 \vspace{0.15cm}
                 {\footnotesize
@@ -7001,12 +7001,12 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Transizione} (es. da 000 a 100):
                     $$V_{out}(t) = V_{finale} \cdot \left(1 - e^{-t/\tau_0}\right)$$
 
                     dove $\tau_0$ = costante di tempo del polo dell'OpAmp
-                }}
+                
 
                 \vspace{0.1cm}
                 {\footnotesize
@@ -7014,7 +7014,7 @@
                 }
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ Configurazione influenza $G_{loop}$:}
 
                     \vspace{0.05cm}
@@ -7029,7 +7029,7 @@
 
                     \vspace{0.05cm}
                     \textbf{Conseguenza:} Il settling time \textbf{dipende dalla word}
-                }}
+                
 
             \end{minipage}
         };
@@ -7062,7 +7062,7 @@
                 dove $I_{LSB}$ = corrente del bit meno significativo.
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Corrente totale:}
 
                     \vspace{0.1cm}
@@ -7071,10 +7071,10 @@
                     \vspace{0.1cm}
                     Semplificando:
                     $$\boxed{I_{tot} = I_{LSB} \cdot \sum_{i=0}^{N-1} S_i \cdot 2^i}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Formula $V_{out}$:}
 
                     \vspace{0.1cm}
@@ -7083,10 +7083,10 @@
 
                     \vspace{0.05cm}
                     $$V_{out} = -I_{LSB} \cdot R_F \cdot (S_0 + 2S_1 + 4S_2 + \cdots)$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ ATTENZIONE al VERSO della corrente!}
 
                     \vspace{0.1cm}
@@ -7101,7 +7101,7 @@
 
                     \vspace{0.05cm}
                     {\footnotesize \textbf{Regola:} Guarda il verso della freccia della corrente nel circuito!}
-                }}
+                
 
             \end{minipage}
         };
@@ -7142,13 +7142,13 @@
                 \textbf{$\bigstar$ L'errore c'\`e SOLO se $S_i = 1$!}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{FSR e LSB:}
 
                     \vspace{0.1cm}
                     $$\text{LSB} = I_{LSB} \cdot R_F$$
                     $$\text{FSR} = \text{LSB} \cdot 2^N$$
-                }}
+                
 
             \end{minipage}
         };
@@ -7167,7 +7167,7 @@
                 \textbf{DNL nel DAC a Correnti Pesate}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{DNL Assoluta} (in Volt):
 
                     \vspace{0.1cm}
@@ -7178,7 +7178,7 @@
 
                     \vspace{0.1cm}
                     $$\boxed{\text{DNL}_{REL}(i) = \frac{\text{DNL}_{ABS}(i)}{\text{LSB}}}$$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Calcolo pratico:}
@@ -7195,7 +7195,7 @@
                 {\footnotesize \textbf{Nota:} La word 0 \textbf{non si calcola}}
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ Gradini di ``ritorno'':}
 
                     \vspace{0.1cm}
@@ -7206,7 +7206,7 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ \textbf{DNL alternata} sui pattern affetti
-                }}
+                
 
             \end{minipage}
         };
@@ -7234,13 +7234,13 @@
                 $\Rightarrow$ Transizione esponenziale con $\tau = \tau_0$
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Transizione:}
                     $$V_{out}(t) = V_{finale} \cdot \left(1 - e^{-t/\tau_0}\right)$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ Configurazione influenza $G_{loop}$:}
 
                     \vspace{0.05cm}
@@ -7253,7 +7253,7 @@
 
                     \vspace{0.05cm}
                     \textbf{Conseguenza:} Settling time \textbf{dipende dalla word}
-                }}
+                
 
             \end{minipage}
         };
@@ -7293,9 +7293,9 @@
                 \end{center}
 
                 \vspace{0.05cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     $$V_{out} = \begin{cases} +V_{sat} & \text{se } V_{in} < V_{ref} \\ -V_{sat} & \text{se } V_{in} > V_{ref} \end{cases}$$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{NON INVERTENTE} ($V_{in}$ su $V^+$, $V_{ref}$ su $V^-$):
@@ -7315,15 +7315,15 @@
                 \end{center}
 
                 \vspace{0.05cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     $$V_{out} = \begin{cases} +V_{sat} & \text{se } V_{in} > V_{ref} \\ -V_{sat} & \text{se } V_{in} < V_{ref} \end{cases}$$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Soglia unica:} $\boxed{V_{TH} = V_{ref}}$
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ PROBLEMA: Rumore!}
 
                     \vspace{0.05cm}
@@ -7331,7 +7331,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Soluzione: \textbf{Comparatore a doppia soglia} (isteresi)
-                }}
+                
 
             \end{minipage}
         };
@@ -7372,7 +7372,7 @@
                 \end{center}
 
                 \vspace{0.05cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Soglie di commutazione:}
 
                     \vspace{0.05cm}
@@ -7381,7 +7381,7 @@
 
                     \vspace{0.05cm}
                     \textbf{Isteresi:} $\Delta V = V_{TH} - V_{TL} = 2V_{sat} \cdot \frac{R_1}{R_1 + R_2}$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{NON INVERTENTE} ($V_{in}$ su $V^+$):
@@ -7404,7 +7404,7 @@
                 \end{center}
 
                 \vspace{0.05cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Soglie:}
 
                     \vspace{0.05cm}
@@ -7413,10 +7413,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize \textit{Nota: segni invertiti rispetto al caso invertente}}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ DIFFERENZA FONDAMENTALE}
 
                     \vspace{0.05cm}
@@ -7426,10 +7426,10 @@
 
                     \vspace{0.1cm}
                     \textbf{$\bigstar$ Con retroazione POSITIVA:} l'uscita si comporta come un \textbf{generatore indipendente} con valore $V_{out} = \pm V_{sat}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ REGOLA D'ORO - Riconoscimento:}
 
                     \vspace{0.05cm}
@@ -7442,10 +7442,10 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Usare analisi con $V_{out} = \pm V_{sat}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{OpAmp ``Rail-to-Rail'':}
 
                     \vspace{0.05cm}
@@ -7457,7 +7457,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Nei trigger, se ``rail-to-rail'': usare $\pm V_{DD}$ nelle formule soglie
-                }}
+                
 
             \end{minipage}
         };
@@ -7476,7 +7476,7 @@
                 \textbf{Trigger di Schmitt - Regola Base}
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA UNIVERSALE (vale SEMPRE):}
 
                     \vspace{0.1cm}
@@ -7495,10 +7495,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Questa regola vale per \textbf{qualsiasi} OpAmp!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ TABELLA COMPARATIVA INV vs NON INV:}
 
                     \vspace{0.1cm}
@@ -7521,10 +7521,10 @@
                     • \textbf{INV:} $V_{in}$ entra su $V^-$, quindi $V_{in}\uparrow$ $\Rightarrow$ $V^-\uparrow$ $\Rightarrow$ $V^- > V^+$ $\Rightarrow$ LOW
 
                     • \textbf{NON INV:} $V_{in}$ entra su $V^+$, quindi $V_{in}\uparrow$ $\Rightarrow$ $V^+\uparrow$ $\Rightarrow$ $V^+ > V^-$ $\Rightarrow$ HIGH
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ SCHEMA MENTALE:}
 
                     \vspace{0.05cm}
@@ -7536,7 +7536,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ L'uscita ``segue'' chi vince tra $V^+$ e $V^-$!
-                }}
+                
 
             \end{minipage}
         };
@@ -7554,7 +7554,7 @@
                 \textbf{Come Funziona il Trigger di Schmitt}
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{INVERTENTE} ($V_{in}$ su $V^-$, feedback su $V^+$)
 
                     \vspace{0.1cm}
@@ -7575,10 +7575,10 @@
 
                     \vspace{0.1cm}
                     \textbf{Comportamento:} $V_{in} \uparrow$ $\Rightarrow$ $V_{out} \downarrow$ (invertente!)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{NON INVERTENTE} ($V_{in}$ e feedback entrambi su $V^+$)
 
                     \vspace{0.1cm}
@@ -7601,10 +7601,10 @@
 
                     \vspace{0.1cm}
                     \textbf{Comportamento:} $V_{in} \uparrow$ $\Rightarrow$ $V_{out} \uparrow$ (non invertente!)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Perché c'è isteresi?}
 
                     \vspace{0.05cm}
@@ -7617,7 +7617,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Servono \textbf{variazioni più grandi} di $V_{in}$ per commutare $\Rightarrow$ \textbf{immunità al rumore}
-                }}
+                
 
             \end{minipage}
         };
@@ -7635,7 +7635,7 @@
                 \textbf{Disegno Caratteristica $V_{out}$ vs $V_{in}$}
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLE FONDAMENTALI:}
 
                     \vspace{0.1cm}
@@ -7652,10 +7652,10 @@
                     \textbf{3.} $V_{TL} < V_{in} < V_{TH}$ (fra le due soglie):
 
                     \hspace{0.3cm} $\Rightarrow$ $V_{out}$ \textbf{mantiene il valore precedente}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Regola pratica:}
 
                     \vspace{0.05cm}
@@ -7665,7 +7665,7 @@
                     $\Rightarrow$ Da HIGH: devo scendere sotto $V_{TL}$
 
                     $\Rightarrow$ Da LOW: devo salire sopra $V_{TH}$
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Esempio con ingresso triangolare:}
@@ -7681,7 +7681,7 @@
                 }
 
                 \vspace{0.1cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ METODO DI ANALISI TRIGGER:}
 
                     \vspace{0.1cm}
@@ -7700,10 +7700,10 @@
                     \hspace{0.3cm} $\Rightarrow$ Con $V_{out} = +V_{sat}$: trovo $V_{TH}$
 
                     \hspace{0.3cm} $\Rightarrow$ Con $V_{out} = -V_{sat}$: trovo $V_{TL}$
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Calcolo $V^+$ con sovrapposizione:}
 
                     \vspace{0.05cm}
@@ -7713,7 +7713,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Calcolare solo contributo di $V_{in}$ e $V_{out}$ su $V^+$
-                }}
+                
 
             \end{minipage}
         };
@@ -7731,7 +7731,7 @@
                 \textbf{Calcolo Dettagliato delle Soglie}
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{INVERTENTE} ($V_{in}$ su $V^-$, $R_1$-$R_2$ su $V^+$)
 
                     \vspace{0.1cm}
@@ -7751,10 +7751,10 @@
                     $\Rightarrow V_{TH} = +V_{sat} \cdot \frac{R_1}{R_1 + R_2}$ (quando $V_{out}$ è HIGH)
 
                     $\Rightarrow V_{TL} = -V_{sat} \cdot \frac{R_1}{R_1 + R_2}$ (quando $V_{out}$ è LOW)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{NON INVERTENTE} ($V_{in}$ e $V_{out}$ entrambi su $V^+$)
 
                     \vspace{0.1cm}
@@ -7775,13 +7775,13 @@
                     $\Rightarrow V_{TH} = -V_{sat} \cdot \frac{R_1}{R_2}$ (quando $V_{out}$ è LOW, per salire)
 
                     $\Rightarrow V_{TL} = +V_{sat} \cdot \frac{R_1}{R_2}$ (quando $V_{out}$ è HIGH, per scendere)
-                }}
+                
 
                 \vspace{0.1cm}
                 {\footnotesize \textit{Nota: nel non invertente $V_{TL} > V_{TH}$ (soglie ``invertite'')}}
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ ATTENZIONE - $V_{ref}$ generale:}
 
                     \vspace{0.05cm}
@@ -7793,7 +7793,7 @@
 
                     \vspace{0.05cm}
                     \textbf{Con correnti di bias $I_B$:} se presenti, possono modificare le tensioni sui nodi $\Rightarrow$ \textbf{ricalcolare le soglie} tenendo conto della caduta $I_B \cdot R$
-                }}
+                
 
             \end{minipage}
         };
@@ -7811,17 +7811,17 @@
                 \textbf{$\bigstar$ METODO per Calcolare le Soglie}
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{STEP 1: Identificare il tipo}
 
                     \vspace{0.1cm}
                     • $V_{in}$ entra su $V^-$ $\Rightarrow$ \textbf{INVERTENTE}
 
                     • $V_{in}$ entra su $V^+$ $\Rightarrow$ \textbf{NON INVERTENTE}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{STEP 2: Scrivere le equazioni dei nodi}
 
                     \vspace{0.1cm}
@@ -7837,10 +7837,10 @@
                     $$V_{nodo} = \sum_i V_i \cdot \frac{R_{eq,i}}{R_{tot}}$$
 
                     dove $R_{eq,i}$ = parallelo di tutte le R \textbf{tranne} quella verso $V_i$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{STEP 3: Imporre la condizione di commutazione}
 
                     \vspace{0.1cm}
@@ -7849,10 +7849,10 @@
 
                     \vspace{0.1cm}
                     Sostituisci le equazioni dello Step 2 e risolvi per $V_{in}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{STEP 4: Calcolare $V_{TH}$ e $V_{TL}$}
 
                     \vspace{0.1cm}
@@ -7869,10 +7869,10 @@
                     $V_{TH}$ = soglia da superare \textbf{salendo}
 
                     $V_{TL}$ = soglia da superare \textbf{scendendo}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ VERIFICA FINALE:}
 
                     \vspace{0.05cm}
@@ -7882,7 +7882,7 @@
 
                     \vspace{0.05cm}
                     • Isteresi: $\Delta V = |V_{TH} - V_{TL}|$
-                }}
+                
 
             \end{minipage}
         };
@@ -7936,13 +7936,13 @@
                 }
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ Come DISEGNARE (INV):}
 
                     1. Disegno linea \textcolor{red}{\textbf{ROSSA}} da \textbf{SOPRA a SOTTO} (partendo da $+V_{sat}$)
 
                     2. Completo con isteresi alla sua \textbf{DESTRA}
-                }}
+                
 
                 \vspace{0.2cm}
                 \textbf{NON INVERTENTE:} (ciclo percorso in senso \textbf{orario})
@@ -7980,16 +7980,16 @@
                 }
 
                 \vspace{0.1cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ Come DISEGNARE (NON INV):}
 
                     1. Disegno linea \textcolor{blue}{\textbf{BLU}} da \textbf{BASSO ad ALTO} (partendo da $-V_{sat}$)
 
                     2. Completo con isteresi alla sua \textbf{DESTRA}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{Cos'è l'ISTERESI?}
 
                     \vspace{0.1cm}
@@ -8003,10 +8003,10 @@
 
                     \vspace{0.1cm}
                     \textbf{A cosa serve:} il rumore deve superare $\Delta V$ per causare commutazioni spurie $\Rightarrow$ \textbf{immunità al rumore}!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLA MNEMONICA per disegnare:}
 
                     \vspace{0.1cm}
@@ -8056,7 +8056,7 @@
                     • Sulle linee \textbf{orizzontali}: freccia verso SINISTRA $\leftarrow$ ($V_{in}$ scende)
 
                     • Sulle \textbf{transizioni verticali}: freccia nel verso della commutazione ($\uparrow$ o $\downarrow$)
-                }}
+                
 
             \end{minipage}
         };
@@ -8080,11 +8080,11 @@
                 Converte un segnale \textbf{analogico} (tensione) in un segnale \textbf{digitale} (word a N bit).
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Input:} Tensione analogica $V_{in}$
 
                     \textbf{Output:} Word digitale a $N$ bit
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Range di ingresso:}
@@ -8096,7 +8096,7 @@
                 dove $V_{SS}$ = tensione di alimentazione bassa, $V_{DD}$ = tensione di alimentazione alta.
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Principio di funzionamento:}
 
                     \vspace{0.1cm}
@@ -8107,10 +8107,10 @@
 
                     \vspace{0.1cm}
                     \textbf{Risoluzione:} $\Delta V = \frac{V_{DD} - V_{SS}}{2^N}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ PROBLEMA: Segnale fuori range!}
 
                     \vspace{0.1cm}
@@ -8118,7 +8118,7 @@
 
                     \vspace{0.1cm}
                     \textbf{Soluzione:} Serve un \textbf{blocco di condizionamento} (amplificatore + offset) prima dell'ADC per adattare il segnale al range $[V_{SS}, V_{DD}]$.
-                }}
+                
 
             \end{minipage}
         };
@@ -8174,7 +8174,7 @@
                 Converte la tensione ``congelata'' in word digitale
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Perché serve il S\&H?}
 
                     \vspace{0.05cm}
@@ -8182,10 +8182,10 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Il S\&H ``memorizza'' il valore all'istante di campionamento
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ Semplificazione S\&H:}
 
                     \vspace{0.05cm}
@@ -8193,7 +8193,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Per l'\textbf{adattamento} tra $V_{in}$ e ADC, il S\&H si considera come un \textbf{filo} (passa la tensione inalterata).
-                }}
+                
 
             \end{minipage}
         };
@@ -8232,7 +8232,7 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Fase di SAMPLE} (interruttore \textbf{chiuso}):
 
                     \vspace{0.1cm}
@@ -8241,10 +8241,10 @@
                     $$V_C = V_{in}$$
 
                     Il condensatore ``segue'' le variazioni di $V_{in}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Fase di HOLD} (interruttore \textbf{aperto}):
 
                     \vspace{0.1cm}
@@ -8255,18 +8255,18 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ L'ADC converte con calma $V_{in,0}$ senza essere influenzato da oscillazioni!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ È una MEMORIA ANALOGICA!}
 
                     \vspace{0.05cm}
                     Il condensatore ``ricorda'' il valore di tensione all'istante del campionamento.
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Perché $C$ non si scarica in fase di HOLD?}
 
                     \vspace{0.05cm}
@@ -8276,7 +8276,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Nessun percorso di scarica $\Rightarrow$ $V_C$ resta costante
-                }}
+                
 
                 \vspace{0.15cm}
                 {\footnotesize \textbf{Implementazione tipica:} nMOS (interruttore) + Condensatore}
@@ -8327,7 +8327,7 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Come funziona:}
 
                     \vspace{0.1cm}
@@ -8339,10 +8339,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Il condensatore \textbf{non si scarica} anche se $R_{ADC}$ è bassa!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Funzione del buffer:}
 
                     \vspace{0.1cm}
@@ -8355,10 +8355,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ $C$ ``vede'' impedenza infinita, ADC ``vede'' sorgente ideale
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ Senza buffer:}
 
                     \vspace{0.05cm}
@@ -8366,7 +8366,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Errore nella conversione (tensione che ``cala'' nel tempo)
-                }}
+                
 
             \end{minipage}
         };
@@ -8387,12 +8387,12 @@
                 \textbf{Obiettivo:} Sfruttare al meglio l'\textbf{escursione} (dinamica) dell'ADC.
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ PROBLEMA TIPICO D'ESAME:}
 
                     \vspace{0.1cm}
                     Dato un segnale $V_{in} \in [V_{in,min}, V_{in,max}]$, progettare il circuito di condizionamento per \textbf{mappare} il segnale sull'intero range ADC $[V_{SS}, V_{DD}]$.
-                }}
+                
 
                 \vspace{0.15cm}
                 \textbf{Mappatura lineare:}
@@ -8405,7 +8405,7 @@
                 \end{itemize}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Formula del condizionamento:}
                     $$\boxed{V_{ADC} = A \cdot V_{in} + V_{offset}}$$
 
@@ -8419,10 +8419,10 @@
 
                     oppure equivalentemente:
                     $$V_{offset} = V_{DD} - A \cdot V_{in,max}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Esempio:}
 
                     \vspace{0.05cm}
@@ -8436,10 +8436,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow V_{ADC} = 1.25 \cdot V_{in} + 1.25V$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Perché massimizzare la dinamica?}
 
                     \vspace{0.05cm}
@@ -8447,7 +8447,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Mappando su tutto il range si sfrutta la \textbf{massima risoluzione} disponibile.
-                }}
+                
 
             \end{minipage}
         };
@@ -8465,7 +8465,7 @@
                 \textbf{Calcolo $V_{REF}$ per Adattamento}
 
                 \vspace{0.1cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ METODO DI CALCOLO:}
 
                     \vspace{0.1cm}
@@ -8480,10 +8480,10 @@
 
                     \vspace{0.1cm}
                     \textbf{3.} Risolvere il sistema per trovare $V_{REF}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ REGOLE per il calcolo di $V_{ADC}$:}
 
                     \vspace{0.1cm}
@@ -8500,10 +8500,10 @@
 
                     \vspace{0.1cm}
                     \textbf{Buffer (OpAmp guadagno 1):} $V_{out} = V^+$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Calcolo $V_{ADC}$ con sovrapposizione:}
 
                     \vspace{0.1cm}
@@ -8521,10 +8521,10 @@
                     2. Spegni $V_{in}$ (= 0V) $\Rightarrow$ calcola contributo di $V_{REF}$
 
                     3. Somma i due contributi
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ RICORDA:}
 
                     \vspace{0.05cm}
@@ -8533,7 +8533,7 @@
                     • Non stai facendo analisi in frequenza $\Rightarrow$ \textbf{NO} Bode, \textbf{NO} poli/zeri
 
                     • È come calcolare la caratteristica statica (tipo esercizi con diodi)
-                }}
+                
 
             \end{minipage}
         };
@@ -8551,17 +8551,17 @@
                 \textbf{Buffer prima dell'ADC - Errore Statico}
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Buffer = Sample \& Hold in analisi statica}
 
                     \vspace{0.05cm}
                     In analisi statica, il S\&H si riduce \textbf{solo all'OpAmp} (il condensatore è aperto, l'interruttore è un filo).
 
                     $\Rightarrow$ ``Buffer'' è un altro nome per il circuito S\&H quando lo analizzi in DC.
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Buffer di tensione (Voltage Follower):}
 
                     \vspace{0.1cm}
@@ -8582,10 +8582,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize \textbf{Ricordalo a memoria} per risparmiare conti!}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ Errore statico massimo di guadagno:}
 
                     \vspace{0.1cm}
@@ -8599,10 +8599,10 @@
 
                     \vspace{0.1cm}
                     Assumi che il buffer \textbf{non abbia singolarità} (né poli né zeri).
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Guadagno reale del buffer:}
 
                     \vspace{0.1cm}
@@ -8617,10 +8617,10 @@
 
                     \vspace{0.1cm}
                     Se $A_0 \gg 1$: $\varepsilon \approx \frac{1}{A_0}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ TRUCCO VELOCE - Buffer:}
 
                     \vspace{0.1cm}
@@ -8636,10 +8636,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize (Si può fare anche ``a mano'', ma così è più veloce)}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Calcolo $V_{ADC,reale}$ e Errore:}
 
                     \vspace{0.1cm}
@@ -8659,10 +8659,10 @@
                     \vspace{0.1cm}
                     \textbf{Errore statico:}
                     $$\boxed{\varepsilon = \left| V_{ADC,R} - V_{ADC,id} \right|}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Errore MASSIMO in funzione di LSB:}
 
                     \vspace{0.1cm}
@@ -8676,10 +8676,10 @@
                     \vspace{0.15cm}
                     \textbf{Errore in LSB:}
                     $$\boxed{\varepsilon_{max} [\text{LSB}] = \frac{\varepsilon_{max}}{LSB} = \frac{\varepsilon_{max} \cdot 2^N}{FSR}}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ Caso con $V_{OS}$ su ENTRAMBI gli OpAmp:}
 
                     \vspace{0.1cm}
@@ -8695,10 +8695,10 @@
 
                     \vspace{0.1cm}
                     Poi calcola errore e rapportalo a LSB come sempre.
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ RIASSUNTO:}
 
                     \vspace{0.05cm}
@@ -8711,7 +8711,7 @@
                     • Errore in LSB: $\frac{\varepsilon_{max}}{LSB}$ con $LSB = \frac{FSR}{2^N}$
 
                     • Con $V_{OS}$: sovrapposizione (riusa calcoli precedenti!)
-                }}
+                
 
             \end{minipage}
         };
@@ -8732,7 +8732,7 @@
                 Le domande più frequenti sul calcolo degli errori nella catena di acquisizione:
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{1. Errore dovuto a GUADAGNO FINITO}
 
                     \vspace{0.1cm}
@@ -8748,10 +8748,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize Il caso \textbf{peggiore} è quando $V_{ADC,id}$ è massimo!}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{2. Errore dovuto a $V_{OS}$}
 
                     \vspace{0.1cm}
@@ -8767,10 +8767,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize \textbf{Tip:} $V_{OS}$ sul buffer si propaga direttamente con guadagno $\approx 1$}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{3. Errore dovuto a CORRENTE DI BIAS}
 
                     \vspace{0.1cm}
@@ -8787,10 +8787,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize \textbf{Attenzione al verso!} Entrante vs uscente cambia il segno.}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ FORMULA FINALE - Tutti i casi:}
 
                     \vspace{0.1cm}
@@ -8801,10 +8801,10 @@
 
                     \vspace{0.1cm}
                     \textbf{Caso peggiore:} Valuta $\varepsilon$ quando $V_{in}$ è al suo estremo (min o max).
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ ERRORI COMBINATI:}
 
                     \vspace{0.05cm}
@@ -8815,7 +8815,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Per il \textbf{caso peggiore}: somma i valori assoluti (worst case).
-                }}
+                
 
             \end{minipage}
         };
@@ -8837,7 +8837,7 @@
                 L'errore da corrente di bias va analizzato \textbf{separatamente} nelle due fasi!
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{FASE di SAMPLE} (switch \textbf{chiuso}):
 
                     \vspace{0.1cm}
@@ -8851,10 +8851,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize (Dipende dalla topologia: analizza caso per caso)}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{FASE di HOLD} (switch \textbf{aperto}):
 
                     \vspace{0.1cm}
@@ -8868,10 +8868,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ $V_{ADC}$ \textbf{deriva} (drift) nel tempo!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Formula della DERIVA:}
 
                     \vspace{0.1cm}
@@ -8885,10 +8885,10 @@
                         \item $T_{hold}$ = durata della fase di hold
                         \item $C_H$ = capacità del condensatore di hold
                     \end{itemize}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Andamento dell'ERRORE nel tempo:}
 
                     \vspace{0.1cm}
@@ -8927,19 +8927,19 @@
                     • Durante HOLD: errore \textbf{cresce} linearmente
 
                     • \textbf{Errore MASSIMO:} appena \textbf{prima} di tornare in SAMPLE!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ ERRORE MASSIMO:}
 
                     $$\boxed{\varepsilon_{max} = \frac{I_B \cdot T_{hold}}{C_H}}$$
 
                     L'errore è massimo alla fine della fase di hold (dopo tempo $T_{hold}$).
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ DIMENSIONAMENTO di $C_H$:}
 
                     \vspace{0.1cm}
@@ -8957,10 +8957,10 @@
                     $$\boxed{C_H > \frac{I_B \cdot T_{hold}}{\varepsilon_{spec} \cdot LSB}}$$
 
                     dove $LSB = FSR / 2^N$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ ATTENZIONE - Quale $I_B$ conta?}
 
                     \vspace{0.05cm}
@@ -8972,7 +8972,7 @@
                     • Solo le $I_B$ che \textbf{scorrono nel condensatore} causano errore
 
                     • Le $I_B$ che hanno un altro percorso \textbf{non} influenzano $V_{ADC}$
-                }}
+                
 
             \end{minipage}
         };
@@ -9009,7 +9009,7 @@
                 \end{center}
 
                 \vspace{0.05cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Premessa importante:}
 
                     \vspace{0.1cm}
@@ -9021,10 +9021,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Consideriamo i \textbf{casi peggiori} agli estremi del range!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ nMOS ON (fase SAMPLE):}
 
                     \vspace{0.1cm}
@@ -9042,10 +9042,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize Es: se $V_{ADC} \in [-5V, 0V]$ e $V_T = 0.5V$: $V_{SH,ON} > 0.5V$}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ nMOS OFF (fase HOLD):}
 
                     \vspace{0.1cm}
@@ -9063,10 +9063,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize Es: se $V_{ADC} \in [-5V, 0V]$ e $V_T = 0.5V$: $V_{SH,OFF} < -4.5V$}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ RIASSUNTO:}
 
                     \vspace{0.1cm}
@@ -9083,17 +9083,17 @@
                     \vspace{0.15cm}
                     $$\boxed{V_{SH,ON} > V_T + V_{ADC,max}}$$
                     $$\boxed{V_{SH,OFF} < V_T + V_{ADC,min}}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ Perché questi casi peggiori?}
 
                     \vspace{0.05cm}
                     • \textbf{ON:} Se $V_S$ è alta, serve $V_G$ ancora più alta per avere $V_{GS} > V_T$
 
                     • \textbf{OFF:} Se $V_S$ è bassa, anche una $V_G$ bassa potrebbe dare $V_{GS} > V_T$ (accensione indesiderata!)
-                }}
+                
 
             \end{minipage}
         };
@@ -9116,7 +9116,7 @@
                 Quando l'nMOS passa da ON a OFF, la carica nel canale viene ``iniettata'' nel condensatore!
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{Cosa succede fisicamente:}
 
                     \vspace{0.1cm}
@@ -9127,10 +9127,10 @@
                     • Le cariche del canale devono andare da qualche parte!
 
                     • Una parte va verso il condensatore $C_H$ $\Rightarrow$ \textbf{errore}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{Modello a capacità parassite:}
 
                     \vspace{0.1cm}
@@ -9155,10 +9155,10 @@
                     $C_p$ = capacità parassita Gate-Canale dell'nMOS
 
                     $C_H$ = capacità di hold
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ FORMULA del Charge Injection:}
 
                     \vspace{0.1cm}
@@ -9172,10 +9172,10 @@
                         \item $C_p$ = capacità parassita gate-canale dell'nMOS
                         \item $C_H$ = capacità del condensatore di hold
                     \end{itemize}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{Interpretazione fisica:}
 
                     \vspace{0.1cm}
@@ -9190,10 +9190,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Serve $C_H$ \textbf{grande} per minimizzare l'errore
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Calcolo di $\Delta V_G$ (con SEGNO!):}
 
                     \vspace{0.1cm}
@@ -9208,10 +9208,10 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ $\Delta V$ è \textbf{NEGATIVO} $\Rightarrow$ tensione su $C_H$ \textbf{scende}!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ Perché NEGATIVO per nMOS?}
 
                     \vspace{0.1cm}
@@ -9223,10 +9223,10 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ La tensione sul condensatore \textbf{diminuisce}!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ ATTENZIONE alla terminologia!}
 
                     \vspace{0.1cm}
@@ -9243,10 +9243,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize \textbf{Regola:} Ampiezza = semipicco $\Rightarrow$ moltiplica per 2, poi segno $-$!}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ CASO PEGGIORE per $\varepsilon_{max}$:}
 
                     \vspace{0.1cm}
@@ -9262,10 +9262,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ \textbf{Negli esercizi:} considera $V_C = V_{DD}$ oppure $V_C = V_{SS}$ per trovare $\varepsilon_{max}$!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Verifica errore ammissibile:}
 
                     \vspace{0.1cm}
@@ -9281,10 +9281,10 @@
                     Se la specifica richiede $\varepsilon < k$ LSB (es. $k = 1$ o $k = 0.5$):
 
                     $$\boxed{\frac{|\Delta V|}{LSB} < k \quad \Rightarrow \quad \text{Errore ammissibile!}}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ DIMENSIONAMENTO di $C_H$:}
 
                     \vspace{0.05cm}
@@ -9296,10 +9296,10 @@
                     \vspace{0.05cm}
                     Risolvendo per $C_H$:
                     $$\boxed{C_H > C_p \cdot \left( \frac{|\Delta V_G|}{k \cdot LSB} - 1 \right)}$$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ NOTA:}
 
                     \vspace{0.05cm}
@@ -9307,7 +9307,7 @@
 
                     \vspace{0.05cm}
                     A differenza dell'errore da $I_B$ (che cresce nel tempo), questo errore è \textbf{istantaneo}!
-                }}
+                
 
             \end{minipage}
         };
@@ -9328,7 +9328,7 @@
                 \textbf{ADC - LSB all'Ingresso e Numero di Bit}
 
                 \vspace{0.1cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Risoluzione all'INGRESSO del circuito:}
 
                     \vspace{0.1cm}
@@ -9340,10 +9340,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize (Il guadagno ``amplifica'' anche la risoluzione!)}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Calcolo NUMERO di BIT minimo:}
 
                     \vspace{0.1cm}
@@ -9362,7 +9362,7 @@
 
                     \vspace{0.05cm}
                     {\footnotesize Arrotonda $n$ all'\textbf{intero superiore}!}
-                }}
+                
 
             \end{minipage}
         };
@@ -9382,7 +9382,7 @@
                 \textbf{ADC - Tempi di Sample e Hold}
 
                 \vspace{0.1cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Tempo di SAMPLE minimo:}
 
                     \vspace{0.1cm}
@@ -9405,10 +9405,10 @@
 
                     \vspace{0.1cm}
                     Risolvendo: $\boxed{t_{sample} \geq \tau \cdot \ln\left(\frac{|V_{max} - V_{min}|}{LSB}\right)}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Tempo di HOLD massimo (con $I_B$):}
 
                     \vspace{0.1cm}
@@ -9429,7 +9429,7 @@
 
                     \vspace{0.05cm}
                     {\footnotesize Solitamente $t_{hold} = T_{conversione\,ADC}$}
-                }}
+                
 
             \end{minipage}
         };
@@ -9449,7 +9449,7 @@
                 \textbf{ADC - Risposta con Guadagno $A(s)$}
 
                 \vspace{0.1cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Risposta a SCALINO con OpAmp reale:}
 
                     \vspace{0.1cm}
@@ -9466,10 +9466,10 @@
                         \item Calcola la costante di tempo:
                         $$\tau = \frac{1}{2\pi f_{taglio,G_{loop}}}$$
                     \end{enumerate}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Andamento di $V_{out}(t)$:}
 
                     \vspace{0.1cm}
@@ -9482,7 +9482,7 @@
 
                     \vspace{0.05cm}
                     {\footnotesize (Non $G_{id} \cdot A_m$ perché il guadagno reale è minore!)}
-                }}
+                
 
             \end{minipage}
         };
@@ -9502,7 +9502,7 @@
                 \textbf{ADC - Dimensionamento $V_B$ e Errore Fondo Scala}
 
                 \vspace{0.1cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Calcolo $V_B$ (o $V_{REF}$) per dinamica ottimale:}
 
                     \vspace{0.1cm}
@@ -9516,10 +9516,10 @@
                         \item Per ogni OpAmp calcola prima il $G_{id}$
                         \item Imponi le condizioni agli estremi e risolvi per $V_B$
                     \end{enumerate}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Errore STATICO di guadagno a FONDO SCALA:}
 
                     \vspace{0.1cm}
@@ -9532,10 +9532,10 @@
                         \item Se richiesto in LSB:
                         $$\varepsilon_{LSB} = \frac{\varepsilon}{LSB_{ADC}}$$
                     \end{enumerate}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Errore in LSB da $V_{OS}$:}
 
                     \vspace{0.1cm}
@@ -9546,7 +9546,7 @@
                         \item Errore in LSB:
                         $$\boxed{\varepsilon_{OS} = \frac{V_{ADC,OS}}{LSB_{ADC}}}$$
                     \end{enumerate}
-                }}
+                
 
             \end{minipage}
         };
@@ -9566,15 +9566,15 @@
                 \textbf{ADC a Doppia Rampa - Bit del Contatore}
 
                 \vspace{0.1cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Problema tipico:}
 
                     \vspace{0.1cm}
                     \textit{``Dato $T_{int}$ e $f_{ck}$, trovare il numero minimo di bit $n$ del contatore.''}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ Procedimento:}
 
                     \vspace{0.1cm}
@@ -9589,7 +9589,7 @@
 
                     \vspace{0.05cm}
                     {\footnotesize Arrotonda $n$ all'\textbf{intero superiore}!}
-                }}
+                
 
             \end{minipage}
         };
@@ -9609,7 +9609,7 @@
                 \textbf{ADC - Terminologia}
 
                 \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{RISOLUZIONE}
 
                     \vspace{0.1cm}
@@ -9617,10 +9617,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize Quanto è ``fine'' la suddivisione del range.}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{PRECISIONE}
 
                     \vspace{0.1cm}
@@ -9628,10 +9628,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize Ripetibilità della misura (bassa dispersione).}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{ACCURATEZZA}
 
                     \vspace{0.1cm}
@@ -9639,10 +9639,10 @@
 
                     \vspace{0.05cm}
                     {\footnotesize Quanto la conversione è ``giusta'' rispetto al target.}
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ Se il segnale cambia durante la conversione?}
 
                     \vspace{0.1cm}
@@ -9652,7 +9652,7 @@
 
                     \vspace{0.05cm}
                     Per questo serve il \textbf{Sample \& Hold}: ``congela'' il valore per il tempo necessario alla conversione.
-                }}
+                
 
             \end{minipage}
         };
@@ -9672,7 +9672,7 @@
                 \textbf{GUIDA: Riconoscere le Configurazioni OpAmp}
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ PASSO 1: C'è retroazione?}
 
                     \vspace{0.1cm}
@@ -9684,10 +9684,10 @@
                     • \textbf{SÌ, verso $V^-$} $\Rightarrow$ vai a \textcolor{green!50!black}{\textbf{RETROAZ. NEGATIVA}}
 
                     • \textbf{SÌ, verso $V^+$} $\Rightarrow$ vai a \textcolor{blue}{\textbf{RETROAZ. POSITIVA}}
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textcolor{red}{\textbf{COMPARATORE}} (no retroazione)
 
                     \vspace{0.1cm}
@@ -9706,10 +9706,10 @@
                     \hspace{0.5cm} Soglia = $V_{ref}$
 
                     • \textbf{NO} $\Rightarrow$ Comparatore semplice (soglia = 0V o altra)
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textcolor{green!50!black}{\textbf{RETROAZIONE NEGATIVA}} ($V_{out}$ torna su $V^-$)
 
                     \vspace{0.1cm}
@@ -9729,10 +9729,10 @@
                     • \textbf{NO} (c'è $R_f$) $\Rightarrow$ \textbf{Amplificatore}
 
                     \hspace{0.5cm} Vai al PASSO 2
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{PASSO 2: Dove entra $V_{in}$?} (se amplificatore)
 
                     \vspace{0.1cm}
@@ -9749,7 +9749,7 @@
                     • Più ingressi su $V^-$ $\Rightarrow$ \textbf{SOMMATORE}
 
                     \hspace{0.5cm} $V_{out} = -R_f \left( \frac{V_1}{R_1} + \frac{V_2}{R_2} + ... \right)$
-                }}
+                
 
             \end{minipage}
         };
@@ -9764,7 +9764,7 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \colorbox{blue!20}{\parbox{0.95\linewidth}{
+                
                     \textcolor{blue}{\textbf{RETROAZIONE POSITIVA}} ($V_{out}$ torna su $V^+$)
 
                     \vspace{0.1cm}
@@ -9787,10 +9787,10 @@
                     • $V_{in}$ entra su $V^+$ $\Rightarrow$ Trigger \textbf{NON INVERTENTE}
 
                     \hspace{0.5cm} Ciclo percorso in senso \textbf{orario}
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ SCHEMA RIASSUNTIVO:}
 
                     \vspace{0.1cm}
@@ -9811,10 +9811,10 @@
                         Trigger Schmitt & \textbf{Positiva} & \textbf{SÌ} \\
                         \hline
                     \end{tabular}
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{red!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ TRUCCHI VELOCI:}
 
                     \vspace{0.1cm}
@@ -9827,10 +9827,10 @@
                     • Non vedi nulla che torna indietro? $\Rightarrow$ Comparatore (satura)
 
                     • Vedi condensatore + switch prima dell'OpAmp? $\Rightarrow$ S\&H
-                }}
+                
 
                 \vspace{0.2cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ FLOWCHART VELOCE:}
 
                     \vspace{0.1cm}
@@ -9853,7 +9853,7 @@
                     \hspace{0.3cm} \texttt{SÌ → BUFFER}
 
                     \hspace{0.3cm} \texttt{NO → AMPLIFICATORE (inv/non-inv)}
-                }}
+                
 
             \end{minipage}
         };
@@ -9871,7 +9871,7 @@
                 \textbf{Multivibratore Astabile con OpAmp}
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ STRUTTURA:}
 
                     \vspace{0.1cm}
@@ -9887,10 +9887,10 @@
                     • $R_1$, $R_2$: partitore per le soglie ($V_{TH}$, $V_{TL}$)
 
                     • $R$, $C$: rete di timing (determinano il periodo)
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ FUNZIONAMENTO:}
 
                     \vspace{0.1cm}
@@ -9911,10 +9911,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Il ciclo si ripete \textbf{indefinitamente}!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ FORMULE DEL PERIODO:}
 
                     \vspace{0.1cm}
@@ -9931,7 +9931,7 @@
 
                     \vspace{0.1cm}
                     \textbf{Frequenza:} $f = \frac{1}{T}$
-                }}
+                
 
             \end{minipage}
         };
@@ -9997,7 +9997,7 @@
                 \end{center}
 
                 \vspace{0.1cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{Lettura del grafico:}
 
                     \vspace{0.05cm}
@@ -10009,14 +10009,14 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Quando $V_C$ tocca una soglia, $V_{out}$ commuta!
-                }}
+                
 
                 \vspace{0.1cm}
-                \colorbox{yellow!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ Nota:} $V_C$ ha andamento \textbf{esponenziale}, non lineare!
 
                     Il condensatore \textit{tenderebbe} verso $\pm V_{sat}$ ma commuta prima.
-                }}
+                
 
             \end{minipage}
         };
@@ -10035,7 +10035,7 @@
                 \textbf{Multivibratore Astabile - Calcoli}
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ METODO DI CALCOLO DEL PERIODO:}
 
                     \vspace{0.1cm}
@@ -10050,10 +10050,10 @@
 
                     \vspace{0.1cm}
                     \textbf{Step 4:} $T = T_{carica} + T_{scarica}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ DEFINIZIONE $T_{HIGH}$ e $T_{LOW}$:}
 
                     \vspace{0.1cm}
@@ -10077,10 +10077,10 @@
 
                     \vspace{0.1cm}
                     \textbf{$\triangle$ ATTENZIONE:} il primo semiperiodo dipende da $V_C(0)$!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ CASO SIMMETRICO - Duty Cycle 50\%:}
 
                     \vspace{0.1cm}
@@ -10096,13 +10096,13 @@
                     $$T = 2RC \cdot \ln\left(\frac{1 + \beta}{1 - \beta}\right) \quad \text{con } \beta = \frac{R_1}{R_1+R_2}$$
 
                     \vspace{0.1cm}
-                    \colorbox{red!20}{\parbox{0.9\linewidth}{
+                    
                         \textbf{$\bigstar$ IMPORTANTE:} Con alimentazione simmetrica ($+V_{DD} = -V_{SS}$), la frequenza \textbf{NON dipende} da $V_{DD}$! Dipende solo da $R$, $C$ e $\beta$.
-                    }}
-                }}
+                    
+                
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\triangle$ PUNTI CRITICI DA RICORDARE:}
 
                     \vspace{0.1cm}
@@ -10117,10 +10117,10 @@
 
                     \vspace{0.1cm}
                     • Nel $\ln$: argomento = $\frac{V_{finale} - V_{iniziale}}{V_{finale} - V_{finale,soglia}}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\bigstar$ DIMENSIONAMENTO INVERSO:}
 
                     \vspace{0.05cm}
@@ -10132,7 +10132,7 @@
                     2. Calcola $RC = \frac{T}{2 \ln\left(\frac{1+\beta}{1-\beta}\right)}$
 
                     3. Scegli $C$ ragionevole, ricava $R = \frac{RC}{C}$
-                }}
+                
 
             \end{minipage}
         };
@@ -10151,7 +10151,7 @@
                 \textbf{Meccanismo di Commutazione}
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ COME FUNZIONA LA COMMUTAZIONE:}
 
                     \vspace{0.1cm}
@@ -10174,10 +10174,10 @@
                     • Quando $V_C$ scende sotto $V_{TL}$ $\Rightarrow$ $V^- < V^+$
 
                     • Il trigger \textbf{commuta}: $V_{out} \to +V_{sat}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ PRIMO SEMIPERIODO - Dipende da $V_C(0)$!}
 
                     \vspace{0.1cm}
@@ -10203,10 +10203,10 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Il primo semiperiodo \textbf{non} è uguale ai successivi!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ A REGIME:}
 
                     \vspace{0.05cm}
@@ -10214,7 +10214,7 @@
 
                     \vspace{0.05cm}
                     $\Rightarrow$ Il periodo $T = T_{HIGH} + T_{LOW}$ è \textbf{costante}
-                }}
+                
 
             \end{minipage}
         };
@@ -10232,7 +10232,7 @@
                 \textbf{Multivibratore Astabile - Domande Tipiche}
 
                 \vspace{0.15cm}
-                \colorbox{green!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{a) Tracciare $V_C(t)$ da $t=0$ a $t=T_{tot}$}
 
                     \vspace{0.1cm}
@@ -10253,10 +10253,10 @@
 
                     \vspace{0.1cm}
                     \textbf{Grafico:} esponenziali che ``rimbalzano'' tra $V_{TH}$ e $V_{TL}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{cyan!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{b) Effetto dell'offset $V_{off}$ sulla frequenza}
 
                     \vspace{0.1cm}
@@ -10276,10 +10276,10 @@
                     \textbf{Variazione relativa:} $\frac{\Delta f}{f} = \frac{f' - f}{f}$
 
                     Ricalcola $T'$ con le nuove soglie e confronta
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                
                     \textbf{c) Alimentazione asimmetrica ($V_{DD} \neq |V_{SS}|$)}
 
                     \vspace{0.1cm}
@@ -10298,7 +10298,7 @@
 
                     \vspace{0.1cm}
                     $\Rightarrow$ Calcola \textbf{separatamente} i due semiperiodi!
-                }}
+                
 
             \end{minipage}
         };
@@ -10316,7 +10316,7 @@
                 \textbf{Multivibratore Astabile - Domande Tipiche (cont.)}
 
                 \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{d) Raddoppiare $f$ senza cambiare $R_3$ (resistenza timing)}
 
                     \vspace{0.1cm}
@@ -10341,10 +10341,10 @@
 
                     \vspace{0.1cm}
                     \textbf{Attenzione:} $\beta$ più piccolo = isteresi minore!
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                
                     \textbf{$\bigstar$ FORMULA GENERALE per semiperiodi:}
 
                     \vspace{0.1cm}
@@ -10360,15 +10360,15 @@
 
                     \vspace{0.1cm}
                     \textbf{Periodo totale:} $T = T_{carica} + T_{scarica}$
-                }}
+                
 
                 \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{\footnotesize
+                \footnotesize
                     \textbf{$\triangle$ DUTY CYCLE:}
                     $$D = \frac{T_{HIGH}}{T} = \frac{T_{carica}}{T_{carica} + T_{scarica}}$$
 
                     Se $D \neq 50\%$ $\Rightarrow$ onda quadra \textbf{asimmetrica}
-                }}
+                
 
             \end{minipage}
         };
