@@ -3288,6 +3288,77 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Duty Cycle};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Duty Cycle}{Duty Cycle}}
     \end{tikzpicture}
 
+    \vspace{0.3cm}
+
+    %------------ Prestazioni e Massima Frequenza di Commutazione ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Prestazioni e Massima Frequenza di Commutazione}
+
+                \vspace{0.15cm}
+                Per circuiti digitali che commutano periodicamente, le prestazioni dipendono dalla capacità di raggiungere il regime prima della prossima transizione.
+
+                \vspace{0.15cm}
+                \textbf{Prestazioni del Circuito:}
+
+                \vspace{0.1cm}
+                Il circuito funziona correttamente se:
+
+                \vspace{0.05cm}
+                $$\boxed{\tau_{prop} \le \frac{T_{in}}{2}}$$
+
+                \vspace{0.05cm}
+                Dove:
+                \begin{itemize}[itemsep=0pt, leftmargin=*]
+                    \item $\tau_{prop}$ = tempo di propagazione (tempo per raggiungere il regime)
+                    \item $T_{in}$ = periodo del segnale di ingresso
+                \end{itemize}
+
+                \vspace{0.15cm}
+                \textbf{Massima Frequenza di Commutazione:}
+
+                \vspace{0.1cm}
+                La frequenza massima a cui il circuito può commutare correttamente è:
+
+                \vspace{0.05cm}
+                $$\boxed{f_{max} = \frac{1}{2\tau_{prop}}}$$
+
+                \vspace{0.05cm}
+                In altre parole: $T_{min} = 2\tau_{prop}$
+
+                \vspace{0.15cm}
+                \textbf{Interpretazione:}
+
+                \vspace{0.05cm}
+                • Se $f > f_{max}$: il circuito \textbf{NON ha tempo} di raggiungere il regime
+
+                \vspace{0.05cm}
+                • L'uscita non raggiunge i valori $V_{OH}$ / $V_{OL}$ completi
+
+                \vspace{0.05cm}
+                • Le formule di potenza dinamica \textbf{NON sono valide}
+
+                \vspace{0.15cm}
+                \footnotesize
+                    \textbf{$\bigstar$ NOTA PRATICA}
+
+                    \vspace{0.05cm}
+                    • Queste formule si usano per verificare se il circuito può operare a una data frequenza
+
+                    \vspace{0.05cm}
+                    • Prima di calcolare $P_D$, controllare sempre: $\tau_{prop} \le \frac{T_{in}}{2}$
+
+                    \vspace{0.05cm}
+                    • Se hai calcolato solo $\tau_{prop}$ per una transizione (es. H$\to$L) e $K_n \approx K_p$, l'altra transizione ha tempo simile (stesso ordine di grandezza)
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Prestazioni e $f_{max}$};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Prestazioni e fmax}{Prestazioni e fmax}}
+    \end{tikzpicture}
+
     \newpage
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -3456,6 +3527,90 @@
         %------------ Costruzione PUN da PDN Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Costruzione PUN da PDN};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Costruzione PUN da PDN}{Costruzione PUN da PDN}}
     \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Invertitore nMOS con Carico Resistivo ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Invertitore nMOS con Carico Resistivo}
+
+                \vspace{0.15cm}
+                Circuito più semplice di un inverter cMOS: usa un nMOS e una resistenza di pull-up al posto del pMOS.
+
+                \vspace{0.15cm}
+                \textbf{Schema:}
+
+                \vspace{0.1cm}
+                • $V_{DD}$ collegato a resistenza $R_L$ (carico)
+
+                • Resistenza $R_L$ collegata all'uscita $V_{out}$
+
+                • Uscita $V_{out}$ collegata al Drain dell'nMOS
+
+                • Source dell'nMOS collegato a GND
+
+                • Gate dell'nMOS collegato all'ingresso $V_{in}$
+
+                \vspace{0.15cm}
+                \textbf{Funzionamento:}
+
+                \vspace{0.1cm}
+                • \textbf{Ingresso HIGH} ($V_{in} = V_{DD}$):
+
+                \hspace{0.3cm} -- nMOS ON (saturazione o ohmica)
+
+                \hspace{0.3cm} -- Corrente scorre attraverso $R_L$ e nMOS
+
+                \hspace{0.3cm} -- $V_{out} = V_{DD} - R_L \cdot I_D$ (basso, $\approx$ GND)
+
+                \vspace{0.05cm}
+                • \textbf{Ingresso LOW} ($V_{in} = 0$):
+
+                \hspace{0.3cm} -- nMOS OFF
+
+                \hspace{0.3cm} -- Nessuna corrente: $I_D = 0$
+
+                \hspace{0.3cm} -- $V_{out} = V_{DD}$ (alto)
+
+                \vspace{0.15cm}
+                \textbf{Formula $V_{out}$ (nMOS ON):}
+
+                \vspace{0.1cm}
+                Equazione: $I_{R_L} = I_D$ (stessa corrente)
+
+                \vspace{0.05cm}
+                $$\frac{V_{DD} - V_{out}}{R_L} = I_D$$
+
+                \vspace{0.05cm}
+                Dove $I_D$ dipende dalla regione di funzionamento dell'nMOS:
+
+                • \textbf{Saturazione}: $I_D = K_n(V_{in} - V_T)^2$
+
+                • \textbf{Ohmica}: $I_D = K_n[2(V_{in} - V_T)V_{out} - V_{out}^2]$
+
+                \vspace{0.15cm}
+                \footnotesize
+                    \textbf{$\bigstar$ SVANTAGGIO rispetto al cMOS}
+
+                    \vspace{0.05cm}
+                    • Con nMOS ON: scorre corrente \textbf{statica} da $V_{DD}$ a GND
+
+                    • $\Rightarrow$ Potenza statica $P_{stat} = V_{DD} \cdot I_D$ (dissipazione continua!)
+
+                    • Il cMOS invece ha $P_{stat} = 0$ (una rete sempre OFF)
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Invertitore nMOS con $R_L$};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Invertitore nMOS con RL}{Invertitore nMOS con RL}}
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ GUIDA - Tabella di Verità Reti CMOS ---------------
@@ -4790,7 +4945,69 @@
                         \hline
                     \end{tabular}
                     }
-                
+
+
+                \vspace{0.15cm}
+
+                    \textbf{Grafici per visualizzare le regole:}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                    \begin{tabular}{cc}
+                        % Grafico -20 dB/dec
+                        \begin{tikzpicture}[scale=0.35, color=black]
+                            \draw[->] (0,0) -- (5,0) node[right] {\tiny $f$};
+                            \draw[->] (0,0) -- (0,4) node[above] {\tiny $G$};
+                            \draw[thick, blue] (0.5,3.5) -- (4.5,0.5);
+                            \draw[fill=red] (1,3) circle (2pt);
+                            \draw[fill=red] (3,1.5) circle (2pt);
+                            \node[above right] at (1,3) {\tiny $(f_1, G_1)$};
+                            \node[below right] at (3,1.5) {\tiny $(f_2, G_2)$};
+                            \node[below] at (2.5,-0.5) {\tiny $-20$ dB/dec};
+                            \node[below, color=blue] at (2.5,-0.9) {\tiny $G_1 f_1 = G_2 f_2$};
+                        \end{tikzpicture}
+                        &
+                        % Grafico +20 dB/dec
+                        \begin{tikzpicture}[scale=0.35, color=black]
+                            \draw[->] (0,0) -- (5,0) node[right] {\tiny $f$};
+                            \draw[->] (0,0) -- (0,4) node[above] {\tiny $G$};
+                            \draw[thick, blue] (0.5,0.5) -- (4.5,3.5);
+                            \draw[fill=red] (1,1) circle (2pt);
+                            \draw[fill=red] (3,2.5) circle (2pt);
+                            \node[below right] at (1,1) {\tiny $(f_1, G_1)$};
+                            \node[above right] at (3,2.5) {\tiny $(f_2, G_2)$};
+                            \node[below] at (2.5,-0.5) {\tiny $+20$ dB/dec};
+                            \node[below, color=blue] at (2.5,-0.9) {\tiny $\frac{G_1}{f_1} = \frac{G_2}{f_2}$};
+                        \end{tikzpicture}
+                        \\[0.3cm]
+                        % Grafico -40 dB/dec
+                        \begin{tikzpicture}[scale=0.35, color=black]
+                            \draw[->] (0,0) -- (5,0) node[right] {\tiny $f$};
+                            \draw[->] (0,0) -- (0,4) node[above] {\tiny $G$};
+                            \draw[thick, blue, domain=0.7:4.5, samples=50] plot (\x, {4.5 - 1.8*(\x-0.7)});
+                            \draw[fill=red] (1,3.96) circle (2pt);
+                            \draw[fill=red] (2.5,1.26) circle (2pt);
+                            \node[above right] at (1,3.96) {\tiny $(f_1, G_1)$};
+                            \node[below right] at (2.5,1.26) {\tiny $(f_2, G_2)$};
+                            \node[below] at (2.5,-0.5) {\tiny $-40$ dB/dec};
+                            \node[below, color=blue] at (2.5,-0.9) {\tiny $G_1 f_1^2 = G_2 f_2^2$};
+                        \end{tikzpicture}
+                        &
+                        % Grafico +40 dB/dec
+                        \begin{tikzpicture}[scale=0.35, color=black]
+                            \draw[->] (0,0) -- (5,0) node[right] {\tiny $f$};
+                            \draw[->] (0,0) -- (0,4) node[above] {\tiny $G$};
+                            \draw[thick, blue, domain=0.7:4.5, samples=50] plot (\x, {0.3 + 1.8*(\x-0.7)});
+                            \draw[fill=red] (1,0.84) circle (2pt);
+                            \draw[fill=red] (2.5,3.54) circle (2pt);
+                            \node[below right] at (1,0.84) {\tiny $(f_1, G_1)$};
+                            \node[above right] at (2.5,3.54) {\tiny $(f_2, G_2)$};
+                            \node[below] at (2.5,-0.5) {\tiny $+40$ dB/dec};
+                            \node[below, color=blue] at (2.5,-0.9) {\tiny $\frac{G_1}{f_1^2} = \frac{G_2}{f_2^2}$};
+                        \end{tikzpicture}
+                    \end{tabular}
+                    \end{center}
+
 
                 \vspace{0.15cm}
                 
@@ -6497,6 +6714,15 @@
                 Differenza di tensione necessaria tra $V^+$ e $V^-$ per avere $V_{out} = 0$
 
                 \vspace{0.15cm}
+                \textbf{Condizioni di analisi:}
+
+                \vspace{0.05cm}
+                • Siamo in \textbf{corrente continua} $\Rightarrow$ condensatori aperti ($\to \infty$)
+
+                \vspace{0.05cm}
+                • L'OpAmp in analisi è \textbf{ideale}: $V^+ = V^-$ (retroazione negativa)
+
+                \vspace{0.15cm}
                 \textbf{Metodo di calcolo:}
 
                 \vspace{0.1cm}
@@ -6517,13 +6743,13 @@
                     \textbf{$\bigstar$ IMPORTANTE}
 
                     \vspace{0.05cm}
-                    • Il verso di $V_{OS}$ è arbitrario $\Rightarrow$ l'effetto finale è $\pm V_{OS} \cdot G_{ID}$
+                    • Il verso di $V_{OS}$ è \textbf{arbitrario} $\Rightarrow$ l'effetto finale è \textbf{$\pm V_{OS} \cdot G_{ID}$}
 
                     \vspace{0.05cm}
-                    • Il contributo ha limite superiore e inferiore
+                    • $V_{OS}$ è un contributo \textbf{statistico} con limite superiore e inferiore
 
                     \vspace{0.05cm}
-                    • L'OpAmp resta ideale: $V^+ = V^-$ (in retroazione negativa)
+                    • Il contributo si somma algebricamente con gli altri errori (sovrapposizione)
 
 
             \end{minipage}
@@ -6548,7 +6774,16 @@
                 Correnti che fluiscono negli ingressi dell'OpAmp reale
 
                 \vspace{0.15cm}
-                \textbf{Rappresentazione:}
+                \textbf{Condizioni di analisi:}
+
+                \vspace{0.05cm}
+                • Siamo in \textbf{corrente continua} $\Rightarrow$ condensatori aperti ($\to \infty$)
+
+                \vspace{0.05cm}
+                • L'OpAmp in analisi è \textbf{ideale}: $V^+ = V^-$ (retroazione negativa)
+
+                \vspace{0.15cm}
+                \textbf{Rappresentazione nel circuito:}
 
                 \vspace{0.1cm}
                 I generatori di corrente $I_B^+$ e $I_B^-$ si collegano \textbf{esternamente ai nodi} $V^+$ e $V^-$
@@ -6557,10 +6792,14 @@
                 {\footnotesize\textit{(collegamento esterno evita confusione durante sovrapposizione effetti)}}
 
                 \vspace{0.1cm}
-                • Le correnti possono essere \textbf{entranti} $(\downarrow)$ o \textbf{uscenti} $(\uparrow)$ dall'OpAmp
+                • Le correnti possono essere:
+
+                \hspace{0.3cm} -- \textbf{Entranti} nell'OpAmp (verso $\downarrow$)
+
+                \hspace{0.3cm} -- \textbf{Uscenti} dall'OpAmp (verso $\uparrow$)
 
                 \vspace{0.15cm}
-                \textbf{Metodo di calcolo:}
+                \textbf{Algoritmo di calcolo:}
 
                 \vspace{0.1cm}
                 \begin{enumerate}[leftmargin=*,itemsep=0pt]
@@ -6577,13 +6816,16 @@
 
                 \vspace{0.15cm}
                 \footnotesize
-                    \textbf{$\bigstar$ NOTA}
+                    \textbf{$\bigstar$ NOTE CRUCIALI}
 
                     \vspace{0.05cm}
                     • L'OpAmp resta ideale: $V^+ = V^-$ e $i^+ = i^- = 0$ \textbf{internamente}
 
                     \vspace{0.05cm}
                     • I generatori $I_B$ sono \textbf{esterni} ai nodi, quindi non violano $i^+ = i^- = 0$
+
+                    \vspace{0.05cm}
+                    • Collegando i generatori \textbf{esternamente}, posso applicare sovrapposizione senza ambiguità
 
 
             \end{minipage}
@@ -6605,10 +6847,19 @@
                 \textbf{Correnti di Offset ($I_{OS}$):}
 
                 \vspace{0.15cm}
-                Contributo statistico alle correnti di bias (modellazione dell'incertezza)
+                Contributo \textbf{statistico} alle correnti di bias (modellazione dell'incertezza)
 
                 \vspace{0.15cm}
-                \textbf{Rappresentazione:}
+                \textbf{Condizioni di analisi:}
+
+                \vspace{0.05cm}
+                • Siamo in \textbf{corrente continua} $\Rightarrow$ condensatori aperti ($\to \infty$)
+
+                \vspace{0.05cm}
+                • L'OpAmp in analisi è \textbf{ideale}: $V^+ = V^-$ (retroazione negativa)
+
+                \vspace{0.15cm}
+                \textbf{Rappresentazione nel circuito:}
 
                 \vspace{0.1cm}
                 Ogni morsetto ha un contributo pari a $\dfrac{I_{OS}}{2}$ con \textbf{versi opposti}:
@@ -6618,8 +6869,11 @@
 
                 • Su $V^-$: $-\dfrac{I_{OS}}{2}$ (verso opposto)
 
+                \vspace{0.1cm}
+                {\footnotesize I versi opposti modellano l'asimmetria tra i due ingressi}
+
                 \vspace{0.15cm}
-                \textbf{Metodo di calcolo:}
+                \textbf{Algoritmo di calcolo:}
 
                 \vspace{0.1cm}
                 Come per le correnti di bias: sovrapposizione degli effetti
@@ -6632,13 +6886,13 @@
                     \textbf{$\bigstar$ IMPORTANTE}
 
                     \vspace{0.05cm}
-                    • $I_{OS}$ è un contributo \textbf{statistico} $\Rightarrow$ l'effetto ha limite sup. e inf.
+                    • $I_{OS}$ è un \textbf{contributo statistico} $\Rightarrow$ l'effetto ha limite sup. e inf.
 
                     \vspace{0.05cm}
-                    • I versi sono opposti per modellare l'asimmetria tra i due ingressi
+                    • L'effetto finale è \textbf{$\pm$} (come $V_{OS}$)
 
                     \vspace{0.05cm}
-                    • Si applica sovrapposizione come per $I_B$
+                    • Si applica sovrapposizione come per $I_B$ (stessa procedura)
 
 
             \end{minipage}
@@ -6731,22 +6985,56 @@
                 \textbf{Formula errore:}
 
                 \vspace{0.1cm}
-                $$\text{Errore} = V_{IN}\,(G_{ID} - G_{reale})$$
+                $$\text{Errore} = V_{out,\,ideale} - V_{out,\,reale}$$
 
                 \vspace{0.05cm}
-                $$= V_{IN}\left(G_{ID} - \frac{G_{ID}}{1 - \frac{1}{G_{loop}}}\right)$$
+                $$= V_{IN}\,(G_{ID} - G_{reale}) = V_{IN}\left(G_{ID} - \frac{G_{ID}}{1 - \frac{1}{G_{loop}}}\right)$$
 
                 \vspace{0.05cm}
                 $$\boxed{\text{Errore} = V_{IN} \cdot \frac{G_{ID}}{1 - G_{loop}}}$$
 
                 \vspace{0.15cm}
-                \textbf{Caso pessimo:}
+                \textbf{Come trovare l'ERRORE MASSIMO:}
 
                 \vspace{0.1cm}
-                $$\text{Errore}_{\text{MAX}} = V_{IN}\big|_{\text{MAX}} \cdot \frac{G_{ID}}{1 - G_{loop}(0)}$$
+                Per massimizzare l'errore, osservare la formula:
+
+                \vspace{0.05cm}
+                $$\text{Errore}_{\text{MAX}} = V_{IN}\big|_{\text{MAX}} \cdot \frac{G_{ID}\big|_{\text{MAX}}}{1 - G_{loop}\big|_{\text{MIN}}}$$
 
                 \vspace{0.1cm}
-                dove $G_{loop}(0)$ è il guadagno d'anello in continua
+                \textbf{Strategia:}
+
+                \vspace{0.05cm}
+                1. \textbf{Massimizzare} $V_{IN}$ (prendere il valore massimo)
+
+                \vspace{0.05cm}
+                2. \textbf{Massimizzare} $G_{ID}$ (numeratore)
+
+                \vspace{0.05cm}
+                3. \textbf{Minimizzare} $G_{loop}$ (denominatore)
+
+                \vspace{0.1cm}
+                dove $G_{loop}(0)$ è il guadagno d'anello in \textbf{continua}
+
+                \vspace{0.15cm}
+                \footnotesize
+                    \textbf{$\bigstar$ TRADE-OFF tra parametri:}
+
+                    \vspace{0.05cm}
+                    Se un parametro \textbf{massimizza $G_{ID}$ ma NON minimizza $G_{loop}$}:
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Calcola l'errore per \textbf{entrambi i casi} e prendi il \textbf{MASSIMO}
+
+                    \vspace{0.05cm}
+                    Esempio: se $R_1$ alta $\to$ $G_{ID}$ alto ma $G_{loop}$ alto (errore basso)
+
+                    \hspace{1.3cm} e $R_1$ bassa $\to$ $G_{ID}$ basso ma $G_{loop}$ basso (errore ?)
+
+                    \vspace{0.05cm}
+                    $\Rightarrow$ Calcola errore per entrambi i valori di $R_1$ e scegli il peggiore!
+
 
                 \vspace{0.15cm}
                 \footnotesize
@@ -6841,6 +7129,80 @@
         };
         %------------ Risposta al Gradino Header ---------------------
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Risposta al Gradino - Sistema 1$^\circ$ Ordine};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Risposta al Gradino - Sistema 1 Ordine}{Risposta al Gradino - Sistema 1 Ordine}}
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ OpAmp - Effetti Dinamici e Risposta in Frequenza ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{OpAmp - Analisi Dinamica con Condensatore}
+
+                \vspace{0.15cm}
+                Quando un circuito OpAmp include condensatori, il comportamento dinamico introduce poli/zeri.
+
+                \vspace{0.15cm}
+                \textbf{Procedimento generale:}
+
+                \vspace{0.1cm}
+                \begin{enumerate}[leftmargin=*,itemsep=0pt]
+                    \item Calcolare $Z_{eq}$ (impedenza equivalente nel dominio $s$)
+                    \item Calcolare $G_{ID}(s)$ (guadagno ideale in frequenza)
+                    \item Identificare poli e zeri dalla forma di $G_{ID}(s)$
+                    \item Determinare il tipo di filtro (passa-alto, passa-basso, passa-banda)
+                \end{enumerate}
+
+                \vspace{0.15cm}
+                \textbf{Esempio - Filtro Passa-Alto:}
+
+                \vspace{0.1cm}
+                Circuito con $R_1$, $C_1$ in serie all'ingresso:
+
+                \vspace{0.05cm}
+                $$Z_{eq} = R_1 + \frac{1}{sC_1} = \frac{1 + sC_1R_1}{sC_1}$$
+
+                \vspace{0.05cm}
+                Guadagno ideale (es. con $R_f$ in retroazione):
+
+                \vspace{0.05cm}
+                $$G_{ID}(s) = -\frac{R_f}{Z_{eq}} = -\frac{sC_1R_f}{1 + sC_1R_1}$$
+
+                \vspace{0.1cm}
+                • \textbf{Zero nell'origine}: $s$ al numeratore
+
+                • \textbf{Polo}: $\omega_p = \dfrac{1}{C_1R_1}$ $\Rightarrow$ $f_p = \dfrac{1}{2\pi C_1R_1}$
+
+                \vspace{0.15cm}
+                \textbf{Interpretazione:}
+
+                \vspace{0.05cm}
+                • Zero nell'origine $\Rightarrow$ \textbf{Filtro passa-alto}
+
+                • Il polo $f_p$ determina la frequenza di taglio
+
+                • Per far passare tutto il segnale: porre $f_p$ \textbf{sotto} la freq. minima del segnale
+
+                \vspace{0.15cm}
+                \footnotesize
+                    \textbf{$\bigstar$ IMPORTANTE}
+
+                    \vspace{0.05cm}
+                    • In continua ($s=0$): condensatori aperti, calcola $G_{ID}(0)$
+
+                    \vspace{0.05cm}
+                    • In dinamica: usa Laplace e analizza poli/zeri
+
+                    \vspace{0.05cm}
+                    • Il condensatore introduce memoria $\Rightarrow$ risposta transitoria
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}OpAmp - Analisi Dinamica};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{OpAmp - Analisi Dinamica}{OpAmp - Analisi Dinamica}}
     \end{tikzpicture}
 
     \newpage
@@ -8610,6 +8972,87 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Sample \& Hold con Buffer};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Sample e Hold con Buffer}{Sample e Hold con Buffer}}
     \end{tikzpicture}
 
+    \vspace{0.3cm}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %------------ Buffer - Analisi Dinamica e Dimensionamento ---------------
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{Buffer - Dimensionamento per Risposta in Frequenza}
+
+                \vspace{0.15cm}
+                Quando il buffer include componenti reattivi (condensatori), il sistema ha risposta in frequenza.
+
+                \vspace{0.15cm}
+                \textbf{Esempio: Amplificatore + Buffer con accoppiamento AC}
+
+                \vspace{0.1cm}
+                Circuito con amplificatore (guadagno $G_1$) seguito da buffer ($G_{buffer} = 1$):
+
+                \vspace{0.05cm}
+                • $C_1$, $R_1$ all'ingresso dell'amplificatore (accoppiamento AC)
+
+                • $R_2$ in retroazione sull'amplificatore
+
+                \vspace{0.15cm}
+                \textbf{Analisi:}
+
+                \vspace{0.1cm}
+                Impedenza di ingresso: $Z_{eq} = R_1 + \dfrac{1}{sC_1}$
+
+                \vspace{0.05cm}
+                Guadagno ideale dell'amplificatore:
+
+                \vspace{0.05cm}
+                $$G_{ID}(s) = -\frac{R_2}{Z_{eq}} = -\frac{sC_1R_2}{1 + sC_1R_1}$$
+
+                \vspace{0.1cm}
+                • \textbf{Zero nell'origine} $\Rightarrow$ Filtro passa-alto
+
+                • \textbf{Polo}: $f_p = \dfrac{1}{2\pi C_1 R_1}$
+
+                \vspace{0.15cm}
+                \textbf{Criterio di dimensionamento:}
+
+                \vspace{0.1cm}
+                Per garantire che \textbf{tutta la banda del segnale} passi inalterata:
+
+                \vspace{0.05cm}
+                $$\boxed{f_p \le f_{segnale,\,min}}$$
+
+                \vspace{0.1cm}
+                Dove $f_{segnale,\,min}$ è la frequenza \textbf{minima} del segnale d'ingresso.
+
+                \vspace{0.05cm}
+                Esempio: Se il segnale ha componenti $\ge 10$ Hz, porre $f_p = 10$ Hz:
+
+                \vspace{0.05cm}
+                $$C_1 = \frac{1}{2\pi f_p R_1}$$
+
+                \vspace{0.15cm}
+                \footnotesize
+                    \textbf{$\bigstar$ IMPORTANTE}
+
+                    \vspace{0.05cm}
+                    • Il buffer ($G=1$) \textbf{non modifica} il guadagno, solo isola l'ADC
+
+                    \vspace{0.05cm}
+                    • La dinamica è determinata dall'\textbf{amplificatore}, non dal buffer
+
+                    \vspace{0.05cm}
+                    • Garantire $f_p$ basso permette al segnale di passare integralmente
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Buffer - Dimensionamento Dinamico};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Buffer - Dimensionamento Dinamico}{Buffer - Dimensionamento Dinamico}}
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %------------ ADC - Adattamento e Dinamica ---------------
 
@@ -9456,7 +9899,8 @@
 
                     • $V_G$ scende $\Rightarrow$ $\Delta V_G < 0$
 
-                    • Il charge injection \textbf{sottrae} carica a $C_H$
+                    • Il charge injection \textbf{sottrae} ca
+                    rica a $C_H$
 
                     \vspace{0.05cm}
                     $\Rightarrow$ La tensione sul condensatore \textbf{diminuisce}!
