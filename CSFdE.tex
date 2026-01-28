@@ -2876,114 +2876,71 @@
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
-                \small
-                \textbf{\color{blue}Tempo di propagazione ($t_p$)} = tempo per raggiungere $\frac{V_{DD}}{2}$
+                \footnotesize
+                \textbf{\color{blue}Tempo di Propagazione - Algoritmo Universale}
+
+                \vspace{0.1cm}
+                \begin{minipage}{0.48\linewidth}
+                \begin{tikzpicture}[scale=0.6]
+                    \draw[->] (0,0) -- (4.2,0) node[right] {\tiny $|V_{DS}|$};
+                    \draw[->] (0,0) -- (0,2.3) node[above] {\tiny $|I_{DS}|$};
+                    \draw[thick, blue] (0,0) parabola[bend at end] (1.2,1.8);
+                    \draw[thick, blue] (1.2,1.8) -- (3.8,1.8);
+                    \draw[dashed, gray] (1.2,0) -- (1.2,1.8);
+                    \node[below, font=\tiny] at (1.2,-0.1) {$V_{pinch}$};
+                    \node[font=\tiny, blue] at (0.45,1.1) {Ohm};
+                    \node[font=\tiny, blue] at (2.5,2.05) {Sat};
+                    \filldraw[red] (3.3,1.8) circle (1.5pt) node[above, font=\tiny] {$V_{start}$};
+                    \filldraw[red] (0.5,1.0) circle (1.5pt) node[below, font=\tiny] {$V_{end}$};
+                    \draw[->, red, thick] (3.1,1.7) -- (0.7,1.1);
+                \end{tikzpicture}
+                \end{minipage}%
+                \begin{minipage}{0.52\linewidth}
+                \scriptsize
+                \textbf{1. Chi lavora?}
+
+                $\bullet$ Scarica ($V_{out}\!\downarrow$): \textbf{nMOS}
+
+                $\bullet$ Carica ($V_{out}\!\uparrow$): \textbf{pMOS}
+
+                \vspace{0.1cm}
+                \textbf{2. Calcola $V_{pinch}$}
+                $$V_{pinch} = V_{GS} - V_T$$
+                {\tiny (pMOS: $|V_{GS}| - |V_T|$)}
+                \end{minipage}
 
                 \vspace{0.15cm}
-                \textbf{Idea chiave:} Trovare i punti di inizio/fine transizione sulla caratteristica $|I_{DS}|$ vs $|V_{DS}|$ e vedere in quale zona ``sta di più''.
+                \hrule
+                \vspace{0.1cm}
+
+                \textbf{3. DECISION TREE} -- Confronta $[V_{start}, V_{end}]$ con $V_{pinch}$:
 
                 \vspace{0.1cm}
-                \begin{center}
-                \begin{tikzpicture}[scale=0.75]
-                    % Assi
-                    \draw[->] (0,0) -- (4.5,0) node[right] {\footnotesize $|V_{DS}|$};
-                    \draw[->] (0,0) -- (0,2.5) node[above] {\footnotesize $|I_{DS}|$};
+                \scriptsize
+                \textbf{\underline{CASO A: Tutto in SAT}} ($V_{out} > V_{pinch}$ sempre)
 
-                    % Curva caratteristica
-                    \draw[thick, blue] (0,0) parabola[bend at end] (1.2,1.8);
-                    \draw[thick, blue] (1.2,1.8) -- (4,1.8);
-
-                    % Linea pinch-off
-                    \draw[dashed, gray] (1.2,0) -- (1.2,1.8);
-                    \node[below, font=\tiny] at (1.2,0) {$V_{DS,sat}$};
-
-                    % Zone
-                    \node[font=\tiny, blue] at (0.5,1.2) {Ohmica};
-                    \node[font=\tiny, blue] at (2.8,2.1) {Saturazione};
-
-                    % Punti transizione esempio (scarica: da V_DD verso 0)
-                    \filldraw[red] (3.5,1.8) circle (2pt) node[above right, font=\tiny] {\color{red}$V_{inizio}$};
-                    \filldraw[red] (1.8,1.8) circle (2pt) node[above, font=\tiny] {\color{red}$V_{fine}$};
-                    \draw[->, red, thick] (3.3,1.65) -- (2.0,1.65);
-
-                    % I_sat
-                    \draw[<->, gray] (4.2,0) -- (4.2,1.8) node[midway, right, font=\tiny] {$I_{sat}$};
-                \end{tikzpicture}
-                \end{center}
+                Modello: generatore $I_{sat}$ costante
+                $\quad \boxed{\Delta t = \frac{C_L \cdot \Delta V}{I_{sat}}}$ con $I_{sat} = K(V_{GS}-V_T)^2$
 
                 \vspace{0.1cm}
-                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
-                    \footnotesize
-                    \textbf{$\bigstar$ CRITERIO DI SCELTA:}
+                \textbf{\underline{CASO B: Tutto in OHMICA}} ($V_{out} < V_{pinch}$ sempre)
 
-                    \textbf{Se transizione sta più in SATURAZIONE:}
+                Modello: RC con $R_{DS,on}$
+                $\quad \boxed{\Delta t = R_{DS,on} \cdot C_L \cdot \ln\!\left( \frac{V_{start}}{V_{end}} \right)}$
 
-                    $\Rightarrow$ Corrente $\approx$ costante $\Rightarrow$ $t_p = \frac{C \cdot \Delta V}{I_{sat}}$
+                con $R_{DS,on} = \frac{1}{2K(V_{GS}-V_T)}$
 
-                    \vspace{0.1cm}
-                    \textbf{Se transizione attraversa ENTRAMBE le zone:}
+                \vspace{0.1cm}
+                \textbf{\underline{CASO C: MISTA}} (attraversa $V_{pinch}$) $\leftarrow$ \textit{caso classico $t_p$}
 
-                    $\Rightarrow$ Metodo RC $\Rightarrow$ $t_p = 0.69 \cdot R_{eq} \cdot C$
+                Modello: RC con $R_{eq}$ al pinch-off
+                $\quad \boxed{t_p = 0.69 \cdot R_{eq} \cdot C_L}$
 
-                    (con $R_{eq}$ al pinch-off come compromesso)
-                }}
+                con $R_{eq} = \frac{1}{K(V_{GS}-V_T)}$
 
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di Propagazione};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Tempo di Propagazione}{Tempo di Propagazione}}
-    \end{tikzpicture}
-
-    \vspace{0.3cm}
-
-    %------------ Tempo di propagazione - Calcolo ---------------
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-
-                \small
-                \textbf{\color{blue}$t_p$ - Formule e Algoritmo}
-
-                \vspace{0.15cm}
-                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
-                    \footnotesize
-                    \textbf{Metodo 1 - Corrente costante:}
-                    $$t_p = \frac{C_L \cdot \Delta V}{I_{sat}} \quad \text{con } I_{sat} = K(V_{GS}-V_T)^2$$
-                    Usa quando la transizione resta quasi tutta in saturazione.
-                }}
-
-                \vspace{0.15cm}
-                \colorbox{green!20}{\parbox{0.95\linewidth}{
-                    \footnotesize
-                    \textbf{Metodo 2 - RC (pinch-off):}
-
-                    \textbf{1.} $V_{DS,sat} = V_{GS} - V_T$
-
-                    \textbf{2.} $I_{sat} = K(V_{GS} - V_T)^2$
-
-                    \textbf{3.} $R_{eq} = \frac{V_{DS,sat}}{I_{sat}} = \frac{1}{K(V_{GS} - V_T)}$
-
-                    \textbf{4.} $\boxed{t_p = 0.69 \cdot R_{eq} \cdot C_L}$
-                }}
-
-                \vspace{0.15cm}
-                \colorbox{red!25}{\parbox{0.95\linewidth}{
-                    \footnotesize
-                    \textbf{$\triangle$ NON MESCOLARE!}
-
-                    Se usi $R$, \textbf{NON} usare $t = \frac{C \Delta V}{V/R}$!
-
-                    La $I$ in una R non è costante (cala con V).
-                }}
-
-                \vspace{0.15cm}
-                \colorbox{orange!25}{\parbox{0.95\linewidth}{
-                    \footnotesize
-                    \textbf{ALL'ESAME:} Se la prof chiede ``$R_{eq}$'' $\Rightarrow$ vuole metodo RC!
-                }}
-
-            \end{minipage}
-        };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di Propagazione - Calcolo};
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -3186,7 +3143,7 @@
 
     \vspace{0.3cm}
 
-    %------------ Contention vs Limitazione PTL ---------------
+    %------------ Cross-conduzione vs Limitazione PTL ---------------
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
@@ -3199,7 +3156,7 @@
                 \vspace{0.15cm}
                 \begin{tabular}{|p{2.5cm}|p{2.5cm}|}
                     \hline
-                    \textbf{Contention (CMOS)} & \textbf{Limitazione (PTL)} \\
+                    \textbf{Cross-conduzione (CMOS)} & \textbf{Limitazione (PTL)} \\
                     \hline
                     PUN e PDN entrambi ON & Transistor si spegne da solo \\
                     \hline
@@ -3217,7 +3174,7 @@
                 \footnotesize
                     \textbf{$\triangle$ Analogia:}
 
-                    \textbf{Contention} = tiro alla fune (entrambi tirano, corrente continua)
+                    \textbf{Cross-conduzione} = tiro alla fune (entrambi tirano, corrente continua)
 
                     \textbf{PTL} = rubinetto che si chiude da solo (corrente si azzera)
                 
@@ -3235,7 +3192,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention (CMOS) vs Limitazione (PTL)};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Contention (CMOS) vs Limitazione (PTL)}{Contention (CMOS) vs Limitazione (PTL)}}
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Cross-conduzione (CMOS) vs Limitazione (PTL)};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Cross-conduzione (CMOS) vs Limitazione (PTL)}{Cross-conduzione (CMOS) vs Limitazione (PTL)}}
     \end{tikzpicture}
 
     \vspace{0.3cm}
@@ -3345,22 +3302,22 @@
                 \textit{Nota:} Poiché il condensatore è un circuito aperto in regime stazionario (nessun $\frac{dV}{dt}$), si calcola solo la corrente continua che scorre attraverso i MOSFET.
 
                 \vspace{0.2cm}
-                \textbf{cMOS complementare:} $P_{statica} = 0$ sempre (mai contention).
+                \textbf{cMOS complementare:} $P_{statica} = 0$ sempre (mai cross-conduzione).
 
                 \vspace{0.1cm}
-                \textbf{cMOS non complementare:} $P_{statica} \neq 0$ quando c'è \textbf{contention} (uscita a valore intermedio, non $V_{DD}$ né GND).
+                \textbf{cMOS non complementare:} $P_{statica} \neq 0$ quando c'è \textbf{cross-conduzione} (uscita a valore intermedio, non $V_{DD}$ né GND).
 
                 \vspace{0.2cm}
                 \footnotesize
-                    \textbf{$\triangle$ Regola:} Si consuma potenza statica \textbf{solo} quando l'uscita NON è a $V_{DD}$ o GND (= contention, cammino DC da $V_{DD}$ a GND).
+                    \textbf{$\triangle$ Regola:} Si consuma potenza statica \textbf{solo} quando l'uscita NON è a $V_{DD}$ o GND (= cross-conduzione, cammino DC da $V_{DD}$ a GND).
 
                     \vspace{0.1cm}
                     \textbf{Formula con duty cycle:}
-                    $$\boxed{P_{stat} = V_{DD} \cdot I_{sat} \cdot \frac{T_{contention}}{T_{periodo}}}$$
+                    $$\boxed{P_{stat} = V_{DD} \cdot I_{sat} \cdot \frac{T_{cross-conduzione}}{T_{periodo}}}$$
 
-                    Dove $T_{contention}$ = tempo totale in un periodo in cui l'uscita è a un livello intermedio.
+                    Dove $T_{cross-conduzione}$ = tempo totale in un periodo in cui l'uscita è a un livello intermedio.
 
-                    $I_{sat}$ = corrente del MOS in saturazione durante contention.
+                    $I_{sat}$ = corrente del MOS in saturazione durante cross-conduzione.
                 
 
                 \vspace{0.2cm}
@@ -3929,16 +3886,16 @@
                         \hline
                         No percorso & No percorso & \textbf{Hi-Z} \\
                         \hline
-                        Percorso & Percorso & \textbf{Contention!} \\
+                        Percorso & Percorso & \textbf{Cross-conduzione!} \\
                         \hline
                     \end{tabular}
 
                     \vspace{0.1cm}
-                    {\footnotesize \textbf{Contention $\neq$ cortocircuito ideale!}
+                    {\footnotesize \textbf{Cross-conduzione $\neq$ cortocircuito ideale!}
                     L'uscita si assesta a un valore \textbf{intermedio}
                     ($V_{OL}$ o $V_{OH}$) determinato dal rapporto delle $K$.
                     Solo in cMOS pura questo caso \textbf{non si verifica mai}.
-                    $\Rightarrow$ Vedi box ``Contention PUN/PDN''}
+                    $\Rightarrow$ Vedi box ``Cross-conduzione PUN/PDN''}
                 
 
                 \vspace{0.15cm}
@@ -4144,7 +4101,7 @@
                         \hline
                         Solo PDN ON & $0V$ \\
                         \hline
-                        Entrambe ON & \textbf{Contention} $\Rightarrow$ Step 3 \\
+                        Entrambe ON & \textbf{Cross-conduzione} $\Rightarrow$ Step 3 \\
                         \hline
                         Nessuna ON & \textbf{Hi-Z} \\
                         \hline
@@ -4153,7 +4110,7 @@
 
                 \vspace{0.15cm}
                 
-                    \textbf{$\bigstar$ STEP 3: Calcolo valore contention}
+                    \textbf{$\bigstar$ STEP 3: Calcolo valore cross-conduzione}
 
                     \vspace{0.1cm}
                     \textbf{Chi ``vince''?} La rete con $K_{eq}$ più grande tira
@@ -4180,14 +4137,14 @@
 
     \newpage
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %------------ Contention PUN/PDN - Teoria ---------------
+    %------------ Cross-conduzione PUN/PDN - Teoria ---------------
 
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \textbf{Contention: PUN e PDN entrambe ON}
+                \textbf{Cross-conduzione: PUN e PDN entrambe ON}
 
                 \vspace{0.15cm}
                 Se la rete \textbf{non è cMOS pura}, può accadere che PUN e PDN siano
@@ -4267,7 +4224,7 @@
 
                 \vspace{0.15cm}
                 \footnotesize
-                    \textbf{$\triangle$ SOSTITUZIONE RAPIDA} (nei calcoli di contention):
+                    \textbf{$\triangle$ SOSTITUZIONE RAPIDA} (nei calcoli di cross-conduzione):
 
                     D = $V_{OUT}$ (sempre in mezzo), S$_n$ = GND, S$_p$ = $V_{DD}$
 
@@ -4278,21 +4235,21 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention PUN/PDN - Teoria};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Contention PUN/PDN - Teoria}{Contention PUN/PDN - Teoria}}
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Cross-conduzione PUN/PDN - Teoria};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Cross-conduzione PUN/PDN - Teoria}{Cross-conduzione PUN/PDN - Teoria}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     \vspace{0.3cm}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %------------ Contention PUN/PDN - Metodi di Calcolo ---------------
+    %------------ Cross-conduzione PUN/PDN - Metodi di Calcolo ---------------
 
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \textbf{Contention: Metodi di Calcolo $V_{OL}$/$V_{OH}$}
+                \textbf{Cross-conduzione: Metodi di Calcolo $V_{OL}$/$V_{OH}$}
 
                 \vspace{0.15cm}
                 
@@ -4372,7 +4329,7 @@
 
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Contention PUN/PDN - Calcolo};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Contention PUN/PDN - Calcolo}{Contention PUN/PDN - Calcolo}}
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Cross-conduzione PUN/PDN - Calcolo};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Cross-conduzione PUN/PDN - Calcolo}{Cross-conduzione PUN/PDN - Calcolo}}
     \end{tikzpicture}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -4422,7 +4379,7 @@
 
                 \vspace{0.15cm}
                 
-                    \textbf{$\bigstar$ APPLICAZIONE ALLA CONTENTION:}
+                    \textbf{$\bigstar$ APPLICAZIONE ALLA CROSS-CONDUZIONE:}
 
                     \vspace{0.1cm}
                     La rete che ``vince'' (più forte) è in ohmica $\Rightarrow$ modellata come $R_{DS,on}$.
