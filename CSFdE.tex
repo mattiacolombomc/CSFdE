@@ -2792,52 +2792,116 @@
             \begin{minipage}{0.3\textwidth}
 
                 \small
-                \textbf{\color{blue}Tempo di propagazione ($\tau$ o $t_{prop}$)}
-
-                \vspace{0.2cm}
-                \textbf{Definizione:} Tempo impiegato a raggiungere la soglia della porta logica successiva.
+                \textbf{\color{blue}Tempo di propagazione ($t_p$)} = tempo per raggiungere $\frac{V_{DD}}{2}$
 
                 \vspace{0.15cm}
-                
-                    \textbf{Convenzione:} Se non specificato, si prende:
-                    $$V_{finale} = \frac{V_{DD}}{2}$$
-                
-
-                \vspace{0.2cm}
-                \textbf{\color{purple}Metodo 1: Approssimazione a corrente costante}
+                \textbf{Idea chiave:} Trovare i punti di inizio/fine transizione sulla caratteristica $|I_{DS}|$ vs $|V_{DS}|$ e vedere in quale zona ``sta di più''.
 
                 \vspace{0.1cm}
-                $$\tau = \frac{\Delta V \cdot C}{I_{sat}}$$
+                \begin{center}
+                \begin{tikzpicture}[scale=0.75]
+                    % Assi
+                    \draw[->] (0,0) -- (4.5,0) node[right] {\footnotesize $|V_{DS}|$};
+                    \draw[->] (0,0) -- (0,2.5) node[above] {\footnotesize $|I_{DS}|$};
 
-                \vspace{0.15cm}
-                Dove:
-                \begin{itemize}[itemsep=2pt, leftmargin=*]
-                    \item $\Delta V = V_{finale} - V_{iniziale}$
-                    \item $V_{finale} = \frac{V_{DD}}{2}$ (sempre!)
-                    \item $C$ = capacità di carico
-                    \item $I_{sat}$ = corrente di saturazione del MOSFET
-                \end{itemize}
+                    % Curva caratteristica
+                    \draw[thick, blue] (0,0) parabola[bend at end] (1.2,1.8);
+                    \draw[thick, blue] (1.2,1.8) -- (4,1.8);
 
-                \vspace{0.15cm}
-                \footnotesize
-                    \textbf{Esempio:} Se $V_{DD} = 5V$ e $V_{iniziale} = 0V$:
+                    % Linea pinch-off
+                    \draw[dashed, gray] (1.2,0) -- (1.2,1.8);
+                    \node[below, font=\tiny] at (1.2,0) {$V_{DS,sat}$};
 
-                    La transizione è da $0V$ a $\frac{5V}{2} = 2.5V$ (NON a 5V!)
+                    % Zone
+                    \node[font=\tiny, blue] at (0.5,1.2) {Ohmica};
+                    \node[font=\tiny, blue] at (2.8,2.1) {Saturazione};
 
-                    $$\Delta V = 2.5V - 0V = 2.5V$$
-                
+                    % Punti transizione esempio (scarica: da V_DD verso 0)
+                    \filldraw[red] (3.5,1.8) circle (2pt) node[above right, font=\tiny] {\color{red}$V_{inizio}$};
+                    \filldraw[red] (1.8,1.8) circle (2pt) node[above, font=\tiny] {\color{red}$V_{fine}$};
+                    \draw[->, red, thick] (3.3,1.65) -- (2.0,1.65);
 
-                \vspace{0.15cm}
-                \footnotesize
-                    \textbf{$\triangle$ ATTENZIONE:} Questo metodo vale per \textbf{CMOS} (transistor resta in saturazione). Per \textbf{PTL} il transistor passa da sat$\to$ohmica $\Rightarrow$ usa il metodo $R_{eq}$ (vedi box PTL).
-                
+                    % I_sat
+                    \draw[<->, gray] (4.2,0) -- (4.2,1.8) node[midway, right, font=\tiny] {$I_{sat}$};
+                \end{tikzpicture}
+                \end{center}
+
+                \vspace{0.1cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \footnotesize
+                    \textbf{$\bigstar$ CRITERIO DI SCELTA:}
+
+                    \textbf{Se transizione sta più in SATURAZIONE:}
+
+                    $\Rightarrow$ Corrente $\approx$ costante $\Rightarrow$ $t_p = \frac{C \cdot \Delta V}{I_{sat}}$
+
+                    \vspace{0.1cm}
+                    \textbf{Se transizione attraversa ENTRAMBE le zone:}
+
+                    $\Rightarrow$ Metodo RC $\Rightarrow$ $t_p = 0.69 \cdot R_{eq} \cdot C$
+
+                    (con $R_{eq}$ al pinch-off come compromesso)
+                }}
 
             \end{minipage}
         };
-        %------------ Tempo propagazione Header ---------------------
-        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di propagazione};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Tempo di propagazione}{Tempo di propagazione}}
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di Propagazione};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Tempo di Propagazione}{Tempo di Propagazione}}
     \end{tikzpicture}
 
+    \vspace{0.3cm}
+
+    %------------ Tempo di propagazione - Calcolo ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{blue}$t_p$ - Formule e Algoritmo}
+
+                \vspace{0.15cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \footnotesize
+                    \textbf{Metodo 1 - Corrente costante:}
+                    $$t_p = \frac{C_L \cdot \Delta V}{I_{sat}} \quad \text{con } I_{sat} = K(V_{GS}-V_T)^2$$
+                    Usa quando la transizione resta quasi tutta in saturazione.
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \footnotesize
+                    \textbf{Metodo 2 - RC (pinch-off):}
+
+                    \textbf{1.} $V_{DS,sat} = V_{GS} - V_T$
+
+                    \textbf{2.} $I_{sat} = K(V_{GS} - V_T)^2$
+
+                    \textbf{3.} $R_{eq} = \frac{V_{DS,sat}}{I_{sat}} = \frac{1}{K(V_{GS} - V_T)}$
+
+                    \textbf{4.} $\boxed{t_p = 0.69 \cdot R_{eq} \cdot C_L}$
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{red!25}{\parbox{0.95\linewidth}{
+                    \footnotesize
+                    \textbf{$\triangle$ NON MESCOLARE!}
+
+                    Se usi $R$, \textbf{NON} usare $t = \frac{C \Delta V}{V/R}$!
+
+                    La $I$ in una R non è costante (cala con V).
+                }}
+
+                \vspace{0.15cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                    \footnotesize
+                    \textbf{ALL'ESAME:} Se la prof chiede ``$R_{eq}$'' $\Rightarrow$ vuole metodo RC!
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di Propagazione - Calcolo};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
 
     %------------ PTL vs CMOS ---------------
     \begin{tikzpicture}
