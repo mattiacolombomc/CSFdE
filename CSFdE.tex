@@ -1734,7 +1734,17 @@
                     \textbf{Corrente:} Da Source $\to$ Drain (verso il basso)
 
                     \textbf{NOTA:} Nel pMOS il source è in alto (invertito rispetto a nMOS)!
-                
+
+                \vspace{0.3cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \textbf{Mnemonico per S/D a runtime:}
+                    \begin{itemize}[itemsep=1pt, leftmargin=*]
+                        \item \textbf{pMOS}: corrente S $\to$ D (intuitivo: dalla "sorgente" al "consumatore")
+                        \item \textbf{nMOS}: corrente D $\to$ S (controintuitivo)
+                    \end{itemize}
+                    Sapendo che $I$ scorre da $V_{alta} \to V_{bassa}$, una volta nota la direzione della corrente (es. carica/scarica C in logica CMOS), si attribuiscono S e D di conseguenza.
+                }}
+
 
             \end{minipage}
         };
