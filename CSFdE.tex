@@ -157,6 +157,91 @@
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Prefissi SI (Notazione Scientifica)};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Prefissi SI (Notazione Scientifica)}{Prefissi SI (Notazione Scientifica)}}
     \end{tikzpicture}
 
+    \vspace{0.3cm}
+
+    %------------ Generatori Spenti ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{blue}Generatori Spenti (Analisi Circuitale)}
+
+                \vspace{0.2cm}
+                \colorbox{cyan!20}{\parbox{0.95\linewidth}{
+                    \textbf{Generatore di CORRENTE spento:}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                    $I = 0$ $\Rightarrow$ \textbf{CIRCUITO APERTO}
+                    \end{center}
+
+                    \vspace{0.05cm}
+                    (nessuna corrente $\Rightarrow$ ramo interrotto)
+                }}
+
+                \vspace{0.2cm}
+                \colorbox{orange!25}{\parbox{0.95\linewidth}{
+                    \textbf{Generatore di TENSIONE spento:}
+
+                    \vspace{0.1cm}
+                    \begin{center}
+                    $V = 0$ $\Rightarrow$ \textbf{CORTOCIRCUITO}
+                    \end{center}
+
+                    \vspace{0.05cm}
+                    (nessuna ddp $\Rightarrow$ filo ideale)
+                }}
+
+                \vspace{0.15cm}
+                \footnotesize
+                \textbf{Uso:} Calcolo $R_{eq}$ per $\tau$, sovrapposizione effetti, Thévenin/Norton.
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Generatori Spenti};
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %------------ Equivalenze Farad ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \small
+                \textbf{\color{blue}Equivalenze del Farad (Analisi Dimensionale)}
+
+                \vspace{0.2cm}
+                \colorbox{yellow!30}{\parbox{0.95\linewidth}{
+                    \textbf{Definizione base:}
+                    $$[F] = \frac{[C]}{[V]} = \frac{[A \cdot s]}{[V]}$$
+                }}
+
+                \vspace{0.15cm}
+                \textbf{Equivalenze notevoli:}
+
+                \vspace{0.1cm}
+                \begin{tabular}{ll}
+                    $[F] = \dfrac{[s]}{[\Omega]}$ & $\Leftarrow$ da $\tau = RC$ \\[0.4cm]
+                    $[F] = \dfrac{[C]}{[V]}$ & $\Leftarrow$ da $Q = CV$ \\[0.4cm]
+                    $[F] = \dfrac{[A]}{[V/s]}$ & $\Leftarrow$ da $I = C\dfrac{dV}{dt}$ \\[0.4cm]
+                    $[F] = \dfrac{[J]}{[V^2]}$ & $\Leftarrow$ da $E = \frac{1}{2}CV^2$
+                \end{tabular}
+
+                \vspace{0.15cm}
+                \colorbox{green!20}{\parbox{0.95\linewidth}{
+                    \footnotesize
+                    \textbf{Trucco:} Per verificare formule, controlla che le unità tornino!
+
+                    Es: $\tau = RC \Rightarrow [\Omega][F] = [\Omega]\frac{[s]}{[\Omega]} = [s]$ \checkmark
+                }}
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}Equivalenze del Farad};
+    \end{tikzpicture}
+
     \newpage
 
     %SCALA TRANSITORI
