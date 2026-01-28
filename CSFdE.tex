@@ -2877,7 +2877,7 @@
             \begin{minipage}{0.3\textwidth}
 
                 \footnotesize
-                \textbf{\color{blue}Tempo di Propagazione - Algoritmo Universale}
+                \textbf{\color{blue}Tempo di Propagazione - Algoritmo}
 
                 \vspace{0.1cm}
                 \begin{minipage}{0.48\linewidth}
@@ -2897,50 +2897,92 @@
                 \end{minipage}%
                 \begin{minipage}{0.52\linewidth}
                 \scriptsize
-                \textbf{1. Chi lavora?}
+                \textbf{1. Dati preliminari}
 
-                $\bullet$ Scarica ($V_{out}\!\downarrow$): \textbf{nMOS}
+                $\bullet$ $V_{pinch} = V_{GS} - V_T$
 
-                $\bullet$ Carica ($V_{out}\!\uparrow$): \textbf{pMOS}
+                $\bullet$ $I_{sat} = K(V_{GS}-V_T)^2$
 
-                \vspace{0.1cm}
-                \textbf{2. Calcola $V_{pinch}$}
-                $$V_{pinch} = V_{GS} - V_T$$
-                {\tiny (pMOS: $|V_{GS}| - |V_T|$)}
+                $\bullet$ $R_{eq} = \frac{1}{K(V_{GS}-V_T)}$
+
+                \vspace{0.05cm}
+                {\tiny (pMOS: usa $|V_{GS}| - |V_T|$)}
                 \end{minipage}
 
-                \vspace{0.15cm}
+                \vspace{0.1cm}
                 \hrule
                 \vspace{0.1cm}
 
-                \textbf{3. DECISION TREE} -- Confronta $[V_{start}, V_{end}]$ con $V_{pinch}$:
-
-                \vspace{0.1cm}
                 \scriptsize
-                \textbf{\underline{CASO A: Tutto in SAT}} ($V_{out} > V_{pinch}$ sempre)
-
-                Modello: generatore $I_{sat}$ costante
-                $\quad \boxed{\Delta t = \frac{C_L \cdot \Delta V}{I_{sat}}}$ con $I_{sat} = K(V_{GS}-V_T)^2$
+                \textbf{2. DECISION TREE} -- Confronta $[V_{start}, V_{end}]$ con $V_{pinch}$:
 
                 \vspace{0.1cm}
-                \textbf{\underline{CASO B: Tutto in OHMICA}} ($V_{out} < V_{pinch}$ sempre)
+                \textbf{\underline{CASO A: Solo SAT}} ($V_{start}$ e $V_{end} > V_{pinch}$)
 
-                Modello: RC con $R_{DS,on}$
-                $\quad \boxed{\Delta t = R_{DS,on} \cdot C_L \cdot \ln\!\left( \frac{V_{start}}{V_{end}} \right)}$
-
-                con $R_{DS,on} = \frac{1}{2K(V_{GS}-V_T)}$
+                MOS = generatore $I_{sat}$ $\Rightarrow$ $\boxed{\Delta t = \frac{C_L \cdot (V_{start} - V_{end})}{I_{sat}}}$
 
                 \vspace{0.1cm}
-                \textbf{\underline{CASO C: MISTA}} (attraversa $V_{pinch}$) $\leftarrow$ \textit{caso classico $t_p$}
+                \textbf{\underline{CASO B: Solo OHMICA}} ($V_{start}$ e $V_{end} < V_{pinch}$)
 
-                Modello: RC con $R_{eq}$ al pinch-off
-                $\quad \boxed{t_p = 0.69 \cdot R_{eq} \cdot C_L}$
+                MOS = resistore $\Rightarrow$ $\boxed{\Delta t = R \cdot C_L \cdot \ln\!\left( \frac{V_{start}}{V_{end}} \right)}$
 
-                con $R_{eq} = \frac{1}{K(V_{GS}-V_T)}$
+                {\tiny Quale R? Vicino a 0V: $R_{DS,on} = \frac{R_{eq}}{2}$. Appena sotto pinch: $R_{eq}$.}
+
+                \vspace{0.1cm}
+                \textbf{\underline{CASO C: MISTA}} ($V_{start} > V_{pinch} > V_{end}$)
+
+                $\Rightarrow$ \textbf{Vedi box successiva!} (split sat + ohmica)
 
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {\color{white}Tempo di Propagazione};\phantomsection\addcontentsline{toc}{subsection}{\texorpdfstring{Tempo di Propagazione}{Tempo di Propagazione}}
+    \end{tikzpicture}
+
+    \vspace{0.3cm}
+
+    %------------ Tempo di propagazione - Caso C Misto ---------------
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+
+                \footnotesize
+                \textbf{\color{blue}$t_p$ - CASO C: Transizione Mista (Split)}
+
+                \vspace{0.1cm}
+                Quando $V_{start} > V_{pinch} > V_{end}$: calcola \textbf{due tempi} e sommali.
+
+                \vspace{0.15cm}
+                \textbf{\underline{1. Tempo in Saturazione ($t_{sat}$)}}
+
+                Da $V_{start}$ a $V_{pinch}$, corrente costante $I_{sat}$:
+                $$\boxed{t_{sat} = \frac{C_L \cdot (V_{start} - V_{pinch})}{I_{sat}}}$$
+
+                \vspace{0.1cm}
+                \textbf{\underline{2. Tempo in Ohmica ($t_{ohm}$)}}
+
+                Da $V_{pinch}$ a $V_{end}$, scarica RC con $R_{eq}$:
+                $$\boxed{t_{ohm} = R_{eq} \cdot C_L \cdot \ln\!\left( \frac{V_{pinch}}{V_{end}} \right)}$$
+
+                \vspace{0.1cm}
+                \textbf{\underline{3. Tempo Totale}}
+                $$\boxed{t_{tot} = t_{sat} + t_{ohm}}$$
+
+                \vspace{0.1cm}
+                \hrule
+                \vspace{0.1cm}
+
+                \scriptsize
+                \textbf{Esempio:} Scarica da 4V a 2V con $V_{pinch}=3V$
+
+                $\bullet$ $t_{sat}$: da 4V a 3V con $I_{sat}$ (corrente)
+
+                $\bullet$ $t_{ohm}$: da 3V a 2V con $R_{eq}$ (logaritmo)
+
+                $\bullet$ $t_{tot} = t_{sat} + t_{ohm}$
+
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {\color{white}$t_p$ - Caso Misto (Split)};
     \end{tikzpicture}
 
     \vspace{0.3cm}
