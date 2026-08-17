@@ -221,6 +221,8 @@
 \SH{$G_{reale}$ (metodo grafico)}
 \F{|G_{reale}|=\min\{|G_{id}|,|G_{OPEN}|\}}{in dB; $G_{OPEN}{=}{-}G_{id}G_{loop}$}
 \F{f\!\ll\!f^\ast\!:G_{id};\quad f\!\gg\!f^\ast\!:G_{OPEN}}{transizione a $f^\ast$}
+\F{G_{reale}=\tfrac{G_{id}}{1+1/|G_{loop}|}}{ESATTA: la spezzata \`e approx!}
+\F{\tfrac{\Delta G}{G_{id}}{=}\tfrac{1}{1+|G_{loop}(0)|};\ \varepsilon{=}\tfrac{V_{out,id}}{1+|G_{loop}(0)|}}{err.\ statico guad.\ finito ($\to$LSB)}
 \F{G_{reale}\approx\tfrac{G_{id}}{1+s\tau^\ast},\ \tau^\ast{=}\tfrac{1}{2\pi f^\ast}}{polo dominante}
 \SH{Stabilità (su $G_{loop}$, tutti poli/zeri)}
 \F{\phi_m=180^\circ{-}\!\sum_p\!\arctan\tfrac{f^\ast}{f_p}{+}\!\sum_z\!\arctan\tfrac{f^\ast}{f_z}}{margine di fase}
