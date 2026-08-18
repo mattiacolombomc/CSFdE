@@ -118,6 +118,22 @@
 \SY{$V_0$ iniziale \textbullet\ $V_\infty$ regime \textbullet\ $\tau{=}R_{eq}C$}
 \end{fmbox}
 
+% ================= CIRCUITO DELLE VARIAZIONI =================
+\begin{fmbox}[cRC]{CIRCUITO DELLE VARIAZIONI (salti ai gradini)}
+\SH{Costruzione (vale all'istante del gradino)}
+\F{\text{gen.\ costanti (rail, DC): SPENTI}}{$\Delta$cost${=}0$: V$\to$massa, I$\to$aperto}
+\F{C\to\text{CORTO}\ (\Delta V_C{=}0)}{il gradino resta l'unica sorgente}
+\SH{Salto del nodo}
+\F{\Delta V_{n}{=}\Delta I{\cdot}R_{vista}^{\Delta}\ \text{o}\ \Delta V_{in}{\cdot}\text{part.}^{\Delta}}{stessa R vista della $\tau$, con C${=}$filo}
+\F{\text{C SERIE sul percorso: }\Delta\text{ passa}}{il nodo salta (AC coupling)}
+\F{\text{C PARALLELO al nodo: }\Delta\!\to\!\text{massa}}{nodo inchiodato; tutta la $\Delta I$ in C}
+\F{\text{a valle: }\Delta V{=}\Delta V_{n}\cdot\text{partitore}}{prima il nodo padrone, poi i figli}
+\SH{Dopo il salto}
+\F{V(t_0^+)=V(t_0^-)+\Delta V_{n}}{poi esponenziale (formula master)}
+\F{\text{asintoto: DC nuova, C aperto}}{input com'era $+$ stessa topologia $\Rightarrow$ asintoto $=$ regime di $0^-$}
+\F{\tau\text{ invariata se R viste immutate}}{topologia cambiata $\Rightarrow$ ricalcola}
+\end{fmbox}
+
 % ================= MOSFET 1 =================
 \begin{fmbox}[cMos]{MOSFET — modello \& zone}
 \SH{Notazione unificata ($V^\star$ già $>0$)}
