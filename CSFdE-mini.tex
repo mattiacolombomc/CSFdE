@@ -286,7 +286,8 @@
 \SH{$\tau$ e vincoli}
 \F{\tau_{smp}{=}R_{DS,on}C_H,\quad \tau_{hld}{=}R_{ADC}C_H}{$R$ vista da $C_H$}
 \F{T_{smp}>0{,}69\,n\,\tau_{smp}}{acquisizione $<1$ LSB}
-\F{T_{hold}\ge T_{conv}^{ADC}}{copre la conversione}
+\F{T_{hld}\le\tfrac{\tau_{hld}}{2^n}=\tfrac{R_{ADC}C_H}{2^n}}{droop $<1$ LSB (da FSR)}
+\F{T_{hld}\ge T_{conv}{=}\tfrac{n}{f_{clk}}\Rightarrow f_{clk}\ge\tfrac{n}{T_{hld}}}{copre la conversione SAR}
 \F{V_G>\vov^{min}+V_t+V_{S,max}}{gate sample (worst $V_S$)}
 \F{C_H\ge\tfrac{T_{hld}(2^n-1)}{R_{ADC}}}{dimensionam.\ (sfrutta dinamica)}
 \SY{$C_H$ hold \textbullet\ $R_{DS,on}$ switch \textbullet\ $n$ bit ADC}
