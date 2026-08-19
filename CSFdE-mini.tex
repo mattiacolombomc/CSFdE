@@ -160,6 +160,9 @@
 \F{\tfrac{1}{K_{eq}}{=}\!\sum\tfrac{1}{K_i}\text{ (serie)},\ K_{eq}{=}\!\sum K_i\text{ (par.)}}{come conduttanze}
 \SH{Source/Drain \& pass-transistor}
 \F{\text{n: }S{=}V_{min};\ \text{p: }S{=}V_{max}}{$I$ da $V$ alto a basso}
+\F{\color{red}\textbf{INTERRUTTORE}\Rightarrow V_{DS}{\approx}0\Rightarrow\textbf{ohmica}}{\color{red}per progetto: non si verifica}
+\F{\color{red}\textbf{DRIVER}\Rightarrow V_{DS}\textbf{ ampio}\Rightarrow\textbf{verifica zona}}{\color{red}spesso parte in saturazione}
+\F{\color{red}\textbf{switch OK se } V_G\ge V_{S,max}{+}V_T{+}\vov}{\color{red}se no muore come il PTL}
 \F{\text{n: }V_{C,max}{=}V_{DD}{-}V_T}{PTL: carica male gli alti}
 \F{\text{p: }V_{C,min}{=}|V_T|}{PTL: scarica male i bassi}
 \SY{$V_T{>}0$ (n), ${<}0$ (p) \textbullet\ TG${=}$n$\parallel$p rail-to-rail \textbullet\ Lusardi $K_L{=}2K$}
