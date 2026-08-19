@@ -289,12 +289,28 @@
 \F{T_{hold}\ge T_{conv}^{ADC}}{copre la conversione}
 \F{V_G>\vov^{min}+V_t+V_{S,max}}{gate sample (worst $V_S$)}
 \F{C_H\ge\tfrac{T_{hld}(2^n-1)}{R_{ADC}}}{dimensionam.\ (sfrutta dinamica)}
-\SH{Errori}
-\F{V_{inj}=\Delta V_G\tfrac{C_{par}}{C_{par}+C_H}}{charge injection ($<\tfrac12$ LSB)}
-\F{\Delta V_{drop}=\tfrac{I_b}{C_H}T_{hld}}{droop/drop in hold}
+\SY{$C_H$ hold \textbullet\ $R_{DS,on}$ switch \textbullet\ $n$ bit ADC}
+\end{fmbox}
+
+% ================= S&H: I TRE ERRORI =================
+\begin{fmbox}[cAdc]{S\&H — i tre errori}
+\SH{Fase, causa, formula}
+{\footnotesize
+\begin{tabular}{@{}p{1.0cm}p{2.5cm}l@{}}
+sample & \raggedright settling: $C_H$ non arriva in tempo &
+  $\varepsilon{=}\Delta V e^{-T_{smp}/\tau_{smp}}$\\[2pt]
+S$\to$H & \raggedright charge inj.: carica del canale &
+  $\Delta V{=}\Delta V_G\tfrac{C_{par}}{C_{par}+C_H}$\\[2pt]
+hold & \raggedright droop: $C_H$ si scarica &
+  $\Delta V{=}\tfrac{I_{leak}}{C_H}T_{hld}$\\
+\end{tabular}\par}
+\vspace{3pt}
+\F{\text{ognuno}<\tfrac12\text{LSB},\ \textstyle\sum<1\,\text{LSB}}{spec tipica}
+\F{C_H\!\uparrow\Rightarrow\text{inj},\text{droop}\!\downarrow\ \text{ma smp lento}}{TRADE-OFF centrale del S\&H}
+\SH{Errori di guadagno}
 \F{V_\varepsilon=V_{in}\tfrac{G_{id}}{1+|G_{loop}|}}{err.\ statico di guadagno (DC)}
 \F{E_{fs}=V_{in,fs}(G_{id}-G_{reale})}{errore a fondo scala}
-\SY{$V_{FS}$ fondo scala \textbullet\ $C_H$ hold \textbullet\ $C_{par}$ parassita \textbullet\ $I_b$ leakage}
+\SY{$V_{FS}$ fondo scala \textbullet\ $C_{par}$ parassita \textbullet\ $I_{leak}$ perdite in hold}
 \end{fmbox}
 
 \end{multicols*}
