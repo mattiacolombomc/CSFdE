@@ -281,6 +281,9 @@
 \F{1\,\mathrm{LSB}=\tfrac{V_{FS}}{2^n}}{risoluzione / scalino}
 \F{V_{FS}=\min(V_{FS}^{ADC},\Delta V_{out}^{op})}{fondo scala effettivo}
 \F{\mathrm{LSB}_{in}=\tfrac{\mathrm{LSB}_{ADC}}{G_{id}}}{risoluzione all'ingresso}
+\hl{\textbf{Risoluzione $=$ su $\Delta$: offset/$V_B$/centro SPARISCONO}}\par
+\hl{\textbf{(costanti): $\Delta V_{out}{=}G\cdot\Delta V_{in}$ e basta.}}\par
+\hl{\textbf{Il centro conta solo per min/max/saturazione.}}\par\vspace{3pt}
 \F{\varepsilon_q=\pm\tfrac12\mathrm{LSB}}{errore quantizzazione}
 \SH{Tempi di conversione (cicli $\times T_{clk}$)}
 \F{t_c^{SAR}=n\,T_{clk}}{($+1$ con S/H)}
