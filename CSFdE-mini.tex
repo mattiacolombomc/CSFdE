@@ -13,6 +13,9 @@
 \usepackage{xcolor}
 \usepackage[most]{tcolorbox}
 \usepackage{microtype}
+\usepackage{soul}
+\definecolor{hlY}{RGB}{255,240,90}
+\sethlcolor{hlY}
 
 \definecolor{CustomYellow}{RGB}{233,215,0}
 \definecolor{cue}{gray}{0.42}
@@ -76,10 +79,14 @@
 \F{\text{OFF}:\,I_D=0,\ \text{ver. }V_D<V_\gamma}{interdizione}
 \F{\text{BD}:\,V_D=-|V_{BD}|,\ \text{ver. }I_D<0}{breakdown / zener}
 \F{\text{zener OFF}:\,-V_Z<V_D<V_\gamma}{range interdizione}
-\SH{Metodo a ipotesi}
-\F{\text{ON}\!\to\!{-}V_\gamma,\ \text{OFF}\!\to\!\text{apre},\ \text{BD}\!\to\!{-}|V_{BD}|}{sostituisci, KVL/KCL}
-\F{I_D=\tfrac{V_{in}-V_\gamma}{R}}{diodo ON in serie a $R$}
-\F{V_D{=}V_\gamma\ \text{o}\ V_D{=}{-}|V_{BD}|}{$V_{in}$ di transizione}
+\SH{Metodo a ipotesi (linea dei valori)}
+\F{\text{1. tutti OFF}\Rightarrow\text{range con }{-}|V_{BD}|{<}V_D{<}V_\gamma}{ogni diodo: 2 bordi (fwd e BD)}
+\F{\text{2. segno di }V_D\text{: }{<}0\Rightarrow\text{solo bordo BD};\ {>}0\Rightarrow\text{solo fwd}}{l'altro lato \`e gi\`a vero: via}
+\F{\text{3. al bordo cambia UN diodo: nuova mappa}}{bordi vecchi fuori $=$ fantasmi}
+\hl{\textbf{4. CHECK: la verifica dell'ipotesi NUOVA deve ridare}}\par
+\hl{\textbf{lo STESSO bordo a cui \`e morta la vecchia}} {\footnotesize\color{cue}(se no: clamp/stato sbagliato)}\par\vspace{3pt}
+\F{\text{ON}\!\to\!{-}V_\gamma,\ \text{OFF}\!\to\!\text{apre},\ \text{BD}\!\to\!{-}|V_{BD}|}{fwd inchioda a $\pm0{,}7$, BD a $\pm V_{BD}$!}
+\F{\text{incollaggio: }V_{out}\text{ continua al bordo}}{secondo check gratuito}
 \end{fmbox}
 
 % ================= DIODI 2 =================
