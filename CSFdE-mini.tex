@@ -212,12 +212,14 @@
 % ================= OPAMP 1 =================
 \begin{fmbox}[cOp]{OPAMP — guadagni ideali \& $A(s)$}
 \SH{$G_{id}$ (corto virt.\ $V^+{=}V^-$, $i_\pm{=}0$)}
+\hl{\textbf{Sull'USCITA ($R_L$, $C_L$): MAI in $G_{id}$ n\'e in $G_{loop}'$}}\par
+\hl{\textbf{($R_{out}{=}0$, $V_T$ ideale): solo $I_{out}$ / SR.}}\par
+\hl{\textbf{Su $V^+$: invisibile in $G_{id}$ ($i_+{=}0$)\,---\,ma in $G_{loop}'$}}\par
+\hl{\textbf{CONTA ($\beta^+$): niente corto virtuale con $V_T$!}}\par\vspace{3pt}
 \F{G_{id}=-\tfrac{R_2}{R_1}}{invertente}
 \F{G_{id}=1+\tfrac{R_2}{R_1}}{non invertente}
-\F{G_{id}=1}{buffer}
-\F{G_{id}=-\tfrac{1}{sR_1C}}{integratore (polo orig.)}
-\F{G_{id}=-sR_2C}{derivatore (zero orig.)}
-\F{G_{id}=-\tfrac{R}{1+sRC}}{transimpedenza}
+\F{G_{id}=1\ \text{(buffer)};\quad {-}\tfrac{R}{1+sRC}\ \text{(transimp.)}}{}
+\F{{-}\tfrac{1}{sR_1C}\ \text{(integr.)};\quad {-}sR_2C\ \text{(deriv.)}}{polo / zero nell'origine}
 \SH{OpAmp reale (1 polo)}
 \F{A(s)=\tfrac{A_0}{1+s\tau_0}}{anello aperto}
 \F{f_0=\tfrac{1}{2\pi\tau_0},\quad \mathrm{GBWP}=A_0 f_0}{polo / dato di targa}
